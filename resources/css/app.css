@@ -1,9 +1,13 @@
 @import 'tailwindcss';
+@import "flowbite/src/themes/default";
+
+@plugin "flowbite/plugin";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source "../node_modules/flowbite";
 
 @theme {
     --font-sans:
@@ -25,10 +29,14 @@
 
 @layer components {
     .section-bg {
-        @apply bg-gray-100 mt-6 p-5;
+        @apply border-b border-b-cyan-500 mt-6 p-5;
+    }
+
+    .element-bg {
+        @apply bg-gray-200
     }
 
     .section-title {
-        @apply text-center mb-5
+        @apply text-center mb-5 text-4xl
     }
 }

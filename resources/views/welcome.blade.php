@@ -21,26 +21,112 @@
 
 <body>
     <div class="max-w-7xl mx-auto px-6">
-        {{-- header --}}
-        <header class="flex justify-between items-center py-7 border-b border-b-cyan-500">
+
+        <header class="w-full bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between relative"
+            x-data="{ open: false }">
+            <!-- Логотип слева -->
             <div>
-                <a class="font-train text-4xl text-cyan-500" href="#">SobAlex</a>
-                <p>Оптимизация сайтов</p>
+                <a href="#" class="font-train text-[38px] text-cyan-500 whitespace-nowrap">SobAlex
+                </a>
+
+                <p class="text-md">Оптимизация сайтов</p>
             </div>
 
-            <nav class="basis-2/4" aria-label="Главное меню">
-                <ul class="flex justify-center">
-                    <li><a class="p-4" href="#">Услуги</a></li>
-                    <li><a class="p-4" href="#">Блог</a></li>
-                    <li><a class="p-4" href="#">Кейсы</a></li>
-                    <li><a class="p-4" href="#">Контакты</a></li>
+            <!-- Главное меню (по центру ≥lg) -->
+            <nav class="flex-1 flex items-center justify-center">
+                <ul class="hidden lg:flex items-center space-x-8">
+                    <li class="relative" x-data="{ dd: false }">
+                        <button @mouseenter="dd = true" @mouseleave="dd = false" @click="dd = !dd"
+                            class="flex items-center text-gray-700 hover:text-blue-600 focus:outline-none"
+                            type="button" aria-haspopup="true" :aria-expanded="dd.toString()">
+                            Первый пункт
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div x-show="dd" @mouseenter="dd = true" @mouseleave="dd = false"
+                            class="absolute left-0 mt-2 bg-white shadow-lg rounded z-10 w-48"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+                            style="display: none;">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.1</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.2</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.3</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.4</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Второй пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Третий пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Четвёртый пункт</a></li>
                 </ul>
             </nav>
 
-            <button
-                class="bg-transparent hover:bg-gray-500 hover:text-white py-2 px-4 border border-gray-700 hover:border-transparent">Связаться
-                с нами
+            <!-- Кнопка "Заказать звонок" (только ≥lg) -->
+            <div class="hidden lg:block ml-4">
+                <button class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition">
+                    Заказать звонок
+                </button>
+            </div>
+
+            <!-- Бургер справа (<lg) -->
+            <button @click="open = !open" class="lg:hidden flex-shrink-0 focus:outline-none ml-4"
+                aria-label="Открыть меню" :aria-expanded="open.toString()">
+                <svg x-show="!open" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" style="display: block;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg x-show="open" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" style="display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
+
+            <!-- Мобильное меню -->
+            <div x-show="open" @click.away="open = false"
+                class="absolute left-0 right-0 top-full bg-white shadow-lg z-50 lg:hidden"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 transform -translate-y-2"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 transform translate-y-0"
+                x-transition:leave-end="opacity-0 transform -translate-y-2" style="display: none;">
+                <ul class="flex flex-col space-y-6 p-6">
+                    <li x-data="{ msub: false }">
+                        <button @click="msub = !msub"
+                            class="w-full text-left flex items-center justify-between text-gray-700 hover:text-blue-600 text-lg font-medium mt-4"
+                            type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
+                            Первый пункт
+                            <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
+                                :class="msub ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div x-show="msub" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
+                            class="pl-6 space-y-6 overflow-hidden" style="display: none;">
+                            <a href="#" class="block mt-6 text-gray-700 hover:text-blue-600 text-base">Пункт
+                                2.1</a>
+                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.2</a>
+                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.3</a>
+                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.4</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Второй
+                            пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Третий
+                            пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Четвёртый
+                            пункт</a></li>
+                </ul>
+            </div>
         </header>
 
         <main>
@@ -48,12 +134,12 @@
             <section id="hero" class="section-bg">
                 <h1 class="section-title">hero</h1>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <div class="bg-gray-200 w-full sm:basis-1/2 sm:w-auto">
-                        <p>left text</p>
+                    <div class="element-bg w-full sm:basis-1/2 sm:w-auto">
+                        <p>Обеспечу ваших менеджеров по продажам работой - SEO продвижение сайтов в интернете.</p>
                         <button>call</button>
                     </div>
-                    <div class="bg-gray-200 w-full sm:basis-1/2 sm:w-auto">
-                        <img src="" alt="right foto">
+                    <div class="w-full sm:basis-1/2 sm:w-auto">
+                        <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right foto">
                     </div>
                 </div>
             </section>
@@ -63,7 +149,7 @@
             <section id="why" class="section-bg">
                 <h2 class="section-title">Почему мы</h2>
                 <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <li class="bg-gray-200">
+                    <li class="element-bg">
                         <div>
                             <img src="" alt="icon1">
                             <div>
@@ -73,7 +159,7 @@
                         </div>
                     </li>
 
-                    <li class="bg-gray-200">
+                    <li class="element-bg">
                         <div>
                             <img src="" alt="icon2">
                             <div>
@@ -83,7 +169,7 @@
                         </div>
                     </li>
 
-                    <li class="bg-gray-200">
+                    <li class="element-bg">
                         <div>
                             <img src="" alt="icon3">
                             <div>
@@ -93,7 +179,7 @@
                         </div>
                     </li>
 
-                    <li class="bg-gray-200">
+                    <li class="element-bg">
                         <div>
                             <img src="" alt="icon4">
                             <div>
@@ -117,7 +203,7 @@
            lg:grid-cols-4 lg:gap-6">
                     {{-- Card service --}}
                     <article
-                        class="bg-gray-100 p-4 rounded shadow
+                        class="element-bg p-4 rounded shadow
                     sm:col-span-2
                     md:row-span-2">
                         {{-- Card service top --}}
@@ -141,7 +227,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4 rounded shadow">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon">
@@ -163,7 +249,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon Кейсы">
@@ -185,7 +271,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4 rounded shadow">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon Кейсы">
@@ -207,7 +293,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4 rounded shadow">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon Кейсы">
@@ -229,7 +315,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4 rounded shadow">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon Кейсы">
@@ -251,7 +337,7 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="bg-gray-100 p-4 rounded shadow">
+                    <article class="element-bg p-4 rounded shadow">
                         {{-- Card service top --}}
                         <div>
                             <img src="" alt="icon Кейсы">
@@ -285,7 +371,7 @@
             {{-- Form --}}
             <section id="contact-form" class="section-bg flex flex-col items-center lg:flex-row lg:justify-around">
                 <!-- Contact Information Column -->
-                <div class="w-full sm:w-2/3 md:basis-1/3 mb-9 lg:mb-0">
+                <div class="element-bg w-full sm:w-2/3 md:basis-1/3 mb-9 lg:mb-0">
                     <h2 class="section-title">Контакты</h2>
 
                     <p class="mb-6">Заполните форму, и наша команда свяжется с вами в течение 24 часов. Или
@@ -346,7 +432,7 @@
                 </div>
 
                 <!-- Form Column -->
-                <div class="w-full sm:w-2/3 md:basis-1/3">
+                <div class="element-bg w-full sm:w-2/3 md:basis-1/3">
                     <h3 class="section-title">Отправить заявку</h3>
 
                     <form action="#" method="POST" class="space-y-4">
@@ -389,9 +475,9 @@
         </main>
 
         {{-- Footer --}}
-        <footer class="section-bg grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <footer class="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             {{-- Footer col --}}
-            <div>
+            <div class="element-bg">
                 <p>Контакты</p>
 
                 <ul>
@@ -404,7 +490,7 @@
             {{-- End footer col --}}
 
             {{-- Footer col --}}
-            <div>
+            <div class="element-bg">
                 <p>Услуги</p>
 
                 <ul>
@@ -417,7 +503,7 @@
             {{-- End footer col --}}
 
             {{-- Footer col --}}
-            <div>
+            <div class="element-bg">
                 <p>Блог</p>
 
                 <ul>
@@ -430,7 +516,7 @@
             {{-- End footer col --}}
 
             {{-- Footer col --}}
-            <div>
+            <div class="element-bg">
                 <p>Информация</p>
 
                 <ul>
