@@ -22,7 +22,7 @@
 <body>
     <div class="max-w-7xl mx-auto px-6">
 
-        <header class="w-full bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between relative"
+        <header class="border-b border-cyan-500 py-2 flex items-center justify-between relative"
             x-data="{ open: false }">
             <!-- Логотип слева -->
             <div>
@@ -37,9 +37,9 @@
                 <ul class="hidden lg:flex items-center space-x-8">
                     <li class="relative" x-data="{ dd: false }">
                         <button @mouseenter="dd = true" @mouseleave="dd = false" @click="dd = !dd"
-                            class="flex items-center text-gray-700 hover:text-blue-600 focus:outline-none"
+                            class="flex items-center text-gray-700 hover:text-cyan-500 focus:outline-none"
                             type="button" aria-haspopup="true" :aria-expanded="dd.toString()">
-                            Первый пункт
+                            Услуги
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -53,21 +53,29 @@
                             x-transition:leave="transition ease-in duration-150"
                             x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
                             style="display: none;">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.1</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.2</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.3</a>
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Пункт 2.4</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">SEO продвижение
+                                сайта</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Технический
+                                аудит</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит КФ</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит ПФ</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ссылочный
+                                профиль</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Сбор и группировка
+                                СЯ</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Составление SEO
+                                стратегии</a>
                         </div>
                     </li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Второй пункт</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Третий пункт</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600">Четвёртый пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500">Кейсы</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500">Блог</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500">Контакты</a></li>
                 </ul>
             </nav>
 
             <!-- Кнопка "Заказать звонок" (только ≥lg) -->
             <div class="hidden lg:block ml-4">
-                <button class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition">
+                <button class="btn">
                     Заказать звонок
                 </button>
             </div>
@@ -97,9 +105,9 @@
                 <ul class="flex flex-col space-y-6 p-6">
                     <li x-data="{ msub: false }">
                         <button @click="msub = !msub"
-                            class="w-full text-left flex items-center justify-between text-gray-700 hover:text-blue-600 text-lg font-medium mt-4"
+                            class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium mt-4"
                             type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
-                            Первый пункт
+                            Услуги
                             <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
                                 :class="msub ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" aria-hidden="true">
@@ -112,19 +120,24 @@
                             x-transition:leave="transition ease-in duration-300"
                             x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
                             class="pl-6 space-y-6 overflow-hidden" style="display: none;">
-                            <a href="#" class="block mt-6 text-gray-700 hover:text-blue-600 text-base">Пункт
-                                2.1</a>
-                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.2</a>
-                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.3</a>
-                            <a href="#" class="block text-gray-700 hover:text-blue-600 text-base">Пункт 2.4</a>
+                            <a href="#" class="block mt-6 text-gray-700 hover:text-cyan-500 text-base">SEO
+                                продвижение сайта</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Технический
+                                аудит</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Аудит КФ</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Аудит ПФ</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Ссылочный
+                                профиль</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Сбор и
+                                группировка СЯ</a>
+                            <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Составление
+                                SEO стратегии</a>
                         </div>
                     </li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Второй
-                            пункт</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Третий
-                            пункт</a></li>
-                    <li><a href="#" class="text-gray-700 hover:text-blue-600 text-lg font-medium">Четвёртый
-                            пункт</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Кейсы</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Блог</a></li>
+                    <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Контакты</a>
+                    </li>
                 </ul>
             </div>
         </header>
@@ -132,14 +145,47 @@
         <main>
             {{-- hero --}}
             <section id="hero" class="section-bg">
-                <h1 class="section-title">hero</h1>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <div class="element-bg w-full sm:basis-1/2 sm:w-auto">
-                        <p>Обеспечу ваших менеджеров по продажам работой - SEO продвижение сайтов в интернете.</p>
-                        <button>call</button>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <!-- Левая часть -->
+                    <div
+                        class="w-full md:basis-1/2 lg:basis-2/3 md:w-auto flex flex-col justify-between
+                px-4 py-6
+                text-center sm:text-left">
+
+                        <!-- Заголовок -->
+                        <h1 class="text-3xl leading-relaxed mb-6 sm:mb-8">
+                            Загружу работой ваших менеджеров по продажам<br>SEO продвижение сайтов в интернете.
+                        </h1>
+
+                        <!-- Форма -->
+                        <form action="" method="POST"
+                            class="flex flex-col gap-4 w-full
+             lg:flex-row lg:space-x-4 lg:space-y-0 lg:items-end lg:justify-start relative
+             h-full">
+                            <!-- h-full для высоты -->
+
+                            <div class="flex-1">
+                                <label for="name" class="block mb-1">Имя:</label>
+                                <input type="text" id="name" name="name" required placeholder="Ваше имя"
+                                    class="w-full px-3 py-2" />
+                            </div>
+
+                            <div class="flex-1">
+                                <label for="phone" class="block mb-1">Телефон:</label>
+                                <input type="tel" id="phone" name="phone" required pattern="\+?\d{7,15}"
+                                    placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" />
+                            </div>
+
+                            <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto">
+                                Отправить заявку
+                            </button>
+                        </form>
                     </div>
-                    <div class="w-full sm:basis-1/2 sm:w-auto">
-                        <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right foto">
+
+                    <!-- Правая часть (картинка) -->
+                    <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-start px-4 py-6">
+                        <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right foto"
+                            class="max-w-full h-auto" />
                     </div>
                 </div>
             </section>
@@ -153,7 +199,11 @@
                         <div>
                             <img src="" alt="icon1">
                             <div>
-                                <h3>Потому что 1</h3>
+                                <div class="flex items-center space-x-2">
+                                    <span class="material-icons text-yellow-500">star</span>
+                                    <span class="text-gray-700 font-medium">Опыт работы 5+ лет</span>
+                                </div>
+                                <h3>Опыт более 5 лет</h3>
                                 <p>Описание 1</p>
                             </div>
                         </div>
@@ -163,8 +213,9 @@
                         <div>
                             <img src="" alt="icon2">
                             <div>
-                                <h3>Потому что 2</h3>
-                                <p>Описание 2</p>
+                                <h3>Собственная CRM</h3>
+                                <p>С учетом специфики продвижения сайтов и многозадачности разработана собственная
+                                    сисема учета и контроля задач.</p>
                             </div>
                         </div>
                     </li>
@@ -173,8 +224,9 @@
                         <div>
                             <img src="" alt="icon3">
                             <div>
-                                <h3>Потому что 3</h3>
-                                <p>Описание 3</p>
+                                <h3>Регулярное участие в тематических конференциях</h3>
+                                <p>Поисковые системы постоянно улучшают алгоритмы ранжирования. Мы в курсе всех
+                                    изменений и следим за ситуацией.</p>
                             </div>
                         </div>
                     </li>

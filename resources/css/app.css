@@ -29,7 +29,7 @@
 
 @layer components {
     .section-bg {
-        @apply border-b border-b-cyan-500 mt-6 p-5;
+        @apply mt-20;
     }
 
     .element-bg {
@@ -37,6 +37,10 @@
     }
 
     .section-title {
-        @apply text-center mb-5 text-4xl
+        @apply text-center mb-10 text-4xl
+    }
+
+    .btn {
+        @apply border px-6 py-2 hover:bg-cyan-500 hover:text-white transition
     }
 }
