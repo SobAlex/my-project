@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -194,49 +195,51 @@
             {{-- Why we --}}
             <section id="why" class="section-bg">
                 <h2 class="section-title">Почему мы</h2>
-                <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <li class="element-bg">
-                        <div>
-                            <img src="" alt="icon1">
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <span class="material-icons text-yellow-500">star</span>
-                                    <span class="text-gray-700 font-medium">Опыт работы 5+ лет</span>
-                                </div>
-                                <h3>Опыт более 5 лет</h3>
-                                <p>Описание 1</p>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <li class="element-bg p-4 flex justify-center items-start">
+                        <div class="flex flex-col items-center">
+                            <i class="material-icons md-48 mb-2" aria-label="Опыт более 5 лет" role="img"
+                                style="font-size: 48px;">star</i>
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold">Опыт более 5 лет</h3>
+                                <p class="text-sm text-gray-600">Описание 1</p>
                             </div>
                         </div>
                     </li>
 
-                    <li class="element-bg">
-                        <div>
-                            <img src="" alt="icon2">
-                            <div>
-                                <h3>Собственная CRM</h3>
-                                <p>С учетом специфики продвижения сайтов и многозадачности разработана собственная
+                    <li class="element-bg p-4 flex justify-center items-start">
+                        <div class="flex flex-col items-center">
+                            <i class="material-icons md-48 mb-2" aria-label="CRM" role="img"
+                                style="font-size:48px;">dashboard</i>
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold">Собственная CRM</h3>
+                                <p class="text-sm text-gray-600">С учетом специфики продвижения сайтов и
+                                    многозадачности разработана собственная
                                     сисема учета и контроля задач.</p>
                             </div>
                         </div>
                     </li>
 
-                    <li class="element-bg">
-                        <div>
-                            <img src="" alt="icon3">
-                            <div>
-                                <h3>Регулярное участие в тематических конференциях</h3>
-                                <p>Поисковые системы постоянно улучшают алгоритмы ранжирования. Мы в курсе всех
+                    <li class="element-bg p-4 flex justify-center items-start">
+                        <div class="flex flex-col items-center">
+                            <i class="material-icons md-48 mb-2" aria-label="Участие в тематических конференциях"
+                                role="img" style="font-size:48px;">groups</i>
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold">Регулярное участие в тематических конференциях</h3>
+                                <p class="text-sm text-gray-600">Поисковые системы постоянно улучшают алгоритмы
+                                    ранжирования. Мы в курсе всех
                                     изменений и следим за ситуацией.</p>
                             </div>
                         </div>
                     </li>
 
-                    <li class="element-bg">
-                        <div>
-                            <img src="" alt="icon4">
-                            <div>
-                                <h3>Потому что 4</h3>
-                                <p>Описание 4</p>
+                    <li class="element-bg p-4 flex justify-center items-start">
+                        <div class="flex flex-col items-center px-10">
+                            <i class="material-icons md-48 mb-2" aria-label="Сертифицированные специалисты"
+                                role="img" style="font-size:48px;">verified</i>
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold">Сертифицированные специалисты</h3>
+                                <p class="text-sm text-gray-600">Ежегодное подтверждение квалификации в Яндекс</p>
                             </div>
                         </div>
                     </li>
