@@ -184,11 +184,11 @@
                     </div>
 
                     <!-- Правая часть (картинка) -->
-                    <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-start px-4 py-6">
+                    <div
+                        class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-stretch px-4 py-6">
                         <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right foto"
-                            class="max-w-full h-auto" />
+                            class="w-full h-full object-cover" />
                     </div>
-                </div>
             </section>
             {{-- End hero --}}
 
