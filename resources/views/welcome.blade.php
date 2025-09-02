@@ -258,156 +258,221 @@
            lg:grid-cols-4 lg:gap-6">
                     {{-- Card service --}}
                     <article
-                        class="element-bg p-4 rounded shadow
+                        class="element-bg rounded shadow flex flex-col
                     sm:col-span-2
                     md:row-span-2">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">SEO продвижение сайта</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-4xl text-cyan-500 mb-3">trending_up</i>
+                                <h3 class="text-xl font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">SEO продвижение сайта</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Комплексное продвижение вашего сайта в
+                                    поисковых системах. Повышаем позиции, увеличиваем трафик и конверсию с помощью
+                                    современных SEO-методик.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center font-medium drop-shadow-lg hover:text-cyan-300">Успешные
+                                    кейсы SEO
+                                    продвижения</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4 rounded shadow">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon">
-                            <div>
-                                <h3><a href="#">Технический аудит</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">search</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Технический аудит</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Детальный анализ технических аспектов сайта
+                                    для выявления и устранения ошибок, влияющих на SEO.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Технический аудит кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Результаты
+                                    аудита</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">Аудит КФ</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">content_copy</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Аудит КФ</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Анализ контент-факторов: качество текстов,
+                                    уникальность, релевантность запросам пользователей.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит КФ кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Анализ
+                                    контента</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4 rounded shadow">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">Аудит ПФ</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">pageview</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Аудит ПФ</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Проверка поведенческих факторов: удобство
+                                    использования, скорость загрузки, адаптивность.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит ПФ кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">UX
+                                    анализ</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4 rounded shadow">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">Ссылочный профиль</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">link</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Ссылочный профиль</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Анализ и оптимизация ссылочной массы для
+                                    улучшения авторитетности сайта в поисковых системах.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Ссылочный профиль кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Ссылочная
+                                    стратегия</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4 rounded shadow">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">Сбор и группировка СЯ</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">category</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Сбор и группировка СЯ</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Систематизация семантического ядра для
+                                    эффективного продвижения по целевым запросам.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="СЯ кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Семантическое
+                                    ядро</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg p-4 rounded shadow">
+                    <article class="element-bg rounded shadow flex flex-col">
                         {{-- Card service top --}}
-                        <div>
-                            <img src="" alt="icon Кейсы">
-                            <div>
-                                <h3><a href="#">Составление SEO стратегии</a></h3>
-                                <p>Краткое описание</p>
+                        <div class="flex flex-col flex-[2] p-4">
+                            <div class="flex flex-col items-center mb-4">
+                                <i class="material-icons text-3xl text-cyan-500 mb-3">strategy</i>
+                                <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                                        class="hover:text-cyan-500">Составление SEO стратегии</a></h3>
+                                <p class="text-gray-600 mb-4 text-center">Разработка комплексного плана продвижения с
+                                    учетом специфики бизнеса и конкурентной среды.</p>
                             </div>
-                            <button>Заказать</button>
+                            <div class="mt-auto mb-4">
+                                <button class="btn self-center">Заказать</button>
+                            </div>
                         </div>
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div>
-                            <a href="#"><img src="" alt="Кейсы"></a>
-                            <p>Кейсы текст поверх изображения</p>
+                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                            <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO стратегия кейсы"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="#"
+                                    class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">SEO
+                                    план</a>
+                            </div>
                         </div>
                         {{-- End card service bottom --}}
                     </article>
