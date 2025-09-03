@@ -489,9 +489,10 @@
             {{-- End review --}}
 
             {{-- Form --}}
-            <section id="contact-form" class="section-bg flex flex-col items-center lg:flex-row lg:justify-around">
+            <section id="contact-form"
+                class="section-bg flex flex-col lg:items-start items-center lg:flex-row lg:justify-around">
                 <!-- Contact Information Column -->
-                <div class="element-bg w-full sm:w-2/3 md:basis-1/3 mb-9 lg:mb-0">
+                <div class="w-full sm:w-2/3 md:basis-1/3 mb-9 lg:mb-0">
                     <h2 class="section-title">Контакты</h2>
 
                     <p class="mb-6">Заполните форму, и наша команда свяжется с вами в течение 24 часов. Или
@@ -552,7 +553,7 @@
                 </div>
 
                 <!-- Form Column -->
-                <div class="element-bg w-full sm:w-2/3 md:basis-1/3">
+                <div class="w-full sm:w-2/3 md:basis-1/3">
                     <h3 class="section-title">Отправить заявку</h3>
 
                     <form action="#" method="POST" class="space-y-4">
@@ -586,7 +587,7 @@
                         </div>
 
                         <div>
-                            <button type="submit">Отправить</button>
+                            <button type="submit" class="btn">Отправить</button>
                         </div>
                     </form>
                 </div>
@@ -595,58 +596,78 @@
         </main>
 
         {{-- Footer --}}
-        <footer class="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {{-- Footer col --}}
-            <div class="element-bg">
-                <p>Контакты</p>
+        <footer class="mt-16 bg-gray-800 text-gray-300">
+            <div class="px-6 py-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
+                {{-- Brand / About --}}
+                <div>
+                    <a href="#" class="font-train text-[34px] text-white">SobAlex</a>
+                    <p class="mt-2 text-sm text-gray-400">Оптимизация сайтов и SEO продвижение.</p>
 
-                <ul>
-                    <li><a href="#">Item 1 col 1</a></li>
-                    <li><a href="#">Item 2 col 1</a></li>
-                    <li><a href="#">Item 3 col 1</a></li>
-                    <li><a href="#">Item 4 col 1</a></li>
-                </ul>
+                    <div class="mt-5 flex items-center space-x-4">
+                        <a href="#" aria-label="Telegram" class="hover:text-cyan-400 transition">
+                            <i class="material-icons">send</i>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="hover:text-cyan-400 transition">
+                            <i class="material-icons">smart_display</i>
+                        </a>
+                        <a href="#" aria-label="GitHub" class="hover:text-cyan-400 transition">
+                            <i class="material-icons">code</i>
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Services --}}
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Услуги</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="hover:text-cyan-400 transition">SEO продвижение</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Технический аудит</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Аудит КФ</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Аудит ПФ</a></li>
+                    </ul>
+                </div>
+
+                {{-- Blog/Links --}}
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Блог</h4>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Последние статьи</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Кейсы</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Гайды</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Новости</a></li>
+                    </ul>
+                </div>
+
+                {{-- Contacts --}}
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Контакты</h4>
+                    <ul class="mt-4 space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="material-icons mt-0.5">place</i>
+                            <span>г. Санкт-Петербург, Невский пр., 7</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="material-icons mt-0.5">call</i>
+                            <a href="tel:88001234567" class="hover:text-cyan-400 transition">8 800 123 45 67</a>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="material-icons mt-0.5">mail</i>
+                            <a href="mailto:info@sobalex.com"
+                                class="hover:text-cyan-400 transition">info@sobalex.com</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            {{-- End footer col --}}
 
-            {{-- Footer col --}}
-            <div class="element-bg">
-                <p>Услуги</p>
-
-                <ul>
-                    <li><a href="#">Item 1 col 2</a></li>
-                    <li><a href="#">Item 2 col 2</a></li>
-                    <li><a href="#">Item 3 col 2</a></li>
-                    <li><a href="#">Item 4 col 2</a></li>
-                </ul>
+            <div
+                class="px-6 py-4 border-t border-gray-700 text-sm flex flex-col sm:flex-row items-center justify-between">
+                <p class="mb-2 sm:mb-0">© {{ date('Y') }} SobAlex. Все права защищены.</p>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="hover:text-cyan-400 transition">Политика конфиденциальности</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="#" class="hover:text-cyan-400 transition">Пользовательское соглашение</a>
+                </div>
             </div>
-            {{-- End footer col --}}
-
-            {{-- Footer col --}}
-            <div class="element-bg">
-                <p>Блог</p>
-
-                <ul>
-                    <li><a href="#">Item 1 col 3</a></li>
-                    <li><a href="#">Item 2 col 3</a></li>
-                    <li><a href="#">Item 3 col 3</a></li>
-                    <li><a href="#">Item 4 col 3</a></li>
-                </ul>
-            </div>
-            {{-- End footer col --}}
-
-            {{-- Footer col --}}
-            <div class="element-bg">
-                <p>Информация</p>
-
-                <ul>
-                    <li><a href="#">Item 1 col 4</a></li>
-                    <li><a href="#">Item 2 col 4</a></li>
-                    <li><a href="#">Item 3 col 4</a></li>
-                    <li><a href="#">Item 4 col 4</a></li>
-                </ul>
-            </div>
-            {{-- End footer col --}}
         </footer>
         {{-- End footer --}}
     </div>
