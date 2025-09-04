@@ -144,6 +144,12 @@
         </header>
 
         <main>
+            @if (session('status'))
+                <div class="sticky top-0 z-50 mb-4 border border-green-300 bg-green-50 text-green-800 px-4 py-3"
+                    role="status" aria-live="polite">
+                    {{ session('status') }}
+                </div>
+            @endif
             {{-- hero --}}
             <section id="hero" class="section-bg">
                 <div class="flex flex-col md:flex-row gap-4">
@@ -159,25 +165,38 @@
                         </h1>
 
                         <!-- Форма -->
-                        <form action="" method="POST"
+                        <form action="{{ route('contact.hero') }}" method="POST"
                             class="flex flex-col gap-4 w-full
              lg:flex-row lg:space-x-4 lg:space-y-0 lg:items-end lg:justify-start relative
              h-full">
                             <!-- h-full для высоты -->
+                            @csrf
 
                             <div class="flex-1">
-                                <label for="name" class="block mb-1">Имя:</label>
-                                <input type="text" id="name" name="name" required placeholder="Ваше имя"
-                                    class="w-full px-3 py-2" />
+                                <label for="name_hero" class="block mb-1">Имя:</label>
+                                <input type="text" id="name_hero" name="name" required placeholder="Ваше имя"
+                                    class="w-full px-3 py-2" aria-required="true" aria-label="Ваше имя"
+                                    aria-invalid="@error('name', 'hero') true @else false @enderror"
+                                    aria-describedby="name_hero_error" />
+                                @error('name', 'hero')
+                                    <p id="name_hero_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="flex-1">
-                                <label for="phone" class="block mb-1">Телефон:</label>
-                                <input type="tel" id="phone" name="phone" required pattern="\+?\d{7,15}"
-                                    placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" />
+                                <label for="phone_hero" class="block mb-1">Телефон:</label>
+                                <input type="tel" id="phone_hero" name="phone" required pattern="\+?\d{7,15}"
+                                    placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" aria-required="true"
+                                    aria-label="Телефон"
+                                    aria-invalid="@error('phone', 'hero') true @else false @enderror"
+                                    aria-describedby="phone_hero_error" />
+                                @error('phone', 'hero')
+                                    <p id="phone_hero_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto">
+                            <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
+                                aria-label="Отправить заявку">
                                 Отправить заявку
                             </button>
                         </form>
@@ -186,9 +205,11 @@
                     <!-- Правая часть (картинка) -->
                     <div
                         class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-stretch px-4 py-6">
-                        <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right foto"
-                            class="w-full h-full object-cover" />
+                        <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right photo"
+                            class="w-full h-full object-cover" loading="eager" decoding="async"
+                            fetchpriority="high" />
                     </div>
+                </div>
             </section>
             {{-- End hero --}}
 
@@ -215,7 +236,7 @@
                                 <h3 class="text-lg font-semibold">Собственная CRM</h3>
                                 <p class="text-base text-gray-600">С учетом специфики продвижения сайтов и
                                     многозадачности разработана собственная
-                                    сисема учета и контроля задач.</p>
+                                    система учета и контроля задач.</p>
                             </div>
                         </div>
                     </li>
@@ -280,7 +301,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center font-medium drop-shadow-lg hover:text-cyan-300">Успешные
@@ -312,7 +333,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Технический аудит кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Результаты
@@ -343,7 +364,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит КФ кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Анализ
@@ -374,7 +395,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит ПФ кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">UX
@@ -405,7 +426,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Ссылочный профиль кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Ссылочная
@@ -436,7 +457,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="СЯ кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Семантическое
@@ -467,7 +488,7 @@
                         {{-- Card service bottom --}}
                         <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO стратегия кейсы"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
                             <div class="absolute inset-0 flex items-center justify-center">
                                 <a href="#"
                                     class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">SEO
@@ -554,40 +575,63 @@
 
                 <!-- Form Column -->
                 <div class="w-full sm:w-2/3 md:basis-1/3">
-                    <h3 class="section-title">Отправить заявку</h3>
+                    <h3 class="section-title" id="contact_form_title">Отправить заявку</h3>
 
-                    <form action="#" method="POST" class="space-y-4">
+                    <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4"
+                        aria-labelledby="contact_form_title">
+                        @csrf
                         <div>
-                            <label for="name">Имя</label>
+                            <label for="name_contact">Имя</label>
 
-                            <input type="text" name="name" id="name" required
-                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" name="name" id="name_contact" required aria-required="true"
+                                aria-label="Имя"
+                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                                aria-invalid="@error('name', 'contact') true @else false @enderror"
+                                aria-describedby="name_contact_error">
+                            @error('name', 'contact')
+                                <p id="name_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
-                            <label for="email">Email</label>
+                            <label for="email_contact">Email</label>
 
-                            <input type="email" name="email" id="email" required
-                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500">
+                            <input type="email" name="email" id="email_contact" required aria-required="true"
+                                aria-label="Email"
+                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                                aria-invalid="@error('email', 'contact') true @else false @enderror"
+                                aria-describedby="email_contact_error">
+                            @error('email', 'contact')
+                                <p id="email_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
-                            <label for="phone">Телефон</label>
+                            <label for="phone_contact">Телефон</label>
 
-                            <input type="tel" name="phone" id="phone"
-                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500">
+                            <input type="tel" name="phone" id="phone_contact" aria-label="Телефон"
+                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                                aria-invalid="@error('phone', 'contact') true @else false @enderror"
+                                aria-describedby="phone_contact_error">
+                            @error('phone', 'contact')
+                                <p id="phone_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
-                            <label for="message">Сообщение</label>
+                            <label for="message_contact">Сообщение</label>
 
-                            <textarea name="message" id="message" rows="5" required
-                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500">
+                            <textarea name="message" id="message_contact" rows="5" required aria-required="true" aria-label="Сообщение"
+                                class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                                aria-invalid="@error('message', 'contact') true @else false @enderror" aria-describedby="message_contact_error">
                                 </textarea>
+                            @error('message', 'contact')
+                                <p id="message_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
-                            <button type="submit" class="btn">Отправить</button>
+                            <button type="submit" class="btn" aria-label="Отправить сообщение">Отправить</button>
                         </div>
                     </form>
                 </div>

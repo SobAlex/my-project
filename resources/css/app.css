@@ -25,6 +25,7 @@
   body {
     @apply text-gray-700;
   }
+  [x-cloak] { display: none !important; }
 }
 
 @layer components {
@@ -41,6 +42,13 @@
     }
 
     .btn {
-        @apply border px-6 py-2 hover:bg-cyan-500 hover:text-white transition
+        @apply border px-6 py-2 hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
     }
 }
