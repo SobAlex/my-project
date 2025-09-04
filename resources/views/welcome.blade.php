@@ -48,7 +48,7 @@
                             </svg>
                         </button>
                         <div x-show="dd" @mouseenter="dd = true" @mouseleave="dd = false"
-                            class="absolute left-0 mt-2 bg-white shadow-lg rounded z-10 w-48"
+                            class="absolute left-0 mt-2 bg-white shadow-lg  z-10 w-48"
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-150"
@@ -198,22 +198,22 @@
                 <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <li class="element-bg p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
-                            <i class="material-icons md-48 mb-2" aria-label="Опыт более 5 лет" role="img"
+                            <i class="material-icons md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
                                 style="font-size: 48px;">star</i>
                             <div class="text-center">
                                 <h3 class="text-lg font-semibold">Опыт более 5 лет</h3>
-                                <p class="text-sm text-gray-600">Описание 1</p>
+                                <p class="text-base text-gray-600">Описание 1</p>
                             </div>
                         </div>
                     </li>
 
                     <li class="element-bg p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
-                            <i class="material-icons md-48 mb-2" aria-label="CRM" role="img"
+                            <i class="material-icons md-48 mb-3" aria-label="CRM" role="img"
                                 style="font-size:48px;">dashboard</i>
                             <div class="text-center">
                                 <h3 class="text-lg font-semibold">Собственная CRM</h3>
-                                <p class="text-sm text-gray-600">С учетом специфики продвижения сайтов и
+                                <p class="text-base text-gray-600">С учетом специфики продвижения сайтов и
                                     многозадачности разработана собственная
                                     сисема учета и контроля задач.</p>
                             </div>
@@ -222,11 +222,11 @@
 
                     <li class="element-bg p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
-                            <i class="material-icons md-48 mb-2" aria-label="Участие в тематических конференциях"
+                            <i class="material-icons md-48 mb-3" aria-label="Участие в тематических конференциях"
                                 role="img" style="font-size:48px;">groups</i>
                             <div class="text-center">
                                 <h3 class="text-lg font-semibold">Регулярное участие в тематических конференциях</h3>
-                                <p class="text-sm text-gray-600">Поисковые системы постоянно улучшают алгоритмы
+                                <p class="text-base text-gray-600">Поисковые системы постоянно улучшают алгоритмы
                                     ранжирования. Мы в курсе всех
                                     изменений и следим за ситуацией.</p>
                             </div>
@@ -235,11 +235,11 @@
 
                     <li class="element-bg p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center px-10">
-                            <i class="material-icons md-48 mb-2" aria-label="Сертифицированные специалисты"
+                            <i class="material-icons md-48 mb-3" aria-label="Сертифицированные специалисты"
                                 role="img" style="font-size:48px;">verified</i>
                             <div class="text-center">
                                 <h3 class="text-lg font-semibold">Сертифицированные специалисты</h3>
-                                <p class="text-sm text-gray-600">Ежегодное подтверждение квалификации в Яндекс</p>
+                                <p class="text-base text-gray-600">Ежегодное подтверждение квалификации в Яндекс</p>
                             </div>
                         </div>
                     </li>
@@ -258,13 +258,13 @@
            lg:grid-cols-4 lg:gap-6">
                     {{-- Card service --}}
                     <article
-                        class="element-bg rounded shadow flex flex-col
+                        class="element-bg shadow flex flex-col
                     sm:col-span-2
                     md:row-span-2">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-4xl text-cyan-500 mb-3">trending_up</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">trending_up</i>
                                 <h3 class="text-xl font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">SEO продвижение сайта</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Комплексное продвижение вашего сайта в
@@ -278,7 +278,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -293,11 +293,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">search</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">search</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Технический аудит</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Детальный анализ технических аспектов сайта
@@ -310,7 +310,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Технический аудит кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -324,11 +324,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">content_copy</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">content_copy</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Аудит КФ</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Анализ контент-факторов: качество текстов,
@@ -341,7 +341,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит КФ кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -355,11 +355,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">pageview</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">pageview</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Аудит ПФ</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Проверка поведенческих факторов: удобство
@@ -372,7 +372,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит ПФ кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -386,11 +386,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">link</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">link</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Ссылочный профиль</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Анализ и оптимизация ссылочной массы для
@@ -403,7 +403,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Ссылочный профиль кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -417,11 +417,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">category</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">category</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Сбор и группировка СЯ</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Систематизация семантического ядра для
@@ -434,7 +434,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="СЯ кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -448,11 +448,11 @@
                     {{-- End service card --}}
 
                     {{-- Card service --}}
-                    <article class="element-bg rounded shadow flex flex-col">
+                    <article class="element-bg shadow flex flex-col">
                         {{-- Card service top --}}
                         <div class="flex flex-col flex-[2] p-4">
                             <div class="flex flex-col items-center mb-4">
-                                <i class="material-icons text-3xl text-cyan-500 mb-3">strategy</i>
+                                <i class="material-icons mb-3" style="font-size: 48px;">assessment</i>
                                 <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
                                         class="hover:text-cyan-500">Составление SEO стратегии</a></h3>
                                 <p class="text-gray-600 mb-4 text-center">Разработка комплексного плана продвижения с
@@ -465,7 +465,7 @@
                         {{-- End card service top --}}
 
                         {{-- Card service bottom --}}
-                        <div class="flex-[1] relative overflow-hidden rounded-b">
+                        <div class="flex-[1] relative overflow-hidden -b">
                             <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO стратегия кейсы"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 flex items-center justify-center">
