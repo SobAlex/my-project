@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\HeroRequest;
 use App\Http\Requests\ContactRequest;
+use App\Http\Requests\ServiceOrderRequest;
 
 class ContactController extends Controller
 {
@@ -58,5 +59,54 @@ class ContactController extends Controller
         }
 
         return back()->with('status', 'Сообщение отправлено!');
+    }
+
+    /**
+     * Handle service order form submission.
+     */
+    public function submitServiceOrder(Request $request)
+    {
+        $validated = $request->validate([
+            'service_name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:32'],
+            'message' => ['nullable', 'string', 'max:5000'],
+            'attachment' => ['nullable', 'file', 'max:10240', 'mimes:pdf,doc,docx,txt,jpg,jpeg,png,gif'],
+        ]);
+
+        try {
+            // Handle file upload if present
+            $attachmentPath = null;
+            if ($request->hasFile('attachment')) {
+                $attachmentPath = $request->file('attachment')->store('service-orders', 'public');
+            }
+
+            Mail::send('emails.service-order', [
+                'subject' => 'Заказ услуги: ' . $validated['service_name'],
+                'serviceName' => $validated['service_name'],
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+                'messageBody' => $validated['message'],
+                'attachmentPath' => $attachmentPath,
+                'attachmentName' => $request->hasFile('attachment') ? $request->file('attachment')->getClientOriginalName() : null,
+            ], function ($message) use ($validated, $attachmentPath, $request) {
+                $message->to(config('mail.from.address'))
+                    ->subject('Заказ услуги: ' . $validated['service_name']);
+
+                // Attach file if present
+                if ($attachmentPath && $request->hasFile('attachment')) {
+                    $message->attach(storage_path('app/public/' . $attachmentPath), [
+                        'as' => $request->file('attachment')->getClientOriginalName(),
+                        'mime' => $request->file('attachment')->getMimeType(),
+                    ]);
+                }
+            });
+        } catch (\Throwable $e) {
+            Log::error('Service order mail failed', ['error' => $e->getMessage()]);
+        }
+
+        return back()->with('status', 'Заявка на услугу отправлена! Мы свяжемся с вами в ближайшее время.');
     }
 }

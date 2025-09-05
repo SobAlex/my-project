@@ -1,8 +1,9 @@
-import './bootstrap';
-import 'flowbite';
+import "./bootstrap";
+import "flowbite";
+import "./modals";
 
-import Alpine from 'alpinejs'
+import Alpine from "alpinejs";
 
-window.Alpine = Alpine
+window.Alpine = Alpine;
 
-Alpine.start()
+Alpine.start();
