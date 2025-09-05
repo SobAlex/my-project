@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,9 @@ Route::get('/services/behavioral-audit', [ServiceController::class, 'behavioralA
 Route::get('/services/link-profile', [ServiceController::class, 'linkProfile'])->name('services.link-profile');
 Route::get('/services/semantic-core', [ServiceController::class, 'semanticCore'])->name('services.semantic-core');
 Route::get('/services/seo-strategy', [ServiceController::class, 'seoStrategy'])->name('services.seo-strategy');
+
+// Pages
+Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
 // Contact forms
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');

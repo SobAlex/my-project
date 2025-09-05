@@ -49,7 +49,7 @@
             </li>
             <li><a href="#" class="text-gray-700 hover:text-cyan-500">Кейсы</a></li>
             <li><a href="#" class="text-gray-700 hover:text-cyan-500">Блог</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500">Контакты</a></li>
+            <li><a href="{{ route('contacts') }}" class="text-gray-700 hover:text-cyan-500">Контакты</a></li>
         </ul>
     </nav>
 
@@ -122,7 +122,8 @@
             </li>
             <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Кейсы</a></li>
             <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Блог</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Контакты</a>
+            <li><a href="{{ route('contacts') }}"
+                    class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Контакты</a>
             </li>
         </ul>
     </div>
