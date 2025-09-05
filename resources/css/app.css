@@ -45,6 +45,10 @@
         @apply border px-6 py-2 hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
+    .btn-secondary {
+        @apply border border-gray-300 bg-white text-gray-700 px-4 py-2 hover:bg-gray-50 hover:border-gray-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+    }
+
     input[type="text"],
     input[type="email"],
     input[type="tel"],

@@ -64,16 +64,9 @@ class ContactController extends Controller
     /**
      * Handle service order form submission.
      */
-    public function submitServiceOrder(Request $request)
+    public function submitServiceOrder(ServiceOrderRequest $request)
     {
-        $validated = $request->validate([
-            'service_name' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'max:32'],
-            'message' => ['nullable', 'string', 'max:5000'],
-            'attachment' => ['nullable', 'file', 'max:10240', 'mimes:pdf,doc,docx,txt,jpg,jpeg,png,gif'],
-        ]);
+        $validated = $request->validated();
 
         try {
             // Handle file upload if present

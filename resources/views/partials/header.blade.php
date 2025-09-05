@@ -26,17 +26,24 @@
                     x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
                     style="display: none;">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">SEO продвижение
+                    <a href="{{ route('services.seo-promotion') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">SEO продвижение
                         сайта</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Технический
+                    <a href="{{ route('services.technical-audit') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Технический
                         аудит</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит КФ</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит ПФ</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ссылочный
+                    <a href="{{ route('services.content-audit') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит КФ</a>
+                    <a href="{{ route('services.behavioral-audit') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит ПФ</a>
+                    <a href="{{ route('services.link-profile') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ссылочный
                         профиль</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Сбор и группировка
+                    <a href="{{ route('services.semantic-core') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Сбор и группировка
                         СЯ</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Составление SEO
+                    <a href="{{ route('services.seo-strategy') }}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Составление SEO
                         стратегии</a>
                 </div>
             </li>
@@ -92,17 +99,24 @@
                     x-transition:leave="transition ease-in duration-300"
                     x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
                     class="pl-6 space-y-6 overflow-hidden" style="display: none;">
-                    <a href="#" class="block mt-6 text-gray-700 hover:text-cyan-500 text-base">SEO
+                    <a href="{{ route('services.seo-promotion') }}"
+                        class="block mt-6 text-gray-700 hover:text-cyan-500 text-base">SEO
                         продвижение сайта</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Технический
+                    <a href="{{ route('services.technical-audit') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Технический
                         аудит</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Аудит КФ</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Аудит ПФ</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Ссылочный
+                    <a href="{{ route('services.content-audit') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Аудит КФ</a>
+                    <a href="{{ route('services.behavioral-audit') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Аудит ПФ</a>
+                    <a href="{{ route('services.link-profile') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Ссылочный
                         профиль</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Сбор и
+                    <a href="{{ route('services.semantic-core') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Сбор и
                         группировка СЯ</a>
-                    <a href="#" class="block text-gray-700 hover:text-cyan-500 text-base">Составление
+                    <a href="{{ route('services.seo-strategy') }}"
+                        class="block text-gray-700 hover:text-cyan-500 text-base">Составление
                         SEO стратегии</a>
                 </div>
             </li>

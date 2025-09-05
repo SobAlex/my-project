@@ -11,6 +11,23 @@ function closeServiceOrderModal() {
     document.getElementById("serviceOrderModal").style.display = "none";
 }
 
+// Fallback modal functions in case JS modules don't load
+if (typeof window.openServiceOrderModal === "undefined") {
+    window.openServiceOrderModal = function (serviceName) {
+        console.log("Opening modal for service:", serviceName);
+        document.getElementById("service_display").value = serviceName;
+        document.getElementById("service_name_input").value = serviceName;
+        document.getElementById("serviceOrderModal").style.display = "flex";
+    };
+}
+
+if (typeof window.closeServiceOrderModal === "undefined") {
+    window.closeServiceOrderModal = function () {
+        console.log("Closing modal");
+        document.getElementById("serviceOrderModal").style.display = "none";
+    };
+}
+
 // Make functions globally available
 window.openServiceOrderModal = openServiceOrderModal;
 window.closeServiceOrderModal = closeServiceOrderModal;

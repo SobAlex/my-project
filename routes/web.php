@@ -2,10 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ServiceController;
 
 Route::get('/', function () {
-    return view('welcome-new');
+    return view('welcome');
 });
+
+// Services pages
+Route::get('/services/seo-promotion', [ServiceController::class, 'seoPromotion'])->name('services.seo-promotion');
+Route::get('/services/technical-audit', [ServiceController::class, 'technicalAudit'])->name('services.technical-audit');
+Route::get('/services/content-audit', [ServiceController::class, 'contentAudit'])->name('services.content-audit');
+Route::get('/services/behavioral-audit', [ServiceController::class, 'behavioralAudit'])->name('services.behavioral-audit');
+Route::get('/services/link-profile', [ServiceController::class, 'linkProfile'])->name('services.link-profile');
+Route::get('/services/semantic-core', [ServiceController::class, 'semanticCore'])->name('services.semantic-core');
+Route::get('/services/seo-strategy', [ServiceController::class, 'seoStrategy'])->name('services.seo-strategy');
 
 // Contact forms
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
