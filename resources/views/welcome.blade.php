@@ -29,22 +29,22 @@
                         <label for="name_hero" class="block mb-1">Имя:</label>
                         <input type="text" id="name_hero" name="name" required placeholder="Ваше имя"
                             class="w-full px-3 py-2" aria-required="true" aria-label="Ваше имя"
-                            aria-invalid="@error('name', 'hero') true @else false @enderror"
+                            aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                             aria-describedby="name_hero_error" />
-                        @error('name', 'hero')
-                            <p id="name_hero_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        @if (isset($errors) && $errors->has('name'))
+                            <p id="name_hero_error" class="mt-1 text-sm text-red-600">{{ $errors->first('name') }}</p>
+                        @endif
                     </div>
 
                     <div class="flex-1">
                         <label for="phone_hero" class="block mb-1">Телефон:</label>
                         <input type="tel" id="phone_hero" name="phone" required pattern="\+?\d{7,15}"
                             placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" aria-required="true" aria-label="Телефон"
-                            aria-invalid="@error('phone', 'hero') true @else false @enderror"
+                            aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                             aria-describedby="phone_hero_error" />
-                        @error('phone', 'hero')
-                            <p id="phone_hero_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        @if (isset($errors) && $errors->has('phone'))
+                            <p id="phone_hero_error" class="mt-1 text-sm text-red-600">{{ $errors->first('phone') }}</p>
+                        @endif
                     </div>
 
                     <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
@@ -56,8 +56,8 @@
 
             <!-- Правая часть (картинка) -->
             <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-stretch px-4 py-6">
-                <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="right photo"
-                    class="w-full h-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
+                <img src="{{ asset('images/human.webp') }}" alt="right photo" class="w-full h-full object-cover"
+                    loading="eager" decoding="async" fetchpriority="high" />
             </div>
         </div>
     </section>
@@ -134,7 +134,8 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">trending_up</i>
-                        <h3 class="text-xl font-semibold mb-2 text-center"><a href="#" class="hover:text-cyan-500">SEO
+                        <h3 class="text-xl font-semibold mb-2 text-center"><a href="{{ route('services.seo-promotion') }}"
+                                class="hover:text-cyan-500">SEO
                                 продвижение сайта</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Комплексное продвижение вашего сайта в
                             поисковых системах. Повышаем позиции, увеличиваем трафик и конверсию с помощью
@@ -149,10 +150,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/human.webp') }}" alt="SEO кейсы" class="w-full h-full object-cover"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'seo-promotion']) }}"
                             class="text-white text-center font-medium drop-shadow-lg hover:text-cyan-300">Успешные
                             кейсы SEO
                             продвижения</a>
@@ -168,8 +169,9 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">search</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
-                                class="hover:text-cyan-500">Технический аудит</a></h3>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a
+                                href="{{ route('services.technical-audit') }}" class="hover:text-cyan-500">Технический
+                                аудит</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Детальный анализ технических аспектов сайта
                             для выявления и устранения ошибок, влияющих на SEO.</p>
                     </div>
@@ -182,10 +184,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Технический аудит кейсы"
+                    <img src="{{ asset('images/human.webp') }}" alt="Технический аудит кейсы"
                         class="w-full h-full object-cover" loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'technical-audit']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Результаты
                             аудита</a>
                     </div>
@@ -200,8 +202,9 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">content_copy</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
-                                class="hover:text-cyan-500">Аудит КФ</a></h3>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a
+                                href="{{ route('services.content-audit') }}" class="hover:text-cyan-500">Аудит КФ</a>
+                        </h3>
                         <p class="text-gray-600 mb-4 text-center">Анализ контент-факторов: качество текстов,
                             уникальность, релевантность запросам пользователей.</p>
                     </div>
@@ -213,10 +216,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит КФ кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/human.webp') }}" alt="Аудит КФ кейсы" class="w-full h-full object-cover"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'content-audit']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Анализ
                             контента</a>
                     </div>
@@ -231,8 +234,9 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">pageview</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
-                                class="hover:text-cyan-500">Аудит ПФ</a></h3>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a
+                                href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-500">Аудит ПФ</a>
+                        </h3>
                         <p class="text-gray-600 mb-4 text-center">Проверка поведенческих факторов: удобство
                             использования, скорость загрузки, адаптивность.</p>
                     </div>
@@ -244,10 +248,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Аудит ПФ кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/human.webp') }}" alt="Аудит ПФ кейсы" class="w-full h-full object-cover"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'behavioral-audit']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">UX
                             анализ</a>
                     </div>
@@ -262,7 +266,7 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">link</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.link-profile') }}"
                                 class="hover:text-cyan-500">Ссылочный профиль</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Анализ и оптимизация ссылочной массы для
                             улучшения авторитетности сайта в поисковых системах.</p>
@@ -276,10 +280,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="Ссылочный профиль кейсы"
+                    <img src="{{ asset('images/human.webp') }}" alt="Ссылочный профиль кейсы"
                         class="w-full h-full object-cover" loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'link-profile']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Ссылочная
                             стратегия</a>
                     </div>
@@ -294,8 +298,9 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">category</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
-                                class="hover:text-cyan-500">Сбор и группировка СЯ</a></h3>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a
+                                href="{{ route('services.semantic-core') }}" class="hover:text-cyan-500">Сбор и
+                                группировка СЯ</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Систематизация семантического ядра для
                             эффективного продвижения по целевым запросам.</p>
                     </div>
@@ -308,10 +313,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="СЯ кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/human.webp') }}" alt="СЯ кейсы" class="w-full h-full object-cover"
+                        loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'semantic-core']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Семантическое
                             ядро</a>
                     </div>
@@ -326,7 +331,7 @@
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons mb-3" style="font-size: 48px;">assessment</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="#"
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.seo-strategy') }}"
                                 class="hover:text-cyan-500">Составление SEO стратегии</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Разработка комплексного плана продвижения с
                             учетом специфики бизнеса и конкурентной среды.</p>
@@ -340,10 +345,10 @@
 
                 {{-- Card service bottom --}}
                 <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="SEO стратегия кейсы"
+                    <img src="{{ asset('images/human.webp') }}" alt="SEO стратегия кейсы"
                         class="w-full h-full object-cover" loading="lazy" decoding="async">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="#"
+                        <a href="{{ route('cases', ['service' => 'seo-strategy']) }}"
                             class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">SEO
                             план</a>
                     </div>
@@ -435,11 +440,11 @@
 
                     <input type="text" name="name" id="name_contact" required aria-required="true"
                         aria-label="Имя" class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
-                        aria-invalid="@error('name', 'contact') true @else false @enderror"
+                        aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                         aria-describedby="name_contact_error">
-                    @error('name', 'contact')
-                        <p id="name_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    @if (isset($errors) && $errors->has('name'))
+                        <p id="name_contact_error" class="mt-1 text-sm text-red-600">{{ $errors->first('name') }}</p>
+                    @endif
                 </div>
 
                 <div>
@@ -447,11 +452,11 @@
 
                     <input type="email" name="email" id="email_contact" required aria-required="true"
                         aria-label="Email" class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
-                        aria-invalid="@error('email', 'contact') true @else false @enderror"
+                        aria-invalid="@if (isset($errors) && $errors->has('email')) true @else false @endif"
                         aria-describedby="email_contact_error">
-                    @error('email', 'contact')
-                        <p id="email_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    @if (isset($errors) && $errors->has('email'))
+                        <p id="email_contact_error" class="mt-1 text-sm text-red-600">{{ $errors->first('email') }}</p>
+                    @endif
                 </div>
 
                 <div>
@@ -459,11 +464,11 @@
 
                     <input type="tel" name="phone" id="phone_contact" aria-label="Телефон"
                         class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
-                        aria-invalid="@error('phone', 'contact') true @else false @enderror"
+                        aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                         aria-describedby="phone_contact_error">
-                    @error('phone', 'contact')
-                        <p id="phone_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    @if (isset($errors) && $errors->has('phone'))
+                        <p id="phone_contact_error" class="mt-1 text-sm text-red-600">{{ $errors->first('phone') }}</p>
+                    @endif
                 </div>
 
                 <div>
@@ -471,11 +476,13 @@
 
                     <textarea name="message" id="message_contact" rows="5" required aria-required="true" aria-label="Сообщение"
                         class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
-                        aria-invalid="@error('message', 'contact') true @else false @enderror" aria-describedby="message_contact_error">
+                        aria-invalid="@if (isset($errors) && $errors->has('message')) true @else false @endif"
+                        aria-describedby="message_contact_error">
                     </textarea>
-                    @error('message', 'contact')
-                        <p id="message_contact_error" class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    @if (isset($errors) && $errors->has('message'))
+                        <p id="message_contact_error" class="mt-1 text-sm text-red-600">{{ $errors->first('message') }}
+                        </p>
+                    @endif
                 </div>
 
                 <div>

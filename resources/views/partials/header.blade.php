@@ -10,46 +10,169 @@
     <!-- Главное меню (по центру ≥lg) -->
     <nav class="flex-1 flex items-center justify-center">
         <ul class="hidden lg:flex items-center space-x-8">
-            <li class="relative" x-data="{ dd: false }">
-                <button @mouseenter="dd = true" @mouseleave="dd = false" @click="dd = !dd"
-                    class="flex items-center text-gray-700 hover:text-cyan-500 focus:outline-none" type="button"
-                    aria-haspopup="true" :aria-expanded="dd.toString()">
+            <li class="relative group">
+                <a href="#" class="text-gray-700 hover:text-cyan-500 flex items-center">
                     Услуги
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div x-show="dd" @mouseenter="dd = true" @mouseleave="dd = false"
-                    class="absolute left-0 mt-2 bg-white shadow-lg  z-10 w-48"
-                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95"
-                    x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150"
-                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                    style="display: none;">
-                    <a href="{{ route('services.seo-promotion') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">SEO продвижение
-                        сайта</a>
-                    <a href="{{ route('services.technical-audit') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Технический
-                        аудит</a>
-                    <a href="{{ route('services.content-audit') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит КФ</a>
-                    <a href="{{ route('services.behavioral-audit') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Аудит ПФ</a>
-                    <a href="{{ route('services.link-profile') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ссылочный
-                        профиль</a>
-                    <a href="{{ route('services.semantic-core') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Сбор и группировка
-                        СЯ</a>
-                    <a href="{{ route('services.seo-strategy') }}"
-                        class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Составление SEO
-                        стратегии</a>
+                    <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
+                </a>
+                <div
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="p-4">
+                        <div class="text-sm font-semibold text-gray-600 mb-3">Наши услуги:</div>
+                        <div class="space-y-2">
+                            <a href="{{ route('services.seo-promotion') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
+                                SEO продвижение сайта
+                            </a>
+                            <a href="{{ route('services.technical-audit') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">search</i>
+                                Технический аудит
+                            </a>
+                            <a href="{{ route('services.content-audit') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
+                                Аудит КФ
+                            </a>
+                            <a href="{{ route('services.behavioral-audit') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
+                                Аудит ПФ
+                            </a>
+                            <a href="{{ route('services.link-profile') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">link</i>
+                                Ссылочный профиль
+                            </a>
+                            <a href="{{ route('services.semantic-core') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">category</i>
+                                Сбор и группировка СЯ
+                            </a>
+                            <a href="{{ route('services.seo-strategy') }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">assessment</i>
+                                Составление SEO стратегии
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500">Кейсы</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500">Блог</a></li>
-            <li><a href="{{ route('contacts') }}" class="text-gray-700 hover:text-cyan-500">Контакты</a></li>
+            <li class="relative group">
+                <a href="{{ route('cases') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                    Кейсы
+                    <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
+                </a>
+                <div
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="p-4">
+                        <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
+                        <div class="space-y-2">
+                            <a href="{{ route('cases', ['tag' => 'clothing']) }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">checkroom</i>
+                                Одежда
+                            </a>
+                            <a href="{{ route('cases', ['tag' => 'production']) }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">precision_manufacturing</i>
+                                Производство
+                            </a>
+                            <a href="{{ route('cases', ['tag' => 'electronics']) }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">devices</i>
+                                Электроника
+                            </a>
+                            <a href="{{ route('cases', ['tag' => 'furniture']) }}"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">chair</i>
+                                Мебель
+                            </a>
+                        </div>
+                        <div class="border-t border-gray-200 mt-3 pt-3">
+                            <a href="{{ route('cases') }}"
+                                class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                                Все кейсы →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="relative group">
+                <a href="#" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                    Блог
+                    <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
+                </a>
+                <div
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="p-4">
+                        <div class="text-sm font-semibold text-gray-600 mb-3">Популярные темы:</div>
+                        <div class="space-y-2">
+                            <a href="#"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
+                                SEO новости
+                            </a>
+                            <a href="#"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">analytics</i>
+                                Аналитика
+                            </a>
+                            <a href="#"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">tips_and_updates</i>
+                                Советы
+                            </a>
+                            <a href="#"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">article</i>
+                                Кейсы
+                            </a>
+                        </div>
+                        <div class="border-t border-gray-200 mt-3 pt-3">
+                            <a href="#" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                                Все статьи →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="relative group">
+                <a href="{{ route('contacts') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                    Контакты
+                    <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
+                </a>
+                <div
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="p-4">
+                        <div class="text-sm font-semibold text-gray-600 mb-3">Свяжитесь с нами:</div>
+                        <div class="space-y-2">
+                            <a href="tel:+7(999)123-45-67"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
+                                +7 (999) 123-45-67
+                            </a>
+                            <a href="mailto:info@sobalex.ru"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
+                                info@sobalex.ru
+                            </a>
+                            <a href="#"
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
+                                Москва, ул. Примерная, 1
+                            </a>
+                        </div>
+                        <div class="border-t border-gray-200 mt-3 pt-3">
+                            <a href="{{ route('contacts') }}"
+                                class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                                Подробнее →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
         </ul>
     </nav>
 
@@ -98,32 +221,180 @@
                     x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96"
                     x-transition:leave="transition ease-in duration-300"
                     x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
-                    class="pl-6 space-y-6 overflow-hidden" style="display: none;">
-                    <a href="{{ route('services.seo-promotion') }}"
-                        class="block mt-6 text-gray-700 hover:text-cyan-500 text-base">SEO
-                        продвижение сайта</a>
-                    <a href="{{ route('services.technical-audit') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Технический
-                        аудит</a>
-                    <a href="{{ route('services.content-audit') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Аудит КФ</a>
-                    <a href="{{ route('services.behavioral-audit') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Аудит ПФ</a>
-                    <a href="{{ route('services.link-profile') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Ссылочный
-                        профиль</a>
-                    <a href="{{ route('services.semantic-core') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Сбор и
-                        группировка СЯ</a>
-                    <a href="{{ route('services.seo-strategy') }}"
-                        class="block text-gray-700 hover:text-cyan-500 text-base">Составление
-                        SEO стратегии</a>
+                    class="pl-6 space-y-4 overflow-hidden" style="display: none;">
+                    <div class="text-gray-600 text-sm font-medium mb-3">Наши услуги:</div>
+                    <div class="space-y-2">
+                        <a href="{{ route('services.seo-promotion') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
+                            SEO продвижение сайта
+                        </a>
+                        <a href="{{ route('services.technical-audit') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">search</i>
+                            Технический аудит
+                        </a>
+                        <a href="{{ route('services.content-audit') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
+                            Аудит КФ
+                        </a>
+                        <a href="{{ route('services.behavioral-audit') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
+                            Аудит ПФ
+                        </a>
+                        <a href="{{ route('services.link-profile') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">link</i>
+                            Ссылочный профиль
+                        </a>
+                        <a href="{{ route('services.semantic-core') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">category</i>
+                            Сбор и группировка СЯ
+                        </a>
+                        <a href="{{ route('services.seo-strategy') }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">assessment</i>
+                            Составление SEO стратегии
+                        </a>
+                    </div>
                 </div>
             </li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Кейсы</a></li>
-            <li><a href="#" class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Блог</a></li>
-            <li><a href="{{ route('contacts') }}"
-                    class="text-gray-700 hover:text-cyan-500 text-lg font-medium">Контакты</a>
+            <li x-data="{ msub: false }">
+                <button @click="msub = !msub"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
+                    Кейсы
+                    <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
+                        :class="msub ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="msub" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
+                    class="pl-6 space-y-4 overflow-hidden" style="display: none;">
+                    <div class="text-gray-600 text-sm font-medium mb-3">Популярные отрасли:</div>
+                    <div class="space-y-2">
+                        <a href="{{ route('cases', ['tag' => 'clothing']) }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">checkroom</i>
+                            Одежда
+                        </a>
+                        <a href="{{ route('cases', ['tag' => 'production']) }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">precision_manufacturing</i>
+                            Производство
+                        </a>
+                        <a href="{{ route('cases', ['tag' => 'electronics']) }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">devices</i>
+                            Электроника
+                        </a>
+                        <a href="{{ route('cases', ['tag' => 'furniture']) }}"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">chair</i>
+                            Мебель
+                        </a>
+                    </div>
+                    <div class="pt-3 border-t border-gray-200">
+                        <a href="{{ route('cases') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                            Все кейсы →
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li x-data="{ msub: false }">
+                <button @click="msub = !msub"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
+                    Блог
+                    <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
+                        :class="msub ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="msub" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
+                    class="pl-6 space-y-4 overflow-hidden" style="display: none;">
+                    <div class="text-gray-600 text-sm font-medium mb-3">Популярные темы:</div>
+                    <div class="space-y-2">
+                        <a href="#"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
+                            SEO новости
+                        </a>
+                        <a href="#"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">analytics</i>
+                            Аналитика
+                        </a>
+                        <a href="#"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">tips_and_updates</i>
+                            Советы
+                        </a>
+                        <a href="#"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">article</i>
+                            Кейсы
+                        </a>
+                    </div>
+                    <div class="pt-3 border-t border-gray-200">
+                        <a href="#" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                            Все статьи →
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li x-data="{ msub: false }">
+                <button @click="msub = !msub"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
+                    Контакты
+                    <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
+                        :class="msub ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="msub" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
+                    class="pl-6 space-y-4 overflow-hidden" style="display: none;">
+                    <div class="text-gray-600 text-sm font-medium mb-3">Свяжитесь с нами:</div>
+                    <div class="space-y-2">
+                        <a href="tel:+7(999)123-45-67"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
+                            +7 (999) 123-45-67
+                        </a>
+                        <a href="mailto:info@sobalex.ru"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
+                            info@sobalex.ru
+                        </a>
+                        <a href="#"
+                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
+                            Москва, ул. Примерная, 1
+                        </a>
+                    </div>
+                    <div class="pt-3 border-t border-gray-200">
+                        <a href="{{ route('contacts') }}"
+                            class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                            Подробнее →
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

@@ -35,7 +35,7 @@
 
             <!-- Правая часть (изображение) -->
             <div class="flex-1">
-                <img src="{{ Vite::asset('resources/images/human.webp') }}" alt="{{ $service['name'] }}"
+                <img src="{{ asset('images/human.webp') }}" alt="{{ $service['name'] }}"
                     class="w-full h-96 object-cover rounded-lg shadow-lg" loading="lazy" decoding="async">
             </div>
         </div>

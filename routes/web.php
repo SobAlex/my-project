@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CaseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,10 @@ Route::get('/services/seo-strategy', [ServiceController::class, 'seoStrategy'])-
 
 // Pages
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
+
+// Cases
+Route::get('/cases', [CaseController::class, 'index'])->name('cases');
+Route::get('/cases/{service}/{caseId}', [CaseController::class, 'show'])->name('cases.show');
 
 // Contact forms
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
