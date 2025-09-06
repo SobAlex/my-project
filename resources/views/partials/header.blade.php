@@ -1,7 +1,8 @@
 <header class="border-b border-cyan-500 py-2 flex items-center justify-between relative" x-data="{ open: false }">
     <!-- Логотип слева -->
     <div>
-        <a href="#" class="font-train text-[38px] text-cyan-500 whitespace-nowrap">SobAlex
+        <a href="{{ route('home') }}"
+            class="font-train text-[38px] text-cyan-500 whitespace-nowrap hover:text-cyan-600 transition">SobAlex
         </a>
 
         <p class="text-md">Оптимизация сайтов</p>

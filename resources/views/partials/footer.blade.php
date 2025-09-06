@@ -3,7 +3,8 @@
     <div class="px-6 py-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
         {{-- Brand / About --}}
         <div>
-            <a href="#" class="font-train text-[34px] text-white">SobAlex</a>
+            <a href="{{ route('home') }}"
+                class="font-train text-[34px] text-white hover:text-cyan-400 transition">SobAlex</a>
             <p class="mt-2 text-sm text-gray-400">Оптимизация сайтов и SEO продвижение.</p>
 
             <div class="mt-5 flex items-center space-x-4">

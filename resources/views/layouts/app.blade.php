@@ -19,7 +19,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body x-data>
     <div class="max-w-7xl mx-auto px-6">
         @include('partials.header')
 

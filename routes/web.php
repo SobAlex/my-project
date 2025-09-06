@@ -8,7 +8,7 @@ use App\Http\Controllers\CaseController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Services pages
 Route::get('/services/seo-promotion', [ServiceController::class, 'seoPromotion'])->name('services.seo-promotion');
@@ -24,7 +24,7 @@ Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
 // Cases
 Route::get('/cases', [CaseController::class, 'index'])->name('cases');
-Route::get('/cases/{service}/{caseId}', [CaseController::class, 'show'])->name('cases.show');
+Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
 
 // Contact forms
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
