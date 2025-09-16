@@ -3,9 +3,29 @@
     <div class="px-6 py-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
         {{-- Brand / About --}}
         <div>
-            <a href="{{ route('home') }}"
-                class="font-train text-[34px] text-white hover:text-cyan-400 transition">SobAlex</a>
-            <p class="mt-2 text-sm text-gray-400">Оптимизация сайтов и SEO продвижение.</p>
+            <div>
+                <a href="{{ route('home') }}"
+                    class="font-train text-[34px] text-white hover:text-cyan-400 transition">SobAlex</a>
+                <p class="mt-2 text-sm text-gray-400">Оптимизация сайтов и SEO продвижение.</p>
+            </div>
+
+            <div class="mt-5">
+                <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Контакты</h4>
+                <ul class="mt-4 space-y-3">
+                    <li class="flex items-start space-x-3">
+                        <i class="material-icons mt-0.5">place</i>
+                        <span>г. Санкт-Петербург, Невский пр., 7</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="material-icons mt-0.5">call</i>
+                        <a href="tel:88001234567" class="hover:text-cyan-400 transition">8 800 123 45 67</a>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="material-icons mt-0.5">mail</i>
+                        <a href="mailto:info@sobalex.com" class="hover:text-cyan-400 transition">info@sobalex.com</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="mt-5 flex items-center space-x-4">
                 <a href="#" aria-label="Telegram" class="hover:text-cyan-400 transition">
@@ -26,8 +46,23 @@
             <ul class="mt-4 space-y-2">
                 <li><a href="#" class="hover:text-cyan-400 transition">SEO продвижение</a></li>
                 <li><a href="#" class="hover:text-cyan-400 transition">Технический аудит</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Аудит КФ</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Аудит ПФ</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Аудит коммерческих факторов</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Аудит поведенческих факторов</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Ссылочный профиль</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Сбор и группировка семантического ядра</a>
+                </li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Составление SEO стратегии</a></li>
+            </ul>
+        </div>
+
+        {{-- cases/links --}}
+        <div>
+            <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Кейсы</h4>
+            <ul class="mt-4 space-y-2">
+                <li><a href="#" class="hover:text-cyan-400 transition">Одежда</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Производство</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Электроника</a></li>
+                <li><a href="#" class="hover:text-cyan-400 transition">Мебель</a></li>
             </ul>
         </div>
 
@@ -39,25 +74,6 @@
                 <li><a href="#" class="hover:text-cyan-400 transition">Кейсы</a></li>
                 <li><a href="#" class="hover:text-cyan-400 transition">Гайды</a></li>
                 <li><a href="#" class="hover:text-cyan-400 transition">Новости</a></li>
-            </ul>
-        </div>
-
-        {{-- Contacts --}}
-        <div>
-            <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Контакты</h4>
-            <ul class="mt-4 space-y-3">
-                <li class="flex items-start space-x-3">
-                    <i class="material-icons mt-0.5">place</i>
-                    <span>г. Санкт-Петербург, Невский пр., 7</span>
-                </li>
-                <li class="flex items-start space-x-3">
-                    <i class="material-icons mt-0.5">call</i>
-                    <a href="tel:88001234567" class="hover:text-cyan-400 transition">8 800 123 45 67</a>
-                </li>
-                <li class="flex items-start space-x-3">
-                    <i class="material-icons mt-0.5">mail</i>
-                    <a href="mailto:info@sobalex.com" class="hover:text-cyan-400 transition">info@sobalex.com</a>
-                </li>
             </ul>
         </div>
     </div>

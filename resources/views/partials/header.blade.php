@@ -34,12 +34,12 @@
                             <a href="{{ route('services.content-audit') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
-                                Аудит КФ
+                                Аудит коммерческих факторов
                             </a>
                             <a href="{{ route('services.behavioral-audit') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
-                                Аудит ПФ
+                                Аудит поведенческих факторов
                             </a>
                             <a href="{{ route('services.link-profile') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
@@ -238,12 +238,12 @@
                         <a href="{{ route('services.content-audit') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
-                            Аудит КФ
+                            Аудит коммерческих факторов
                         </a>
                         <a href="{{ route('services.behavioral-audit') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
-                            Аудит ПФ
+                            Аудит поведенческих факторов
                         </a>
                         <a href="{{ route('services.link-profile') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">

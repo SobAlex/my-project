@@ -62,10 +62,10 @@ class ServiceController extends Controller
     public function contentAudit()
     {
         return view('services.content-audit', [
-            'title' => 'Аудит КФ',
+            'title' => 'Аудит коммерческих факторов',
             'service' => [
-                'name' => 'Аудит контент-факторов',
-                'description' => 'Анализ контент-факторов: качество текстов, уникальность, релевантность запросам пользователей.',
+                'name' => 'Аудит коммерческих факторов',
+                'description' => 'Анализ коммерческих факторов: качество текстов, уникальность, релевантность запросам пользователей.',
                 'icon' => 'content_copy',
                 'features' => [
                     'Анализ уникальности контента',
@@ -87,7 +87,7 @@ class ServiceController extends Controller
     public function behavioralAudit()
     {
         return view('services.behavioral-audit', [
-            'title' => 'Аудит ПФ',
+            'title' => 'Аудит поведенческих факторов',
             'service' => [
                 'name' => 'Аудит поведенческих факторов',
                 'description' => 'Проверка поведенческих факторов: удобство использования, скорость загрузки, адаптивность.',
@@ -137,7 +137,7 @@ class ServiceController extends Controller
     public function semanticCore()
     {
         return view('services.semantic-core', [
-            'title' => 'Сбор и группировка СЯ',
+            'title' => 'Сбор и группировка семантического ядра',
             'service' => [
                 'name' => 'Сбор и группировка семантического ядра',
                 'description' => 'Систематизация семантического ядра для эффективного продвижения по целевым запросам.',

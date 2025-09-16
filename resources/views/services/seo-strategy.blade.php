@@ -57,6 +57,45 @@
         </div>
     </section>
 
+    {{-- Process section --}}
+    <section class="section-bg">
+        <h2 class="section-title">Как мы работаем</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div
+                    class="bg-cyan-500 text-white  w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    1</div>
+                <h3 class="text-lg font-semibold mb-2">Анализ</h3>
+                <p class="text-gray-600">Изучаем ваш сайт и конкурентов</p>
+            </div>
+
+            <div class="text-center">
+                <div
+                    class="bg-cyan-500 text-white  w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    2</div>
+                <h3 class="text-lg font-semibold mb-2">Планирование</h3>
+                <p class="text-gray-600">Разрабатываем стратегию продвижения</p>
+            </div>
+
+            <div class="text-center">
+                <div
+                    class="bg-cyan-500 text-white  w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    3</div>
+                <h3 class="text-lg font-semibold mb-2">Реализация</h3>
+                <p class="text-gray-600">Выполняем все необходимые работы</p>
+            </div>
+
+            <div class="text-center">
+                <div
+                    class="bg-cyan-500 text-white  w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    4</div>
+                <h3 class="text-lg font-semibold mb-2">Контроль</h3>
+                <p class="text-gray-600">Отслеживаем результаты и корректируем</p>
+            </div>
+        </div>
+    </section>
+
     {{-- CTA section --}}
     <section class="section-bg">
         <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white  p-8 text-center">
