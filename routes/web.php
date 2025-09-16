@@ -24,6 +24,10 @@ Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
 // Cases
 Route::get('/cases', [CaseController::class, 'index'])->name('cases');
+Route::get('/cases/clothing', [CaseController::class, 'clothing'])->name('cases.clothing');
+Route::get('/cases/production', [CaseController::class, 'production'])->name('cases.production');
+Route::get('/cases/electronics', [CaseController::class, 'electronics'])->name('cases.electronics');
+Route::get('/cases/furniture', [CaseController::class, 'furniture'])->name('cases.furniture');
 Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
 
 // Contact forms

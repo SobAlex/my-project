@@ -10,12 +10,69 @@ class CaseController extends Controller
     /**
      * Главная страница кейсов
      */
-    public function index(Request $request)
+    public function index()
     {
         $casesData = $this->getAllCasesData();
         $title = 'Кейсы SEO продвижения';
+        $selectedTag = null;
 
-        return view('cases.index', compact('casesData', 'title'));
+        return view('cases.index', compact('casesData', 'title', 'selectedTag'));
+    }
+
+    /**
+     * Кейсы по одежде
+     */
+    public function clothing()
+    {
+        return $this->filterByTag('clothing', 'Кейсы SEO продвижения: Одежда');
+    }
+
+    /**
+     * Кейсы по производству
+     */
+    public function production()
+    {
+        return $this->filterByTag('production', 'Кейсы SEO продвижения: Производство');
+    }
+
+    /**
+     * Кейсы по электронике
+     */
+    public function electronics()
+    {
+        return $this->filterByTag('electronics', 'Кейсы SEO продвижения: Электроника');
+    }
+
+    /**
+     * Кейсы по мебели
+     */
+    public function furniture()
+    {
+        return $this->filterByTag('furniture', 'Кейсы SEO продвижения: Мебель');
+    }
+
+    /**
+     * Фильтрация кейсов по тегу
+     */
+    private function filterByTag($tag, $title)
+    {
+        $allCasesData = $this->getAllCasesData();
+        $casesData = [];
+
+        foreach ($allCasesData as $serviceKey => $serviceData) {
+            $filteredCases = array_filter($serviceData['cases'], function ($case) use ($tag) {
+                return $case['industry'] === $tag;
+            });
+
+            if (!empty($filteredCases)) {
+                $casesData[$serviceKey] = $serviceData;
+                $casesData[$serviceKey]['cases'] = array_values($filteredCases);
+            }
+        }
+
+        $selectedTag = $tag;
+
+        return view('cases.index', compact('casesData', 'title', 'selectedTag'));
     }
 
     /**

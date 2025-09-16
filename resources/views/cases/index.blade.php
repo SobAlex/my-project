@@ -14,6 +14,40 @@
         </div>
     </section>
 
+    {{-- Filter navigation --}}
+    <section class="section-bg">
+        <div class="text-center mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Фильтр по отраслям</h3>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="{{ route('cases') }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                          {{ !isset($selectedTag) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    Все кейсы
+                </a>
+                <a href="{{ route('cases.clothing') }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                          {{ isset($selectedTag) && $selectedTag === 'clothing' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    Одежда
+                </a>
+                <a href="{{ route('cases.production') }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                          {{ isset($selectedTag) && $selectedTag === 'production' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    Производство
+                </a>
+                <a href="{{ route('cases.electronics') }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                          {{ isset($selectedTag) && $selectedTag === 'electronics' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    Электроника
+                </a>
+                <a href="{{ route('cases.furniture') }}"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                          {{ isset($selectedTag) && $selectedTag === 'furniture' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    Мебель
+                </a>
+            </div>
+        </div>
+    </section>
+
     {{-- Cases by service --}}
     @if (empty($casesData))
         <section class="section-bg">
@@ -36,7 +70,8 @@
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
-                                        <span class="bg-cyan-500 px-3 py-1  text-sm font-medium">
+                                        <a href="{{ route('cases.' . $case['industry']) }}"
+                                            class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
                                             @switch($case['industry'])
                                                 @case('clothing')
                                                     Одежда
@@ -57,7 +92,7 @@
                                                 @default
                                                     {{ $case['industry'] }}
                                             @endswitch
-                                        </span>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -65,7 +100,8 @@
                                 <div class="p-6 flex-1 flex flex-col">
                                     <div class="flex-1">
                                         <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $case['title'] }}</h3>
-                                        <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}
+                                        <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} •
+                                            {{ $case['period'] }}
                                         </p>
                                         <p class="text-gray-600 text-sm mb-4 line-clamp-2">
                                             {{ Str::limit($case['description'], 120) }}</p>
