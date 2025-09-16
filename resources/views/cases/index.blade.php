@@ -26,14 +26,10 @@
         @foreach ($casesData as $serviceKey => $serviceData)
             <section id="{{ $serviceKey }}" class="section-bg">
                 <div class="mb-12">
-                    <div class="flex items-center mb-8">
-                        <i class="material-icons text-4xl text-cyan-500 mr-4">{{ $serviceData['service_icon'] }}</i>
-                        <h2 class="text-3xl font-bold text-gray-800">{{ $serviceData['service_name'] }}</h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach ($serviceData['cases'] as $case)
-                            <article class="element-bg  overflow-hidden shadow-lg hover:shadow-xl transition">
+                            <article
+                                class="element-bg overflow-hidden shadow-lg hover:shadow-xl transition flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
                                     <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
@@ -41,72 +37,53 @@
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
                                         <span class="bg-cyan-500 px-3 py-1  text-sm font-medium">
-                                            {{ $case['industry'] }}
+                                            @switch($case['industry'])
+                                                @case('clothing')
+                                                    Одежда
+                                                @break
+
+                                                @case('production')
+                                                    Производство
+                                                @break
+
+                                                @case('electronics')
+                                                    Электроника
+                                                @break
+
+                                                @case('furniture')
+                                                    Мебель
+                                                @break
+
+                                                @default
+                                                    {{ $case['industry'] }}
+                                            @endswitch
                                         </span>
                                     </div>
                                 </div>
 
                                 {{-- Case content --}}
-                                <div class="p-6">
-                                    <h3 class="text-xl font-bold text-gray-800 mb-3">{{ $case['title'] }}</h3>
-                                    <p class="text-gray-600 mb-4">{{ $case['description'] }}</p>
+                                <div class="p-6 flex-1 flex flex-col">
+                                    <div class="flex-1">
+                                        <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $case['title'] }}</h3>
+                                        <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}
+                                        </p>
+                                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                                            {{ Str::limit($case['description'], 120) }}</p>
 
-                                    <div class="space-y-2 mb-6">
-                                        <div class="flex justify-between">
-                                            <span class="text-gray-500">Клиент:</span>
-                                            <span class="font-medium">{{ $case['client'] }}</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span class="text-gray-500">Период:</span>
-                                            <span class="font-medium">{{ $case['period'] }}</span>
-                                        </div>
-                                    </div>
-
-
-                                    {{-- Key results --}}
-                                    <div class="mb-6">
-                                        <h4 class="font-semibold text-gray-800 mb-3">Ключевые результаты:</h4>
-                                        <ul class="space-y-1">
-                                            @foreach (array_slice($case['results'], 0, 3) as $result)
-                                                <li class="flex items-start">
-                                                    <i class="material-icons text-green-500 mr-2 text-sm">check_circle</i>
-                                                    <span class="text-sm text-gray-600">{{ $result }}</span>
-                                                </li>
+                                        {{-- Key metrics --}}
+                                        <div class="space-y-2 mb-4">
+                                            @foreach (array_slice($case['results'], 0, 2) as $result)
+                                                <div class="flex items-center text-sm">
+                                                    <i class="material-icons text-green-500 mr-2 text-base">trending_up</i>
+                                                    <span class="text-gray-700 font-medium">{{ $result }}</span>
+                                                </div>
                                             @endforeach
-                                        </ul>
-                                    </div>
-
-                                    {{-- Before/After stats --}}
-                                    <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 ">
-                                        <div class="text-center">
-                                            <div class="text-xs text-gray-500 mb-1">До</div>
-                                            <div class="text-lg font-bold text-red-600">
-                                                @if (isset($case['before_after']['before']['traffic']))
-                                                    {{ $case['before_after']['before']['traffic'] }} посетителей
-                                                @elseif(isset($case['before_after']['before']['speed']))
-                                                    {{ $case['before_after']['before']['speed'] }}
-                                                @else
-                                                    {{ $case['before_after']['before']['unique'] ?? 'Низкие показатели' }}
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <div class="text-xs text-gray-500 mb-1">После</div>
-                                            <div class="text-lg font-bold text-green-600">
-                                                @if (isset($case['before_after']['after']['traffic']))
-                                                    {{ $case['before_after']['after']['traffic'] }} посетителей
-                                                @elseif(isset($case['before_after']['after']['speed']))
-                                                    {{ $case['before_after']['after']['speed'] }}
-                                                @else
-                                                    {{ $case['before_after']['after']['unique'] ?? 'Высокие показатели' }}
-                                                @endif
-                                            </div>
                                         </div>
                                     </div>
 
                                     {{-- CTA button --}}
                                     <a href="{{ route('cases.show', $case['id']) }}"
-                                        class="block w-full bg-cyan-500 text-white text-center py-3 px-4  hover:bg-cyan-600 transition">
+                                        class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
                                         Подробнее о кейсе
                                     </a>
                                 </div>
