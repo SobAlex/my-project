@@ -69,7 +69,7 @@
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <li class="element-bg p-4 flex justify-center items-start">
                 <div class="flex flex-col items-center">
-                    <i class="material-icons md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
+                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
                         style="font-size: 48px;">star</i>
                     <div class="text-center">
                         <h3 class="text-lg font-semibold">Опыт более 5 лет</h3>
@@ -80,7 +80,7 @@
 
             <li class="element-bg p-4 flex justify-center items-start">
                 <div class="flex flex-col items-center">
-                    <i class="material-icons md-48 mb-3" aria-label="CRM" role="img"
+                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="CRM" role="img"
                         style="font-size:48px;">dashboard</i>
                     <div class="text-center">
                         <h3 class="text-lg font-semibold">Собственная CRM</h3>
@@ -93,8 +93,8 @@
 
             <li class="element-bg p-4 flex justify-center items-start">
                 <div class="flex flex-col items-center">
-                    <i class="material-icons md-48 mb-3" aria-label="Участие в тематических конференциях" role="img"
-                        style="font-size:48px;">groups</i>
+                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Участие в тематических конференциях"
+                        role="img" style="font-size:48px;">groups</i>
                     <div class="text-center">
                         <h3 class="text-lg font-semibold">Регулярное участие в тематических конференциях</h3>
                         <p class="text-base text-gray-600">Поисковые системы постоянно улучшают алгоритмы
@@ -106,8 +106,8 @@
 
             <li class="element-bg p-4 flex justify-center items-start">
                 <div class="flex flex-col items-center px-10">
-                    <i class="material-icons md-48 mb-3" aria-label="Сертифицированные специалисты" role="img"
-                        style="font-size:48px;">verified</i>
+                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Сертифицированные специалисты"
+                        role="img" style="font-size:48px;">verified</i>
                     <div class="text-center">
                         <h3 class="text-lg font-semibold">Сертифицированные специалисты</h3>
                         <p class="text-base text-gray-600">Ежегодное подтверждение квалификации в Яндекс</p>
@@ -129,11 +129,10 @@
             {{-- Card service --}}
             <article class="element-bg shadow flex flex-col
             sm:col-span-2
-            md:row-span-2">
-                {{-- Card service top --}}
+            md:row-span-1">
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">trending_up</i>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">trending_up</i>
                         <h3 class="text-xl font-semibold mb-2 text-center"><a href="{{ route('services.seo-promotion') }}"
                                 class="hover:text-cyan-500">SEO
                                 продвижение сайта</a></h3>
@@ -146,29 +145,14 @@
                             onclick="openServiceOrderModal('SEO продвижение сайта')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="SEO кейсы" class="w-full h-full object-cover"
-                        loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'seo-promotion']) }}"
-                            class="text-white text-center font-medium drop-shadow-lg hover:text-cyan-300">Успешные
-                            кейсы SEO
-                            продвижения</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
             {{-- Card service --}}
             <article class="element-bg shadow flex flex-col">
-                {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">search</i>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">search</i>
                         <h3 class="text-lg font-semibold mb-2 text-center"><a
                                 href="{{ route('services.technical-audit') }}" class="hover:text-cyan-500">Технический
                                 аудит</a></h3>
@@ -180,30 +164,17 @@
                             onclick="openServiceOrderModal('Технический аудит')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="Технический аудит кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'technical-audit']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Результаты
-                            аудита</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
             {{-- Card service --}}
             <article class="element-bg shadow flex flex-col">
-                {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">content_copy</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a
-                                href="{{ route('services.content-audit') }}" class="hover:text-cyan-500">Аудит КФ</a>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">content_copy</i>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.content-audit') }}"
+                                class="hover:text-cyan-500">Аудит
+                                коммерческих факторов</a>
                         </h3>
                         <p class="text-gray-600 mb-4 text-center">Анализ контент-факторов: качество текстов,
                             уникальность, релевантность запросам пользователей.</p>
@@ -212,30 +183,17 @@
                         <button class="btn self-center" onclick="openServiceOrderModal('Аудит КФ')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="Аудит КФ кейсы" class="w-full h-full object-cover"
-                        loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'content-audit']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Анализ
-                            контента</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
             {{-- Card service --}}
             <article class="element-bg shadow flex flex-col">
-                {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">pageview</i>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">pageview</i>
                         <h3 class="text-lg font-semibold mb-2 text-center"><a
-                                href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-500">Аудит ПФ</a>
+                                href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-500">Аудит
+                                поведенческих факторов</a>
                         </h3>
                         <p class="text-gray-600 mb-4 text-center">Проверка поведенческих факторов: удобство
                             использования, скорость загрузки, адаптивность.</p>
@@ -244,19 +202,6 @@
                         <button class="btn self-center" onclick="openServiceOrderModal('Аудит ПФ')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="Аудит ПФ кейсы" class="w-full h-full object-cover"
-                        loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'behavioral-audit']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">UX
-                            анализ</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
@@ -265,7 +210,7 @@
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">link</i>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">link</i>
                         <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.link-profile') }}"
                                 class="hover:text-cyan-500">Ссылочный профиль</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Анализ и оптимизация ссылочной массы для
@@ -276,19 +221,6 @@
                             onclick="openServiceOrderModal('Ссылочный профиль')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="Ссылочный профиль кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'link-profile']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Ссылочная
-                            стратегия</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
@@ -297,9 +229,9 @@
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">category</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a
-                                href="{{ route('services.semantic-core') }}" class="hover:text-cyan-500">Сбор и
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">category</i>
+                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.semantic-core') }}"
+                                class="hover:text-cyan-500">Сбор и
                                 группировка СЯ</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Систематизация семантического ядра для
                             эффективного продвижения по целевым запросам.</p>
@@ -309,19 +241,6 @@
                             onclick="openServiceOrderModal('Сбор и группировка СЯ')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="СЯ кейсы" class="w-full h-full object-cover"
-                        loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'semantic-core']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">Семантическое
-                            ядро</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
 
@@ -330,7 +249,7 @@
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons mb-3" style="font-size: 48px;">assessment</i>
+                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">assessment</i>
                         <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.seo-strategy') }}"
                                 class="hover:text-cyan-500">Составление SEO стратегии</a></h3>
                         <p class="text-gray-600 mb-4 text-center">Разработка комплексного плана продвижения с
@@ -341,19 +260,6 @@
                             onclick="openServiceOrderModal('Составление SEO стратегии')">Заказать</button>
                     </div>
                 </div>
-                {{-- End card service top --}}
-
-                {{-- Card service bottom --}}
-                <div class="flex-[1] relative overflow-hidden -b">
-                    <img src="{{ asset('images/human.webp') }}" alt="SEO стратегия кейсы"
-                        class="w-full h-full object-cover" loading="lazy" decoding="async">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <a href="{{ route('cases', ['service' => 'seo-strategy']) }}"
-                            class="text-white text-center text-sm font-medium drop-shadow-lg hover:text-cyan-300">SEO
-                            план</a>
-                    </div>
-                </div>
-                {{-- End card service bottom --}}
             </article>
             {{-- End service card --}}
         </div>
@@ -380,7 +286,7 @@
                 <!-- Address -->
                 <div class="flex items-start space-x-3">
                     <!-- Location Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-500 flex-shrink-0 mt-0.5"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -396,7 +302,7 @@
                 <!-- Phone -->
                 <div class="flex items-start space-x-3">
                     <!-- Phone Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-500 flex-shrink-0 mt-0.5"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -405,7 +311,7 @@
                     <div>
                         <h3 class="font-medium text-gray-700">Телефон:</h3>
                         <!-- Replace with your actual phone number -->
-                        <a href="tel:88001234567" class="text-blue-600 hover:text-blue-800">8 800 123 45
+                        <a href="tel:88001234567" class="text-cyan-500">8 800 123 45
                             67</a>
                     </div>
                 </div>
@@ -413,7 +319,7 @@
                 <!-- Email -->
                 <div class="flex items-start space-x-3">
                     <!-- Mail Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-500 flex-shrink-0 mt-0.5"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -422,7 +328,7 @@
                     <div>
                         <h3 class="font-medium text-gray-700">Email:</h3>
 
-                        <a href="mailto:hello@example.com" class="text-blue-600 hover:text-blue-800">info@sobalex.com</a>
+                        <a href="mailto:hello@example.com" class="text-cyan-500">info@sobalex.com</a>
                     </div>
                 </div>
             </div>

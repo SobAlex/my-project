@@ -3,7 +3,7 @@
 @section('title', $subject ?? 'Заказ услуги с сайта')
 
 @section('content')
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div class="bg-white  shadow-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-cyan-600 text-white px-6 py-4">
             <h1 class="text-2xl font-bold">🎯 Заказ услуги</h1>
@@ -35,7 +35,7 @@
                 @if (!empty($messageBody))
                     <div class="border-t border-gray-200 pt-4">
                         <span class="text-sm font-medium text-gray-500 uppercase tracking-wide">Сообщение от клиента</span>
-                        <div class="mt-2 p-4 bg-gray-50 rounded-lg">
+                        <div class="mt-2 p-4 bg-gray-50 ">
                             <p class="text-gray-700 whitespace-pre-wrap">{{ $messageBody }}</p>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                 @if (!empty($attachmentName))
                     <div class="border-t border-gray-200 pt-4">
                         <span class="text-sm font-medium text-gray-500 uppercase tracking-wide">Прикрепленный файл</span>
-                        <div class="mt-2 flex items-center p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div class="mt-2 flex items-center p-3 bg-blue-50 border border-blue-200 ">
                             <svg class="w-5 h-5 text-blue-500 mr-3" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

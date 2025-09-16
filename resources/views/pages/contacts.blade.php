@@ -24,7 +24,7 @@
                 <div class="space-y-8">
                     <!-- Address -->
                     <div class="flex items-start space-x-4">
-                        <div class="bg-cyan-100 p-3 rounded-full">
+                        <div class="bg-cyan-100 p-3 ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -40,7 +40,7 @@
 
                     <!-- Phone -->
                     <div class="flex items-start space-x-4">
-                        <div class="bg-cyan-100 p-3 rounded-full">
+                        <div class="bg-cyan-100 p-3 ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -58,7 +58,7 @@
 
                     <!-- Email -->
                     <div class="flex items-start space-x-4">
-                        <div class="bg-cyan-100 p-3 rounded-full">
+                        <div class="bg-cyan-100 p-3 ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +76,7 @@
 
                     <!-- Working Hours -->
                     <div class="flex items-start space-x-4">
-                        <div class="bg-cyan-100 p-3 rounded-full">
+                        <div class="bg-cyan-100 p-3 ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-600" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,21 +95,21 @@
                     <h3 class="text-xl font-semibold text-gray-800 mb-6">Мы в социальных сетях</h3>
                     <div class="flex space-x-4">
                         <a href="{{ $contactInfo['social']['telegram'] }}" target="_blank" rel="noopener noreferrer"
-                            class="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition">
+                            class="bg-blue-500 text-white p-3  hover:bg-blue-600 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
                             </svg>
                         </a>
                         <a href="{{ $contactInfo['social']['whatsapp'] }}" target="_blank" rel="noopener noreferrer"
-                            class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition">
+                            class="bg-green-500 text-white p-3  hover:bg-green-600 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                             </svg>
                         </a>
                         <a href="{{ $contactInfo['social']['vk'] }}" target="_blank" rel="noopener noreferrer"
-                            class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                            class="bg-blue-600 text-white p-3  hover:bg-blue-700 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1.01-1.49-.864-1.744-.864-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.22.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.678.102.17.102.271-.034.44-.17.169-.44.22-.678.22-.22 0-.593-.102-1.017-.508-.22-.254-.44-.593-.593-.847-.102-.22-.22-.254-.373-.254-.22 0-.44.17-.44.508v2.746c0 .373.17.61.508.61h2.744c.373 0 .593-.22.593-.61v-3.473c0-.22.034-.44.17-.593.17-.17.44-.22.678-.22.22 0 .44.034.61.22.17.17.22.44.22.678v3.473c0 .373.22.61.593.61h2.744c.373 0 .61-.22.61-.61v-3.473c0-1.017-.22-1.525-.61-1.525-.22 0-.44.17-.61.22-.17.17-.22.44-.22.678v3.473z" />
@@ -130,7 +130,7 @@
                         <div>
                             <label for="name_contact" class="block text-sm font-medium text-gray-700 mb-2">Имя *</label>
                             <input type="text" name="name" id="name_contact" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                                class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                                 aria-invalid="@error('name', 'contact') true @else false @enderror"
                                 aria-describedby="name_contact_error">
                             @error('name', 'contact')
@@ -141,7 +141,7 @@
                         <div>
                             <label for="email_contact" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                             <input type="email" name="email" id="email_contact" required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                                class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                                 aria-invalid="@error('email', 'contact') true @else false @enderror"
                                 aria-describedby="email_contact_error">
                             @error('email', 'contact')
@@ -153,7 +153,7 @@
                     <div>
                         <label for="phone_contact" class="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
                         <input type="tel" name="phone" id="phone_contact"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                             aria-invalid="@error('phone', 'contact') true @else false @enderror"
                             aria-describedby="phone_contact_error">
                         @error('phone', 'contact')
@@ -165,7 +165,7 @@
                         <label for="message_contact" class="block text-sm font-medium text-gray-700 mb-2">Сообщение
                             *</label>
                         <textarea name="message" id="message_contact" rows="6" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                             placeholder="Опишите ваш проект или задайте вопрос..."
                             aria-invalid="@error('message', 'contact') true @else false @enderror" aria-describedby="message_contact_error"></textarea>
                         @error('message', 'contact')
@@ -174,7 +174,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-cyan-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-cyan-700 transition focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+                        class="w-full bg-cyan-600 text-white py-3 px-6  font-semibold hover:bg-cyan-700 transition focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
                         Отправить сообщение
                     </button>
                 </form>
@@ -184,9 +184,9 @@
 
     {{-- Map Section --}}
     <section class="section-bg">
-        <div class="bg-gray-100 rounded-2xl p-8">
+        <div class="bg-gray-100  p-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Как нас найти</h2>
-            <div class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+            <div class="bg-gray-300 h-96  flex items-center justify-center">
                 <div class="text-center">
                     <svg class="w-16 h-16 text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
@@ -207,25 +207,25 @@
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Часто задаваемые вопросы</h2>
 
         <div class="max-w-4xl mx-auto space-y-6">
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white  shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Сколько времени занимает SEO продвижение?</h3>
                 <p class="text-gray-600">Первые результаты обычно видны через 3-6 месяцев, но полное продвижение может
                     занять 6-12 месяцев в зависимости от конкурентности ниши.</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white  shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Какая стоимость SEO продвижения?</h3>
                 <p class="text-gray-600">Стоимость зависит от сложности проекта и конкурентности ниши. Мы предлагаем
                     индивидуальный расчет для каждого клиента.</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white  shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Предоставляете ли вы отчеты о проделанной работе?</h3>
                 <p class="text-gray-600">Да, мы ежемесячно предоставляем детальные отчеты о всех выполненных работах и
                     достигнутых результатах.</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="bg-white  shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Работаете ли вы с сайтами на разных CMS?</h3>
                 <p class="text-gray-600">Да, мы работаем с любыми CMS: WordPress, Bitrix, OpenCart, самописными сайтами и
                     другими платформами.</p>

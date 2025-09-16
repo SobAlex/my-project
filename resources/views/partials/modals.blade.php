@@ -6,7 +6,7 @@
         <div class="absolute inset-0 bg-black/50" aria-hidden="true" @click="callbackOpen = false"></div>
 
         <!-- Диалог -->
-        <div class="relative bg-white w-full max-w-md mx-4 rounded shadow-lg p-6" role="dialog" aria-modal="true"
+        <div class="relative bg-white w-full max-w-md mx-4  shadow-lg p-6" role="dialog" aria-modal="true"
             aria-labelledby="callback_title">
             <div class="flex items-start justify-between mb-4">
                 <h3 id="callback_title" class="text-xl font-semibold">Заказать звонок</h3>
@@ -45,7 +45,7 @@
     <div class="absolute inset-0 bg-black/50" aria-hidden="true" onclick="closeServiceOrderModal()"></div>
 
     <!-- Диалог -->
-    <div class="relative bg-white w-full max-w-lg mx-4 my-4 sm:my-8 rounded shadow-lg p-4 sm:p-6" role="dialog"
+    <div class="relative bg-white w-full max-w-lg mx-4 my-4 sm:my-8  shadow-lg p-4 sm:p-6" role="dialog"
         aria-modal="true" aria-labelledby="service_order_title">
         <!-- Заголовок с кнопкой закрытия - всегда видимый -->
         <div class="flex items-start justify-between mb-4 sticky top-0 bg-white pb-2 border-b border-gray-200">
@@ -68,20 +68,20 @@
                 <div>
                     <label for="service_display" class="block mb-1 text-sm font-medium">Услуга</label>
                     <input type="text" id="service_display" readonly
-                        class="w-full px-3 py-2 bg-gray-100 text-gray-600 rounded border" />
+                        class="w-full px-3 py-2 bg-gray-100 text-gray-600  border" />
                 </div>
 
                 <div>
                     <label for="name_service" class="block mb-1 text-sm font-medium">Имя *</label>
                     <input type="text" id="name_service" name="name" required placeholder="Ваше имя"
-                        class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-required="true" aria-label="Имя" />
                 </div>
 
                 <div>
                     <label for="email_service" class="block mb-1 text-sm font-medium">Email *</label>
                     <input type="email" id="email_service" name="email" required placeholder="your@email.com"
-                        class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-required="true" aria-label="Email" />
                 </div>
 
@@ -89,14 +89,14 @@
                     <label for="phone_service" class="block mb-1 text-sm font-medium">Телефон *</label>
                     <input type="tel" id="phone_service" name="phone" required pattern="\+?\d{7,15}"
                         placeholder="+7XXXXXXXXXX"
-                        class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-required="true" aria-label="Телефон" />
                 </div>
 
                 <div>
                     <label for="message_service" class="block mb-1 text-sm font-medium">Сообщение</label>
                     <textarea id="message_service" name="message" rows="3" placeholder="Опишите ваши требования или вопросы..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-label="Сообщение"></textarea>
                 </div>
 
@@ -104,7 +104,7 @@
                     <label for="attachment_service" class="block mb-1 text-sm font-medium">Прикрепить файл</label>
                     <input type="file" id="attachment_service" name="attachment"
                         accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif"
-                        class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-label="Прикрепить файл" />
                     <p class="text-xs text-gray-500 mt-1">Поддерживаются: PDF, DOC, DOCX, TXT, JPG, JPEG, PNG, GIF (до
                         10 МБ)</p>

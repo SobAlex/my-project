@@ -3,7 +3,7 @@
 @section('title', $subject ?? 'Сообщение с сайта')
 
 @section('content')
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div class="bg-white  shadow-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-blue-600 text-white px-6 py-4">
             <h1 class="text-2xl font-bold">📧 Сообщение с сайта</h1>
@@ -37,7 +37,7 @@
                 @if (!empty($messageBody))
                     <div class="border-t border-gray-200 pt-4">
                         <span class="text-sm font-medium text-gray-500 uppercase tracking-wide">Сообщение</span>
-                        <div class="mt-2 p-4 bg-gray-50 rounded-lg">
+                        <div class="mt-2 p-4 bg-gray-50 ">
                             <p class="text-gray-700 whitespace-pre-wrap">{{ $messageBody }}</p>
                         </div>
                     </div>

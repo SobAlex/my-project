@@ -20,7 +20,7 @@
         <div class="flex flex-wrap justify-center gap-4 mb-12">
             @foreach ($casesData as $serviceKey => $serviceData)
                 <a href="#{{ $serviceKey }}"
-                    class="px-6 py-3 rounded-lg border border-cyan-500 text-cyan-600 hover:bg-cyan-500 hover:text-white transition">
+                    class="px-6 py-3  border border-cyan-500 text-cyan-600 hover:bg-cyan-500 hover:text-white transition">
                     <i class="material-icons inline mr-2">{{ $serviceData['service_icon'] }}</i>
                     {{ $serviceData['service_name'] }}
                 </a>
@@ -36,7 +36,7 @@
                 <h2 class="text-2xl font-bold text-gray-600 mb-4">Кейсы временно недоступны</h2>
                 <p class="text-gray-500 mb-8">В данный момент у нас нет доступных кейсов для отображения.</p>
                 <a href="{{ route('contacts') }}"
-                    class="inline-flex items-center px-6 py-3 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition">
+                    class="inline-flex items-center px-6 py-3 bg-cyan-500 text-white  hover:bg-cyan-600 transition">
                     <i class="material-icons mr-2">contact_mail</i>
                     Связаться с нами
                 </a>
@@ -53,14 +53,14 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         @foreach ($serviceData['cases'] as $case)
-                            <article class="element-bg rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                            <article class="element-bg  overflow-hidden shadow-lg hover:shadow-xl transition">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
                                     <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
-                                        <span class="bg-cyan-500 px-3 py-1 rounded-full text-sm font-medium">
+                                        <span class="bg-cyan-500 px-3 py-1  text-sm font-medium">
                                             {{ $case['industry'] }}
                                         </span>
                                     </div>
@@ -97,7 +97,7 @@
                                     </div>
 
                                     {{-- Before/After stats --}}
-                                    <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+                                    <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 ">
                                         <div class="text-center">
                                             <div class="text-xs text-gray-500 mb-1">До</div>
                                             <div class="text-lg font-bold text-red-600">
@@ -126,7 +126,7 @@
 
                                     {{-- CTA button --}}
                                     <a href="{{ route('cases.show', $case['id']) }}"
-                                        class="block w-full bg-cyan-500 text-white text-center py-3 px-4 rounded-lg hover:bg-cyan-600 transition">
+                                        class="block w-full bg-cyan-500 text-white text-center py-3 px-4  hover:bg-cyan-600 transition">
                                         Подробнее о кейсе
                                     </a>
                                 </div>
@@ -140,16 +140,16 @@
 
     {{-- CTA section --}}
     <section class="section-bg">
-        <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl p-8 text-center">
+        <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white  p-8 text-center">
             <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
                     onclick="openServiceOrderModal('Консультация по кейсам')">
                     Получить консультацию
                 </button>
                 <a href="{{ route('contacts') }}"
-                    class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-cyan-600 transition">
+                    class="border-2 border-white text-white px-8 py-3  font-semibold hover:bg-white hover:text-cyan-600 transition">
                     Связаться с нами
                 </a>
             </div>
