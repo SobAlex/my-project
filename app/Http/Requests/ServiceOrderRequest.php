@@ -30,7 +30,7 @@ class ServiceOrderRequest extends FormRequest
             'service_name' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'max:32'],
+            'phone' => ['required', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
             'message' => ['nullable', 'string', 'max:5000'],
             'attachment' => ['nullable', 'file', 'max:10240', 'mimes:pdf,doc,docx,txt,jpg,jpeg,png,gif'],
         ];
@@ -49,6 +49,7 @@ class ServiceOrderRequest extends FormRequest
             'email.required' => 'Email обязателен для заполнения.',
             'email.email' => 'Введите корректный email адрес.',
             'phone.required' => 'Телефон обязателен для заполнения.',
+            'phone.regex' => 'Телефон должен быть в формате +7 (999) 999-99-99.',
             'attachment.file' => 'Файл должен быть загружен корректно.',
             'attachment.max' => 'Размер файла не должен превышать 10 МБ.',
             'attachment.mimes' => 'Поддерживаются только файлы: PDF, DOC, DOCX, TXT, JPG, JPEG, PNG, GIF.',

@@ -14,32 +14,12 @@
         </div>
     </section>
 
-    {{-- Navigation for services --}}
-    <section class="section-bg">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Наши услуги</h2>
-        <div class="flex flex-wrap justify-center gap-4 mb-12">
-            @foreach ($casesData as $serviceKey => $serviceData)
-                <a href="#{{ $serviceKey }}"
-                    class="px-6 py-3  border border-cyan-500 text-cyan-600 hover:bg-cyan-500 hover:text-white transition">
-                    <i class="material-icons inline mr-2">{{ $serviceData['service_icon'] }}</i>
-                    {{ $serviceData['service_name'] }}
-                </a>
-            @endforeach
-        </div>
-    </section>
-
     {{-- Cases by service --}}
     @if (empty($casesData))
         <section class="section-bg">
             <div class="text-center py-16">
-                <i class="material-icons text-6xl text-gray-400 mb-4">inbox</i>
                 <h2 class="text-2xl font-bold text-gray-600 mb-4">Кейсы временно недоступны</h2>
                 <p class="text-gray-500 mb-8">В данный момент у нас нет доступных кейсов для отображения.</p>
-                <a href="{{ route('contacts') }}"
-                    class="inline-flex items-center px-6 py-3 bg-cyan-500 text-white  hover:bg-cyan-600 transition">
-                    <i class="material-icons mr-2">contact_mail</i>
-                    Связаться с нами
-                </a>
             </div>
         </section>
     @else
@@ -145,13 +125,13 @@
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
-                    onclick="openServiceOrderModal('Консультация по кейсам')">
-                    Получить консультацию
+                    onclick="openServiceOrderModal('Заказать продвижение')">
+                    Заказать продвижение
                 </button>
-                <a href="{{ route('contacts') }}"
-                    class="border-2 border-white text-white px-8 py-3  font-semibold hover:bg-white hover:text-cyan-600 transition">
-                    Связаться с нами
-                </a>
+                <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
+                    onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
+                    Заказать звонок
+                </button>
             </div>
         </div>
     </section>

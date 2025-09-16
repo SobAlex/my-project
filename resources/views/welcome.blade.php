@@ -38,8 +38,8 @@
 
                     <div class="flex-1">
                         <label for="phone_hero" class="block mb-1">Телефон:</label>
-                        <input type="tel" id="phone_hero" name="phone" required pattern="\+?\d{7,15}"
-                            placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" aria-required="true" aria-label="Телефон"
+                        <input type="tel" id="phone_hero" name="phone" required placeholder="+7 (999) 999-99-99"
+                            class="w-full px-3 py-2" aria-required="true" aria-label="Телефон"
                             aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                             aria-describedby="phone_hero_error" />
                         @if (isset($errors) && $errors->has('phone'))
@@ -366,9 +366,10 @@
                 </div>
 
                 <div>
-                    <label for="phone_contact">Телефон</label>
+                    <label for="phone_contact">Телефон *</label>
 
-                    <input type="tel" name="phone" id="phone_contact" aria-label="Телефон"
+                    <input type="tel" name="phone" id="phone_contact" required aria-label="Телефон"
+                        placeholder="+7 (999) 999-99-99"
                         class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                         aria-describedby="phone_contact_error">

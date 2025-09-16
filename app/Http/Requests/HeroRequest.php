@@ -28,7 +28,18 @@ class HeroRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:32'],
+            'phone' => ['required', 'string', 'regex:/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/'],
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     */
+    public function messages(): array
+    {
+        return [
+            'phone.required' => 'Поле телефон обязательно для заполнения.',
+            'phone.regex' => 'Телефон должен быть в формате +7 (999) 999-99-99.',
         ];
     }
 }

@@ -25,8 +25,8 @@
 
                 <div>
                     <label for="phone_callback" class="block mb-1">Телефон</label>
-                    <input type="tel" id="phone_callback" name="phone" required pattern="\+?\d{7,15}"
-                        placeholder="+7XXXXXXXXXX" class="w-full px-3 py-2" aria-required="true" aria-label="Телефон" />
+                    <input type="tel" id="phone_callback" name="phone" required placeholder="+7 (999) 999-99-99"
+                        class="w-full px-3 py-2" aria-required="true" aria-label="Телефон" />
                 </div>
 
                 <div class="flex items-center justify-end gap-3 pt-2">
@@ -87,8 +87,7 @@
 
                 <div>
                     <label for="phone_service" class="block mb-1 text-sm font-medium">Телефон *</label>
-                    <input type="tel" id="phone_service" name="phone" required pattern="\+?\d{7,15}"
-                        placeholder="+7XXXXXXXXXX"
+                    <input type="tel" id="phone_service" name="phone" required placeholder="+7 (999) 999-99-99"
                         class="w-full px-3 py-2 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         aria-required="true" aria-label="Телефон" />
                 </div>
