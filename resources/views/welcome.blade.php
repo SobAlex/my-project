@@ -127,7 +127,8 @@
         md:grid-cols-3
         lg:grid-cols-4 lg:gap-6">
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col
+            <article
+                class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col
             sm:col-span-2
             md:row-span-1">
                 <div class="flex flex-col flex-[2] p-4">
@@ -149,7 +150,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">search</i>
@@ -168,7 +169,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">content_copy</i>
@@ -187,7 +188,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
                         <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">pageview</i>
@@ -206,7 +207,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
@@ -225,7 +226,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">
@@ -245,7 +246,7 @@
             {{-- End service card --}}
 
             {{-- Card service --}}
-            <article class="element-bg shadow flex flex-col">
+            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 {{-- Card service top --}}
                 <div class="flex flex-col flex-[2] p-4">
                     <div class="flex flex-col items-center mb-4">

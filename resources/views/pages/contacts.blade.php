@@ -185,8 +185,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit"
-                        class="w-full bg-cyan-600 text-white py-3 px-6  font-semibold hover:bg-cyan-700 transition focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+                    <button type="submit" class="w-full py-3 px-6 btn transition">
                         Отправить сообщение
                     </button>
                 </form>

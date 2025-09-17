@@ -32,27 +32,27 @@
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Фильтр по отраслям</h3>
             <div class="flex flex-wrap justify-center gap-3">
                 <a href="{{ route('cases') }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    class="px-4 py-2 text-sm font-medium transition-colors
                           {{ !isset($selectedTag) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Все кейсы
                 </a>
                 <a href="{{ route('cases.clothing') }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    class="px-4 py-2 text-sm font-medium transition-colors
                           {{ isset($selectedTag) && $selectedTag === 'clothing' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Одежда
                 </a>
                 <a href="{{ route('cases.production') }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    class="px-4 py-2 text-sm font-medium transition-colors
                           {{ isset($selectedTag) && $selectedTag === 'production' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Производство
                 </a>
                 <a href="{{ route('cases.electronics') }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    class="px-4 py-2 text-sm font-medium transition-colors
                           {{ isset($selectedTag) && $selectedTag === 'electronics' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Электроника
                 </a>
                 <a href="{{ route('cases.furniture') }}"
-                    class="px-4 py-2 rounded-full text-sm font-medium transition-colors
+                    class="px-4 py-2 text-sm font-medium transition-colors
                           {{ isset($selectedTag) && $selectedTag === 'furniture' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Мебель
                 </a>
@@ -75,7 +75,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach ($serviceData['cases'] as $case)
                             <article
-                                class="element-bg overflow-hidden shadow-lg hover:shadow-xl transition flex flex-col h-full">
+                                class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
                                     <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
@@ -145,7 +145,7 @@
 
     {{-- CTA section --}}
     <section class="section-bg">
-        <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white  p-8 text-center">
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
             <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">

@@ -43,7 +43,7 @@
             <!-- Правая часть (изображение) -->
             <div class="flex-1">
                 <img src="{{ asset('images/human.webp') }}" alt="{{ $service['name'] }}"
-                    class="w-full h-96 object-cover shadow-lg" loading="lazy" decoding="async">
+                    class="w-full h-96 object-cover shadow-md" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -105,7 +105,7 @@
 
     {{-- CTA section --}}
     <section class="section-bg">
-        <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-8 text-center">
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
             <h2 class="text-3xl font-bold mb-4">Готовы начать продвижение?</h2>
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для консультации и расчета стоимости</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">

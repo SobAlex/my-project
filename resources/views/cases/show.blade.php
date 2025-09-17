@@ -92,7 +92,8 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Ключевые результаты</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($case['results'] as $result)
-                    <div class="flex items-start space-x-3 p-4 bg-white  shadow-sm">
+                    <div
+                        class="flex items-start space-x-3 p-4 bg-white  shadow-md hover:shadow-lg transition-shadow duration-300">
                         <i class="material-icons text-green-500 mt-1">check_circle</i>
                         <span class="text-gray-700">{{ $result }}</span>
                     </div>
@@ -108,7 +109,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($case['before_after'] as $metric => $values)
-                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                             <div class="p-4 text-center">
                                 <h3 class="font-semibold text-gray-800 mb-4 capitalize">
                                     @switch($metric)
@@ -225,14 +226,14 @@
                                     @endswitch
                                 </h3>
                                 <div class="space-y-3">
-                                    <div class="text-center p-3 bg-red-50 rounded">
+                                    <div class="text-center p-3 bg-red-50">
                                         <div class="text-xs text-gray-500 mb-1">До</div>
                                         <div class="text-lg font-bold text-red-600">{{ $values['before'] }}</div>
                                     </div>
                                     <div class="flex justify-center">
                                         <i class="material-icons text-cyan-500">arrow_downward</i>
                                     </div>
-                                    <div class="text-center p-3 bg-green-50 rounded">
+                                    <div class="text-center p-3 bg-green-50">
                                         <div class="text-xs text-gray-500 mb-1">После</div>
                                         <div class="text-lg font-bold text-green-600">{{ $values['after'] }}</div>
                                     </div>
@@ -248,7 +249,7 @@
     {{-- CTA section --}}
     <section class="section-bg">
         <div>
-            <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white  p-8 text-center">
+            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white  p-8 text-center">
                 <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
                 <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">

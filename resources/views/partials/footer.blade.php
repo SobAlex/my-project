@@ -80,10 +80,10 @@
         <div>
             <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Блог</h4>
             <ul class="mt-4 space-y-2">
-                <li><a href="#" class="hover:text-cyan-400 transition">Последние статьи</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Кейсы</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Гайды</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Новости</a></li>
+                <li><a href="{{ route('blog') }}" class="hover:text-cyan-400 transition">Все статьи</a></li>
+                <li><a href="{{ route('blog.seo-news') }}" class="hover:text-cyan-400 transition">SEO новости</a></li>
+                <li><a href="{{ route('blog.analytics') }}" class="hover:text-cyan-400 transition">Аналитика</a></li>
+                <li><a href="{{ route('blog.tips') }}" class="hover:text-cyan-400 transition">Советы</a></li>
             </ul>
         </div>
     </div>

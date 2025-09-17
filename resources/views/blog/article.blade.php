@@ -68,13 +68,12 @@
         <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex items-center justify-between">
                 <a href="{{ route('blog.' . $article['category']) }}"
-                    class="inline-flex items-center px-6 py-3 border border-gray-300  text-gray-700 hover:text-cyan-600 hover:border-cyan-300 transition-colors">
+                    class="inline-flex items-center px-6 py-3 border border-gray-300 btn transition-colors">
                     <i class="material-icons text-sm mr-2">arrow_back</i>
                     Все статьи в категории
                 </a>
 
-                <a href="{{ route('blog') }}"
-                    class="inline-flex items-center px-6 py-3 bg-cyan-600 text-white  hover:bg-cyan-700 transition-colors">
+                <a href="{{ route('blog') }}" class="inline-flex items-center px-6 py-3 btn btn transition-colors">
                     Все статьи блога
                     <i class="material-icons text-sm ml-2">arrow_forward</i>
                 </a>
