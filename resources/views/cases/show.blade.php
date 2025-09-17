@@ -5,7 +5,7 @@
 @section('content')
     {{-- Hero section --}}
     <section class="section-bg">
-        <div class="max-w-4xl mx-auto">
+        <div>
             <div class="flex items-center mb-8">
                 <a href="{{ route('cases') }}" class="text-cyan-600 hover:text-cyan-700 mr-4">
                     <i class="material-icons">arrow_back</i>
@@ -14,7 +14,8 @@
                     <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $case['title'] }}</h1>
                     <div class="flex items-center text-gray-600">
                         <i class="material-icons mr-2">{{ $serviceData['service_icon'] }}</i>
-                        <span>{{ $serviceData['service_name'] }}</span>
+                        <a href="{{ route('services.seo-promotion') }}"
+                            class="hover:text-cyan-600 transition-colors">{{ $serviceData['service_name'] }}</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,8 @@
                         class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 text-white">
-                        <span class="bg-cyan-500 px-3 py-1  text-sm font-medium">
+                        <a href="{{ route('cases.' . $case['industry']) }}"
+                            class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
                             @switch($case['industry'])
                                 @case('clothing')
                                     Одежда
@@ -47,7 +49,7 @@
                                 @default
                                     {{ $case['industry'] }}
                             @endswitch
-                        </span>
+                        </a>
                     </div>
                 </div>
 
@@ -75,7 +77,7 @@
 
     {{-- Results section --}}
     <section class="section-bg">
-        <div class="max-w-4xl mx-auto">
+        <div>
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Ключевые результаты</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($case['results'] as $result)
@@ -91,7 +93,7 @@
     {{-- Before/After section --}}
     @if (isset($case['before_after']) && !empty($case['before_after']))
         <section class="section-bg">
-            <div class="max-w-4xl mx-auto">
+            <div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($case['before_after'] as $metric => $values)
@@ -234,7 +236,7 @@
 
     {{-- CTA section --}}
     <section class="section-bg">
-        <div class="max-w-4xl mx-auto">
+        <div>
             <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white  p-8 text-center">
                 <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
                 <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>

@@ -44,14 +44,21 @@
         <div>
             <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Услуги</h4>
             <ul class="mt-4 space-y-2">
-                <li><a href="#" class="hover:text-cyan-400 transition">SEO продвижение</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Технический аудит</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Аудит коммерческих факторов</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Аудит поведенческих факторов</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Ссылочный профиль</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Сбор и группировка семантического ядра</a>
+                <li><a href="{{ route('services.seo-promotion') }}" class="hover:text-cyan-400 transition">SEO
+                        продвижение</a></li>
+                <li><a href="{{ route('services.technical-audit') }}" class="hover:text-cyan-400 transition">Технический
+                        аудит</a></li>
+                <li><a href="{{ route('services.content-audit') }}" class="hover:text-cyan-400 transition">Аудит
+                        коммерческих факторов</a></li>
+                <li><a href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-400 transition">Аудит
+                        поведенческих факторов</a></li>
+                <li><a href="{{ route('services.link-profile') }}" class="hover:text-cyan-400 transition">Ссылочный
+                        профиль</a></li>
+                <li><a href="{{ route('services.semantic-core') }}" class="hover:text-cyan-400 transition">Сбор и
+                        группировка семантического ядра</a>
                 </li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Составление SEO стратегии</a></li>
+                <li><a href="{{ route('services.seo-strategy') }}" class="hover:text-cyan-400 transition">Составление
+                        SEO стратегии</a></li>
             </ul>
         </div>
 
@@ -59,10 +66,13 @@
         <div>
             <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Кейсы</h4>
             <ul class="mt-4 space-y-2">
-                <li><a href="#" class="hover:text-cyan-400 transition">Одежда</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Производство</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Электроника</a></li>
-                <li><a href="#" class="hover:text-cyan-400 transition">Мебель</a></li>
+                <li><a href="{{ route('cases') }}" class="hover:text-cyan-400 transition">Все кейсы</a></li>
+                <li><a href="{{ route('cases.clothing') }}" class="hover:text-cyan-400 transition">Одежда</a></li>
+                <li><a href="{{ route('cases.production') }}" class="hover:text-cyan-400 transition">Производство</a>
+                </li>
+                <li><a href="{{ route('cases.electronics') }}" class="hover:text-cyan-400 transition">Электроника</a>
+                </li>
+                <li><a href="{{ route('cases.furniture') }}" class="hover:text-cyan-400 transition">Мебель</a></li>
             </ul>
         </div>
 
