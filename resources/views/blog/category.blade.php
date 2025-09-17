@@ -8,31 +8,14 @@
     сайтов.')
 
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Breadcrumbs -->
-        <nav class="flex mb-8" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="inline-flex items-center">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-cyan-600 inline-flex items-center">
-                        <i class="material-icons text-sm mr-1">home</i>
-                        Главная
-                    </a>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <i class="material-icons text-gray-400 text-sm">chevron_right</i>
-                        <a href="{{ route('blog') }}" class="ml-1 text-gray-700 hover:text-cyan-600 md:ml-2">Блог</a>
-                    </div>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <i class="material-icons text-gray-400 text-sm">chevron_right</i>
-                        <span class="ml-1 text-gray-500 md:ml-2">{{ $category }}</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto pt-8">
+        @include('partials.breadcrumbs', [
+            'breadcrumbs' => [['title' => 'Блог', 'url' => route('blog')], ['title' => $category, 'url' => null]],
+        ])
+    </div>
 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Заголовок категории -->
         <div class="text-center mb-12">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-cyan-100  mb-4">

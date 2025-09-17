@@ -71,8 +71,9 @@ class CaseController extends Controller
         }
 
         $selectedTag = $tag;
+        $categoryInfo = $this->getCategoryInfo($tag);
 
-        return view('cases.index', compact('casesData', 'title', 'selectedTag'));
+        return view('cases.index', compact('casesData', 'title', 'selectedTag', 'categoryInfo'));
     }
 
     /**
@@ -85,12 +86,41 @@ class CaseController extends Controller
         foreach ($casesData as $service => $serviceData) {
             foreach ($serviceData['cases'] as $case) {
                 if ($case['id'] === $id) {
-                    return view('cases.show', compact('case', 'serviceData'));
+                    // Определяем категорию по industry
+                    $categoryInfo = $this->getCategoryInfo($case['industry']);
+                    return view('cases.show', compact('case', 'serviceData', 'categoryInfo'));
                 }
             }
         }
 
         abort(404);
+    }
+
+    /**
+     * Получить информацию о категории по industry
+     */
+    private function getCategoryInfo($industry)
+    {
+        $categories = [
+            'clothing' => [
+                'name' => 'Одежда',
+                'route' => 'cases.clothing'
+            ],
+            'production' => [
+                'name' => 'Производство',
+                'route' => 'cases.production'
+            ],
+            'electronics' => [
+                'name' => 'Электроника',
+                'route' => 'cases.electronics'
+            ],
+            'furniture' => [
+                'name' => 'Мебель',
+                'route' => 'cases.furniture'
+            ]
+        ];
+
+        return $categories[$industry] ?? null;
     }
 
     /**

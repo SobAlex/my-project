@@ -6,6 +6,13 @@
     поисковых систем и практические руководства.')
 
 @section('content')
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto pt-8">
+        @include('partials.breadcrumbs', [
+            'breadcrumbs' => [['title' => 'Блог', 'url' => null]],
+        ])
+    </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Заголовок страницы -->
         <div class="text-center mb-12">

@@ -3,6 +3,13 @@
 @section('title', $title . ' - SEO продвижение сайтов')
 
 @section('content')
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto pt-8">
+        @include('partials.breadcrumbs', [
+            'breadcrumbs' => [['title' => 'Контакты', 'url' => null]],
+        ])
+    </div>
+
     {{-- Hero section --}}
     <section class="section-bg">
         <div class="text-center">

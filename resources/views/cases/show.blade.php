@@ -3,6 +3,17 @@
 @section('title', $case['title'] . ' - SEO продвижение сайтов')
 
 @section('content')
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto pt-8">
+        @include('partials.breadcrumbs', [
+            'breadcrumbs' => array_filter([
+                ['title' => 'Кейсы', 'url' => route('cases')],
+                $categoryInfo ? ['title' => $categoryInfo['name'], 'url' => route($categoryInfo['route'])] : null,
+                ['title' => $case['title'], 'url' => null, 'truncate' => true],
+            ]),
+        ])
+    </div>
+
     {{-- Hero section --}}
     <section class="section-bg">
         <div>
