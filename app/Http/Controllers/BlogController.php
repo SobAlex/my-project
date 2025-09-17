@@ -68,6 +68,19 @@ class BlogController extends Controller
         );
     }
 
+    // Получить последние статьи для главной страницы
+    public function getLatestArticlesForHomepage($limit = 4)
+    {
+        $allArticles = $this->getAllArticles();
+
+        // Сортируем по дате публикации (новые сначала)
+        usort($allArticles, function($a, $b) {
+            return strtotime($b['published_at']) - strtotime($a['published_at']);
+        });
+
+        return array_slice($allArticles, 0, $limit);
+    }
+
     // Статьи по SEO новостям
     private function getSeoNewsArticles()
     {

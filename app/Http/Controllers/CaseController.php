@@ -132,6 +132,27 @@ class CaseController extends Controller
     }
 
     /**
+     * Получить последние кейсы по одной из каждой категории для главной страницы
+     */
+    public function getLatestCasesForHomepage()
+    {
+        $allCasesData = $this->getAllCasesData();
+        $latestCases = [];
+        $categories = ['electronics', 'production', 'clothing', 'furniture'];
+
+        foreach ($allCasesData as $serviceKey => $serviceData) {
+            foreach ($serviceData['cases'] as $case) {
+                $industry = $case['industry'];
+                if (in_array($industry, $categories) && !isset($latestCases[$industry])) {
+                    $latestCases[$industry] = $case;
+                }
+            }
+        }
+
+        return array_values($latestCases);
+    }
+
+    /**
      * Получить все данные кейсов с тегами
      */
     public function getAllCasesData()

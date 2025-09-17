@@ -6,9 +6,18 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $caseController = new \App\Http\Controllers\CaseController();
+    $blogController = new \App\Http\Controllers\BlogController();
+    $reviewController = new \App\Http\Controllers\ReviewController();
+
+    $latestCases = $caseController->getLatestCasesForHomepage();
+    $latestArticles = $blogController->getLatestArticlesForHomepage();
+    $randomReviews = $reviewController->getRandomReviewsForHomepage();
+
+    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews'));
 })->name('home');
 
 // Services pages

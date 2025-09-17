@@ -267,12 +267,245 @@
     </section>
     {{-- End service --}}
 
-    {{-- Review --}}
-    <section id="reviews" class="section-bg">
-        <h2 class="section-title">Отзывы</h2>
-        <div>Код яндекса виджет</div>
+    {{-- Cases --}}
+    <section id="cases" class="section-bg">
+        <h2 class="section-title">Наши кейсы</h2>
+        <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+            Реальные результаты нашей работы. Каждый кейс — это история успеха наших клиентов
+            и доказательство эффективности наших методов продвижения.
+        </p>
+
+        @if (!empty($latestCases))
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach ($latestCases as $case)
+                    <article
+                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        {{-- Case image --}}
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
+                                class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <a href="{{ route('cases.' . $case['industry']) }}"
+                                    class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                    @switch($case['industry'])
+                                        @case('clothing')
+                                            Одежда
+                                        @break
+
+                                        @case('production')
+                                            Производство
+                                        @break
+
+                                        @case('electronics')
+                                            Электроника
+                                        @break
+
+                                        @case('furniture')
+                                            Мебель
+                                        @break
+
+                                        @default
+                                            {{ $case['industry'] }}
+                                    @endswitch
+                                </a>
+                            </div>
+                        </div>
+
+                        {{-- Case content --}}
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $case['title'] }}</h3>
+                                <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}</p>
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                                    {{ Str::limit($case['description'], 120) }}
+                                </p>
+
+                                {{-- Key metrics --}}
+                                <div class="space-y-2 mb-4">
+                                    @foreach (array_slice($case['results'], 0, 2) as $result)
+                                        <div class="flex items-center text-sm">
+                                            <i class="material-icons text-green-500 mr-2 text-base">trending_up</i>
+                                            <span class="text-gray-700 font-medium">{{ $result }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            {{-- CTA button --}}
+                            <a href="{{ route('cases.show', $case['id']) }}"
+                                class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
+                                Подробнее о кейсе
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+
+            {{-- View all cases button --}}
+            <div class="text-center mt-8">
+                <a href="{{ route('cases') }}" class="btn inline-flex items-center">
+                    Все кейсы
+                    <i class="material-icons ml-2">arrow_forward</i>
+                </a>
+            </div>
+        @else
+            <div class="text-center py-16">
+                <h3 class="text-2xl font-bold text-gray-600 mb-4">Кейсы временно недоступны</h3>
+                <p class="text-gray-500 mb-8">В данный момент у нас нет доступных кейсов для отображения.</p>
+            </div>
+        @endif
     </section>
-    {{-- End review --}}
+    {{-- End cases --}}
+
+    {{-- Blog --}}
+    <section id="blog" class="section-bg">
+        <h2 class="section-title">Последние статьи</h2>
+        <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+            Полезные материалы о SEO, аналитике и продвижении сайтов.
+            Делимся опытом и актуальными новостями из мира поисковой оптимизации.
+        </p>
+
+        @if (!empty($latestArticles))
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach ($latestArticles as $article)
+                    <article
+                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        {{-- Article image --}}
+                        <div
+                            class="relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                            <i class="material-icons text-white text-6xl">
+                                @if ($article['category'] === 'seo-news')
+                                    trending_up
+                                @elseif($article['category'] === 'analytics')
+                                    analytics
+                                @else
+                                    tips_and_updates
+                                @endif
+                            </i>
+                        </div>
+
+                        {{-- Article content --}}
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex-1">
+                                {{-- Category and date --}}
+                                <div class="flex items-center justify-between mb-3">
+                                    <a href="{{ route('blog.' . $article['category']) }}"
+                                        class="inline-flex items-center px-3 py-1 text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors">
+                                        {{ $article['category_name'] }}
+                                    </a>
+                                    <span class="text-gray-500 text-sm">
+                                        {{ \Carbon\Carbon::parse($article['published_at'])->format('d.m.Y') }}
+                                    </span>
+                                </div>
+
+                                {{-- Title --}}
+                                <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
+                                    <a href="{{ route('blog.article', [$article['category'], $article['slug']]) }}"
+                                        class="hover:text-cyan-600 transition-colors">
+                                        {{ $article['title'] }}
+                                    </a>
+                                </h3>
+
+                                {{-- Excerpt --}}
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                    {{ $article['excerpt'] }}
+                                </p>
+
+                                {{-- Reading time --}}
+                                <div class="flex items-center text-sm text-gray-500 mb-4">
+                                    <i class="material-icons text-xs mr-1">schedule</i>
+                                    <span>{{ $article['reading_time'] }} мин чтения</span>
+                                </div>
+                            </div>
+
+                            {{-- CTA button --}}
+                            <a href="{{ route('blog.article', [$article['category'], $article['slug']]) }}"
+                                class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
+                                Читать статью
+                            </a>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+
+            {{-- View all articles button --}}
+            <div class="text-center mt-8">
+                <a href="{{ route('blog') }}" class="btn inline-flex items-center">
+                    Все статьи
+                    <i class="material-icons ml-2">arrow_forward</i>
+                </a>
+            </div>
+        @else
+            <div class="text-center py-16">
+                <h3 class="text-2xl font-bold text-gray-600 mb-4">Статьи временно недоступны</h3>
+                <p class="text-gray-500 mb-8">В данный момент у нас нет доступных статей для отображения.</p>
+            </div>
+        @endif
+    </section>
+    {{-- End blog --}}
+
+    {{-- Reviews --}}
+    <section id="reviews" class="section-bg">
+        <h2 class="section-title">Отзывы наших клиентов</h2>
+        <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+            Реальные истории успеха от наших клиентов. Узнайте, как мы помогли им достичь
+            выдающихся результатов в SEO-продвижении.
+        </p>
+
+        @if (!empty($randomReviews))
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach ($randomReviews as $review)
+                    <article
+                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        {{-- Review content --}}
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex-1">
+                                {{-- Rating --}}
+                                <div class="flex items-center mb-4">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="material-icons text-yellow-400 text-sm">
+                                            {{ $i <= $review['rating'] ? 'star' : 'star_border' }}
+                                        </i>
+                                    @endfor
+                                </div>
+
+                                {{-- Review text --}}
+                                <blockquote class="text-gray-700 mb-6 flex-1 italic line-clamp-4">
+                                    "{{ $review['text'] }}"
+                                </blockquote>
+                            </div>
+
+                            {{-- Author info --}}
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                                    <img src="{{ asset('images/' . $review['avatar']) }}" alt="{{ $review['name'] }}"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-semibold text-gray-900 text-sm">
+                                        {{ $review['name'] }}
+                                    </div>
+                                    <div class="text-gray-600 text-xs">
+                                        {{ $review['position'] }}
+                                    </div>
+                                    <div class="text-gray-500 text-xs">
+                                        {{ $review['company'] }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center py-16">
+                <h3 class="text-2xl font-bold text-gray-600 mb-4">Отзывы временно недоступны</h3>
+                <p class="text-gray-500 mb-8">В данный момент у нас нет доступных отзывов для отображения.</p>
+            </div>
+        @endif
+    </section>
+    {{-- End reviews --}}
 
     {{-- Form --}}
     <section id="contact-form" class="section-bg flex flex-col lg:items-start items-center lg:flex-row lg:justify-around">
