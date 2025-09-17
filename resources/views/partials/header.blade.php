@@ -101,7 +101,7 @@
                 </div>
             </li>
             <li class="relative group">
-                <a href="#" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                <a href="{{ route('blog') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
                     Блог
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
@@ -110,29 +110,25 @@
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные темы:</div>
                         <div class="space-y-2">
-                            <a href="#"
+                            <a href="{{ route('blog.seo-news') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
                                 SEO новости
                             </a>
-                            <a href="#"
+                            <a href="{{ route('blog.analytics') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">analytics</i>
                                 Аналитика
                             </a>
-                            <a href="#"
+                            <a href="{{ route('blog.tips') }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">tips_and_updates</i>
                                 Советы
                             </a>
-                            <a href="#"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">article</i>
-                                Кейсы
-                            </a>
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
-                            <a href="#" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                            <a href="{{ route('blog') }}"
+                                class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                                 Все статьи →
                             </a>
                         </div>
@@ -327,29 +323,24 @@
                     class="pl-6 space-y-4 overflow-hidden" style="display: none;">
                     <div class="text-gray-600 text-sm font-medium mb-3">Популярные темы:</div>
                     <div class="space-y-2">
-                        <a href="#"
+                        <a href="{{ route('blog.seo-news') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
                             SEO новости
                         </a>
-                        <a href="#"
+                        <a href="{{ route('blog.analytics') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">analytics</i>
                             Аналитика
                         </a>
-                        <a href="#"
+                        <a href="{{ route('blog.tips') }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">tips_and_updates</i>
                             Советы
                         </a>
-                        <a href="#"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">article</i>
-                            Кейсы
-                        </a>
                     </div>
                     <div class="pt-3 border-t border-gray-200">
-                        <a href="#" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                        <a href="{{ route('blog') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                             Все статьи →
                         </a>
                     </div>

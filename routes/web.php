@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseController;
+use App\Http\Controllers\BlogController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,6 +30,13 @@ Route::get('/cases/production', [CaseController::class, 'production'])->name('ca
 Route::get('/cases/electronics', [CaseController::class, 'electronics'])->name('cases.electronics');
 Route::get('/cases/furniture', [CaseController::class, 'furniture'])->name('cases.furniture');
 Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
+
+// Blog
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/seo-news', [BlogController::class, 'seoNews'])->name('blog.seo-news');
+Route::get('/blog/analytics', [BlogController::class, 'analytics'])->name('blog.analytics');
+Route::get('/blog/tips', [BlogController::class, 'tips'])->name('blog.tips');
+Route::get('/blog/{category}/{slug}', [BlogController::class, 'show'])->name('blog.article');
 
 // Contact forms
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
