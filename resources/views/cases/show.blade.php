@@ -246,6 +246,18 @@
         </section>
     @endif
 
+    {{-- Additional content section --}}
+    @if (isset($case['content']) && !empty($case['content']))
+        <section class="section-bg">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Дополнительная информация</h2>
+                <div class="prose prose-lg max-w-none mx-auto">
+                    {!! $case['content'] !!}
+                </div>
+            </div>
+        </section>
+    @endif
+
     {{-- CTA section --}}
     <section class="section-bg">
         <div>

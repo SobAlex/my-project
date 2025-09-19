@@ -5,6 +5,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseController;
+use App\Http\Controllers\AdminCaseController;
+use App\Http\Controllers\AdminImageUploadController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 
@@ -51,3 +53,17 @@ Route::get('/blog/{category}/{slug}', [BlogController::class, 'show'])->name('bl
 Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
 Route::post('/contact', [ContactController::class, 'submitContact'])->name('contact.submit');
 Route::post('/service/order', [ContactController::class, 'submitServiceOrder'])->name('service.order');
+
+// Admin routes for cases
+Route::prefix('admin/cases')->name('admin.cases.')->group(function () {
+    Route::get('/', [AdminCaseController::class, 'index'])->name('index');
+    Route::get('/create', [AdminCaseController::class, 'create'])->name('create');
+    Route::post('/', [AdminCaseController::class, 'store'])->name('store');
+    Route::get('/{case}', [AdminCaseController::class, 'show'])->name('show');
+    Route::get('/{case}/edit', [AdminCaseController::class, 'edit'])->name('edit');
+    Route::put('/{case}', [AdminCaseController::class, 'update'])->name('update');
+    Route::delete('/{case}', [AdminCaseController::class, 'destroy'])->name('destroy');
+});
+
+// Admin image upload for TinyMCE file picker
+Route::post('/admin/upload-image', [AdminImageUploadController::class, 'uploadImage'])->name('admin.upload-image');
