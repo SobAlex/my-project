@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProjectCase;
+use App\Models\IndustryCategory;
 use Illuminate\Http\Request;
 
 class CaseController extends Controller
@@ -16,8 +17,9 @@ class CaseController extends Controller
         $casesData = $this->getAllCasesData();
         $title = 'Кейсы SEO продвижения';
         $selectedTag = null;
+        $activeCategories = $this->getActiveCategories();
 
-        return view('cases.index', compact('casesData', 'title', 'selectedTag'));
+        return view('cases.index', compact('casesData', 'title', 'selectedTag', 'activeCategories'));
     }
 
     /**
@@ -53,6 +55,22 @@ class CaseController extends Controller
     }
 
     /**
+     * Универсальный метод для всех категорий отраслей
+     */
+    public function category($industry)
+    {
+        // Проверяем, существует ли категория в базе данных
+        $category = IndustryCategory::where('slug', $industry)->first();
+
+        if (!$category) {
+            abort(404, 'Категория не найдена');
+        }
+
+        $title = 'Кейсы SEO продвижения: ' . $category->name;
+        return $this->filterByTag($industry, $title);
+    }
+
+    /**
      * Фильтрация кейсов по тегу
      */
     private function filterByTag($tag, $title)
@@ -73,8 +91,9 @@ class CaseController extends Controller
 
         $selectedTag = $tag;
         $categoryInfo = $this->getCategoryInfo($tag);
+        $activeCategories = $this->getActiveCategories();
 
-        return view('cases.index', compact('casesData', 'title', 'selectedTag', 'categoryInfo'));
+        return view('cases.index', compact('casesData', 'title', 'selectedTag', 'categoryInfo', 'activeCategories'));
     }
 
     /**
@@ -107,11 +126,42 @@ class CaseController extends Controller
     }
 
     /**
+     * Получить активные категории отраслей
+     */
+    private function getActiveCategories()
+    {
+        return IndustryCategory::active()
+            ->ordered()
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'slug' => $category->slug,
+                    'name' => $category->name,
+                    'route' => 'cases.category',
+                    'is_legacy' => false
+                ];
+            })
+            ->toArray();
+    }
+
+    /**
      * Получить информацию о категории по industry
      */
     private function getCategoryInfo($industry)
     {
-        $categories = [
+        // Сначала пытаемся получить категорию из базы данных
+        $category = IndustryCategory::where('slug', $industry)->first();
+
+        if ($category) {
+            return [
+                'name' => $category->name,
+                'route' => 'cases.category',
+                'slug' => $category->slug
+            ];
+        }
+
+        // Fallback на старые категории для обратной совместимости
+        $legacyCategories = [
             'clothing' => [
                 'name' => 'Одежда',
                 'route' => 'cases.clothing'
@@ -130,7 +180,7 @@ class CaseController extends Controller
             ]
         ];
 
-        return $categories[$industry] ?? null;
+        return $legacyCategories[$industry] ?? null;
     }
 
     /**

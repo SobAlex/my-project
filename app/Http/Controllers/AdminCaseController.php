@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProjectCase;
+use App\Models\IndustryCategory;
 use App\Http\Requests\StoreProjectCaseRequest;
 use App\Http\Requests\UpdateProjectCaseRequest;
 use Illuminate\Http\Request;
@@ -29,12 +30,7 @@ class AdminCaseController extends Controller
     public function create()
     {
         $case = new ProjectCase();
-        $industries = [
-            'electronics' => 'Электроника',
-            'production' => 'Производство',
-            'clothing' => 'Одежда',
-            'furniture' => 'Мебель'
-        ];
+        $industries = IndustryCategory::active()->ordered()->pluck('name', 'slug')->toArray();
 
         return view('admin.cases.create', compact('case', 'industries'));
     }
@@ -84,12 +80,7 @@ class AdminCaseController extends Controller
      */
     public function edit(ProjectCase $case)
     {
-        $industries = [
-            'electronics' => 'Электроника',
-            'production' => 'Производство',
-            'clothing' => 'Одежда',
-            'furniture' => 'Мебель'
-        ];
+        $industries = IndustryCategory::active()->ordered()->pluck('name', 'slug')->toArray();
 
         return view('admin.cases.edit', compact('case', 'industries'));
     }

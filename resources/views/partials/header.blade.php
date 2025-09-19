@@ -70,26 +70,14 @@
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
                         <div class="space-y-2">
-                            <a href="{{ route('cases.clothing') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">checkroom</i>
-                                Одежда
-                            </a>
-                            <a href="{{ route('cases.production') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">precision_manufacturing</i>
-                                Производство
-                            </a>
-                            <a href="{{ route('cases.electronics') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">devices</i>
-                                Электроника
-                            </a>
-                            <a href="{{ route('cases.furniture') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">chair</i>
-                                Мебель
-                            </a>
+                            @foreach ($activeCategories as $category)
+                                <a href="{{ route($category['route'], $category['slug']) }}"
+                                    class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2"
+                                        style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
+                                    {{ $category['name'] }}
+                                </a>
+                            @endforeach
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
                             <a href="{{ route('cases') }}"
@@ -277,26 +265,14 @@
                     class="pl-6 space-y-4 overflow-hidden" style="display: none;">
                     <div class="text-gray-600 text-sm font-medium mb-3">Популярные отрасли:</div>
                     <div class="space-y-2">
-                        <a href="{{ route('cases.clothing') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">checkroom</i>
-                            Одежда
-                        </a>
-                        <a href="{{ route('cases.production') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">precision_manufacturing</i>
-                            Производство
-                        </a>
-                        <a href="{{ route('cases.electronics') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">devices</i>
-                            Электроника
-                        </a>
-                        <a href="{{ route('cases.furniture') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">chair</i>
-                            Мебель
-                        </a>
+                        @foreach ($activeCategories as $category)
+                            <a href="{{ route($category['route'], $category['slug']) }}"
+                                class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2"
+                                    style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
+                                {{ $category['name'] }}
+                            </a>
+                        @endforeach
                     </div>
                     <div class="pt-3 border-t border-gray-200">
                         <a href="{{ route('cases') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">

@@ -36,6 +36,10 @@
                             class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.cases.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                             Кейсы
                         </a>
+                        <a href="{{ route('admin.industry-categories.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.industry-categories.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            Категории отраслей
+                        </a>
                         <a href="{{ route('home') }}"
                             class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">
                             На сайт

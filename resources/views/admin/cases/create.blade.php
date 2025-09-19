@@ -46,16 +46,35 @@
                                 <select name="industry" id="industry"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm @error('industry') border-red-300 @enderror">
                                     <option value="">Выберите отрасль</option>
-                                    @foreach ($industries as $key => $name)
-                                        <option value="{{ $key }}"
-                                            {{ old('industry', $case->industry) == $key ? 'selected' : '' }}>
-                                            {{ $name }}
+                                    @php
+                                        $industryCategories = \App\Models\IndustryCategory::active()->ordered()->get();
+                                    @endphp
+                                    @foreach ($industryCategories as $category)
+                                        <option value="{{ $category->slug }}"
+                                            {{ old('industry', $case->industry) == $category->slug ? 'selected' : '' }}
+                                            data-color="{{ $category->color }}" data-icon="{{ $category->icon }}">
+                                            {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
                                 @error('industry')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
+
+                                <!-- Предварительный просмотр выбранной категории -->
+                                <div id="industry-preview"
+                                    class="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200 hidden">
+                                    <div class="flex items-center space-x-3">
+                                        <div id="preview-icon"
+                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm">
+                                            <i class="material-icons"></i>
+                                        </div>
+                                        <div>
+                                            <div id="preview-name" class="text-sm font-medium text-gray-900"></div>
+                                            <div id="preview-description" class="text-xs text-gray-500"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
@@ -312,9 +331,45 @@
     </form>
 
     <script>
-        // Динамическое создание полей для метрик
+        // Динамическое создание полей для метрик и предварительный просмотр категории
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('form');
+            const industrySelect = document.getElementById('industry');
+            const industryPreview = document.getElementById('industry-preview');
+            const previewIcon = document.getElementById('preview-icon');
+            const previewName = document.getElementById('preview-name');
+            const previewDescription = document.getElementById('preview-description');
+
+            // Industry category preview functionality
+            function updateIndustryPreview() {
+                const selectedOption = industrySelect.options[industrySelect.selectedIndex];
+
+                if (selectedOption.value) {
+                    const color = selectedOption.getAttribute('data-color');
+                    const icon = selectedOption.getAttribute('data-icon');
+                    const name = selectedOption.textContent;
+
+                    // Update preview elements
+                    previewIcon.style.backgroundColor = color;
+                    previewIcon.querySelector('i').textContent = icon || 'business';
+                    previewName.textContent = name;
+
+                    // Show description if available
+                    previewDescription.textContent = selectedOption.getAttribute('data-description') || '';
+
+                    // Show preview
+                    industryPreview.classList.remove('hidden');
+                } else {
+                    // Hide preview
+                    industryPreview.classList.add('hidden');
+                }
+            }
+
+            // Initialize preview on page load
+            updateIndustryPreview();
+
+            // Update preview when selection changes
+            industrySelect.addEventListener('change', updateIndustryPreview);
 
             form.addEventListener('submit', function(e) {
                 // Удаляем старые скрытые поля если есть

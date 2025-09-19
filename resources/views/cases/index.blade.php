@@ -36,26 +36,13 @@
                           {{ !isset($selectedTag) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Все кейсы
                 </a>
-                <a href="{{ route('cases.clothing') }}"
-                    class="px-4 py-2 text-sm font-medium transition-colors
-                          {{ isset($selectedTag) && $selectedTag === 'clothing' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Одежда
-                </a>
-                <a href="{{ route('cases.production') }}"
-                    class="px-4 py-2 text-sm font-medium transition-colors
-                          {{ isset($selectedTag) && $selectedTag === 'production' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Производство
-                </a>
-                <a href="{{ route('cases.electronics') }}"
-                    class="px-4 py-2 text-sm font-medium transition-colors
-                          {{ isset($selectedTag) && $selectedTag === 'electronics' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Электроника
-                </a>
-                <a href="{{ route('cases.furniture') }}"
-                    class="px-4 py-2 text-sm font-medium transition-colors
-                          {{ isset($selectedTag) && $selectedTag === 'furniture' ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Мебель
-                </a>
+                @foreach ($activeCategories as $category)
+                    <a href="{{ route($category['route'], $category['slug']) }}"
+                        class="px-4 py-2 text-sm font-medium transition-colors
+                              {{ isset($selectedTag) && $selectedTag === $category['slug'] ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        {{ $category['name'] }}
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -82,7 +69,7 @@
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
-                                        <a href="{{ route('cases.' . $case['industry']) }}"
+                                        <a href="{{ route('cases.category', $case['industry']) }}"
                                             class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
                                             @switch($case['industry'])
                                                 @case('clothing')

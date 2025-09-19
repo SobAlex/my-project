@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\AdminCaseController;
+use App\Http\Controllers\Admin\IndustryCategoryController;
 use App\Http\Controllers\AdminImageUploadController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
@@ -40,6 +41,8 @@ Route::get('/cases/clothing', [CaseController::class, 'clothing'])->name('cases.
 Route::get('/cases/production', [CaseController::class, 'production'])->name('cases.production');
 Route::get('/cases/electronics', [CaseController::class, 'electronics'])->name('cases.electronics');
 Route::get('/cases/furniture', [CaseController::class, 'furniture'])->name('cases.furniture');
+// Универсальный маршрут для всех категорий отраслей (должен быть перед cases/{id})
+Route::get('/cases/category/{industry}', [CaseController::class, 'category'])->name('cases.category');
 Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
 
 // Blog
@@ -63,6 +66,17 @@ Route::prefix('admin/cases')->name('admin.cases.')->group(function () {
     Route::get('/{case}/edit', [AdminCaseController::class, 'edit'])->name('edit');
     Route::put('/{case}', [AdminCaseController::class, 'update'])->name('update');
     Route::delete('/{case}', [AdminCaseController::class, 'destroy'])->name('destroy');
+});
+
+// Admin routes for industry categories
+Route::prefix('admin/industry-categories')->name('admin.industry-categories.')->group(function () {
+    Route::get('/', [IndustryCategoryController::class, 'index'])->name('index');
+    Route::get('/create', [IndustryCategoryController::class, 'create'])->name('create');
+    Route::post('/', [IndustryCategoryController::class, 'store'])->name('store');
+    Route::get('/{industryCategory}', [IndustryCategoryController::class, 'show'])->name('show');
+    Route::get('/{industryCategory}/edit', [IndustryCategoryController::class, 'edit'])->name('edit');
+    Route::put('/{industryCategory}', [IndustryCategoryController::class, 'update'])->name('update');
+    Route::delete('/{industryCategory}', [IndustryCategoryController::class, 'destroy'])->name('destroy');
 });
 
 // Admin image upload for TinyMCE file picker

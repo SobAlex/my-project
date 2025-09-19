@@ -286,7 +286,7 @@
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                             <div class="absolute bottom-4 left-4 text-white">
-                                <a href="{{ route('cases.' . $case['industry']) }}"
+                                <a href="{{ route('cases.category', $case['industry']) }}"
                                     class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
                                     @switch($case['industry'])
                                         @case('clothing')

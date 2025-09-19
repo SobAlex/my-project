@@ -132,10 +132,24 @@ class ProjectCase extends Model
     }
 
     /**
+     * Get the industry category for this case.
+     */
+    public function industryCategory()
+    {
+        return $this->belongsTo(IndustryCategory::class, 'industry', 'slug');
+    }
+
+    /**
      * Get industry name in Russian.
      */
     public function getIndustryNameAttribute()
     {
+        // Сначала пытаемся получить название из связанной категории
+        if ($this->industryCategory) {
+            return $this->industryCategory->name;
+        }
+
+        // Fallback на старые названия для обратной совместимости
         $industries = [
             'clothing' => 'Одежда',
             'production' => 'Производство',

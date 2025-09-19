@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\IndustryCategory;
 
 class StoreProjectCaseRequest extends FormRequest
 {
@@ -21,11 +22,14 @@ class StoreProjectCaseRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Получаем все активные категории отраслей
+        $validIndustries = IndustryCategory::active()->pluck('slug')->implode(',');
+
         $rules = [
             'case_id' => 'nullable|string|max:255|unique:cases,case_id',
             'title' => 'required|string|max:255',
             'client' => 'required|string|max:255',
-            'industry' => 'required|string|in:electronics,production,clothing,furniture',
+            'industry' => 'required|string|in:' . $validIndustries,
             'period' => 'required|string|max:100',
             'image' => 'required|string|max:255',
             'description' => 'required|string',
