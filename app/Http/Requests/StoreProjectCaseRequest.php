@@ -30,6 +30,8 @@ class StoreProjectCaseRequest extends FormRequest
             'image' => 'required|string|max:255',
             'description' => 'required|string',
             'content' => 'nullable|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
             'result_1' => 'nullable|string|max:500',
             'result_2' => 'nullable|string|max:500',
             'result_3' => 'nullable|string|max:500',
@@ -64,7 +66,6 @@ class StoreProjectCaseRequest extends FormRequest
             'period.required' => 'Период работы обязателен для заполнения.',
             'image.required' => 'Изображение кейса обязательно для заполнения.',
             'description.required' => 'Описание кейса обязательно для заполнения.',
-            'result_1.required' => 'Добавьте хотя бы один результат.',
             'case_id.unique' => 'Кейс с таким ID уже существует.',
         ];
     }

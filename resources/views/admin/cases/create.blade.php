@@ -109,9 +109,6 @@
                             <div>
                                 <label for="result_{{ $i }}" class="block text-sm font-medium text-gray-700">
                                     Результат {{ $i }}
-                                    @if ($i == 1)
-                                        <span class="text-red-500">*</span>
-                                    @endif
                                 </label>
                                 <input type="text" name="result_{{ $i }}" id="result_{{ $i }}"
                                     value="{{ old('result_' . $i, $case->{'result_' . $i}) }}"
@@ -239,6 +236,39 @@
                         @enderror
                         <p class="mt-1 text-sm text-gray-500">Используйте редактор для создания богатого текстового
                             контента</p>
+                    </div>
+                </div>
+
+                <!-- SEO настройки -->
+                <div class="col-span-2">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">SEO настройки</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="meta_title" class="block text-sm font-medium text-gray-700">
+                                Meta Title
+                            </label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}"
+                                placeholder="SEO заголовок для поисковых систем"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm @error('meta_title') border-red-300 @enderror">
+                            @error('meta_title')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">Если не указан, будет использован основной заголовок</p>
+                        </div>
+
+                        <div>
+                            <label for="meta_description" class="block text-sm font-medium text-gray-700">
+                                Meta Description
+                            </label>
+                            <textarea name="meta_description" id="meta_description" rows="3"
+                                placeholder="SEO описание для поисковых систем"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm resize-none @error('meta_description') border-red-300 @enderror">{{ old('meta_description') }}</textarea>
+                            @error('meta_description')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">Если не указано, будет использовано основное описание</p>
+                        </div>
                     </div>
                 </div>
 

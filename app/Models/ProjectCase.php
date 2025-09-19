@@ -32,6 +32,8 @@ class ProjectCase extends Model
         'image',
         'description',
         'content',
+        'meta_title',
+        'meta_description',
         'result_1',
         'result_2',
         'result_3',

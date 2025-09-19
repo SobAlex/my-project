@@ -193,9 +193,6 @@
                                     {{ $i }}
                                 </div>
                                 Результат {{ $i }}
-                                @if ($i == 1)
-                                    <span class="text-red-500 ml-1">*</span>
-                                @endif
                             </label>
                             <input type="text" name="result_{{ $i }}" id="result_{{ $i }}"
                                 value="{{ old('result_' . $i, $case->{'result_' . $i}) }}"
@@ -315,6 +312,59 @@
             </div>
         </div>
 
+        <!-- SEO Section -->
+        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+            <div class="px-8 py-6 bg-gradient-to-r from-orange-500 to-red-600">
+                <h2 class="text-xl font-semibold text-white">SEO настройки</h2>
+                <p class="mt-1 text-orange-100">Настройте мета-теги для поисковых систем</p>
+            </div>
+
+            <div class="p-8">
+                <div class="space-y-6">
+                    <!-- Meta Title -->
+                    <div class="space-y-2">
+                        <label for="meta_title" class="flex items-center text-sm font-semibold text-gray-700">
+                            <i class="material-icons text-orange-500 mr-2 text-lg">title</i>
+                            Meta Title
+                        </label>
+                        <input type="text" name="meta_title" id="meta_title"
+                            value="{{ old('meta_title', $case->meta_title) }}"
+                            placeholder="SEO заголовок для поисковых систем"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 @error('meta_title') border-red-300 ring-2 ring-red-100 @enderror">
+                        @error('meta_title')
+                            <p class="flex items-center text-sm text-red-600 mt-1">
+                                <i class="material-icons text-red-500 mr-1 text-sm">error</i>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Если не указан, будет использован основной заголовок кейса</span>
+                        </div>
+                    </div>
+
+                    <!-- Meta Description -->
+                    <div class="space-y-2">
+                        <label for="meta_description" class="flex items-center text-sm font-semibold text-gray-700">
+                            <i class="material-icons text-orange-500 mr-2 text-lg">description</i>
+                            Meta Description
+                        </label>
+                        <textarea name="meta_description" id="meta_description" rows="3"
+                            placeholder="SEO описание для поисковых систем"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 resize-none @error('meta_description') border-red-300 ring-2 ring-red-100 @enderror">{{ old('meta_description', $case->meta_description) }}</textarea>
+                        @error('meta_description')
+                            <p class="flex items-center text-sm text-red-600 mt-1">
+                                <i class="material-icons text-red-500 mr-1 text-sm">error</i>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Если не указано, будет использовано основное описание кейса</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Settings Section -->
         <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-gray-600 to-gray-700">
@@ -420,6 +470,7 @@
                     block: 'center'
                 });
             }
+
         });
     </script>
 
