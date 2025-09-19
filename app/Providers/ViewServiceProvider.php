@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\IndustryCategory;
+use App\Models\BlogCategory;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Передаем активные категории во все представления
         View::composer('*', function ($view) {
+            // Категории кейсов
             $activeCategories = IndustryCategory::active()
                 ->ordered()
                 ->get()
@@ -37,7 +39,25 @@ class ViewServiceProvider extends ServiceProvider
                 })
                 ->toArray();
 
-            $view->with('activeCategories', $activeCategories);
+            // Категории блогов
+            $activeBlogCategories = BlogCategory::active()
+                ->ordered()
+                ->get()
+                ->map(function ($category) {
+                    return [
+                        'slug' => $category->slug,
+                        'name' => $category->name,
+                        'icon' => $category->icon ?: 'article',
+                        'color' => $category->color,
+                        'route' => 'blog.category'
+                    ];
+                })
+                ->toArray();
+
+            $view->with([
+                'activeCategories' => $activeCategories,
+                'activeBlogCategories' => $activeBlogCategories
+            ]);
         });
     }
 }

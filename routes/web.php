@@ -8,6 +8,8 @@ use App\Http\Controllers\CaseController;
 use App\Http\Controllers\AdminCaseController;
 use App\Http\Controllers\Admin\IndustryCategoryController;
 use App\Http\Controllers\AdminImageUploadController;
+use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 
@@ -50,6 +52,8 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/seo-news', [BlogController::class, 'seoNews'])->name('blog.seo-news');
 Route::get('/blog/analytics', [BlogController::class, 'analytics'])->name('blog.analytics');
 Route::get('/blog/tips', [BlogController::class, 'tips'])->name('blog.tips');
+// Универсальный маршрут для всех категорий блогов
+Route::get('/blog/category/{category}', [BlogController::class, 'category'])->name('blog.category');
 Route::get('/blog/{category}/{slug}', [BlogController::class, 'show'])->name('blog.article');
 
 // Contact forms
@@ -77,6 +81,28 @@ Route::prefix('admin/industry-categories')->name('admin.industry-categories.')->
     Route::get('/{industryCategory}/edit', [IndustryCategoryController::class, 'edit'])->name('edit');
     Route::put('/{industryCategory}', [IndustryCategoryController::class, 'update'])->name('update');
     Route::delete('/{industryCategory}', [IndustryCategoryController::class, 'destroy'])->name('destroy');
+});
+
+// Admin routes for blogs
+Route::prefix('admin/blogs')->name('admin.blogs.')->group(function () {
+    Route::get('/', [AdminBlogController::class, 'index'])->name('index');
+    Route::get('/create', [AdminBlogController::class, 'create'])->name('create');
+    Route::post('/', [AdminBlogController::class, 'store'])->name('store');
+    Route::get('/{blog}', [AdminBlogController::class, 'show'])->name('show');
+    Route::get('/{blog}/edit', [AdminBlogController::class, 'edit'])->name('edit');
+    Route::put('/{blog}', [AdminBlogController::class, 'update'])->name('update');
+    Route::delete('/{blog}', [AdminBlogController::class, 'destroy'])->name('destroy');
+});
+
+// Admin routes for blog categories
+Route::prefix('admin/blog-categories')->name('admin.blog-categories.')->group(function () {
+    Route::get('/', [AdminBlogCategoryController::class, 'index'])->name('index');
+    Route::get('/create', [AdminBlogCategoryController::class, 'create'])->name('create');
+    Route::post('/', [AdminBlogCategoryController::class, 'store'])->name('store');
+    Route::get('/{blogCategory}', [AdminBlogCategoryController::class, 'show'])->name('show');
+    Route::get('/{blogCategory}/edit', [AdminBlogCategoryController::class, 'edit'])->name('edit');
+    Route::put('/{blogCategory}', [AdminBlogCategoryController::class, 'update'])->name('update');
+    Route::delete('/{blogCategory}', [AdminBlogCategoryController::class, 'destroy'])->name('destroy');
 });
 
 // Admin image upload for TinyMCE file picker

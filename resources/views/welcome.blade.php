@@ -375,9 +375,9 @@
                         <div
                             class="relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
                             <i class="material-icons text-white text-6xl">
-                                @if ($article['category'] === 'seo-news')
+                                @if ($article->category === 'seo-news')
                                     trending_up
-                                @elseif($article['category'] === 'analytics')
+                                @elseif($article->category === 'analytics')
                                     analytics
                                 @else
                                     tips_and_updates
@@ -390,37 +390,37 @@
                             <div class="flex-1">
                                 {{-- Category and date --}}
                                 <div class="flex items-center justify-between mb-3">
-                                    <a href="{{ route('blog.' . $article['category']) }}"
+                                    <a href="{{ route('blog.category', $article->category) }}"
                                         class="inline-flex items-center px-3 py-1 text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors">
-                                        {{ $article['category_name'] }}
+                                        {{ $article->category_name }}
                                     </a>
                                     <span class="text-gray-500 text-sm">
-                                        {{ \Carbon\Carbon::parse($article['published_at'])->format('d.m.Y') }}
+                                        {{ $article->formatted_published_at }}
                                     </span>
                                 </div>
 
                                 {{-- Title --}}
                                 <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
-                                    <a href="{{ route('blog.article', [$article['category'], $article['slug']]) }}"
+                                    <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
                                         class="hover:text-cyan-600 transition-colors">
-                                        {{ $article['title'] }}
+                                        {{ $article->title }}
                                     </a>
                                 </h3>
 
                                 {{-- Excerpt --}}
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                    {{ $article['excerpt'] }}
+                                    {{ $article->excerpt }}
                                 </p>
 
                                 {{-- Reading time --}}
                                 <div class="flex items-center text-sm text-gray-500 mb-4">
                                     <i class="material-icons text-xs mr-1">schedule</i>
-                                    <span>{{ $article['reading_time'] }} мин чтения</span>
+                                    <span>{{ $article->reading_time ?? '5' }} мин чтения</span>
                                 </div>
                             </div>
 
                             {{-- CTA button --}}
-                            <a href="{{ route('blog.article', [$article['category'], $article['slug']]) }}"
+                            <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
                                 class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
                                 Читать статью
                             </a>

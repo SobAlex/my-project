@@ -36,6 +36,14 @@
                             class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.cases.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                             Кейсы
                         </a>
+                        <a href="{{ route('admin.blogs.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.blogs.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            Блоги
+                        </a>
+                        <a href="{{ route('admin.blog-categories.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.blog-categories.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            Категории блогов
+                        </a>
                         <a href="{{ route('admin.industry-categories.index') }}"
                             class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.industry-categories.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                             Категории отраслей

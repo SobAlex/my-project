@@ -21,9 +21,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Запускаем сидер для кейсов
+        // Запускаем сидеры
         $this->call([
+            IndustryCategorySeeder::class,
             ProjectCaseSeeder::class,
+            BlogCategorySeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }
