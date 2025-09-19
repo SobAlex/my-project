@@ -286,29 +286,54 @@
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                             <div class="absolute bottom-4 left-4 text-white">
-                                <a href="{{ route('cases.category', $case['industry']) }}"
-                                    class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
-                                    @switch($case['industry'])
-                                        @case('clothing')
-                                            Одежда
-                                        @break
+                                @if ($case['has_valid_category'])
+                                    <a href="{{ route('cases.category', $case['industry']) }}"
+                                        class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                        @switch($case['industry'])
+                                            @case('clothing')
+                                                Одежда
+                                            @break
 
-                                        @case('production')
-                                            Производство
-                                        @break
+                                            @case('production')
+                                                Производство
+                                            @break
 
-                                        @case('electronics')
-                                            Электроника
-                                        @break
+                                            @case('electronics')
+                                                Электроника
+                                            @break
 
-                                        @case('furniture')
-                                            Мебель
-                                        @break
+                                            @case('furniture')
+                                                Мебель
+                                            @break
 
-                                        @default
-                                            {{ $case['industry'] }}
-                                    @endswitch
-                                </a>
+                                            @default
+                                                {{ $case['industry'] }}
+                                        @endswitch
+                                    </a>
+                                @else
+                                    <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">
+                                        @switch($case['industry'])
+                                            @case('clothing')
+                                                Одежда
+                                            @break
+
+                                            @case('production')
+                                                Производство
+                                            @break
+
+                                            @case('electronics')
+                                                Электроника
+                                            @break
+
+                                            @case('furniture')
+                                                Мебель
+                                            @break
+
+                                            @default
+                                                {{ $case['industry'] }}
+                                        @endswitch
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

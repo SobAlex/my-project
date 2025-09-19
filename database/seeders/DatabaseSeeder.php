@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ProjectCaseSeeder::class,
             BlogCategorySeeder::class,
             BlogSeeder::class,
+            ContactSettingSeeder::class,
         ]);
     }
 }

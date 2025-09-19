@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\IndustryCategoryController;
 use App\Http\Controllers\AdminImageUploadController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminBlogCategoryController;
+use App\Http\Controllers\AdminContactController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 
@@ -103,6 +104,14 @@ Route::prefix('admin/blog-categories')->name('admin.blog-categories.')->group(fu
     Route::get('/{blogCategory}/edit', [AdminBlogCategoryController::class, 'edit'])->name('edit');
     Route::put('/{blogCategory}', [AdminBlogCategoryController::class, 'update'])->name('update');
     Route::delete('/{blogCategory}', [AdminBlogCategoryController::class, 'destroy'])->name('destroy');
+});
+
+// Admin routes for contact settings
+Route::prefix('admin/contacts')->name('admin.contacts.')->group(function () {
+    Route::get('/', [AdminContactController::class, 'index'])->name('index');
+    Route::get('/edit', [AdminContactController::class, 'edit'])->name('edit');
+    Route::put('/', [AdminContactController::class, 'update'])->name('update');
+    Route::post('/create-defaults', [AdminContactController::class, 'createDefaults'])->name('create-defaults');
 });
 
 // Admin image upload for TinyMCE file picker

@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto pt-8">
+    <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => array_filter([
                 isset($categoryInfo)
@@ -37,7 +37,7 @@
                     Все кейсы
                 </a>
                 @foreach ($activeCategories as $category)
-                    <a href="{{ route($category['route'], $category['slug']) }}"
+                    <a href="{{ route($category['route'], ...$category['route_params']) }}"
                         class="px-4 py-2 text-sm font-medium transition-colors
                               {{ isset($selectedTag) && $selectedTag === $category['slug'] ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                         {{ $category['name'] }}
@@ -69,29 +69,54 @@
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
-                                        <a href="{{ route('cases.category', $case['industry']) }}"
-                                            class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
-                                            @switch($case['industry'])
-                                                @case('clothing')
-                                                    Одежда
-                                                @break
+                                        @if ($case['has_valid_category'])
+                                            <a href="{{ route('cases.category', $case['industry']) }}"
+                                                class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                                @switch($case['industry'])
+                                                    @case('clothing')
+                                                        Одежда
+                                                    @break
 
-                                                @case('production')
-                                                    Производство
-                                                @break
+                                                    @case('production')
+                                                        Производство
+                                                    @break
 
-                                                @case('electronics')
-                                                    Электроника
-                                                @break
+                                                    @case('electronics')
+                                                        Электроника
+                                                    @break
 
-                                                @case('furniture')
-                                                    Мебель
-                                                @break
+                                                    @case('furniture')
+                                                        Мебель
+                                                    @break
 
-                                                @default
-                                                    {{ $case['industry'] }}
-                                            @endswitch
-                                        </a>
+                                                    @default
+                                                        {{ $case['industry'] }}
+                                                @endswitch
+                                            </a>
+                                        @else
+                                            <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">
+                                                @switch($case['industry'])
+                                                    @case('clothing')
+                                                        Одежда
+                                                    @break
+
+                                                    @case('production')
+                                                        Производство
+                                                    @break
+
+                                                    @case('electronics')
+                                                        Электроника
+                                                    @break
+
+                                                    @case('furniture')
+                                                        Мебель
+                                                    @break
+
+                                                    @default
+                                                        {{ $case['industry'] }}
+                                                @endswitch
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 

@@ -9,13 +9,13 @@
 
 @section('content')
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto pt-8">
+    <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => [['title' => 'Блог', 'url' => route('blog')], ['title' => $category, 'url' => null]],
         ])
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="py-12">
         <!-- Заголовок категории -->
         <div class="text-center mb-12">
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-4"

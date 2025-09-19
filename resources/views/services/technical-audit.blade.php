@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto pt-8">
+    <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => [['title' => 'Услуги', 'url' => '#'], ['title' => $service['name'], 'url' => null]],
         ])

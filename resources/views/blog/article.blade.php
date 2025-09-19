@@ -5,7 +5,7 @@
 
 @section('content')
     <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto pt-8">
+    <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => [
                 ['title' => 'Блог', 'url' => route('blog')],
@@ -15,7 +15,7 @@
         ])
     </div>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-4xl mx-auto py-12">
         <!-- Заголовок статьи -->
         <article class="bg-white  shadow-lg overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
@@ -73,13 +73,12 @@
         <!-- Навигация между статьями -->
         <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex items-center justify-between">
-                <a href="{{ route('blog.category', $article->category) }}"
-                    class="inline-flex items-center px-6 py-3 border border-gray-300 btn transition-colors">
+                <a href="{{ route('blog.category', $article->category) }}" class="btn inline-flex items-center">
                     <i class="material-icons text-sm mr-2">arrow_back</i>
                     Все статьи в категории
                 </a>
 
-                <a href="{{ route('blog') }}" class="inline-flex items-center px-6 py-3 btn btn transition-colors">
+                <a href="{{ route('blog') }}" class="btn inline-flex items-center">
                     Все статьи блога
                     <i class="material-icons text-sm ml-2">arrow_forward</i>
                 </a>

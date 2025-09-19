@@ -138,6 +138,7 @@ class CaseController extends Controller
                     'slug' => $category->slug,
                     'name' => $category->name,
                     'route' => 'cases.category',
+                    'route_params' => [$category->slug],
                     'is_legacy' => false
                 ];
             })
@@ -156,6 +157,7 @@ class CaseController extends Controller
             return [
                 'name' => $category->name,
                 'route' => 'cases.category',
+                'route_params' => [$category->slug],
                 'slug' => $category->slug
             ];
         }
@@ -164,19 +166,23 @@ class CaseController extends Controller
         $legacyCategories = [
             'clothing' => [
                 'name' => 'Одежда',
-                'route' => 'cases.clothing'
+                'route' => 'cases.clothing',
+                'route_params' => []
             ],
             'production' => [
                 'name' => 'Производство',
-                'route' => 'cases.production'
+                'route' => 'cases.production',
+                'route_params' => []
             ],
             'electronics' => [
                 'name' => 'Электроника',
-                'route' => 'cases.electronics'
+                'route' => 'cases.electronics',
+                'route_params' => []
             ],
             'furniture' => [
                 'name' => 'Мебель',
-                'route' => 'cases.furniture'
+                'route' => 'cases.furniture',
+                'route_params' => []
             ]
         ];
 
@@ -252,7 +258,20 @@ class CaseController extends Controller
             'description' => $case->description,
             'content' => $case->content,
             'results' => $case->results_array, // Используем accessor для получения массива результатов
-            'before_after' => $case->before_after
+            'before_after' => $case->before_after,
+            'has_valid_category' => $this->hasValidCategory($case->industry)
         ];
+    }
+
+    /**
+     * Проверить, существует ли активная категория для данной отрасли
+     */
+    private function hasValidCategory($industry)
+    {
+        if (empty($industry)) {
+            return false;
+        }
+
+        return IndustryCategory::where('slug', $industry)->active()->exists();
     }
 }

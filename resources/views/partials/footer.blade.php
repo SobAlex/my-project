@@ -14,29 +14,40 @@
                 <ul class="mt-4 space-y-3">
                     <li class="flex items-start space-x-3">
                         <i class="material-icons mt-0.5">place</i>
-                        <span>г. Санкт-Петербург, Невский пр., 7</span>
+                        <span>{{ $contactInfo['address'] }}</span>
                     </li>
                     <li class="flex items-start space-x-3">
                         <i class="material-icons mt-0.5">call</i>
-                        <a href="tel:88001234567" class="hover:text-cyan-400 transition">8 800 123 45 67</a>
+                        <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}"
+                            class="hover:text-cyan-400 transition">{{ $contactInfo['phone'] }}</a>
                     </li>
                     <li class="flex items-start space-x-3">
                         <i class="material-icons mt-0.5">mail</i>
-                        <a href="mailto:info@sobalex.com" class="hover:text-cyan-400 transition">info@sobalex.com</a>
+                        <a href="mailto:{{ $contactInfo['email'] }}"
+                            class="hover:text-cyan-400 transition">{{ $contactInfo['email'] }}</a>
                     </li>
                 </ul>
             </div>
 
             <div class="mt-5 flex items-center space-x-4">
-                <a href="#" aria-label="Telegram" class="hover:text-cyan-400 transition">
-                    <i class="material-icons">send</i>
-                </a>
-                <a href="#" aria-label="YouTube" class="hover:text-cyan-400 transition">
-                    <i class="material-icons">smart_display</i>
-                </a>
-                <a href="#" aria-label="GitHub" class="hover:text-cyan-400 transition">
-                    <i class="material-icons">code</i>
-                </a>
+                @if ($contactInfo['social']['telegram'])
+                    <a href="{{ $contactInfo['social']['telegram'] }}" aria-label="Telegram"
+                        class="hover:text-cyan-400 transition" target="_blank" rel="noopener">
+                        <i class="material-icons">send</i>
+                    </a>
+                @endif
+                @if ($contactInfo['social']['whatsapp'])
+                    <a href="{{ $contactInfo['social']['whatsapp'] }}" aria-label="WhatsApp"
+                        class="hover:text-cyan-400 transition" target="_blank" rel="noopener">
+                        <i class="material-icons">chat</i>
+                    </a>
+                @endif
+                @if ($contactInfo['social']['vk'])
+                    <a href="{{ $contactInfo['social']['vk'] }}" aria-label="ВКонтакте"
+                        class="hover:text-cyan-400 transition" target="_blank" rel="noopener">
+                        <i class="material-icons">group</i>
+                    </a>
+                @endif
             </div>
         </div>
 
@@ -46,7 +57,8 @@
             <ul class="mt-4 space-y-2">
                 <li><a href="{{ route('services.seo-promotion') }}" class="hover:text-cyan-400 transition">SEO
                         продвижение</a></li>
-                <li><a href="{{ route('services.technical-audit') }}" class="hover:text-cyan-400 transition">Технический
+                <li><a href="{{ route('services.technical-audit') }}"
+                        class="hover:text-cyan-400 transition">Технический
                         аудит</a></li>
                 <li><a href="{{ route('services.content-audit') }}" class="hover:text-cyan-400 transition">Аудит
                         коммерческих факторов</a></li>
@@ -68,7 +80,7 @@
             <ul class="mt-4 space-y-2">
                 <li><a href="{{ route('cases') }}" class="hover:text-cyan-400 transition">Все кейсы</a></li>
                 @foreach ($activeCategories as $category)
-                    <li><a href="{{ route($category['route'], $category['slug']) }}"
+                    <li><a href="{{ route($category['route'], ...$category['route_params']) }}"
                             class="hover:text-cyan-400 transition">{{ $category['name'] }}</a></li>
                 @endforeach
             </ul>

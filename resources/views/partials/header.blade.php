@@ -17,7 +17,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white  shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Наши услуги:</div>
                         <div class="space-y-2">
@@ -66,12 +66,12 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white  shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
                         <div class="space-y-2">
                             @foreach ($activeCategories as $category)
-                                <a href="{{ route($category['route'], $category['slug']) }}"
+                                <a href="{{ route($category['route'], ...$category['route_params']) }}"
                                     class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                     <i class="material-icons text-sm mr-2"
                                         style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
@@ -94,7 +94,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white  shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные темы:</div>
                         <div class="space-y-2">
@@ -122,24 +122,24 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white  shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Свяжитесь с нами:</div>
                         <div class="space-y-2">
-                            <a href="tel:+7(999)123-45-67"
+                            <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
-                                +7 (999) 123-45-67
+                                {{ $contactInfo['phone'] }}
                             </a>
-                            <a href="mailto:info@sobalex.ru"
+                            <a href="mailto:{{ $contactInfo['email'] }}"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
-                                info@sobalex.ru
+                                {{ $contactInfo['email'] }}
                             </a>
                             <a href="#"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
-                                Москва, ул. Примерная, 1
+                                {{ $contactInfo['address'] }}
                             </a>
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
@@ -259,7 +259,7 @@
                     <div class="text-gray-600 text-sm font-medium mb-3">Популярные отрасли:</div>
                     <div class="space-y-2">
                         @foreach ($activeCategories as $category)
-                            <a href="{{ route($category['route'], $category['slug']) }}"
+                            <a href="{{ route($category['route'], ...$category['route_params']) }}"
                                 class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2"
                                     style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
@@ -326,20 +326,20 @@
                     class="pl-6 space-y-4 overflow-hidden" style="display: none;">
                     <div class="text-gray-600 text-sm font-medium mb-3">Свяжитесь с нами:</div>
                     <div class="space-y-2">
-                        <a href="tel:+7(999)123-45-67"
+                        <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
-                            +7 (999) 123-45-67
+                            {{ $contactInfo['phone'] }}
                         </a>
-                        <a href="mailto:info@sobalex.ru"
+                        <a href="mailto:{{ $contactInfo['email'] }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
-                            info@sobalex.ru
+                            {{ $contactInfo['email'] }}
                         </a>
                         <a href="#"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
-                            Москва, ул. Примерная, 1
+                            {{ $contactInfo['address'] }}
                         </a>
                     </div>
                     <div class="pt-3 border-t border-gray-200">

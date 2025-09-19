@@ -113,9 +113,8 @@
 
         <!-- Кнопки - всегда видимые внизу -->
         <div class="flex items-center justify-end gap-3 pt-4 mt-4 border-t border-gray-200 bg-white sticky bottom-0">
-            <button type="button" class="btn-secondary px-4 py-2 text-sm"
-                onclick="closeServiceOrderModal()">Отмена</button>
-            <button type="submit" form="serviceOrderForm" class="btn px-4 py-2 text-sm">Заказать услугу</button>
+            <button type="button" class="btn" onclick="closeServiceOrderModal()">Отмена</button>
+            <button type="submit" form="serviceOrderForm" class="btn">Заказать услугу</button>
         </div>
     </div>
 </div>
