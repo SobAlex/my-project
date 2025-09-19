@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminImageUploadController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminBlogCategoryController;
 use App\Http\Controllers\AdminContactController;
+use App\Http\Controllers\AdminFaqController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 
@@ -112,6 +113,17 @@ Route::prefix('admin/contacts')->name('admin.contacts.')->group(function () {
     Route::get('/edit', [AdminContactController::class, 'edit'])->name('edit');
     Route::put('/', [AdminContactController::class, 'update'])->name('update');
     Route::post('/create-defaults', [AdminContactController::class, 'createDefaults'])->name('create-defaults');
+});
+
+// Admin routes for FAQs
+Route::prefix('admin/faqs')->name('admin.faqs.')->group(function () {
+    Route::get('/', [AdminFaqController::class, 'index'])->name('index');
+    Route::get('/create', [AdminFaqController::class, 'create'])->name('create');
+    Route::post('/', [AdminFaqController::class, 'store'])->name('store');
+    Route::get('/{faq}', [AdminFaqController::class, 'show'])->name('show');
+    Route::get('/{faq}/edit', [AdminFaqController::class, 'edit'])->name('edit');
+    Route::put('/{faq}', [AdminFaqController::class, 'update'])->name('update');
+    Route::delete('/{faq}', [AdminFaqController::class, 'destroy'])->name('destroy');
 });
 
 // Admin image upload for TinyMCE file picker

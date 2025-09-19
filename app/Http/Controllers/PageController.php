@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactSetting;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -28,9 +29,13 @@ class PageController extends Controller
             ]
         ];
 
+        // Получаем активные FAQ из базы данных
+        $faqs = Faq::active()->ordered()->get();
+
         return view('pages.contacts', [
             'title' => 'Контакты',
-            'contactInfo' => $contactInfo
+            'contactInfo' => $contactInfo,
+            'faqs' => $faqs
         ]);
     }
 }

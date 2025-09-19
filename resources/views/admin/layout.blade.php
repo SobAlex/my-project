@@ -52,6 +52,10 @@
                             class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.contacts.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                             Контакты
                         </a>
+                        <a href="{{ route('admin.faqs.index') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.faqs.*') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            FAQ
+                        </a>
                         <a href="{{ route('home') }}"
                             class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100">
                             На сайт
