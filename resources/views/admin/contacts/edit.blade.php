@@ -3,14 +3,27 @@
 @section('title', 'Редактирование контактов')
 
 @section('content')
-    <div class="mb-6">
-        <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-gray-900">Редактирование контактов</h2>
-            <a href="{{ route('admin.contacts.index') }}"
-                class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
-                <i class="material-icons mr-2">visibility</i>
-                Просмотр
-            </a>
+    <!-- Header Section -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="{{ route('admin.contacts.index') }}"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                    <i class="material-icons mr-2">arrow_back</i>
+                    Назад к списку
+                </a>
+                <div class="h-6 w-px bg-gray-300"></div>
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Редактирование контактов</h1>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a href="{{ route('admin.contacts.index') }}"
+                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 shadow-sm">
+                    <i class="material-icons mr-2 text-sm">visibility</i>
+                    Просмотр
+                </a>
+            </div>
         </div>
     </div>
 

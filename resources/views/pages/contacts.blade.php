@@ -147,7 +147,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name_contact" class="block text-sm font-medium text-gray-700 mb-2">Имя *</label>
-                            <input type="text" name="name" id="name_contact" required
+                            <input type="text" name="name" id="name_contact" required placeholder="Ваше имя"
                                 class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                                 aria-invalid="@error('name', 'contact') true @else false @enderror"
                                 aria-describedby="name_contact_error">
@@ -160,6 +160,7 @@
                             <label for="email_contact" class="block text-sm font-medium text-gray-700 mb-2">Email
                                 *</label>
                             <input type="email" name="email" id="email_contact" required
+                                placeholder="your@email.com"
                                 class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                                 aria-invalid="@error('email', 'contact') true @else false @enderror"
                                 aria-describedby="email_contact_error">
@@ -172,8 +173,8 @@
                     <div>
                         <label for="phone_contact" class="block text-sm font-medium text-gray-700 mb-2">Телефон *</label>
                         <input type="tel" name="phone" id="phone_contact" required
-                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                             placeholder="+7 (999) 999-99-99"
+                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
                             aria-invalid="@error('phone', 'contact') true @else false @enderror"
                             aria-describedby="phone_contact_error">
                         @error('phone', 'contact')

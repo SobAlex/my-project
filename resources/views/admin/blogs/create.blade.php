@@ -162,7 +162,7 @@
                         <i class="material-icons text-purple-500 mr-2 text-lg">article</i>
                         Текстовый контент
                     </label>
-                    <textarea name="content" id="content" rows="12"
+                    <textarea name="content" id="content" rows="12" placeholder="Напишите содержание статьи..."
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 @error('content') border-red-300 ring-2 ring-red-100 @enderror">{{ old('content') }}</textarea>
                     @error('content')
                         <p class="flex items-center text-sm text-red-600 mt-1">
@@ -292,7 +292,7 @@
                                     Дата публикации
                                 </label>
                                 <input type="datetime-local" name="published_at" id="published_at"
-                                    value="{{ old('published_at') }}"
+                                    value="{{ old('published_at') }}" placeholder="Выберите дату и время публикации"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200">
                                 <p class="text-xs text-gray-500">
                                     Если не указана, будет установлена текущая дата при публикации

@@ -224,7 +224,7 @@
                                 <div class="flex justify-center">
                                     @if ($case->image)
                                         <div class="relative group">
-                                            <img src="{{ asset('storage/images/' . $case->image) }}" alt="Current image"
+                                            <img src="{{ $case->image_url }}" alt="Current image"
                                                 class="w-40 h-40 object-cover rounded-xl border border-gray-300">
                                             <div
                                                 class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-xl flex items-center justify-center transition-all duration-200">
@@ -295,7 +295,7 @@
                             </label>
                             <input type="text" name="result_{{ $i }}" id="result_{{ $i }}"
                                 value="{{ old('result_' . $i, $case->{'result_' . $i}) }}"
-                                placeholder="например: Рост трафика на 400%"
+                                placeholder="Опишите результат" placeholder="например: Рост трафика на 400%"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 @error('result_' . $i) border-red-300 ring-2 ring-red-100 @enderror">
                             @error('result_' . $i)
                                 <p class="flex items-center text-sm text-red-600 mt-1">
@@ -347,7 +347,7 @@
                                     </label>
                                     <input type="text" name="metric_name_{{ $i }}"
                                         value="{{ old('metric_name_' . $i, $metricName) }}"
-                                        placeholder="например: traffic"
+                                        placeholder="Название метрики" placeholder="например: traffic"
                                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
                                 </div>
 
@@ -359,7 +359,7 @@
                                     </label>
                                     <input type="text" name="metric_before_{{ $i }}"
                                         value="{{ old('metric_before_' . $i, $metricData['before'] ?? '') }}"
-                                        placeholder="2,500"
+                                        placeholder="До" placeholder="2,500"
                                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200">
                                 </div>
 
@@ -371,7 +371,7 @@
                                     </label>
                                     <input type="text" name="metric_after_{{ $i }}"
                                         value="{{ old('metric_after_' . $i, $metricData['after'] ?? '') }}"
-                                        placeholder="12,000"
+                                        placeholder="После" placeholder="12,000"
                                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200">
                                 </div>
                             </div>
@@ -394,7 +394,7 @@
                         <i class="material-icons text-purple-500 mr-2 text-lg">article</i>
                         Текстовый контент
                     </label>
-                    <textarea name="content" id="content" rows="12"
+                    <textarea name="content" id="content" rows="12" placeholder="Напишите подробное описание кейса..."
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 @error('content') border-red-300 ring-2 ring-red-100 @enderror">{{ old('content', $case->content) }}</textarea>
                     @error('content')
                         <p class="flex items-center text-sm text-red-600 mt-1">
@@ -428,6 +428,7 @@
                         </label>
                         <input type="text" name="meta_title" id="meta_title"
                             value="{{ old('meta_title', $case->meta_title) }}"
+                            placeholder="SEO заголовок для поисковых систем"
                             placeholder="SEO заголовок для поисковых систем"
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 @error('meta_title') border-red-300 ring-2 ring-red-100 @enderror">
                         @error('meta_title')

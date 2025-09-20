@@ -98,16 +98,23 @@ class Blog extends Model
     }
 
     /**
-     * Get the category name in Russian.
+     * Get the category name from related BlogCategory.
      */
     public function getCategoryNameAttribute()
     {
-        return match($this->category) {
+        // Сначала пытаемся получить название из связанной категории
+        if ($this->blogCategory) {
+            return $this->blogCategory->name;
+        }
+
+        // Fallback на старые названия для обратной совместимости
+        $legacyCategories = [
             'seo-news' => 'SEO новости',
             'analytics' => 'Аналитика',
             'tips' => 'Советы',
-            default => ucfirst($this->category)
-        };
+        ];
+
+        return $legacyCategories[$this->category] ?? ucfirst($this->category);
     }
 
     /**
@@ -116,5 +123,23 @@ class Blog extends Model
     public function getFormattedPublishedAtAttribute()
     {
         return $this->published_at ? $this->published_at->format('d.m.Y') : null;
+    }
+
+    /**
+     * Get the full image URL.
+     */
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        // Check if it's a legacy static image
+        if (in_array($this->image, ['human.jpeg', 'human2.jpeg', 'human.webp'])) {
+            return asset('images/' . $this->image);
+        }
+
+        // It's an uploaded image
+        return str_replace('8000', '8001', asset('storage/images/' . $this->image));
     }
 }

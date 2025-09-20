@@ -199,18 +199,16 @@ class CaseController extends Controller
      */
     public function getLatestCasesForHomepage()
     {
-        $categories = ['electronics', 'production', 'clothing', 'furniture'];
+        // Получаем все опубликованные кейсы из базы данных
+        $cases = ProjectCase::published()
+            ->ordered()
+            ->limit(4) // Ограничиваем до 4 кейсов для главной страницы
+            ->get();
+
         $latestCases = [];
 
-        foreach ($categories as $industry) {
-            $case = ProjectCase::published()
-                ->byIndustry($industry)
-                ->ordered()
-                ->first();
-
-            if ($case) {
-                $latestCases[] = $this->transformCaseForTemplate($case);
-            }
+        foreach ($cases as $case) {
+            $latestCases[] = $this->transformCaseForTemplate($case);
         }
 
         return $latestCases;
@@ -245,13 +243,18 @@ class CaseController extends Controller
      */
     private function transformCaseForTemplate(ProjectCase $case)
     {
+        // Получаем информацию о категории
+        $categoryInfo = $this->getCategoryInfo($case->industry);
+
         return [
             'id' => $case->case_id,
             'title' => $case->title,
             'client' => $case->client,
             'industry' => $case->industry,
+            'industry_name' => $categoryInfo['name'] ?? $case->industry, // Добавляем название категории
             'period' => $case->period,
             'image' => $case->image,
+            'image_url' => $case->image_url,
             'description' => $case->description,
             'content' => $case->content,
             'results' => $case->results_array, // Используем accessor для получения массива результатов

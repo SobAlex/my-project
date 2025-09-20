@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\ContactSetting;
+use Illuminate\Database\Seeder;
 
 class ContactSettingSeeder extends Seeder
 {
@@ -13,77 +12,78 @@ class ContactSettingSeeder extends Seeder
      */
     public function run(): void
     {
-        $settings = [
-            [
-                'key' => 'address',
-                'value' => 'г. Санкт-Петербург, Невский проспект, 7',
-                'type' => 'text',
-                'label' => 'Адрес офиса',
-                'description' => 'Основной адрес офиса компании',
-                'is_active' => true,
-                'sort_order' => 1,
-            ],
-            [
-                'key' => 'phone',
-                'value' => '8 800 123 45 67',
-                'type' => 'phone',
-                'label' => 'Телефон',
-                'description' => 'Основной телефон для связи',
-                'is_active' => true,
-                'sort_order' => 2,
-            ],
-            [
+        // Создаем основные контактные настройки с конкретными ключами
+        ContactSetting::factory()
+            ->email()
+            ->active()
+            ->create([
                 'key' => 'email',
-                'value' => 'info@sobalex.com',
-                'type' => 'email',
                 'label' => 'Email',
-                'description' => 'Основной email для связи',
-                'is_active' => true,
-                'sort_order' => 3,
-            ],
-            [
-                'key' => 'working_hours',
-                'value' => 'Пн-Пт: 9:00 - 18:00',
-                'type' => 'text',
-                'label' => 'Часы работы',
-                'description' => 'Рабочие часы офиса',
-                'is_active' => true,
-                'sort_order' => 4,
-            ],
-            [
-                'key' => 'social_telegram',
-                'value' => 'https://t.me/sobalex',
-                'type' => 'url',
-                'label' => 'Telegram',
-                'description' => 'Ссылка на Telegram канал',
-                'is_active' => true,
-                'sort_order' => 5,
-            ],
-            [
-                'key' => 'social_whatsapp',
-                'value' => 'https://wa.me/78001234567',
-                'type' => 'url',
-                'label' => 'WhatsApp',
-                'description' => 'Ссылка на WhatsApp',
-                'is_active' => true,
-                'sort_order' => 6,
-            ],
-            [
-                'key' => 'social_vk',
-                'value' => 'https://vk.com/sobalex',
-                'type' => 'url',
-                'label' => 'ВКонтакте',
-                'description' => 'Ссылка на страницу ВКонтакте',
-                'is_active' => true,
-                'sort_order' => 7,
-            ],
-        ];
+                'description' => 'Основной email для связи'
+            ]);
 
-        foreach ($settings as $settingData) {
-            ContactSetting::updateOrCreate(
-                ['key' => $settingData['key']],
-                $settingData
-            );
-        }
+        ContactSetting::factory()
+            ->phone()
+            ->active()
+            ->create([
+                'key' => 'phone',
+                'label' => 'Телефон',
+                'description' => 'Основной телефон для связи'
+            ]);
+
+        ContactSetting::factory()
+            ->url()
+            ->active()
+            ->create([
+                'key' => 'address',
+                'label' => 'Адрес',
+                'value' => 'г. Москва, ул. Примерная, д. 123, офис 456',
+                'type' => 'text',
+                'description' => 'Адрес офиса'
+            ]);
+
+        ContactSetting::factory()
+            ->active()
+            ->create([
+                'key' => 'working_hours',
+                'label' => 'Часы работы',
+                'value' => 'Пн-Пт: 9:00-18:00, Сб: 10:00-16:00',
+                'type' => 'text',
+                'description' => 'Режим работы'
+            ]);
+
+        // Социальные сети
+        ContactSetting::factory()
+            ->url()
+            ->active()
+            ->create([
+                'key' => 'social_telegram',
+                'label' => 'Telegram',
+                'value' => 'https://t.me/example',
+                'type' => 'url',
+                'description' => 'Наш Telegram канал'
+            ]);
+
+        ContactSetting::factory()
+            ->url()
+            ->active()
+            ->create([
+                'key' => 'social_whatsapp',
+                'label' => 'WhatsApp',
+                'value' => 'https://wa.me/79001234567',
+                'type' => 'url',
+                'description' => 'Наш WhatsApp'
+            ]);
+
+        ContactSetting::factory()
+            ->url()
+            ->active()
+            ->create([
+                'key' => 'social_vk',
+                'label' => 'ВКонтакте',
+                'value' => 'https://vk.com/example',
+                'type' => 'url',
+                'description' => 'Наша группа ВКонтакте'
+            ]);
     }
 }

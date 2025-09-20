@@ -294,7 +294,7 @@
                         <i class="material-icons text-purple-500 mr-2 text-lg">article</i>
                         Текстовый контент
                     </label>
-                    <textarea name="content" id="content" rows="12"
+                    <textarea name="content" id="content" rows="12" placeholder="Напишите подробное описание кейса..."
                         class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 @error('content') border-red-300 ring-2 ring-red-100 @enderror">{{ old('content') }}</textarea>
                     @error('content')
                         <p class="flex items-center text-sm text-red-600 mt-1">

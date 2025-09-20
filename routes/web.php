@@ -76,13 +76,13 @@ Route::prefix('admin/cases')->name('admin.cases.')->group(function () {
 
 // Admin routes for industry categories
 Route::prefix('admin/industry-categories')->name('admin.industry-categories.')->group(function () {
-    Route::get('/', [IndustryCategoryController::class, 'index'])->name('index');
-    Route::get('/create', [IndustryCategoryController::class, 'create'])->name('create');
-    Route::post('/', [IndustryCategoryController::class, 'store'])->name('store');
-    Route::get('/{industryCategory}', [IndustryCategoryController::class, 'show'])->name('show');
-    Route::get('/{industryCategory}/edit', [IndustryCategoryController::class, 'edit'])->name('edit');
-    Route::put('/{industryCategory}', [IndustryCategoryController::class, 'update'])->name('update');
-    Route::delete('/{industryCategory}', [IndustryCategoryController::class, 'destroy'])->name('destroy');
+    Route::get('/', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'index'])->name('index');
+    Route::get('/create', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'create'])->name('create');
+    Route::post('/', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'store'])->name('store');
+    Route::get('/{industryCategory}', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'show'])->name('show');
+    Route::get('/{industryCategory}/edit', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'edit'])->name('edit');
+    Route::put('/{industryCategory}', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'update'])->name('update');
+    Route::delete('/{industryCategory}', [\App\Http\Controllers\Admin\IndustryCategoryController::class, 'destroy'])->name('destroy');
 });
 
 // Admin routes for blogs

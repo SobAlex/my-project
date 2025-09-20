@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateBlogRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AdminBlogController extends Controller
 {
@@ -42,6 +43,16 @@ class AdminBlogController extends Controller
     {
         $data = $request->validated();
         $data['user_id'] = 1; // Временно используем ID 1
+
+        // Обработка загрузки изображения
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('images', $filename, 'public');
+            $data['image'] = $filename;
+
+        }
 
         // Генерируем slug если не указан
         if (empty($data['slug'])) {
@@ -81,6 +92,7 @@ class AdminBlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        \Log::info('Blog edit page accessed', ['blog_id' => $blog->id]);
         $categories = BlogCategory::active()->ordered()->pluck('name', 'slug')->toArray();
         return view('admin.blogs.edit', compact('blog', 'categories'));
     }
@@ -90,7 +102,28 @@ class AdminBlogController extends Controller
      */
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
+
         $data = $request->validated();
+
+
+        // Обработка загрузки изображения
+        if ($request->hasFile('image')) {
+
+            // Удаляем старое изображение если есть
+            if ($blog->image && Storage::disk('public')->exists('images/' . $blog->image)) {
+                Storage::disk('public')->delete('images/' . $blog->image);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+
+            $path = $file->storeAs('images', $filename, 'public');
+
+
+            $data['image'] = $filename;
+
+        }
 
         // Генерируем slug если не указан
         if (empty($data['slug'])) {
@@ -113,6 +146,7 @@ class AdminBlogController extends Controller
         }
 
         $blog->update($data);
+
 
         Session::flash('success', 'Статья блога успешно обновлена!');
         return redirect()->route('admin.blogs.index');

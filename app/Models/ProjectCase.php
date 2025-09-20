@@ -112,7 +112,17 @@ class ProjectCase extends Model
      */
     public function getImageUrlAttribute()
     {
-        return asset('images/' . $this->image);
+        if (!$this->image) {
+            return null;
+        }
+
+        // Check if it's a legacy static image
+        if (in_array($this->image, ['human.jpeg', 'human2.jpeg', 'human.webp'])) {
+            return asset('images/' . $this->image);
+        }
+
+        // It's an uploaded image
+        return asset('storage/images/' . $this->image);
     }
 
     /**

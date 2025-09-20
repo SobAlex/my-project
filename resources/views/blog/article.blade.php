@@ -20,8 +20,7 @@
         <article class="bg-white  shadow-lg overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
             @if ($article->image)
-                <div class="aspect-video bg-cover bg-center"
-                    style="background-image: url('{{ asset('images/' . $article->image) }}')">
+                <div class="aspect-video bg-cover bg-center" style="background-image: url('{{ $article->image_url }}')">
                 </div>
             @else
                 <div class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
@@ -96,7 +95,7 @@
                             class="group bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
                             @if ($relatedArticle->image)
                                 <div class="aspect-video bg-cover bg-center"
-                                    style="background-image: url('{{ asset('images/' . $relatedArticle->image) }}')">
+                                    style="background-image: url('{{ $relatedArticle->image_url }}')">
                                 </div>
                             @else
                                 <div

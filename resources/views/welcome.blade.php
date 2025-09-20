@@ -289,49 +289,11 @@
                                 @if ($case['has_valid_category'])
                                     <a href="{{ route('cases.category', $case['industry']) }}"
                                         class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
-                                        @switch($case['industry'])
-                                            @case('clothing')
-                                                Одежда
-                                            @break
-
-                                            @case('production')
-                                                Производство
-                                            @break
-
-                                            @case('electronics')
-                                                Электроника
-                                            @break
-
-                                            @case('furniture')
-                                                Мебель
-                                            @break
-
-                                            @default
-                                                {{ $case['industry'] }}
-                                        @endswitch
+                                        {{ $case['industry_name'] }}
                                     </a>
                                 @else
                                     <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">
-                                        @switch($case['industry'])
-                                            @case('clothing')
-                                                Одежда
-                                            @break
-
-                                            @case('production')
-                                                Производство
-                                            @break
-
-                                            @case('electronics')
-                                                Электроника
-                                            @break
-
-                                            @case('furniture')
-                                                Мебель
-                                            @break
-
-                                            @default
-                                                {{ $case['industry'] }}
-                                        @endswitch
+                                        {{ $case['industry_name'] }}
                                     </span>
                                 @endif
                             </div>
@@ -603,8 +565,9 @@
                 <div>
                     <label for="name_contact">Имя</label>
 
-                    <input type="text" name="name" id="name_contact" required aria-required="true"
-                        aria-label="Имя" class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                    <input type="text" name="name" id="name_contact" required placeholder="Ваше имя"
+                        aria-required="true" aria-label="Имя"
+                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                         aria-describedby="name_contact_error">
                     @if (isset($errors) && $errors->has('name'))
@@ -615,8 +578,9 @@
                 <div>
                     <label for="email_contact">Email</label>
 
-                    <input type="email" name="email" id="email_contact" required aria-required="true"
-                        aria-label="Email" class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                    <input type="email" name="email" id="email_contact" required placeholder="your@email.com"
+                        aria-required="true" aria-label="Email"
+                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('email')) true @else false @endif"
                         aria-describedby="email_contact_error">
                     @if (isset($errors) && $errors->has('email'))
@@ -640,7 +604,8 @@
                 <div>
                     <label for="message_contact">Сообщение</label>
 
-                    <textarea name="message" id="message_contact" rows="5" required aria-required="true" aria-label="Сообщение"
+                    <textarea name="message" id="message_contact" rows="5" required placeholder="Расскажите о вашем проекте..."
+                        aria-required="true" aria-label="Сообщение"
                         class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('message')) true @else false @endif"
                         aria-describedby="message_contact_error">

@@ -193,6 +193,9 @@
     </script>
 
     @stack('scripts')
+
+    <!-- Подключаем основной JavaScript с масками -->
+    @vite(['resources/js/app.js'])
 </body>
 
 </html>

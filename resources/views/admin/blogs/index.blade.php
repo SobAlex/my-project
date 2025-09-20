@@ -23,8 +23,8 @@
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-16 w-16">
                                     @if ($blog->image)
-                                        <img class="h-16 w-16 rounded-lg object-cover"
-                                            src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}">
+                                        <img class="h-16 w-16 rounded-lg object-cover" src="{{ $blog->image_url }}"
+                                            alt="{{ $blog->title }}">
                                     @else
                                         <div class="h-16 w-16 rounded-lg bg-gray-200 flex items-center justify-center">
                                             <i class="material-icons text-gray-400">article</i>

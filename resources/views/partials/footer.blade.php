@@ -91,9 +91,10 @@
             <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Блог</h4>
             <ul class="mt-4 space-y-2">
                 <li><a href="{{ route('blog') }}" class="hover:text-cyan-400 transition">Все статьи</a></li>
-                <li><a href="{{ route('blog.seo-news') }}" class="hover:text-cyan-400 transition">SEO новости</a></li>
-                <li><a href="{{ route('blog.analytics') }}" class="hover:text-cyan-400 transition">Аналитика</a></li>
-                <li><a href="{{ route('blog.tips') }}" class="hover:text-cyan-400 transition">Советы</a></li>
+                @foreach ($activeBlogCategories as $category)
+                    <li><a href="{{ route('blog.category', $category['slug']) }}"
+                            class="hover:text-cyan-400 transition">{{ $category['name'] }}</a></li>
+                @endforeach
             </ul>
         </div>
     </div>

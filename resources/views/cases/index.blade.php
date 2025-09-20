@@ -65,33 +65,14 @@
                                 class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
-                                    <img src="{{ asset('storage/images/' . $case['image']) }}" alt="{{ $case['title'] }}"
+                                    <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
                                         @if ($case['has_valid_category'])
                                             <a href="{{ route('cases.category', $case['industry']) }}"
                                                 class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
-                                                @switch($case['industry'])
-                                                    @case('clothing')
-                                                        Одежда
-                                                    @break
-
-                                                    @case('production')
-                                                        Производство
-                                                    @break
-
-                                                    @case('electronics')
-                                                        Электроника
-                                                    @break
-
-                                                    @case('furniture')
-                                                        Мебель
-                                                    @break
-
-                                                    @default
-                                                        {{ $case['industry'] }}
-                                                @endswitch
+                                                {{ $case['industry_name'] }}
                                             </a>
                                         @else
                                             <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">

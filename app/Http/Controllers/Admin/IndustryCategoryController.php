@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\IndustryCategory;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreIndustryCategoryRequest;
+use App\Http\Requests\UpdateIndustryCategoryRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,9 @@ class IndustryCategoryController extends Controller
      */
     public function index()
     {
-        $categories = IndustryCategory::ordered()
+        $categories = IndustryCategory::withCount('cases')
+            ->orderBy('sort_order')
+            ->orderBy('name')
             ->paginate(10);
 
         return view('admin.industry-categories.index', compact('categories'));
@@ -33,29 +36,25 @@ class IndustryCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreIndustryCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:industry_categories,slug',
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'nullable|integer|min:0',
-        ]);
+        $data = $request->validated();
 
-        $data = $request->all();
+        // Обрабатываем чекбокс is_active
+        $data['is_active'] = (bool) $data['is_active'];
 
         // Генерируем slug если не указан
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
         }
 
-        // Устанавливаем значения по умолчанию
-        $data['is_active'] = $request->has('is_active');
-        $data['sort_order'] = $data['sort_order'] ?? 0;
-        $data['color'] = $data['color'] ?? '#3B82F6';
+        // Проверяем уникальность slug и генерируем уникальный если нужно
+        $originalSlug = $data['slug'];
+        $counter = 1;
+        while (IndustryCategory::where('slug', $data['slug'])->exists()) {
+            $data['slug'] = $originalSlug . '-' . $counter;
+            $counter++;
+        }
 
         IndustryCategory::create($data);
 
@@ -83,33 +82,47 @@ class IndustryCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, IndustryCategory $industryCategory)
+    public function update(UpdateIndustryCategoryRequest $request, IndustryCategory $industryCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:industry_categories,slug,' . $industryCategory->id,
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'nullable|integer|min:0',
-        ]);
+        $data = $request->validated();
 
-        $data = $request->all();
+        // Обрабатываем чекбокс is_active
+        $data['is_active'] = (bool) $data['is_active'];
+
+        // Проверяем, пытается ли пользователь деактивировать категорию с кейсами
+        if (!$data['is_active'] && $industryCategory->is_active && $industryCategory->cases()->count() > 0) {
+            $casesCount = $industryCategory->cases()->count();
+
+            // Если не указан флаг принудительной деактивации
+            if (!isset($data['force_deactivate'])) {
+                Session::flash('warning', "Категория содержит {$casesCount} кейсов. При деактивации они будут скрыты с сайта. Если вы уверены, отметьте галочку 'Принудительно деактивировать' и сохраните снова.");
+                return redirect()->back()->withInput();
+            }
+        }
 
         // Генерируем slug если не указан
         if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['name']);
         }
 
-        // Устанавливаем значения по умолчанию
-        $data['is_active'] = $request->has('is_active');
-        $data['sort_order'] = $data['sort_order'] ?? 0;
-        $data['color'] = $data['color'] ?? '#3B82F6';
+        // Проверяем уникальность slug и генерируем уникальный если нужно
+        if ($data['slug'] !== $industryCategory->slug) {
+            $originalSlug = $data['slug'];
+            $counter = 1;
+            while (IndustryCategory::where('slug', $data['slug'])->where('id', '!=', $industryCategory->id)->exists()) {
+                $data['slug'] = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+        }
 
         $industryCategory->update($data);
 
-        Session::flash('success', 'Категория отрасли успешно обновлена!');
+        if (!$data['is_active'] && $industryCategory->cases()->count() > 0) {
+            Session::flash('success', "Категория деактивирована! {$casesCount} кейсов скрыты с сайта.");
+        } else {
+            Session::flash('success', 'Категория отрасли успешно обновлена!');
+        }
+
         return redirect()->route('admin.industry-categories.index');
     }
 
@@ -118,6 +131,12 @@ class IndustryCategoryController extends Controller
      */
     public function destroy(IndustryCategory $industryCategory)
     {
+        // Проверяем, есть ли связанные кейсы
+        if ($industryCategory->cases()->count() > 0) {
+            Session::flash('error', 'Нельзя удалить категорию, к которой привязаны кейсы!');
+            return redirect()->back();
+        }
+
         $industryCategory->delete();
 
         Session::flash('success', 'Категория отрасли успешно удалена!');

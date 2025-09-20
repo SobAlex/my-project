@@ -26,7 +26,7 @@ class UpdateBlogRequest extends FormRequest
             'slug' => 'nullable|string|max:255|regex:/^[a-z0-9\-]*$/',
             'excerpt' => 'nullable|string|max:1000',
             'content' => 'nullable|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'category' => 'required|string|exists:blog_categories,slug',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
@@ -49,6 +49,9 @@ class UpdateBlogRequest extends FormRequest
             'excerpt.max' => 'Краткое описание не должно превышать 1000 символов.',
             'meta_title.max' => 'Meta Title не должен превышать 255 символов.',
             'meta_description.max' => 'Meta Description не должно превышать 500 символов.',
+            'image.image' => 'Файл должен быть изображением.',
+            'image.mimes' => 'Изображение должно быть в формате JPEG, PNG или WebP.',
+            'image.max' => 'Размер изображения не должен превышать 5MB.',
         ];
     }
 

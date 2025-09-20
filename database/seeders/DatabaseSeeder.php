@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,12 +20,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Запускаем сидеры
+        // Запускаем сидеры в правильном порядке
         $this->call([
+            // Сначала создаем категории
             IndustryCategorySeeder::class,
-            ProjectCaseSeeder::class,
             BlogCategorySeeder::class,
+
+            // Затем создаем контент, который зависит от категорий
+            ProjectCaseSeeder::class,
             BlogSeeder::class,
+
+            // Настройки и FAQ не зависят от других моделей
             ContactSettingSeeder::class,
             FaqSeeder::class,
         ]);

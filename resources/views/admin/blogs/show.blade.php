@@ -105,7 +105,7 @@
             @if ($blog->image)
                 <div class="bg-white shadow rounded-lg p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Изображение</h3>
-                    <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}"
+                    <img src="{{ $blog->image_url }}" alt="{{ $blog->title }}"
                         class="w-full h-48 object-cover rounded-lg">
                 </div>
             @endif

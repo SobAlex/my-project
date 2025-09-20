@@ -15,7 +15,6 @@
                 <div class="h-6 w-px bg-gray-300"></div>
                 <div>
                     <h1 class="text-3xl font-bold text-gray-900">Редактирование категории</h1>
-                    <p class="mt-1 text-sm text-gray-500">Обновите информацию о категории</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
@@ -32,9 +31,9 @@
         @method('PUT')
 
         <!-- Main Form Container -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-primary to-secondary">
-                <h2 class="text-xl font-semibold text-white">Основная информация</h2>
+                <h2 class="text-xl font-semibold">Основная информация</h2>
                 <p class="mt-1 text-primary-100">Заполните основную информацию о категории</p>
             </div>
 
@@ -112,6 +111,7 @@
                                 </label>
                                 <input type="text" name="icon" id="icon"
                                     value="{{ old('icon', $blogCategory->icon) }}"
+                                    placeholder="Например: trending_up, analytics, code"
                                     placeholder="например: article, trending_up, analytics"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 @error('icon') border-red-300 ring-2 ring-red-100 @enderror">
                                 @error('icon')
@@ -134,7 +134,7 @@
                                 <i class="material-icons text-primary mr-2 text-lg">description</i>
                                 Описание категории
                             </label>
-                            <textarea name="description" id="description" rows="6" placeholder="Краткое описание категории"
+                            <textarea name="description" id="description" rows="8" placeholder="Краткое описание категории"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none @error('description') border-red-300 ring-2 ring-red-100 @enderror">{{ old('description', $blogCategory->description) }}</textarea>
                             @error('description')
                                 <p class="flex items-center text-sm text-red-600 mt-1">
@@ -174,7 +174,7 @@
         </div>
 
         <!-- Settings Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-gray-600 to-gray-700">
                 <h2 class="text-xl font-semibold text-white">Настройки</h2>
                 <p class="mt-1 text-gray-300">Управляйте видимостью и порядком отображения категории</p>
@@ -189,14 +189,14 @@
                             Статус активности
                         </h3>
 
-                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                        <div class="p-6">
                             <div class="space-y-4">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex items-center">
                                         <input type="hidden" name="is_active" value="0">
                                         <input type="checkbox" name="is_active" id="is_active" value="1"
                                             {{ old('is_active', $blogCategory->is_active) ? 'checked' : '' }}
-                                            class="h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded transition-colors duration-200">
+                                            class="h-5 w-5 text-primary focus:ring-primary border-2 border-gray-300 rounded transition-colors duration-200">
                                         <label for="is_active" class="ml-3 text-sm font-medium text-gray-900">
                                             Активная категория
                                         </label>
@@ -250,7 +250,7 @@
                             </label>
                             <input type="number" name="sort_order" id="sort_order"
                                 value="{{ old('sort_order', $blogCategory->sort_order) }}" min="0"
-                                placeholder="0"
+                                placeholder="0" placeholder="0"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200">
                             <p class="text-xs text-gray-500">
                                 Чем меньше число, тем выше категория в списке
@@ -262,7 +262,7 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
                 <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <div class="flex items-center text-sm text-gray-500">
@@ -272,12 +272,12 @@
 
                     <div class="flex space-x-4">
                         <a href="{{ route('admin.blog-categories.index') }}"
-                            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-xl text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 shadow-sm">
+                            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 shadow-sm">
                             <i class="material-icons mr-2 text-sm">close</i>
                             Отмена
                         </a>
                         <button type="submit"
-                            class="inline-flex items-center px-8 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            class="inline-flex items-center px-8 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 shadow-sm hover:shadow-md">
                             <i class="material-icons mr-2 text-sm">save</i>
                             Обновить категорию
                         </button>
@@ -289,7 +289,7 @@
 
     <script>
         // Enhanced form validation and UX
-        document.addEventListener('DOMContentLoaded', function() {
+        (function() {
             const form = document.querySelector('form');
             const submitButton = form.querySelector('button[type="submit"]');
             const nameInput = document.getElementById('name');
@@ -363,7 +363,7 @@
 
             // Initialize preview
             updatePreview();
-        });
+        })();
     </script>
 
 @endsection

@@ -143,8 +143,7 @@
             <!-- Изображение -->
             <div class="bg-white shadow rounded-lg p-6">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Изображение</h3>
-                <img src="{{ asset('storage/images/' . $case->image) }}" alt="{{ $case->title }}"
-                    class="w-full h-48 object-cover rounded-lg">
+                <img src="{{ $case->image_url }}" alt="{{ $case->title }}" class="w-full h-48 object-cover rounded-lg">
             </div>
 
             <!-- Статус и настройки -->
