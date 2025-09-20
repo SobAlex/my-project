@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CaseController extends Controller
 {
-
     /**
      * Главная страница кейсов
      */
@@ -18,7 +17,6 @@ class CaseController extends Controller
         $title = 'Кейсы SEO продвижения';
         $selectedTag = null;
         $activeCategories = $this->getActiveCategories();
-
         return view('cases.index', compact('casesData', 'title', 'selectedTag', 'activeCategories'));
     }
 
@@ -92,7 +90,6 @@ class CaseController extends Controller
         $selectedTag = $tag;
         $categoryInfo = $this->getCategoryInfo($tag);
         $activeCategories = $this->getActiveCategories();
-
         return view('cases.index', compact('casesData', 'title', 'selectedTag', 'categoryInfo', 'activeCategories'));
     }
 

@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectCaseRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AdminCaseController extends Controller
 {
@@ -91,6 +92,28 @@ class AdminCaseController extends Controller
     public function update(UpdateProjectCaseRequest $request, ProjectCase $case)
     {
         $data = $request->validated();
+
+        // Обработка загруженного изображения
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            // Валидация файла
+            if ($file->isValid()) {
+                // Удаляем старое изображение, если оно существует
+                if ($case->image && Storage::disk('public')->exists('images/' . $case->image)) {
+                    Storage::disk('public')->delete('images/' . $case->image);
+                }
+
+                // Генерируем уникальное имя файла
+                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+                // Сохраняем файл
+                $file->storeAs('images', $filename, 'public');
+
+                // Обновляем имя файла в данных
+                $data['image'] = $filename;
+            }
+        }
 
         // Обработка метрик до/после
         $beforeAfter = [];

@@ -15,7 +15,6 @@
                 <div class="h-6 w-px bg-gray-300"></div>
                 <div>
                     <h1 class="text-3xl font-bold text-gray-900">Редактирование кейса</h1>
-                    <p class="mt-1 text-sm text-gray-500">Обновите информацию о кейсе</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
@@ -27,14 +26,14 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.cases.update', $case) }}" method="POST" class="space-y-8">
+    <form action="{{ route('admin.cases.update', $case) }}" method="POST" enctype="multipart/form-data" class="space-y-8">
         @csrf
         @method('PUT')
 
         <!-- Main Form Container -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-primary to-secondary">
-                <h2 class="text-xl font-semibold text-white">Основная информация</h2>
+                <h2 class="text-xl font-semibold">Основная информация</h2>
                 <p class="mt-1 text-primary-100">Заполните основную информацию о кейсе</p>
             </div>
 
@@ -107,21 +106,6 @@
                                         {{ $message }}
                                     </p>
                                 @enderror
-
-                                <!-- Предварительный просмотр выбранной категории -->
-                                <div id="industry-preview"
-                                    class="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200 hidden">
-                                    <div class="flex items-center space-x-3">
-                                        <div id="preview-icon"
-                                            class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm">
-                                            <i class="material-icons"></i>
-                                        </div>
-                                        <div>
-                                            <div id="preview-name" class="text-sm font-medium text-gray-900"></div>
-                                            <div id="preview-description" class="text-xs text-gray-500"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="space-y-2">
@@ -142,31 +126,6 @@
                             </div>
                         </div>
 
-                        <!-- Image Selection -->
-                        <div class="space-y-2">
-                            <label for="image" class="flex items-center text-sm font-semibold text-gray-700">
-                                <i class="material-icons text-primary mr-2 text-lg">image</i>
-                                Изображение
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
-                            <select name="image" id="image"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 @error('image') border-red-300 ring-2 ring-red-100 @enderror">
-                                <option value="">Выберите изображение</option>
-                                <option value="human.jpeg"
-                                    {{ old('image', $case->image) == 'human.jpeg' ? 'selected' : '' }}>human.jpeg</option>
-                                <option value="human2.jpeg"
-                                    {{ old('image', $case->image) == 'human2.jpeg' ? 'selected' : '' }}>human2.jpeg
-                                </option>
-                                <option value="human.webp"
-                                    {{ old('image', $case->image) == 'human.webp' ? 'selected' : '' }}>human.webp</option>
-                            </select>
-                            @error('image')
-                                <p class="flex items-center text-sm text-red-600 mt-1">
-                                    <i class="material-icons text-red-500 mr-1 text-sm">error</i>
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
                     </div>
 
                     <!-- Right Column -->
@@ -188,6 +147,126 @@
                                 </p>
                             @enderror
                         </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Images Section -->
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
+            <div class="px-8 py-6 bg-gradient-to-r from-primary to-secondary">
+                <h2 class="text-xl font-semibold">Изображения</h2>
+                <p class="mt-1">Загрузите изображение для кейса</p>
+            </div>
+
+            <div class="p-8">
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <!-- File Upload Section -->
+                    <div class="space-y-4">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Загрузить новое изображение</h3>
+                        </div>
+
+                        <!-- Hidden file input -->
+                        <input type="file" name="image" id="image" accept="image/*" class="hidden">
+
+                        <!-- Custom upload area -->
+                        <div id="upload-area"
+                            class="relative border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-primary hover:bg-primary-50 transition-all duration-200 @error('image') border-red-300 bg-red-50 @enderror">
+
+                            <!-- Upload icon and text -->
+                            <div class="space-y-3">
+                                <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                                    <i class="material-icons text-gray-400 text-3xl">cloud_upload</i>
+                                </div>
+
+                                <div>
+                                    <p class="text-lg font-medium text-gray-700">Выберите изображение</p>
+                                    <p class="text-sm text-gray-500 mt-1">или перетащите файл сюда</p>
+                                </div>
+
+                                <div class="text-xs text-gray-400">
+                                    JPG, PNG, WebP до 5MB
+                                </div>
+                            </div>
+
+                            <!-- Selected file info -->
+                            <div id="file-info" class="hidden mt-4 p-3 bg-primary-50 rounded-lg">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <i class="material-icons text-primary text-sm">image</i>
+                                    <span id="file-name" class="text-sm font-medium text-primary"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @error('image')
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+                                <p class="flex items-center text-sm text-red-600">
+                                    <i class="material-icons text-red-500 mr-2 text-sm">error</i>
+                                    {{ $message }}
+                                </p>
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Images Section -->
+                    <div class="space-y-4">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Изображения</h3>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Current Image -->
+                            <div class="space-y-2">
+                                <h5 class="text-sm font-medium text-gray-700 text-center">Текущее</h5>
+                                <div class="flex justify-center">
+                                    @if ($case->image)
+                                        <div class="relative group">
+                                            <img src="{{ asset('storage/images/' . $case->image) }}" alt="Current image"
+                                                class="w-40 h-40 object-cover rounded-xl border border-gray-300">
+                                            <div
+                                                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-xl flex items-center justify-center transition-all duration-200">
+                                                <span
+                                                    class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black bg-opacity-50 px-3 py-1 rounded-full">
+                                                    Текущее
+                                                </span>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div
+                                            class="flex flex-col items-center justify-center h-40 w-40 border-2 border-dashed border-gray-300 rounded-xl bg-white">
+                                            <i class="material-icons text-gray-400 text-3xl mb-2">image_not_supported</i>
+                                            <p class="text-sm text-gray-500 font-medium">Нет изображения</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <!-- New Image Preview -->
+                            <div class="space-y-2">
+                                <h5 class="text-sm font-medium text-gray-700 text-center">Новое</h5>
+                                <div class="flex justify-center">
+                                    <div id="image-preview" class="hidden">
+                                        <div class="relative group">
+                                            <img id="preview-img" src="" alt="Preview"
+                                                class="w-40 h-40 object-cover rounded-xl border border-gray-300">
+                                            <div
+                                                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 rounded-xl flex items-center justify-center transition-all duration-200">
+                                                <span
+                                                    class="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black bg-opacity-50 px-3 py-1 rounded-full">
+                                                    Новое
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="no-preview"
+                                        class="h-40 w-40 border-2 border-dashed border-gray-200 rounded-xl bg-gray-50">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -195,10 +274,11 @@
         </div>
 
         <!-- Results Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
-            <div class="px-8 py-6 bg-gradient-to-r from-green-500 to-emerald-600">
-                <h2 class="text-xl font-semibold text-white">Результаты проекта</h2>
-                <p class="mt-1 text-green-100">Опишите достигнутые результаты</p>
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
+            <div class="px-8 py-6 bg-gradient-to-r">
+                <h2 class="text-xl font-semibold">Ключевые результаты</h2>
+                <p class="mt-1">Опишите достигнутые
+                    результаты</p>
             </div>
 
             <div class="p-8">
@@ -230,10 +310,10 @@
         </div>
 
         <!-- Metrics Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-blue-500 to-indigo-600">
-                <h2 class="text-xl font-semibold text-white">Метрики до/после</h2>
-                <p class="mt-1 text-blue-100">Покажите количественные результаты работы</p>
+                <h2 class="text-xl font-semibold">Метрики до/после</h2>
+                <p class="mt-1">Покажите количественные результаты работы</p>
             </div>
 
             <div class="p-8">
@@ -249,7 +329,7 @@
                             $metricData = $beforeAfter[$metricName] ?? ['before' => '', 'after' => ''];
                         @endphp
 
-                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                        <div class="p-6">
                             <div class="flex items-center mb-4">
                                 <div
                                     class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
@@ -302,10 +382,10 @@
         </div>
 
         <!-- Content Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-purple-500 to-pink-600">
-                <h2 class="text-xl font-semibold text-white">Дополнительный контент</h2>
-                <p class="mt-1 text-purple-100">Создайте подробное описание проекта с помощью редактора</p>
+                <h2 class="text-xl font-semibold">Дополнительный контент</h2>
+                <p class="mt-1">Создайте подробное описание проекта с помощью редактора</p>
             </div>
 
             <div class="p-8">
@@ -332,10 +412,10 @@
         </div>
 
         <!-- SEO Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-orange-500 to-red-600">
-                <h2 class="text-xl font-semibold text-white">SEO настройки</h2>
-                <p class="mt-1 text-orange-100">Настройте мета-теги для поисковых систем</p>
+                <h2 class="text-xl font-semibold">SEO настройки</h2>
+                <p class="mt-1">Настройте мета-теги для поисковых систем</p>
             </div>
 
             <div class="p-8">
@@ -385,10 +465,10 @@
         </div>
 
         <!-- Settings Section -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-gray-600 to-gray-700">
-                <h2 class="text-xl font-semibold text-white">Настройки публикации</h2>
-                <p class="mt-1 text-gray-300">Управляйте видимостью и порядком отображения кейса</p>
+                <h2 class="text-xl font-semibold">Настройки публикации</h2>
+                <p class="mt-1">Управляйте видимостью и порядком отображения кейса</p>
             </div>
 
             <div class="p-8">
@@ -400,12 +480,12 @@
                             Статус публикации
                         </h3>
 
-                        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                        <div class="p-6">
                             <div class="flex items-center space-x-4">
                                 <div class="flex items-center">
                                     <input type="checkbox" name="is_published" id="is_published" value="1"
                                         {{ old('is_published', $case->is_published) ? 'checked' : '' }}
-                                        class="h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded transition-colors duration-200">
+                                        class="h-5 w-5 text-primary focus:ring-primary border-2 border-gray-300 rounded transition-colors duration-200">
                                     <label for="is_published" class="ml-3 text-sm font-medium text-gray-900">
                                         Опубликовать кейс
                                     </label>
@@ -427,9 +507,6 @@
                         </h3>
 
                         <div class="space-y-2">
-                            <label for="sort_order" class="block text-sm font-medium text-gray-700">
-                                Приоритет отображения
-                            </label>
                             <input type="number" name="sort_order" id="sort_order"
                                 value="{{ old('sort_order', $case->sort_order ?? 0) }}" min="0" placeholder="0"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200">
@@ -443,7 +520,7 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden">
             <div class="px-8 py-6 bg-gradient-to-r from-gray-50 to-gray-100 border-t border-gray-200">
                 <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <div class="flex items-center text-sm text-gray-500">
@@ -453,12 +530,12 @@
 
                     <div class="flex space-x-4">
                         <a href="{{ route('admin.cases.index') }}"
-                            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-xl text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 shadow-sm">
+                            class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-xl text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200 shadow-sm">
                             <i class="material-icons mr-2 text-sm">close</i>
                             Отмена
                         </a>
                         <button type="submit"
-                            class="inline-flex items-center px-8 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                            class="inline-flex items-center px-8 py-3 border border-transparent rounded-xl text-sm font-semibold text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-200 shadow-sm hover:shadow-md">
                             <i class="material-icons mr-2 text-sm">save</i>
                             Обновить кейс
                         </button>
@@ -470,7 +547,8 @@
 
     <script>
         // Enhanced form validation and UX
-        document.addEventListener('DOMContentLoaded', function() {
+        // Убираем DOMContentLoaded и делаем скрипт сразу выполняемым
+        (function() {
             const form = document.querySelector('form');
             const submitButton = form.querySelector('button[type="submit"]');
             const industrySelect = document.getElementById('industry');
@@ -481,6 +559,8 @@
 
             // Industry category preview functionality
             function updateIndustryPreview() {
+                if (!industrySelect || !industryPreview) return;
+
                 const selectedOption = industrySelect.options[industrySelect.selectedIndex];
 
                 if (selectedOption.value) {
@@ -488,13 +568,20 @@
                     const icon = selectedOption.getAttribute('data-icon');
                     const name = selectedOption.textContent;
 
-                    // Update preview elements
-                    previewIcon.style.backgroundColor = color;
-                    previewIcon.querySelector('i').textContent = icon || 'business';
-                    previewName.textContent = name;
-
-                    // Show description if available (you can add this data attribute if needed)
-                    previewDescription.textContent = selectedOption.getAttribute('data-description') || '';
+                    // Update preview elements only if they exist
+                    if (previewIcon) {
+                        previewIcon.style.backgroundColor = color;
+                        const iconElement = previewIcon.querySelector('i');
+                        if (iconElement) {
+                            iconElement.textContent = icon || 'business';
+                        }
+                    }
+                    if (previewName) {
+                        previewName.textContent = name;
+                    }
+                    if (previewDescription) {
+                        previewDescription.textContent = selectedOption.getAttribute('data-description') || '';
+                    }
 
                     // Show preview
                     industryPreview.classList.remove('hidden');
@@ -505,10 +592,11 @@
             }
 
             // Initialize preview on page load
-            updateIndustryPreview();
-
-            // Update preview when selection changes
-            industrySelect.addEventListener('change', updateIndustryPreview);
+            if (industrySelect) {
+                updateIndustryPreview();
+                // Update preview when selection changes
+                industrySelect.addEventListener('change', updateIndustryPreview);
+            }
 
             // Add loading state to submit button
             form.addEventListener('submit', function() {
@@ -526,7 +614,127 @@
                 });
             }
 
-        });
+            // Image preview functionality
+            const imageInput = document.getElementById('image');
+            const uploadArea = document.getElementById('upload-area');
+            const fileInfo = document.getElementById('file-info');
+            const fileName = document.getElementById('file-name');
+            const imagePreview = document.getElementById('image-preview');
+            const previewImg = document.getElementById('preview-img');
+            const noPreview = document.getElementById('no-preview');
+
+            console.log('Elements found:', {
+                imageInput: !!imageInput,
+                uploadArea: !!uploadArea,
+                fileInfo: !!fileInfo,
+                fileName: !!fileName,
+                imagePreview: !!imagePreview,
+                previewImg: !!previewImg,
+                noPreview: !!noPreview
+            });
+
+            // Если элементы не найдены, выходим
+            if (!imageInput || !uploadArea || !fileInfo || !fileName || !imagePreview || !previewImg || !noPreview) {
+                return;
+            }
+
+            function showPreview(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    noPreview.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function hidePreview() {
+                imagePreview.classList.add('hidden');
+                noPreview.classList.remove('hidden');
+            }
+
+            function updateFileInfo(file) {
+                fileName.textContent = file.name;
+                fileInfo.classList.remove('hidden');
+            }
+
+            function hideFileInfo() {
+                fileInfo.classList.add('hidden');
+            }
+
+            function validateFile(file) {
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Пожалуйста, выберите файл изображения');
+                    return false;
+                }
+
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Размер файла не должен превышать 5MB');
+                    return false;
+                }
+
+                return true;
+            }
+
+            function handleFile(file) {
+                if (validateFile(file)) {
+                    updateFileInfo(file);
+                    showPreview(file);
+                } else {
+                    imageInput.value = '';
+                }
+            }
+
+            // Click to select file
+            uploadArea.addEventListener('click', function() {
+                imageInput.click();
+            });
+
+            // File input change
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    handleFile(file);
+                } else {
+                    hideFileInfo();
+                    hidePreview();
+                }
+            });
+
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.classList.add('border-primary', 'bg-primary-50');
+            });
+
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('border-primary', 'bg-primary-50');
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('border-primary', 'bg-primary-50');
+
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    imageInput.files = files;
+                    handleFile(file);
+                }
+            });
+
+            // Clear preview button
+            if (clearPreviewBtn) {
+                clearPreviewBtn.addEventListener('click', function() {
+                    imageInput.value = '';
+                    hidePreview();
+                });
+            }
+
+        })();
     </script>
 
 @endsection

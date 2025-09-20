@@ -65,7 +65,7 @@
                                 class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
-                                    <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
+                                    <img src="{{ asset('storage/images/' . $case['image']) }}" alt="{{ $case['title'] }}"
                                         class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                     <div class="absolute bottom-4 left-4 text-white">
@@ -172,4 +172,5 @@
             </div>
         </div>
     </section>
+
 @endsection

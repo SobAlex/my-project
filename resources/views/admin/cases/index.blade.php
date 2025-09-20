@@ -23,7 +23,7 @@
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-16 w-16">
                                     <img class="h-16 w-16 rounded-lg object-cover"
-                                        src="{{ asset('images/' . $case->image) }}" alt="{{ $case->title }}">
+                                        src="{{ asset('storage/images/' . $case->image) }}" alt="{{ $case->title }}">
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
@@ -88,4 +88,3 @@
         </div>
     @endif
 @endsection
-

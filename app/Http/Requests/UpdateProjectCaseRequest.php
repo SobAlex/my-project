@@ -33,7 +33,7 @@ class UpdateProjectCaseRequest extends FormRequest
             'client' => 'required|string|max:255',
             'industry' => 'required|string|in:' . $validIndustries,
             'period' => 'required|string|max:100',
-            'image' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120', // 5MB max
             'description' => 'required|string',
             'content' => 'nullable|string',
             'meta_title' => 'nullable|string',
@@ -70,7 +70,9 @@ class UpdateProjectCaseRequest extends FormRequest
             'industry.required' => 'Отрасль обязательна для заполнения.',
             'industry.in' => 'Выберите корректную отрасль.',
             'period.required' => 'Период работы обязателен для заполнения.',
-            'image.required' => 'Изображение кейса обязательно для заполнения.',
+            'image.image' => 'Загруженный файл должен быть изображением.',
+            'image.mimes' => 'Изображение должно быть в формате: jpeg, png, jpg, webp.',
+            'image.max' => 'Размер изображения не должен превышать 5MB.',
             'description.required' => 'Описание кейса обязательно для заполнения.',
             'case_id.unique' => 'Кейс с таким ID уже существует.',
         ];

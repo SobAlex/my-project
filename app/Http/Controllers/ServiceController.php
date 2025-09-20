@@ -27,7 +27,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 50 000 ₽/месяц',
                 'duration' => '3-12 месяцев'
-            ]
+            ],
         ]);
     }
 
@@ -52,7 +52,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 15 000 ₽',
                 'duration' => '5-7 дней'
-            ]
+            ],
         ]);
     }
 
@@ -77,7 +77,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 12 000 ₽',
                 'duration' => '3-5 дней'
-            ]
+            ],
         ]);
     }
 
@@ -102,7 +102,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 18 000 ₽',
                 'duration' => '5-7 дней'
-            ]
+            ],
         ]);
     }
 
@@ -127,7 +127,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 25 000 ₽/месяц',
                 'duration' => '3-6 месяцев'
-            ]
+            ],
         ]);
     }
 
@@ -152,7 +152,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 20 000 ₽',
                 'duration' => '7-10 дней'
-            ]
+            ],
         ]);
     }
 
@@ -177,7 +177,7 @@ class ServiceController extends Controller
                 ],
                 'price' => 'от 30 000 ₽',
                 'duration' => '10-14 дней'
-            ]
+            ],
         ]);
     }
 }
