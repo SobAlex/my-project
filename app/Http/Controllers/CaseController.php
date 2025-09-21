@@ -73,19 +73,27 @@ class CaseController extends Controller
      */
     private function filterByTag($tag, $title)
     {
-        $allCasesData = $this->getAllCasesData();
-        $casesData = [];
+        // Получаем кейсы с фильтрацией по категории через отношение
+        $cases = ProjectCase::published()
+            ->with('industryCategory')
+            ->whereHas('industryCategory', function($query) use ($tag) {
+                $query->where('slug', $tag)->where('is_active', true);
+            })
+            ->ordered()
+            ->get();
 
-        foreach ($allCasesData as $serviceKey => $serviceData) {
-            $filteredCases = array_filter($serviceData['cases'], function ($case) use ($tag) {
-                return $case['industry'] === $tag;
-            });
+        // Преобразуем данные в формат, который ожидают шаблоны
+        $transformedCases = $cases->map(function ($case) {
+            return $this->transformCaseForTemplate($case);
+        });
 
-            if (!empty($filteredCases)) {
-                $casesData[$serviceKey] = $serviceData;
-                $casesData[$serviceKey]['cases'] = array_values($filteredCases);
-            }
-        }
+        $casesData = [
+            'seo-promotion' => [
+                'service_name' => 'SEO продвижение',
+                'service_icon' => 'trending_up',
+                'cases' => $transformedCases->toArray()
+            ]
+        ];
 
         $selectedTag = $tag;
         $categoryInfo = $this->getCategoryInfo($tag);
@@ -98,8 +106,9 @@ class CaseController extends Controller
      */
     public function show($id)
     {
-        // Ищем кейс по case_id в базе данных
+        // Ищем кейс по case_id в базе данных с загрузкой отношения
         $case = ProjectCase::where('case_id', $id)
+            ->with('industryCategory')
             ->published()
             ->first();
 
@@ -199,8 +208,9 @@ class CaseController extends Controller
      */
     public function getLatestCasesForHomepage()
     {
-        // Получаем все опубликованные кейсы из базы данных
+        // Получаем все опубликованные кейсы из базы данных с загрузкой отношения
         $cases = ProjectCase::published()
+            ->with('industryCategory')
             ->ordered()
             ->limit(4) // Ограничиваем до 4 кейсов для главной страницы
             ->get();
@@ -219,8 +229,9 @@ class CaseController extends Controller
      */
     public function getAllCasesData()
     {
-        // Получаем все опубликованные кейсы из базы данных
+        // Получаем все опубликованные кейсы из базы данных с загрузкой отношения
         $cases = ProjectCase::published()
+            ->with('industryCategory')
             ->ordered()
             ->get();
 
@@ -243,15 +254,16 @@ class CaseController extends Controller
      */
     private function transformCaseForTemplate(ProjectCase $case)
     {
-        // Получаем информацию о категории
-        $categoryInfo = $this->getCategoryInfo($case->industry);
+        // Получаем информацию о категории из отношения
+        $industrySlug = $case->industryCategory ? $case->industryCategory->slug : 'uncategorized';
+        $categoryInfo = $this->getCategoryInfo($industrySlug);
 
         return [
             'id' => $case->case_id,
             'title' => $case->title,
             'client' => $case->client,
-            'industry' => $case->industry,
-            'industry_name' => $categoryInfo['name'] ?? $case->industry, // Добавляем название категории
+            'industry' => $industrySlug,
+            'industry_name' => $case->industryCategory ? $case->industryCategory->name : 'Без категории',
             'period' => $case->period,
             'image' => $case->image,
             'image_url' => $case->image_url,
@@ -259,7 +271,7 @@ class CaseController extends Controller
             'content' => $case->content,
             'results' => $case->results_array, // Используем accessor для получения массива результатов
             'before_after' => $case->before_after,
-            'has_valid_category' => $this->hasValidCategory($case->industry)
+            'has_valid_category' => $case->industryCategory ? $case->industryCategory->is_active : false
         ];
     }
 

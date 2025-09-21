@@ -362,9 +362,9 @@
                         <div
                             class="relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
                             <i class="material-icons text-white text-6xl">
-                                @if ($article->category === 'seo-news')
+                                @if ($article->blogCategory && $article->blogCategory->slug === 'seo-news')
                                     trending_up
-                                @elseif($article->category === 'analytics')
+                                @elseif($article->blogCategory && $article->blogCategory->slug === 'analytics')
                                     analytics
                                 @else
                                     tips_and_updates
@@ -377,7 +377,7 @@
                             <div class="flex-1">
                                 {{-- Category and date --}}
                                 <div class="flex items-center justify-between mb-3">
-                                    <a href="{{ route('blog.category', $article->category) }}"
+                                    <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
                                         class="inline-flex items-center px-3 py-1 text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors">
                                         {{ $article->category_name }}
                                     </a>
@@ -388,7 +388,7 @@
 
                                 {{-- Title --}}
                                 <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
-                                    <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
+                                    <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
                                         class="hover:text-cyan-600 transition-colors">
                                         {{ $article->title }}
                                     </a>
@@ -407,7 +407,7 @@
                             </div>
 
                             {{-- CTA button --}}
-                            <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
+                            <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
                                 class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
                                 Читать статью
                             </a>

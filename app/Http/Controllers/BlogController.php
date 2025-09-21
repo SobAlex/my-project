@@ -11,6 +11,7 @@ class BlogController extends Controller
     public function index()
     {
         $articles = Blog::published()
+            ->with('blogCategory')
             ->whereHas('blogCategory', function($query) {
                 $query->where('is_active', true);
             })
@@ -28,7 +29,10 @@ class BlogController extends Controller
             ->first();
 
         $articles = Blog::published()
-            ->byCategory('seo-news')
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) {
+                $query->where('slug', 'seo-news')->where('is_active', true);
+            })
             ->ordered()
             ->paginate(12);
 
@@ -52,7 +56,10 @@ class BlogController extends Controller
             ->first();
 
         $articles = Blog::published()
-            ->byCategory('analytics')
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) {
+                $query->where('slug', 'analytics')->where('is_active', true);
+            })
             ->ordered()
             ->paginate(12);
 
@@ -76,7 +83,10 @@ class BlogController extends Controller
             ->first();
 
         $articles = Blog::published()
-            ->byCategory('tips')
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) {
+                $query->where('slug', 'tips')->where('is_active', true);
+            })
             ->ordered()
             ->paginate(12);
 
@@ -105,7 +115,10 @@ class BlogController extends Controller
         }
 
         $articles = Blog::published()
-            ->byCategory($categorySlug)
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug)->where('is_active', true);
+            })
             ->ordered()
             ->paginate(12);
 
@@ -125,11 +138,11 @@ class BlogController extends Controller
     public function show($category, $slug)
     {
         $article = Blog::published()
-            ->byCategory($category)
-            ->where('slug', $slug)
-            ->whereHas('blogCategory', function($query) {
-                $query->where('is_active', true);
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) use ($category) {
+                $query->where('slug', $category)->where('is_active', true);
             })
+            ->where('slug', $slug)
             ->first();
 
         if (!$article) {
@@ -138,8 +151,9 @@ class BlogController extends Controller
 
         // Получаем похожие статьи из той же категории
         $relatedArticles = Blog::published()
+            ->with('blogCategory')
             ->where('id', '!=', $article->id)
-            ->where('category', $article->category)
+            ->where('category_id', $article->category_id)
             ->ordered()
             ->limit(3)
             ->get();
@@ -147,6 +161,7 @@ class BlogController extends Controller
         // Если похожих статей в той же категории мало, дополняем статьями из других категорий
         if ($relatedArticles->count() < 3) {
             $additionalArticles = Blog::published()
+                ->with('blogCategory')
                 ->where('id', '!=', $article->id)
                 ->whereNotIn('id', $relatedArticles->pluck('id'))
                 ->ordered()
@@ -163,6 +178,7 @@ class BlogController extends Controller
     public function getLatestArticlesForHomepage($limit = 4)
     {
         return Blog::published()
+            ->with('blogCategory')
             ->whereHas('blogCategory', function($query) {
                 $query->where('is_active', true);
             })

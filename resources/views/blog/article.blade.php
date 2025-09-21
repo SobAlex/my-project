@@ -9,7 +9,10 @@
         @include('partials.breadcrumbs', [
             'breadcrumbs' => [
                 ['title' => 'Блог', 'url' => route('blog')],
-                ['title' => $article->category_name, 'url' => route('blog.category', $article->category)],
+                [
+                    'title' => $article->category_name,
+                    'url' => route('blog.category', $article->blogCategory->slug ?? 'uncategorized'),
+                ],
                 ['title' => $article->title, 'url' => null, 'truncate' => true],
             ],
         ])
@@ -25,9 +28,9 @@
             @else
                 <div class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
                     <i class="material-icons text-white text-6xl">
-                        @if ($article->category === 'seo-news')
+                        @if ($article->blogCategory && $article->blogCategory->slug === 'seo-news')
                             trending_up
-                        @elseif($article->category === 'analytics')
+                        @elseif($article->blogCategory && $article->blogCategory->slug === 'analytics')
                             analytics
                         @else
                             tips_and_updates
@@ -72,7 +75,8 @@
         <!-- Навигация между статьями -->
         <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex items-center justify-between">
-                <a href="{{ route('blog.category', $article->category) }}" class="btn inline-flex items-center">
+                <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
+                    class="btn inline-flex items-center">
                     <i class="material-icons text-sm mr-2">arrow_back</i>
                     Все статьи в категории
                 </a>
@@ -91,7 +95,7 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)
-                        <a href="{{ route('blog.article', [$relatedArticle->category, $relatedArticle->slug]) }}"
+                        <a href="{{ route('blog.article', [$relatedArticle->blogCategory->slug ?? 'uncategorized', $relatedArticle->slug]) }}"
                             class="group bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
                             @if ($relatedArticle->image)
                                 <div class="aspect-video bg-cover bg-center"
@@ -101,9 +105,9 @@
                                 <div
                                     class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
                                     <i class="material-icons text-white text-2xl">
-                                        @if ($relatedArticle->category === 'seo-news')
+                                        @if ($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'seo-news')
                                             trending_up
-                                        @elseif($relatedArticle->category === 'analytics')
+                                        @elseif($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'analytics')
                                             analytics
                                         @else
                                             tips_and_updates

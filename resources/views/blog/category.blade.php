@@ -43,9 +43,9 @@
                         <div
                             class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
                             <i class="material-icons text-white text-4xl">
-                                @if ($article->category === 'seo-news')
+                                @if ($article->blogCategory && $article->blogCategory->slug === 'seo-news')
                                     trending_up
-                                @elseif($article->category === 'analytics')
+                                @elseif($article->blogCategory && $article->blogCategory->slug === 'analytics')
                                     analytics
                                 @else
                                     tips_and_updates
@@ -65,7 +65,7 @@
                         </div>
 
                         <h2 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                            <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
+                            <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
                                 class="hover:text-cyan-600 transition-colors">
                                 {{ $article->title }}
                             </a>
@@ -81,7 +81,7 @@
                                 {{ $article->reading_time ?? '5' }} мин чтения
                             </span>
 
-                            <a href="{{ route('blog.article', [$article->category, $article->slug]) }}"
+                            <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
                                 class="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium text-sm">
                                 Читать далее
                                 <i class="material-icons text-sm ml-1">arrow_forward</i>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectCase extends Model
@@ -27,7 +28,7 @@ class ProjectCase extends Model
         'case_id',
         'title',
         'client',
-        'industry',
+        'industry_category_id',
         'period',
         'image',
         'description',
@@ -79,7 +80,9 @@ class ProjectCase extends Model
      */
     public function scopeByIndustry($query, $industry)
     {
-        return $query->where('industry', $industry);
+        return $query->whereHas('industryCategory', function($query) use ($industry) {
+            $query->where('slug', $industry);
+        });
     }
 
     /**
@@ -121,8 +124,20 @@ class ProjectCase extends Model
             return asset('images/' . $this->image);
         }
 
-        // It's an uploaded image
-        return asset('storage/images/' . $this->image);
+        // It's an uploaded image - check if it exists in public disk first
+        // Check if image path already includes 'images/' prefix
+        $imagePath = str_starts_with($this->image, 'images/') ? $this->image : 'images/' . $this->image;
+
+        if (Storage::disk('public')->exists($imagePath)) {
+            return asset('storage/' . $imagePath);
+        }
+
+        // If not in public, it might be in private disk (legacy Filament behavior)
+        if (Storage::disk('local')->exists($this->image)) {
+            return asset('storage/' . $this->image);
+        }
+
+        return null;
     }
 
     /**
@@ -146,7 +161,7 @@ class ProjectCase extends Model
      */
     public function industryCategory()
     {
-        return $this->belongsTo(IndustryCategory::class, 'industry', 'slug');
+        return $this->belongsTo(IndustryCategory::class, 'industry_category_id');
     }
 
     /**
@@ -154,20 +169,7 @@ class ProjectCase extends Model
      */
     public function getIndustryNameAttribute()
     {
-        // Сначала пытаемся получить название из связанной категории
-        if ($this->industryCategory) {
-            return $this->industryCategory->name;
-        }
-
-        // Fallback на старые названия для обратной совместимости
-        $industries = [
-            'clothing' => 'Одежда',
-            'production' => 'Производство',
-            'electronics' => 'Электроника',
-            'furniture' => 'Мебель',
-        ];
-
-        return $industries[$this->industry] ?? $this->industry;
+        return $this->industryCategory ? $this->industryCategory->name : 'Без категории';
     }
 
     /**

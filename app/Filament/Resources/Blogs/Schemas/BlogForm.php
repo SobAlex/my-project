@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Filament\Resources\Blogs\Schemas;
+
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms;
+use Filament\Schemas\Schema;
+use App\Models\Blog;
+use Illuminate\Support\Str;
+
+class BlogForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextInput::make('title')
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (string $operation, $state, $set) {
+                        if ($operation !== 'create') {
+                            return;
+                        }
+                        $set('slug', Str::slug($state));
+                    }),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique(Blog::class, 'slug', ignoreRecord: true),
+                Textarea::make('excerpt')
+                    ->columnSpanFull(),
+                Textarea::make('content')
+                    ->columnSpanFull(),
+                FileUpload::make('image')
+                    ->image()
+                    ->disk('public')
+                    ->directory('images')
+                    ->visibility('public'),
+                Select::make('category_id')
+                    ->relationship('blogCategory', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+                TextInput::make('meta_title'),
+                Textarea::make('meta_description')
+                    ->columnSpanFull(),
+                Toggle::make('is_published')
+                    ->required(),
+                TextInput::make('sort_order')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required(),
+                DateTimePicker::make('published_at'),
+            ]);
+    }
+}

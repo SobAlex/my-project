@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Blog extends Model
@@ -22,7 +23,7 @@ class Blog extends Model
         'excerpt',
         'content',
         'image',
-        'category',
+        'category_id',
         'meta_title',
         'meta_description',
         'is_published',
@@ -54,7 +55,7 @@ class Blog extends Model
      */
     public function blogCategory(): BelongsTo
     {
-        return $this->belongsTo(BlogCategory::class, 'category', 'slug');
+        return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
     /**
@@ -68,9 +69,9 @@ class Blog extends Model
     /**
      * Scope a query to filter by category.
      */
-    public function scopeByCategory($query, $category)
+    public function scopeByCategory($query, $categoryId)
     {
-        return $query->where('category', $category);
+        return $query->where('category_id', $categoryId);
     }
 
     /**
@@ -98,23 +99,31 @@ class Blog extends Model
     }
 
     /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($blog) {
+            if (empty($blog->slug) && !empty($blog->title)) {
+                $blog->slug = Str::slug($blog->title);
+            }
+        });
+
+        static::updating(function ($blog) {
+            if (empty($blog->slug) && !empty($blog->title)) {
+                $blog->slug = Str::slug($blog->title);
+            }
+        });
+    }
+
+    /**
      * Get the category name from related BlogCategory.
      */
     public function getCategoryNameAttribute()
     {
-        // Сначала пытаемся получить название из связанной категории
-        if ($this->blogCategory) {
-            return $this->blogCategory->name;
-        }
-
-        // Fallback на старые названия для обратной совместимости
-        $legacyCategories = [
-            'seo-news' => 'SEO новости',
-            'analytics' => 'Аналитика',
-            'tips' => 'Советы',
-        ];
-
-        return $legacyCategories[$this->category] ?? ucfirst($this->category);
+        return $this->blogCategory ? $this->blogCategory->name : 'Без категории';
     }
 
     /**
@@ -139,7 +148,19 @@ class Blog extends Model
             return asset('images/' . $this->image);
         }
 
-        // It's an uploaded image
-        return str_replace('8000', '8001', asset('storage/images/' . $this->image));
+        // It's an uploaded image - check if it exists in public disk first
+        // Check if image path already includes 'images/' prefix
+        $imagePath = str_starts_with($this->image, 'images/') ? $this->image : 'images/' . $this->image;
+
+        if (Storage::disk('public')->exists($imagePath)) {
+            return asset('storage/' . $imagePath);
+        }
+
+        // If not in public, it might be in private disk (legacy Filament behavior)
+        if (Storage::disk('local')->exists($this->image)) {
+            return asset('storage/' . $this->image);
+        }
+
+        return null;
     }
 }
