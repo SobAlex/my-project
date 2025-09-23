@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -51,8 +52,26 @@ class ProjectCaseForm
                             $component->state(null);
                         }
                     }),
-                Textarea::make('description')
+                RichEditor::make('description')
+                    ->label('Описание проекта')
                     ->required()
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
                     ->columnSpanFull(),
                 // Before/After Metrics Section
                 Placeholder::make('before_after_section')
@@ -238,7 +257,25 @@ class ProjectCaseForm
                 TextInput::make('result_4'),
                 TextInput::make('result_5'),
                 TextInput::make('result_6'),
-                Textarea::make('content')
+                RichEditor::make('content')
+                    ->label('Дополнительная информация')
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
                     ->columnSpanFull(),
                 TextInput::make('meta_title')
                     ->label('SEO Заголовок')

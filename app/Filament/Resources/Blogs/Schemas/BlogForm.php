@@ -8,6 +8,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms;
 use Filament\Schemas\Schema;
 use App\Models\Blog;
@@ -31,9 +32,39 @@ class BlogForm
                 TextInput::make('slug')
                     ->required()
                     ->unique(Blog::class, 'slug', ignoreRecord: true),
-                Textarea::make('excerpt')
+                RichEditor::make('excerpt')
+                    ->label('Краткое описание')
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletList',
+                        'orderedList',
+                        'h2',
+                        'h3',
+                        'blockquote',
+                        'codeBlock',
+                    ])
                     ->columnSpanFull(),
-                Textarea::make('content')
+                RichEditor::make('content')
+                    ->label('Содержимое статьи')
+                    ->toolbarButtons([
+                        'attachFiles',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()

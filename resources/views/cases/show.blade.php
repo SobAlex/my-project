@@ -84,7 +84,9 @@
                 <div class="space-y-6">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Описание проекта</h2>
-                        <p class="text-gray-600 leading-relaxed">{{ $caseData['description'] }}</p>
+                        <div class="text-gray-600 leading-relaxed prose prose-gray max-w-none">
+                            {!! $caseData['description'] !!}
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
