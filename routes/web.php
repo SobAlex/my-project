@@ -8,10 +8,11 @@ use App\Http\Controllers\CaseController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 
+// Homepage
 Route::get('/', function () {
-    $caseController = new \App\Http\Controllers\CaseController();
-    $blogController = new \App\Http\Controllers\BlogController();
-    $reviewController = new \App\Http\Controllers\ReviewController();
+    $caseController = app(CaseController::class);
+    $blogController = app(BlogController::class);
+    $reviewController = app(ReviewController::class);
 
     $latestCases = $caseController->getLatestCasesForHomepage();
     $latestArticles = $blogController->getLatestArticlesForHomepage();
@@ -21,37 +22,44 @@ Route::get('/', function () {
 })->name('home');
 
 // Services pages
-Route::get('/services/seo-promotion', [ServiceController::class, 'seoPromotion'])->name('services.seo-promotion');
-Route::get('/services/technical-audit', [ServiceController::class, 'technicalAudit'])->name('services.technical-audit');
-Route::get('/services/content-audit', [ServiceController::class, 'contentAudit'])->name('services.content-audit');
-Route::get('/services/behavioral-audit', [ServiceController::class, 'behavioralAudit'])->name('services.behavioral-audit');
-Route::get('/services/link-profile', [ServiceController::class, 'linkProfile'])->name('services.link-profile');
-Route::get('/services/semantic-core', [ServiceController::class, 'semanticCore'])->name('services.semantic-core');
-Route::get('/services/seo-strategy', [ServiceController::class, 'seoStrategy'])->name('services.seo-strategy');
+Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/seo-promotion', [ServiceController::class, 'seoPromotion'])->name('seo-promotion');
+    Route::get('/technical-audit', [ServiceController::class, 'technicalAudit'])->name('technical-audit');
+    Route::get('/content-audit', [ServiceController::class, 'contentAudit'])->name('content-audit');
+    Route::get('/behavioral-audit', [ServiceController::class, 'behavioralAudit'])->name('behavioral-audit');
+    Route::get('/link-profile', [ServiceController::class, 'linkProfile'])->name('link-profile');
+    Route::get('/semantic-core', [ServiceController::class, 'semanticCore'])->name('semantic-core');
+    Route::get('/seo-strategy', [ServiceController::class, 'seoStrategy'])->name('seo-strategy');
+});
 
 // Pages
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
 // Cases
 Route::get('/cases', [CaseController::class, 'index'])->name('cases');
-Route::get('/cases/clothing', [CaseController::class, 'clothing'])->name('cases.clothing');
-Route::get('/cases/production', [CaseController::class, 'production'])->name('cases.production');
-Route::get('/cases/electronics', [CaseController::class, 'electronics'])->name('cases.electronics');
-Route::get('/cases/furniture', [CaseController::class, 'furniture'])->name('cases.furniture');
-// Универсальный маршрут для всех категорий отраслей (должен быть перед cases/{id})
-Route::get('/cases/category/{industry}', [CaseController::class, 'category'])->name('cases.category');
-Route::get('/cases/{id}', [CaseController::class, 'show'])->name('cases.show');
+Route::prefix('cases')->name('cases.')->group(function () {
+    Route::get('/clothing', [CaseController::class, 'clothing'])->name('clothing');
+    Route::get('/production', [CaseController::class, 'production'])->name('production');
+    Route::get('/electronics', [CaseController::class, 'electronics'])->name('electronics');
+    Route::get('/furniture', [CaseController::class, 'furniture'])->name('furniture');
+    Route::get('/category/{industry}', [CaseController::class, 'category'])->name('category');
+    Route::get('/{id}', [CaseController::class, 'show'])->name('show');
+});
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/seo-news', [BlogController::class, 'seoNews'])->name('blog.seo-news');
-Route::get('/blog/analytics', [BlogController::class, 'analytics'])->name('blog.analytics');
-Route::get('/blog/tips', [BlogController::class, 'tips'])->name('blog.tips');
-// Универсальный маршрут для всех категорий блогов
-Route::get('/blog/category/{category}', [BlogController::class, 'category'])->name('blog.category');
-Route::get('/blog/{category}/{slug}', [BlogController::class, 'show'])->name('blog.article');
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/seo-news', [BlogController::class, 'seoNews'])->name('seo-news');
+    Route::get('/analytics', [BlogController::class, 'analytics'])->name('analytics');
+    Route::get('/tips', [BlogController::class, 'tips'])->name('tips');
+    Route::get('/category/{category}', [BlogController::class, 'category'])->name('category');
+    Route::get('/{category}/{slug}', [BlogController::class, 'show'])->name('article');
+});
 
 // Contact forms
-Route::post('/contact/hero', [ContactController::class, 'submitHero'])->name('contact.hero');
-Route::post('/contact', [ContactController::class, 'submitContact'])->name('contact.submit');
+Route::prefix('contact')->name('contact.')->group(function () {
+    Route::post('/hero', [ContactController::class, 'submitHero'])->name('hero');
+    Route::post('/', [ContactController::class, 'submitContact'])->name('submit');
+});
+
 Route::post('/service/order', [ContactController::class, 'submitServiceOrder'])->name('service.order');

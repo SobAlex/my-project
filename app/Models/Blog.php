@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Contracts\ImageableInterface;
+use App\Contracts\PublishableInterface;
+use App\Traits\HasImage;
+use App\Traits\HasPublishing;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Blog extends Model
+class Blog extends Model implements ImageableInterface, PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasImage, HasPublishing;
 
     /**
      * The attributes that are mass assignable.
@@ -59,14 +62,6 @@ class Blog extends Model
     }
 
     /**
-     * Scope a query to only include published blog posts.
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('is_published', true);
-    }
-
-    /**
      * Scope a query to filter by category.
      */
     public function scopeByCategory($query, $categoryId)
@@ -75,11 +70,27 @@ class Blog extends Model
     }
 
     /**
-     * Scope a query to order blog posts by sort order.
+     * Check if the blog post is published.
      */
-    public function scopeOrdered($query)
+    public function isPublished(): bool
     {
-        return $query->orderBy('sort_order', 'asc')->orderBy('published_at', 'desc');
+        return $this->is_published;
+    }
+
+    /**
+     * Check if the blog post is active.
+     */
+    public function isActive(): bool
+    {
+        return $this->is_published;
+    }
+
+    /**
+     * Get the image attribute.
+     */
+    public function getImageAttribute(): ?string
+    {
+        return $this->attributes['image'] ?? null;
     }
 
     /**
@@ -134,33 +145,4 @@ class Blog extends Model
         return $this->published_at ? $this->published_at->format('d.m.Y') : null;
     }
 
-    /**
-     * Get the full image URL.
-     */
-    public function getImageUrlAttribute()
-    {
-        if (!$this->image) {
-            return null;
-        }
-
-        // Check if it's a legacy static image
-        if (in_array($this->image, ['human.jpeg', 'human2.jpeg', 'human.webp'])) {
-            return asset('images/' . $this->image);
-        }
-
-        // It's an uploaded image - check if it exists in public disk first
-        // Check if image path already includes 'images/' prefix
-        $imagePath = str_starts_with($this->image, 'images/') ? $this->image : 'images/' . $this->image;
-
-        if (Storage::disk('public')->exists($imagePath)) {
-            return asset('storage/' . $imagePath);
-        }
-
-        // If not in public, it might be in private disk (legacy Filament behavior)
-        if (Storage::disk('local')->exists($this->image)) {
-            return asset('storage/' . $this->image);
-        }
-
-        return null;
-    }
 }

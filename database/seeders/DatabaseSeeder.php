@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,17 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем пользователей
-        User::factory(5)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         // Запускаем сидеры в правильном порядке
         $this->call([
-            // Сначала создаем категории
+            // Сначала создаем пользователей
+            UserSeeder::class,
+
+            // Затем создаем категории
             IndustryCategorySeeder::class,
             BlogCategorySeeder::class,
 

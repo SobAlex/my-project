@@ -2,21 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProjectCase;
-use App\Models\IndustryCategory;
+use App\Services\CaseService;
 use Illuminate\Http\Request;
 
 class CaseController extends Controller
 {
+    public function __construct(
+        private CaseService $caseService
+    ) {}
+
     /**
      * Главная страница кейсов
      */
     public function index()
     {
-        $casesData = $this->getAllCasesData();
+        $cases = $this->caseService->getAllCases();
+        $casesData = [
+            'seo-promotion' => [
+                'service_name' => 'SEO продвижение',
+                'service_icon' => 'trending_up',
+                'cases' => $this->caseService->transformCasesForTemplate($cases)
+            ]
+        ];
+
         $title = 'Кейсы SEO продвижения';
         $selectedTag = null;
-        $activeCategories = $this->getActiveCategories();
+        $activeCategories = $this->caseService->getActiveCategories();
+
         return view('cases.index', compact('casesData', 'title', 'selectedTag', 'activeCategories'));
     }
 
@@ -57,14 +69,13 @@ class CaseController extends Controller
      */
     public function category($industry)
     {
-        // Проверяем, существует ли категория в базе данных
-        $category = IndustryCategory::where('slug', $industry)->first();
+        $categoryInfo = $this->caseService->getCategoryInfo($industry);
 
-        if (!$category) {
+        if (!$categoryInfo) {
             abort(404, 'Категория не найдена');
         }
 
-        $title = 'Кейсы SEO продвижения: ' . $category->name;
+        $title = 'Кейсы SEO продвижения: ' . $categoryInfo['name'];
         return $this->filterByTag($industry, $title);
     }
 
@@ -73,31 +84,19 @@ class CaseController extends Controller
      */
     private function filterByTag($tag, $title)
     {
-        // Получаем кейсы с фильтрацией по категории через отношение
-        $cases = ProjectCase::published()
-            ->with('industryCategory')
-            ->whereHas('industryCategory', function($query) use ($tag) {
-                $query->where('slug', $tag)->where('is_active', true);
-            })
-            ->ordered()
-            ->get();
-
-        // Преобразуем данные в формат, который ожидают шаблоны
-        $transformedCases = $cases->map(function ($case) {
-            return $this->transformCaseForTemplate($case);
-        });
-
+        $cases = $this->caseService->getCasesByIndustry($tag);
         $casesData = [
             'seo-promotion' => [
                 'service_name' => 'SEO продвижение',
                 'service_icon' => 'trending_up',
-                'cases' => $transformedCases->toArray()
+                'cases' => $this->caseService->transformCasesForTemplate($cases)
             ]
         ];
 
         $selectedTag = $tag;
-        $categoryInfo = $this->getCategoryInfo($tag);
-        $activeCategories = $this->getActiveCategories();
+        $categoryInfo = $this->caseService->getCategoryInfo($tag);
+        $activeCategories = $this->caseService->getActiveCategories();
+
         return view('cases.index', compact('casesData', 'title', 'selectedTag', 'categoryInfo', 'activeCategories'));
     }
 
@@ -106,184 +105,37 @@ class CaseController extends Controller
      */
     public function show($id)
     {
-        // Ищем кейс по case_id в базе данных с загрузкой отношения
-        $case = ProjectCase::where('case_id', $id)
-            ->with('industryCategory')
-            ->published()
-            ->first();
+        $case = $this->caseService->getCaseById($id);
 
         if (!$case) {
             abort(404);
         }
 
-        // Преобразуем кейс в формат шаблона
-        $case = $this->transformCaseForTemplate($case);
+        $caseData = $this->caseService->transformCaseForTemplate($case);
+        $categoryInfo = $this->caseService->getCategoryInfo($caseData['industry']);
 
-        // Определяем категорию по industry
-        $categoryInfo = $this->getCategoryInfo($case['industry']);
-
-        // Создаем serviceData для совместимости с шаблоном
         $serviceData = [
             'service_name' => 'SEO продвижение',
             'service_icon' => 'trending_up'
         ];
 
-        return view('cases.show', compact('case', 'serviceData', 'categoryInfo'));
+        return view('cases.show', compact('caseData', 'serviceData', 'categoryInfo'));
     }
 
     /**
-     * Получить активные категории отраслей
-     */
-    private function getActiveCategories()
-    {
-        return IndustryCategory::active()
-            ->ordered()
-            ->get()
-            ->map(function ($category) {
-                return [
-                    'slug' => $category->slug,
-                    'name' => $category->name,
-                    'route' => 'cases.category',
-                    'route_params' => [$category->slug],
-                    'is_legacy' => false
-                ];
-            })
-            ->toArray();
-    }
-
-    /**
-     * Получить информацию о категории по industry
-     */
-    private function getCategoryInfo($industry)
-    {
-        // Сначала пытаемся получить категорию из базы данных
-        $category = IndustryCategory::where('slug', $industry)->first();
-
-        if ($category) {
-            return [
-                'name' => $category->name,
-                'route' => 'cases.category',
-                'route_params' => [$category->slug],
-                'slug' => $category->slug
-            ];
-        }
-
-        // Fallback на старые категории для обратной совместимости
-        $legacyCategories = [
-            'clothing' => [
-                'name' => 'Одежда',
-                'route' => 'cases.clothing',
-                'route_params' => []
-            ],
-            'production' => [
-                'name' => 'Производство',
-                'route' => 'cases.production',
-                'route_params' => []
-            ],
-            'electronics' => [
-                'name' => 'Электроника',
-                'route' => 'cases.electronics',
-                'route_params' => []
-            ],
-            'furniture' => [
-                'name' => 'Мебель',
-                'route' => 'cases.furniture',
-                'route_params' => []
-            ]
-        ];
-
-        return $legacyCategories[$industry] ?? null;
-    }
-
-    /**
-     * Получить данные кейсов
-     */
-    public function getCasesData()
-    {
-        return $this->getAllCasesData();
-    }
-
-    /**
-     * Получить последние кейсы по одной из каждой категории для главной страницы
+     * Получить последние кейсы для главной страницы
      */
     public function getLatestCasesForHomepage()
     {
-        // Получаем все опубликованные кейсы из базы данных с загрузкой отношения
-        $cases = ProjectCase::published()
-            ->with('industryCategory')
-            ->ordered()
-            ->limit(4) // Ограничиваем до 4 кейсов для главной страницы
-            ->get();
-
-        $latestCases = [];
-
-        foreach ($cases as $case) {
-            $latestCases[] = $this->transformCaseForTemplate($case);
-        }
-
-        return $latestCases;
+        $cases = $this->caseService->getLatestCasesForHomepage();
+        return $this->caseService->transformCasesForTemplate($cases);
     }
 
     /**
-     * Получить все данные кейсов с тегами из базы данных
+     * Получить активные категории
      */
-    public function getAllCasesData()
+    public function getActiveCategories()
     {
-        // Получаем все опубликованные кейсы из базы данных с загрузкой отношения
-        $cases = ProjectCase::published()
-            ->with('industryCategory')
-            ->ordered()
-            ->get();
-
-        // Преобразуем данные в формат, который ожидают шаблоны
-        $transformedCases = $cases->map(function ($case) {
-            return $this->transformCaseForTemplate($case);
-        });
-
-        return [
-            'seo-promotion' => [
-                'service_name' => 'SEO продвижение',
-                'service_icon' => 'trending_up',
-                'cases' => $transformedCases->toArray()
-            ]
-        ];
-    }
-
-    /**
-     * Преобразовать кейс из БД в формат шаблона
-     */
-    private function transformCaseForTemplate(ProjectCase $case)
-    {
-        // Получаем информацию о категории из отношения
-        $industrySlug = $case->industryCategory ? $case->industryCategory->slug : 'uncategorized';
-        $categoryInfo = $this->getCategoryInfo($industrySlug);
-
-        return [
-            'id' => $case->case_id,
-            'title' => $case->title,
-            'client' => $case->client,
-            'industry' => $industrySlug,
-            'industry_name' => $case->industryCategory ? $case->industryCategory->name : 'Без категории',
-            'period' => $case->period,
-            'image' => $case->image,
-            'image_url' => $case->image_url,
-            'description' => $case->description,
-            'content' => $case->content,
-            'results' => $case->results_array, // Используем accessor для получения массива результатов
-            'before_after' => $case->before_after,
-            'has_valid_category' => $case->industryCategory ? $case->industryCategory->is_active : false
-        ];
-    }
-
-    /**
-     * Проверить, существует ли активная категория для данной отрасли
-     */
-    private function hasValidCategory($industry)
-    {
-        if (empty($industry)) {
-            return false;
-        }
-
-        return IndustryCategory::where('slug', $industry)->active()->exists();
+        return $this->caseService->getActiveCategories();
     }
 }

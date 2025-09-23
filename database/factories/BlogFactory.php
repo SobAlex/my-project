@@ -33,12 +33,12 @@ class BlogFactory extends Factory
             'excerpt' => $this->faker->paragraph(rand(2, 4)), // text nullable
             'content' => $this->faker->paragraphs(rand(4, 8), true), // longText nullable
             'image' => $this->faker->randomElement(['human.jpeg', 'human2.jpeg', 'human.webp']), // string nullable
-            'category' => BlogCategory::inRandomOrder()->first()?->slug ?? 'seo-news', // string default 'seo-news' - связь с BlogCategory
+            'category_id' => BlogCategory::inRandomOrder()->first()?->id ?? 1, // foreignId - связь с BlogCategory
             'meta_title' => $this->faker->sentence(rand(4, 8)), // string nullable
             'meta_description' => $this->faker->paragraph(2), // text nullable
             'is_published' => $this->faker->boolean(80), // boolean default false
             'sort_order' => $this->faker->numberBetween(0, 100), // integer default 0
-            'user_id' => User::factory(), // foreignId
+            'user_id' => 1, // Используем существующего пользователя
             'published_at' => $this->faker->optional(0.8)->dateTimeBetween('-1 year', 'now'), // timestamp nullable
         ];
     }

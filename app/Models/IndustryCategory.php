@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Contracts\PublishableInterface;
+use App\Traits\HasPublishing;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class IndustryCategory extends Model
+class IndustryCategory extends Model implements PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasPublishing, HasSlug;
 
     protected $fillable = [
         'name',
@@ -26,46 +29,26 @@ class IndustryCategory extends Model
     ];
 
     /**
-     * Boot the model.
+     * Check if the category is published.
      */
-    protected static function boot()
+    public function isPublished(): bool
     {
-        parent::boot();
-
-        static::creating(function ($category) {
-            if (empty($category->slug)) {
-                $category->slug = Str::slug($category->name);
-            }
-        });
-
-        static::updating(function ($category) {
-            if ($category->isDirty('name') && empty($category->slug)) {
-                $category->slug = Str::slug($category->name);
-            }
-        });
+        return $this->is_active;
     }
 
     /**
-     * Scope для активных категорий
+     * Check if the category is active.
      */
-    public function scopeActive($query)
+    public function isActive(): bool
     {
-        return $query->where('is_active', true);
-    }
-
-    /**
-     * Scope для сортировки
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('sort_order')->orderBy('name');
+        return $this->is_active;
     }
 
     /**
      * Связь с кейсами
      */
-    public function cases()
+    public function cases(): HasMany
     {
-        return $this->hasMany(ProjectCase::class, 'industry', 'slug');
+        return $this->hasMany(ProjectCase::class, 'industry_category_id');
     }
 }

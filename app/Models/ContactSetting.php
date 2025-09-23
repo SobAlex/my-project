@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Contracts\PublishableInterface;
+use App\Traits\HasPublishing;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
-class ContactSetting extends Model
+class ContactSetting extends Model implements PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasPublishing;
     protected $fillable = [
         'key',
         'value',
@@ -25,19 +27,19 @@ class ContactSetting extends Model
     ];
 
     /**
-     * Scope a query to only include active settings.
+     * Check if the setting is published.
      */
-    public function scopeActive(Builder $query): void
+    public function isPublished(): bool
     {
-        $query->where('is_active', true);
+        return $this->is_active;
     }
 
     /**
-     * Scope a query to order by sort order.
+     * Check if the setting is active.
      */
-    public function scopeOrdered(Builder $query): void
+    public function isActive(): bool
     {
-        $query->orderBy('sort_order')->orderBy('label');
+        return $this->is_active;
     }
 
     /**

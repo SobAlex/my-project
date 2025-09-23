@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Contracts\PublishableInterface;
+use App\Traits\HasPublishing;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Faq extends Model
+class Faq extends Model implements PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasPublishing;
     protected $fillable = [
         'question',
         'answer',
@@ -21,18 +23,18 @@ class Faq extends Model
     ];
 
     /**
-     * Scope для получения только активных FAQ
+     * Check if the FAQ is published.
      */
-    public function scopeActive($query)
+    public function isPublished(): bool
     {
-        return $query->where('is_active', true);
+        return $this->is_active;
     }
 
     /**
-     * Scope для сортировки по порядку
+     * Check if the FAQ is active.
      */
-    public function scopeOrdered($query)
+    public function isActive(): bool
     {
-        return $query->orderBy('sort_order')->orderBy('id');
+        return $this->is_active;
     }
 }

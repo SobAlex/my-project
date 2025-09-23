@@ -70,14 +70,34 @@
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
                         <div class="space-y-2">
-                            @foreach ($activeCategories as $category)
-                                <a href="{{ route($category['route'], ...$category['route_params']) }}"
-                                    class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                    <i class="material-icons text-sm mr-2"
-                                        style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
-                                    {{ $category['name'] }}
+                            @if(isset($activeCategories) && !empty($activeCategories))
+                                @foreach ($activeCategories as $category)
+                                    <a href="{{ route($category['route'], ...$category['route_params']) }}"
+                                        class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                        <i class="material-icons text-sm mr-2"
+                                            style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
+                                        {{ $category['name'] }}
+                                    </a>
+                                @endforeach
+                            @else
+                                {{-- Статичные категории для главной страницы --}}
+                                <a href="{{ route('cases.clothing') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2" style="color: #FFD700">apparel</i>
+                                    Одежда
                                 </a>
-                            @endforeach
+                                <a href="{{ route('cases.production') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2" style="color: #3B82F6">factory</i>
+                                    Production
+                                </a>
+                                <a href="{{ route('cases.electronics') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2" style="color: #10B981">devices</i>
+                                    Electronics
+                                </a>
+                                <a href="{{ route('cases.furniture') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2" style="color: #8B5CF6">chair</i>
+                                    Furniture
+                                </a>
+                            @endif
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
                             <a href="{{ route('cases') }}"
@@ -258,14 +278,34 @@
                     class="pl-6 space-y-4 overflow-hidden" style="display: none;">
                     <div class="text-gray-600 text-sm font-medium mb-3">Популярные отрасли:</div>
                     <div class="space-y-2">
-                        @foreach ($activeCategories as $category)
-                            <a href="{{ route($category['route'], ...$category['route_params']) }}"
-                                class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2"
-                                    style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
-                                {{ $category['name'] }}
+                        @if(isset($activeCategories) && !empty($activeCategories))
+                            @foreach ($activeCategories as $category)
+                                <a href="{{ route($category['route'], ...$category['route_params']) }}"
+                                    class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                    <i class="material-icons text-sm mr-2"
+                                        style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
+                                    {{ $category['name'] }}
+                                </a>
+                            @endforeach
+                        @else
+                            {{-- Статичные категории для мобильного меню --}}
+                            <a href="{{ route('cases.clothing') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2" style="color: #FFD700">apparel</i>
+                                Одежда
                             </a>
-                        @endforeach
+                            <a href="{{ route('cases.production') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2" style="color: #3B82F6">factory</i>
+                                Production
+                            </a>
+                            <a href="{{ route('cases.electronics') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2" style="color: #10B981">devices</i>
+                                Electronics
+                            </a>
+                            <a href="{{ route('cases.furniture') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                <i class="material-icons text-sm mr-2" style="color: #8B5CF6">chair</i>
+                                Furniture
+                            </a>
+                        @endif
                     </div>
                     <div class="pt-3 border-t border-gray-200">
                         <a href="{{ route('cases') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">

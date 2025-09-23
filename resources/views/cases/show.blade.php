@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $case['title'] . ' - SEO продвижение сайтов')
+@section('title', $caseData['meta_title'] ?: $caseData['title'] . ' - SEO продвижение сайтов')
+
+@section('meta_description', $caseData['meta_description'])
 
 @section('content')
     <!-- Breadcrumbs -->
@@ -17,7 +19,7 @@
                                 : route($categoryInfo['route']),
                     ]
                     : null,
-                ['title' => $case['title'], 'url' => null, 'truncate' => true],
+                ['title' => $caseData['title'], 'url' => null, 'truncate' => true],
             ]),
         ])
 
@@ -31,7 +33,7 @@
                     <i class="material-icons">arrow_back</i>
                 </a>
                 <div>
-                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $case['title'] }}</h1>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $caseData['title'] }}</h1>
                     <div class="flex items-center text-gray-600">
                         <i class="material-icons mr-2">{{ $serviceData['service_icon'] }}</i>
                         <a href="{{ route('services.seo-promotion') }}"
@@ -43,17 +45,17 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {{-- Case image --}}
                 <div class="relative h-64 lg:h-80 overflow-hidden ">
-                    <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}" class="w-full h-full object-cover">
+                    <img src="{{ $caseData['image_url'] }}" alt="{{ $caseData['title'] }}" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div class="absolute bottom-4 left-4 text-white">
-                        @if ($case['has_valid_category'])
-                            <a href="{{ route('cases.category', $case['industry']) }}"
+                        @if ($caseData['has_valid_category'])
+                            <a href="{{ route('cases.category', $caseData['industry']) }}"
                                 class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
-                                {{ $case['industry_name'] }}
+                                {{ $caseData['industry_name'] }}
                             </a>
                         @else
                             <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">
-                                @switch($case['industry'])
+                                @switch($caseData['industry'])
                                     @case('clothing')
                                         Одежда
                                     @break
@@ -71,7 +73,7 @@
                                     @break
 
                                     @default
-                                        {{ $case['industry'] }}
+                                        {{ $caseData['industry'] }}
                                 @endswitch
                             </span>
                         @endif
@@ -82,17 +84,17 @@
                 <div class="space-y-6">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Описание проекта</h2>
-                        <p class="text-gray-600 leading-relaxed">{{ $case['description'] }}</p>
+                        <p class="text-gray-600 leading-relaxed">{{ $caseData['description'] }}</p>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-gray-50 p-4 ">
                             <div class="text-sm text-gray-500 mb-1">Клиент</div>
-                            <div class="font-semibold text-gray-800">{{ $case['client'] }}</div>
+                            <div class="font-semibold text-gray-800">{{ $caseData['client'] }}</div>
                         </div>
                         <div class="bg-gray-50 p-4 ">
                             <div class="text-sm text-gray-500 mb-1">Период</div>
-                            <div class="font-semibold text-gray-800">{{ $case['period'] }}</div>
+                            <div class="font-semibold text-gray-800">{{ $caseData['period'] }}</div>
                         </div>
                     </div>
                 </div>
@@ -105,7 +107,7 @@
         <div>
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Ключевые результаты</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                @foreach ($case['results'] as $result)
+                @foreach ($caseData['results'] as $result)
                     <div
                         class="flex items-start space-x-3 p-4 bg-white  shadow-md hover:shadow-lg transition-shadow duration-300">
                         <i class="material-icons text-green-500 mt-1">check_circle</i>
@@ -117,127 +119,16 @@
     </section>
 
     {{-- Before/After section --}}
-    @if (isset($case['before_after']) && !empty($case['before_after']))
+    @if (isset($caseData['before_after']) && !empty($caseData['before_after']))
         <section class="section-bg">
             <div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @foreach ($case['before_after'] as $metric => $values)
+                    @foreach ($caseData['before_after'] as $metric => $values)
                         <div class="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                             <div class="p-4 text-center">
-                                <h3 class="font-semibold text-gray-800 mb-4 capitalize">
-                                    @switch($metric)
-                                        @case('traffic')
-                                            Трафик
-                                        @break
-
-                                        @case('keywords')
-                                            Ключевые слова
-                                        @break
-
-                                        @case('conversion')
-                                            Конверсия
-                                        @break
-
-                                        @case('revenue')
-                                            Выручка
-                                        @break
-
-                                        @case('appointments')
-                                            Записи
-                                        @break
-
-                                        @case('calls')
-                                            Звонки
-                                        @break
-
-                                        @case('leads')
-                                            Лиды
-                                        @break
-
-                                        @case('cost_per_lead')
-                                            Цена лида
-                                        @break
-
-                                        @case('mobile_traffic')
-                                            Мобильный трафик
-                                        @break
-
-                                        @case('repeat_clients')
-                                            Повторные клиенты
-                                        @break
-
-                                        @case('enrollments')
-                                            Записи на курсы
-                                        @break
-
-                                        @case('time_on_site')
-                                            Время на сайте
-                                        @break
-
-                                        @case('local_traffic')
-                                            Локальный трафик
-                                        @break
-
-                                        @case('map_views')
-                                            Просмотры на карте
-                                        @break
-
-                                        @case('reservations')
-                                            Бронирования
-                                        @break
-
-                                        @case('avg_check')
-                                            Средний чек
-                                        @break
-
-                                        @case('b2b_traffic')
-                                            B2B трафик
-                                        @break
-
-                                        @case('large_orders')
-                                            Крупные заказы
-                                        @break
-
-                                        @case('avg_project')
-                                            Средний проект
-                                        @break
-
-                                        @case('orders')
-                                            Заказы
-                                        @break
-
-                                        @case('inquiries')
-                                            Запросы
-                                        @break
-
-                                        @case('sales')
-                                            Продажи
-                                        @break
-
-                                        @case('cost_per_sale')
-                                            Цена продажи
-                                        @break
-
-                                        @case('avg_order')
-                                            Средний заказ
-                                        @break
-
-                                        @case('catalog_conversion')
-                                            Конверсия каталога
-                                        @break
-
-                                        @case('brand_traffic')
-                                            Брендовый трафик
-                                        @break
-
-                                        @case('product_views')
-                                            Просмотры товаров
-                                        @break
-
-                                        @default
-                                            {{ ucfirst($metric) }}
-                                    @endswitch
+                                <h3 class="font-semibold text-gray-800 mb-4">
+                                    {{ $values['label'] }}
                                 </h3>
                                 <div class="space-y-3">
                                     <div class="text-center p-3 bg-red-50">
@@ -261,12 +152,12 @@
     @endif
 
     {{-- Additional content section --}}
-    @if (isset($case['content']) && !empty($case['content']))
+    @if (isset($caseData['content']) && !empty($caseData['content']))
         <section class="section-bg">
             <div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Дополнительная информация</h2>
                 <div class="prose prose-lg max-w-none mx-auto">
-                    {!! $case['content'] !!}
+                    {!! $caseData['content'] !!}
                 </div>
             </div>
         </section>

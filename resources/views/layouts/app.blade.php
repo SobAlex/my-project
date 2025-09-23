@@ -7,6 +7,10 @@
 
     <title>@yield('title', 'SEO продвижение сайтов в интернете')</title>
 
+    @hasSection('meta_description')
+        <meta name="description" content="@yield('meta_description')">
+    @endif
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

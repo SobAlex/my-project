@@ -13,9 +13,9 @@ class ProjectCaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем 6 кейсов как указано в требованиях
+        // Создаем 8 кейсов
         ProjectCase::factory()
-            ->count(6)
+            ->count(8)
             ->create();
     }
 }

@@ -13,7 +13,7 @@ class BlogSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем 8 статей блога как указано в требованиях
+        // Создаем 8 статей блога
         Blog::factory()
             ->count(8)
             ->published()

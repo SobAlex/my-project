@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Contracts\ImageableInterface;
+use App\Contracts\PublishableInterface;
+use App\Traits\HasImage;
+use App\Traits\HasPublishing;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class ProjectCase extends Model
+class ProjectCase extends Model implements ImageableInterface, PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasImage, HasPublishing;
 
     /**
      * The table associated with the model.
@@ -46,6 +49,34 @@ class ProjectCase extends Model
         'is_published',
         'sort_order',
         'user_id',
+        // Before/After metrics
+        'traffic_before', 'traffic_after',
+        'keywords_before', 'keywords_after',
+        'conversion_before', 'conversion_after',
+        'revenue_before', 'revenue_after',
+        'appointments_before', 'appointments_after',
+        'calls_before', 'calls_after',
+        'leads_before', 'leads_after',
+        'cost_per_lead_before', 'cost_per_lead_after',
+        'mobile_traffic_before', 'mobile_traffic_after',
+        'repeat_clients_before', 'repeat_clients_after',
+        'enrollments_before', 'enrollments_after',
+        'time_on_site_before', 'time_on_site_after',
+        'local_traffic_before', 'local_traffic_after',
+        'map_views_before', 'map_views_after',
+        'reservations_before', 'reservations_after',
+        'avg_check_before', 'avg_check_after',
+        'b2b_traffic_before', 'b2b_traffic_after',
+        'large_orders_before', 'large_orders_after',
+        'avg_project_before', 'avg_project_after',
+        'orders_before', 'orders_after',
+        'inquiries_before', 'inquiries_after',
+        'sales_before', 'sales_after',
+        'cost_per_sale_before', 'cost_per_sale_after',
+        'avg_order_before', 'avg_order_after',
+        'catalog_conversion_before', 'catalog_conversion_after',
+        'brand_traffic_before', 'brand_traffic_after',
+        'product_views_before', 'product_views_after',
     ];
 
     /**
@@ -68,14 +99,6 @@ class ProjectCase extends Model
     }
 
     /**
-     * Scope a query to only include published cases.
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('is_published', true);
-    }
-
-    /**
      * Scope a query to filter by industry.
      */
     public function scopeByIndustry($query, $industry)
@@ -94,15 +117,6 @@ class ProjectCase extends Model
     }
 
     /**
-     * Scope a query to order cases by sort order.
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('sort_order', 'asc')
-                    ->orderBy('created_at', 'desc');
-    }
-
-    /**
      * Get the route key for the model.
      */
     public function getRouteKeyName()
@@ -111,33 +125,27 @@ class ProjectCase extends Model
     }
 
     /**
-     * Get the case's image URL.
+     * Check if the case is published.
      */
-    public function getImageUrlAttribute()
+    public function isPublished(): bool
     {
-        if (!$this->image) {
-            return null;
-        }
+        return $this->is_published;
+    }
 
-        // Check if it's a legacy static image
-        if (in_array($this->image, ['human.jpeg', 'human2.jpeg', 'human.webp'])) {
-            return asset('images/' . $this->image);
-        }
+    /**
+     * Check if the case is active.
+     */
+    public function isActive(): bool
+    {
+        return $this->is_published;
+    }
 
-        // It's an uploaded image - check if it exists in public disk first
-        // Check if image path already includes 'images/' prefix
-        $imagePath = str_starts_with($this->image, 'images/') ? $this->image : 'images/' . $this->image;
-
-        if (Storage::disk('public')->exists($imagePath)) {
-            return asset('storage/' . $imagePath);
-        }
-
-        // If not in public, it might be in private disk (legacy Filament behavior)
-        if (Storage::disk('local')->exists($this->image)) {
-            return asset('storage/' . $this->image);
-        }
-
-        return null;
+    /**
+     * Get the image attribute.
+     */
+    public function getImageAttribute(): ?string
+    {
+        return $this->attributes['image'] ?? null;
     }
 
     /**
@@ -201,6 +209,111 @@ class ProjectCase extends Model
     }
 
     /**
+     * Get before/after metrics as array for backward compatibility.
+     */
+    public function getBeforeAfterArrayAttribute()
+    {
+        $metrics = [];
+
+        $metricMapping = [
+            'traffic' => ['traffic_before', 'traffic_after'],
+            'keywords' => ['keywords_before', 'keywords_after'],
+            'conversion' => ['conversion_before', 'conversion_after'],
+            'revenue' => ['revenue_before', 'revenue_after'],
+            'appointments' => ['appointments_before', 'appointments_after'],
+            'calls' => ['calls_before', 'calls_after'],
+            'leads' => ['leads_before', 'leads_after'],
+            'cost_per_lead' => ['cost_per_lead_before', 'cost_per_lead_after'],
+            'mobile_traffic' => ['mobile_traffic_before', 'mobile_traffic_after'],
+            'repeat_clients' => ['repeat_clients_before', 'repeat_clients_after'],
+            'enrollments' => ['enrollments_before', 'enrollments_after'],
+            'time_on_site' => ['time_on_site_before', 'time_on_site_after'],
+            'local_traffic' => ['local_traffic_before', 'local_traffic_after'],
+            'map_views' => ['map_views_before', 'map_views_after'],
+            'reservations' => ['reservations_before', 'reservations_after'],
+            'avg_check' => ['avg_check_before', 'avg_check_after'],
+            'b2b_traffic' => ['b2b_traffic_before', 'b2b_traffic_after'],
+            'large_orders' => ['large_orders_before', 'large_orders_after'],
+            'avg_project' => ['avg_project_before', 'avg_project_after'],
+            'orders' => ['orders_before', 'orders_after'],
+            'inquiries' => ['inquiries_before', 'inquiries_after'],
+            'sales' => ['sales_before', 'sales_after'],
+            'cost_per_sale' => ['cost_per_sale_before', 'cost_per_sale_after'],
+            'avg_order' => ['avg_order_before', 'avg_order_after'],
+            'catalog_conversion' => ['catalog_conversion_before', 'catalog_conversion_after'],
+            'brand_traffic' => ['brand_traffic_before', 'brand_traffic_after'],
+            'product_views' => ['product_views_before', 'product_views_after'],
+        ];
+
+        foreach ($metricMapping as $metric => $fields) {
+            $beforeValue = $this->{$fields[0]};
+            $afterValue = $this->{$fields[1]};
+
+            if ($beforeValue || $afterValue) {
+                $metrics[$metric] = [
+                    'before' => $beforeValue,
+                    'after' => $afterValue,
+                ];
+            }
+        }
+
+        return $metrics;
+    }
+
+    /**
+     * Get available metrics for this case.
+     */
+    public function getAvailableMetricsAttribute()
+    {
+        $metrics = [];
+
+        $metricMapping = [
+            'traffic' => ['traffic_before', 'traffic_after', 'Трафик'],
+            'keywords' => ['keywords_before', 'keywords_after', 'Ключевые слова'],
+            'conversion' => ['conversion_before', 'conversion_after', 'Конверсия'],
+            'revenue' => ['revenue_before', 'revenue_after', 'Выручка'],
+            'appointments' => ['appointments_before', 'appointments_after', 'Записи'],
+            'calls' => ['calls_before', 'calls_after', 'Звонки'],
+            'leads' => ['leads_before', 'leads_after', 'Лиды'],
+            'cost_per_lead' => ['cost_per_lead_before', 'cost_per_lead_after', 'Цена лида'],
+            'mobile_traffic' => ['mobile_traffic_before', 'mobile_traffic_after', 'Мобильный трафик'],
+            'repeat_clients' => ['repeat_clients_before', 'repeat_clients_after', 'Повторные клиенты'],
+            'enrollments' => ['enrollments_before', 'enrollments_after', 'Записи на курсы'],
+            'time_on_site' => ['time_on_site_before', 'time_on_site_after', 'Время на сайте'],
+            'local_traffic' => ['local_traffic_before', 'local_traffic_after', 'Локальный трафик'],
+            'map_views' => ['map_views_before', 'map_views_after', 'Просмотры на карте'],
+            'reservations' => ['reservations_before', 'reservations_after', 'Бронирования'],
+            'avg_check' => ['avg_check_before', 'avg_check_after', 'Средний чек'],
+            'b2b_traffic' => ['b2b_traffic_before', 'b2b_traffic_after', 'B2B трафик'],
+            'large_orders' => ['large_orders_before', 'large_orders_after', 'Крупные заказы'],
+            'avg_project' => ['avg_project_before', 'avg_project_after', 'Средний проект'],
+            'orders' => ['orders_before', 'orders_after', 'Заказы'],
+            'inquiries' => ['inquiries_before', 'inquiries_after', 'Запросы'],
+            'sales' => ['sales_before', 'sales_after', 'Продажи'],
+            'cost_per_sale' => ['cost_per_sale_before', 'cost_per_sale_after', 'Цена продажи'],
+            'avg_order' => ['avg_order_before', 'avg_order_after', 'Средний заказ'],
+            'catalog_conversion' => ['catalog_conversion_before', 'catalog_conversion_after', 'Конверсия каталога'],
+            'brand_traffic' => ['brand_traffic_before', 'brand_traffic_after', 'Брендовый трафик'],
+            'product_views' => ['product_views_before', 'product_views_after', 'Просмотры товаров'],
+        ];
+
+        foreach ($metricMapping as $metric => $data) {
+            $beforeValue = $this->{$data[0]};
+            $afterValue = $this->{$data[1]};
+
+            if ($beforeValue || $afterValue) {
+                $metrics[$metric] = [
+                    'before' => $beforeValue,
+                    'after' => $afterValue,
+                    'label' => $data[2],
+                ];
+            }
+        }
+
+        return $metrics;
+    }
+
+    /**
      * Boot the model.
      */
     protected static function boot()
@@ -211,6 +324,16 @@ class ProjectCase extends Model
             if (empty($case->case_id)) {
                 $case->case_id = 'case-' . Str::slug($case->title) . '-' . time();
             }
+        });
+
+        static::updating(function ($case) {
+            \Illuminate\Support\Facades\Log::info('Updating case', [
+                'id' => $case->id,
+                'case_id' => $case->case_id,
+                'meta_title' => $case->meta_title,
+                'meta_description' => $case->meta_description,
+                'dirty' => $case->getDirty()
+            ]);
         });
     }
 }

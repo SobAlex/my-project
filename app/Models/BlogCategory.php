@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Contracts\PublishableInterface;
+use App\Traits\HasPublishing;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 
-class BlogCategory extends Model
+class BlogCategory extends Model implements PublishableInterface
 {
-    use HasFactory;
+    use HasFactory, HasPublishing, HasSlug;
 
     protected $fillable = [
         'name',
@@ -30,30 +32,19 @@ class BlogCategory extends Model
         return $this->hasMany(Blog::class, 'category_id');
     }
 
-    public function scopeActive($query)
+    /**
+     * Check if the category is published.
+     */
+    public function isPublished(): bool
     {
-        return $query->where('is_active', true);
+        return $this->is_active;
     }
 
-    public function scopeOrdered($query)
+    /**
+     * Check if the category is active.
+     */
+    public function isActive(): bool
     {
-        return $query->orderBy('sort_order')->orderBy('name');
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($category) {
-            if (empty($category->slug) && !empty($category->name)) {
-                $category->slug = Str::slug($category->name);
-            }
-        });
-
-        static::updating(function ($category) {
-            if (empty($category->slug) && !empty($category->name)) {
-                $category->slug = Str::slug($category->name);
-            }
-        });
+        return $this->is_active;
     }
 }

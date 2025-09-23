@@ -31,7 +31,7 @@ class ProjectCaseFactory extends Factory
             'case_id' => 'seo-case-' . $this->faker->unique()->numberBetween(1, 1000), // string
             'title' => $this->faker->sentence(rand(3, 6)), // string
             'client' => $this->faker->company(), // string
-            'industry' => IndustryCategory::inRandomOrder()->first()?->slug ?? 'business', // string - связь с IndustryCategory
+            'industry_category_id' => IndustryCategory::inRandomOrder()->first()?->id ?? 1, // foreignId - связь с IndustryCategory
             'period' => $this->faker->randomElement(['6 месяцев', '8 месяцев', '10 месяцев', '12 месяцев', '7 месяцев', '9 месяцев', '11 месяцев']), // string
             'image' => $this->faker->randomElement(['human.jpeg', 'human2.jpeg', 'human.webp']), // string - используем существующие изображения
             'description' => $this->faker->paragraphs(rand(2, 4), true), // text
@@ -50,7 +50,7 @@ class ProjectCaseFactory extends Factory
             'service_key' => 'seo-promotion', // string
             'is_published' => $this->faker->boolean(90), // boolean
             'sort_order' => $this->faker->numberBetween(0, 100), // integer
-            'user_id' => User::factory(), // foreignId
+            'user_id' => 1, // Используем существующего пользователя
         ];
     }
 
