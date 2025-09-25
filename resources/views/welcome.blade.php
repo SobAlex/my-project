@@ -282,7 +282,7 @@
                         class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                         {{-- Case image --}}
                         <div class="relative h-48 overflow-hidden">
-                            <img src="{{ asset('images/' . $case['image']) }}" alt="{{ $case['title'] }}"
+                            <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
                                 class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                             <div class="absolute bottom-4 left-4 text-white">
@@ -359,18 +359,25 @@
                     <article
                         class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
                         {{-- Article image --}}
-                        <div
-                            class="relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                            <i class="material-icons text-white text-6xl">
-                                @if ($article->blogCategory && $article->blogCategory->slug === 'seo-news')
-                                    trending_up
-                                @elseif($article->blogCategory && $article->blogCategory->slug === 'analytics')
-                                    analytics
-                                @else
-                                    tips_and_updates
-                                @endif
-                            </i>
-                        </div>
+                        @if ($article->image)
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            </div>
+                        @else
+                            <div
+                                class="relative h-48 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                                <i class="material-icons text-white text-6xl">
+                                    @if ($article->blogCategory && $article->blogCategory->slug === 'seo-news')
+                                        trending_up
+                                    @elseif($article->blogCategory && $article->blogCategory->slug === 'analytics')
+                                        analytics
+                                    @else
+                                        tips_and_updates
+                                    @endif
+                                </i>
+                            </div>
+                        @endif
 
                         {{-- Article content --}}
                         <div class="p-6 flex-1 flex flex-col">

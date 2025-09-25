@@ -36,8 +36,8 @@
                 <article
                     class="bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
                     @if ($article->image)
-                        <div class="aspect-video bg-cover bg-center"
-                            style="background-image: url('{{ $article->image_url }}')">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
                         </div>
                     @else
                         <div

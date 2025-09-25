@@ -23,7 +23,8 @@
         <article class="bg-white  shadow-lg overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
             @if ($article->image)
-                <div class="aspect-video bg-cover bg-center" style="background-image: url('{{ $article->image_url }}')">
+                <div class="aspect-video overflow-hidden">
+                    <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
                 </div>
             @else
                 <div class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
@@ -98,8 +99,8 @@
                         <a href="{{ route('blog.article', [$relatedArticle->blogCategory->slug ?? 'uncategorized', $relatedArticle->slug]) }}"
                             class="group bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
                             @if ($relatedArticle->image)
-                                <div class="aspect-video bg-cover bg-center"
-                                    style="background-image: url('{{ $relatedArticle->image_url }}')">
+                                <div class="aspect-video overflow-hidden">
+                                    <img src="{{ $relatedArticle->image_url }}" alt="{{ $relatedArticle->title }}" class="w-full h-full object-cover">
                                 </div>
                             @else
                                 <div
