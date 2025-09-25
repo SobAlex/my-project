@@ -31,27 +31,12 @@ class ProjectCaseForm
                     ->preload(),
                 TextInput::make('period')
                     ->required(),
+                // Минимальный тестовый пример для отладки
                 FileUpload::make('image')
-                    ->label('Изображение')
                     ->image()
                     ->disk('public')
                     ->directory('images')
-                    ->visibility('public')
-                    ->enableOpen()
-                    ->preserveFilenames()
-                    ->afterStateHydrated(function ($component, $state) {
-                        if (is_string($state) && !empty($state)) {
-                            if (Str::startsWith($state, 'http')) {
-                                $path = parse_url($state, PHP_URL_PATH);
-                                $filename = basename($path);
-                                $component->state($filename);
-                            } else {
-                                $component->state($state);
-                            }
-                        } else {
-                            $component->state(null);
-                        }
-                    }),
+                    ->visibility('public'),
                 RichEditor::make('description')
                     ->label('Описание проекта')
                     ->required()

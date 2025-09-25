@@ -43,6 +43,7 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
     protected $casts = [
         'is_published' => 'boolean',
         'published_at' => 'datetime',
+        'image' => 'string',
     ];
 
     /**
@@ -90,7 +91,14 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
      */
     public function getImageAttribute(): ?string
     {
-        return $this->attributes['image'] ?? null;
+        $image = $this->attributes['image'] ?? null;
+
+        // Безопасная обработка для предотвращения "undefined"
+        if (is_string($image) && !empty(trim($image))) {
+            return trim($image);
+        }
+
+        return null;
     }
 
     /**

@@ -87,6 +87,7 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
     protected $casts = [
         'before_after' => 'array',
         'is_published' => 'boolean',
+        'image' => 'string',
     ];
 
 
@@ -145,7 +146,14 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
      */
     public function getImageAttribute(): ?string
     {
-        return $this->attributes['image'] ?? null;
+        $image = $this->attributes['image'] ?? null;
+
+        // Безопасная обработка для предотвращения "undefined"
+        if (is_string($image) && !empty(trim($image))) {
+            return trim($image);
+        }
+
+        return null;
     }
 
     /**

@@ -66,6 +66,7 @@ class BlogForm
                         'undo',
                     ])
                     ->columnSpanFull(),
+                // Минимальный тестовый пример для отладки
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')
