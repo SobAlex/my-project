@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $category . ' - Блог SobAlex')
-@section('description',
+@section('meta_description',
     'Статьи в категории ' .
     $category .
     '. Актуальная информация о SEO, веб-аналитике и продвижении

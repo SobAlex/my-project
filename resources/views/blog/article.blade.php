@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', $article->title . ' - Блог SobAlex')
-@section('description', $article->excerpt)
+@section('title', $article->meta_title ?: $article->title . ' - Блог SobAlex')
+@section('meta_description', $article->meta_description ?: $article->excerpt)
 
 @section('content')
     <!-- Breadcrumbs -->

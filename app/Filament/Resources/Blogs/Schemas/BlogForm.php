@@ -77,8 +77,12 @@ class BlogForm
                     ->required()
                     ->searchable()
                     ->preload(),
-                TextInput::make('meta_title'),
+                TextInput::make('meta_title')
+                    ->label('SEO заголовок')
+                    ->helperText('Заголовок для поисковых систем (если не указан, будет использован обычный заголовок)'),
                 Textarea::make('meta_description')
+                    ->label('SEO описание')
+                    ->helperText('Описание для поисковых систем (если не указано, будет использовано краткое описание)')
                     ->columnSpanFull(),
                 Toggle::make('is_published')
                     ->required(),
