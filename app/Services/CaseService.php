@@ -147,6 +147,7 @@ class CaseService
             'image' => $case->image,
             'image_url' => $case->image_url,
             'description' => $case->description,
+            'description_clean' => strip_tags(html_entity_decode($case->description)),
             'content' => $case->content,
             'meta_title' => $case->meta_title,
             'meta_description' => $case->meta_description,

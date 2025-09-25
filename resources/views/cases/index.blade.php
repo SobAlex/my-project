@@ -109,7 +109,7 @@
                                             {{ $case['period'] }}
                                         </p>
                                         <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                            {{ Str::limit($case['description'], 120) }}</p>
+                                            {{ Str::limit($case['description_clean'], 120) }}</p>
 
                                         {{-- Key metrics --}}
                                         <div class="space-y-2 mb-4">

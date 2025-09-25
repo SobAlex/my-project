@@ -305,7 +305,7 @@
                                 <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $case['title'] }}</h3>
                                 <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}</p>
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                    {{ Str::limit($case['description'], 120) }}
+                                    {{ Str::limit($case['description_clean'], 120) }}
                                 </p>
 
                                 {{-- Key metrics --}}

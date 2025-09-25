@@ -153,4 +153,12 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
         return $this->published_at ? $this->published_at->format('d.m.Y') : null;
     }
 
+    /**
+     * Get the excerpt attribute with HTML tags removed.
+     */
+    public function getExcerptAttribute()
+    {
+        return strip_tags(html_entity_decode($this->attributes['excerpt'] ?? ''));
+    }
+
 }
