@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\BlogCategories\Tables;
 
+use App\Filament\Resources\BlogCategories\BlogCategoryResource;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,7 +18,9 @@ class BlogCategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->url(fn ($record) => BlogCategoryResource::getUrl('edit', ['record' => $record]))
+                    ->openUrlInNewTab(false),
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('color')
@@ -25,8 +29,8 @@ class BlogCategoriesTable
                     ->searchable(),
                 IconColumn::make('is_active')
                     ->boolean(),
-                TextColumn::make('sort_order')
-                    ->numeric()
+                TextInputColumn::make('sort_order')
+                    ->rules(['integer', 'min:0'])
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -40,6 +44,7 @@ class BlogCategoriesTable
             ->filters([
                 //
             ])
+            ->reorderable('sort_order')
             ->recordActions([
                 EditAction::make(),
             ])

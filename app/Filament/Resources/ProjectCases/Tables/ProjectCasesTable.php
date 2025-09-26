@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\ProjectCases\Tables;
 
+use App\Filament\Resources\ProjectCases\ProjectCaseResource;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -19,7 +21,9 @@ class ProjectCasesTable
                 TextColumn::make('case_id')
                     ->searchable(),
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->url(fn ($record) => ProjectCaseResource::getUrl('edit', ['record' => $record]))
+                    ->openUrlInNewTab(false),
                 TextColumn::make('client')
                     ->searchable(),
                 TextColumn::make('industry')
@@ -31,8 +35,8 @@ class ProjectCasesTable
                     ->searchable(),
                 IconColumn::make('is_published')
                     ->boolean(),
-                TextColumn::make('sort_order')
-                    ->numeric()
+                TextInputColumn::make('sort_order')
+                    ->rules(['integer', 'min:0'])
                     ->sortable(),
                 TextColumn::make('user.name')
                     ->searchable(),
@@ -62,6 +66,7 @@ class ProjectCasesTable
             ->filters([
                 //
             ])
+            ->reorderable('sort_order')
             ->recordActions([
                 EditAction::make(),
             ])
