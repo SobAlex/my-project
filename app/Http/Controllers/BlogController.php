@@ -3,46 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Services\BlogService;
+use App\Http\Controllers\BlogCategoryController;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function __construct(
-        private BlogService $blogService
+        private BlogService $blogService,
+        private BlogCategoryController $blogCategoryController
     ) {}
 
-    // Главная страница блога
+    // ============================================================================
+    // PUBLIC ROUTES
+    // ============================================================================
+
+    /**
+     * Главная страница блога
+     */
     public function index()
     {
         $articles = $this->blogService->getPublishedPosts();
-        return view('blog.index', compact('articles'));
+        $activeBlogCategories = $this->blogCategoryController->getForBlogIndex();
+        return view('blog.index', compact('articles', 'activeBlogCategories'));
     }
 
-    // SEO новости
-    public function seoNews()
-    {
-        $data = $this->blogService->getPostsByCategory('seo-news');
-        $data['category'] = 'SEO новости';
-        return view('blog.category', $data);
-    }
-
-    // Аналитика
-    public function analytics()
-    {
-        $data = $this->blogService->getPostsByCategory('analytics');
-        $data['category'] = 'Аналитика';
-        return view('blog.category', $data);
-    }
-
-    // Советы
-    public function tips()
-    {
-        $data = $this->blogService->getPostsByCategory('tips');
-        $data['category'] = 'Советы';
-        return view('blog.category', $data);
-    }
-
-    // Универсальный метод для всех категорий блогов
+    /**
+     * Универсальный метод для всех категорий блогов
+     */
     public function category($categorySlug)
     {
         $data = $this->blogService->getPostsByCategory($categorySlug);
@@ -54,7 +41,9 @@ class BlogController extends Controller
         return view('blog.category', $data);
     }
 
-    // Показать конкретную статью (включая неопубликованные)
+    /**
+     * Показать конкретную статью (включая неопубликованные)
+     */
     public function show($category, $slug)
     {
         $article = $this->blogService->getPostByCategoryAndSlugWithUnpublished($category, $slug);
@@ -68,7 +57,9 @@ class BlogController extends Controller
         return view('blog.article', compact('article', 'relatedArticles'));
     }
 
-    // Показать статью без категории (включая неопубликованные)
+    /**
+     * Показать статью без категории (включая неопубликованные)
+     */
     public function showWithoutCategory($slug)
     {
         $article = $this->blogService->getPostBySlugWithUnpublished($slug);
@@ -82,7 +73,44 @@ class BlogController extends Controller
         return view('blog.article', compact('article', 'relatedArticles'));
     }
 
-    // Получить последние статьи для главной страницы
+    // ============================================================================
+    // LEGACY METHODS (для обратной совместимости)
+    // ============================================================================
+
+    /**
+     * SEO новости (legacy)
+     * @deprecated Используйте /blog/category/seo-news
+     */
+    public function seoNews()
+    {
+        return $this->category('seo-news');
+    }
+
+    /**
+     * Аналитика (legacy)
+     * @deprecated Используйте /blog/category/analytics
+     */
+    public function analytics()
+    {
+        return $this->category('analytics');
+    }
+
+    /**
+     * Советы (legacy)
+     * @deprecated Используйте /blog/category/tips
+     */
+    public function tips()
+    {
+        return $this->category('tips');
+    }
+
+    // ============================================================================
+    // API METHODS
+    // ============================================================================
+
+    /**
+     * Получить последние статьи для главной страницы
+     */
     public function getLatestArticlesForHomepage($limit = 4)
     {
         return $this->blogService->getLatestPostsForHomepage($limit);
