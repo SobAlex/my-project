@@ -50,6 +50,7 @@ class ProjectCaseForm
                     ->label('Описание проекта')
                     ->required()
                     ->default('')
+                    ->rules(['max:5000'])
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',
@@ -255,6 +256,7 @@ class ProjectCaseForm
                 RichEditor::make('content')
                     ->label('Дополнительная информация')
                     ->default('')
+                    ->rules(['max:10000'])
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',

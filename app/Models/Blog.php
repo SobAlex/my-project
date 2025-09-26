@@ -148,11 +148,19 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
             if (is_null($blog->content)) {
                 $blog->content = '';
             }
+            // Set published_at when publishing
+            if ($blog->is_published && empty($blog->published_at)) {
+                $blog->published_at = now();
+            }
         });
 
         static::updating(function ($blog) {
             if (empty($blog->slug) && !empty($blog->title)) {
                 $blog->slug = Str::slug($blog->title);
+            }
+            // Set published_at when publishing for the first time
+            if ($blog->is_published && empty($blog->published_at)) {
+                $blog->published_at = now();
             }
         });
     }
@@ -196,7 +204,7 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
      */
     public function getFormattedPublishedAtAttribute()
     {
-        return $this->published_at ? $this->published_at->format('d.m.Y') : null;
+        return $this->published_at ? $this->published_at->format('d.m.Y H:i') : 'Не опубликовано';
     }
 
     /**

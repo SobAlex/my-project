@@ -35,6 +35,7 @@ class BlogForm
                 RichEditor::make('excerpt')
                     ->label('Краткое описание')
                     ->default('')
+                    ->rules(['max:1000'])
                     ->toolbarButtons([
                         'bold',
                         'italic',
@@ -50,6 +51,7 @@ class BlogForm
                 RichEditor::make('content')
                     ->label('Содержимое статьи')
                     ->default('')
+                    ->rules(['max:10000'])
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',
