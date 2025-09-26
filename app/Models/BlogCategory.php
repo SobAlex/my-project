@@ -47,4 +47,30 @@ class BlogCategory extends Model implements PublishableInterface
     {
         return $this->is_active;
     }
+
+    /**
+     * Scope a query to only include active categories.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to only include inactive categories.
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('is_active', false);
+    }
+
+    /**
+     * Get blogs with only active categories.
+     */
+    public function activeBlogs(): HasMany
+    {
+        return $this->blogs()->whereHas('category', function($query) {
+            $query->where('is_active', true);
+        });
+    }
 }

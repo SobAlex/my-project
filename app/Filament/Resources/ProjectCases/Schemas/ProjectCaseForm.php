@@ -25,10 +25,19 @@ class ProjectCaseForm
                 TextInput::make('client')
                     ->required(),
                 Select::make('industry_category_id')
-                    ->relationship('industryCategory', 'name')
+                    ->relationship('industryCategory', 'name', function ($query) {
+                        $query->where('is_active', true);
+                    })
                     ->required()
                     ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->options(function () {
+                        return \App\Models\IndustryCategory::active()
+                            ->get()
+                            ->mapWithKeys(fn ($category) => [
+                                $category->id => $category->name
+                            ]);
+                    }),
                 TextInput::make('period')
                     ->required(),
                 // Минимальный тестовый пример для отладки

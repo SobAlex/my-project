@@ -51,4 +51,30 @@ class IndustryCategory extends Model implements PublishableInterface
     {
         return $this->hasMany(ProjectCase::class, 'industry_category_id');
     }
+
+    /**
+     * Scope a query to only include active categories.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to only include inactive categories.
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('is_active', false);
+    }
+
+    /**
+     * Get cases with only active categories.
+     */
+    public function activeCases(): HasMany
+    {
+        return $this->cases()->whereHas('industryCategory', function($query) {
+            $query->where('is_active', true);
+        });
+    }
 }

@@ -68,6 +68,20 @@ class BlogController extends Controller
         return view('blog.article', compact('article', 'relatedArticles'));
     }
 
+    // Показать статью без категории (для статей с удаленными категориями)
+    public function showWithoutCategory($slug)
+    {
+        $article = $this->blogService->getPostBySlug($slug);
+
+        if (!$article) {
+            abort(404);
+        }
+
+        $relatedArticles = $this->blogService->getRelatedPosts($article);
+
+        return view('blog.article', compact('article', 'relatedArticles'));
+    }
+
     // Получить последние статьи для главной страницы
     public function getLatestArticlesForHomepage($limit = 4)
     {

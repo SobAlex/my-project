@@ -17,9 +17,6 @@ class BlogService
     {
         return Blog::published()
             ->with('blogCategory')
-            ->whereHas('blogCategory', function($query) {
-                $query->where('is_active', true);
-            })
             ->ordered()
             ->paginate($perPage);
     }
@@ -70,6 +67,17 @@ class BlogService
             ->whereHas('blogCategory', function($query) use ($categorySlug) {
                 $query->where('slug', $categorySlug)->where('is_active', true);
             })
+            ->where('slug', $slug)
+            ->first();
+    }
+
+    /**
+     * Get blog post by slug only (for articles without category or with deleted category).
+     */
+    public function getPostBySlug(string $slug): ?Blog
+    {
+        return Blog::published()
+            ->with('blogCategory')
             ->where('slug', $slug)
             ->first();
     }

@@ -53,29 +53,6 @@
                                 class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
                                 {{ $caseData['industry_name'] }}
                             </a>
-                        @else
-                            <span class="bg-gray-500 px-3 py-1 text-sm font-medium inline-block">
-                                @switch($caseData['industry'])
-                                    @case('clothing')
-                                        Одежда
-                                    @break
-
-                                    @case('production')
-                                        Производство
-                                    @break
-
-                                    @case('electronics')
-                                        Электроника
-                                    @break
-
-                                    @case('furniture')
-                                        Мебель
-                                    @break
-
-                                    @default
-                                        {{ $caseData['industry'] }}
-                                @endswitch
-                            </span>
                         @endif
                     </div>
                 </div>

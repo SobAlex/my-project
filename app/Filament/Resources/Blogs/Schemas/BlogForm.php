@@ -73,10 +73,19 @@ class BlogForm
                     ->directory('images')
                     ->visibility('public'),
                 Select::make('category_id')
-                    ->relationship('blogCategory', 'name')
+                    ->relationship('blogCategory', 'name', function ($query) {
+                        $query->where('is_active', true);
+                    })
                     ->required()
                     ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->options(function () {
+                        return \App\Models\BlogCategory::active()
+                            ->get()
+                            ->mapWithKeys(fn ($category) => [
+                                $category->id => $category->name
+                            ]);
+                    }),
                 TextInput::make('meta_title')
                     ->label('SEO заголовок')
                     ->helperText('Заголовок для поисковых систем (если не указан, будет использован обычный заголовок)'),

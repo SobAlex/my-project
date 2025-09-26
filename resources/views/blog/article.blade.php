@@ -7,14 +7,14 @@
     <!-- Breadcrumbs -->
     <div class="pt-8">
         @include('partials.breadcrumbs', [
-            'breadcrumbs' => [
+            'breadcrumbs' => array_filter([
                 ['title' => 'Блог', 'url' => route('blog')],
-                [
-                    'title' => $article->category_name,
+                $article->hasActiveCategory() ? [
+                    'title' => $article->active_category_name,
                     'url' => route('blog.category', $article->blogCategory->slug ?? 'uncategorized'),
-                ],
+                ] : null,
                 ['title' => $article->title, 'url' => null, 'truncate' => true],
-            ],
+            ]),
         ])
     </div>
 
@@ -43,9 +43,11 @@
             <div class="p-8">
                 <!-- Метаданные статьи -->
                 <div class="flex flex-wrap items-center gap-4 mb-6">
-                    <span class="inline-flex items-center px-3 py-1  text-sm font-medium bg-cyan-100 text-cyan-800">
-                        {{ $article->category_name }}
-                    </span>
+                    @if ($article->hasActiveCategory())
+                        <span class="inline-flex items-center px-3 py-1  text-sm font-medium bg-cyan-100 text-cyan-800">
+                            {{ $article->active_category_name }}
+                        </span>
+                    @endif
                     <span class="text-gray-500 text-sm flex items-center">
                         <i class="material-icons text-xs mr-1">schedule</i>
                         {{ $article->reading_time ?? '5' }} мин чтения
@@ -76,11 +78,15 @@
         <!-- Навигация между статьями -->
         <div class="mt-12 pt-8 border-t border-gray-200">
             <div class="flex items-center justify-between">
-                <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
-                    class="btn inline-flex items-center">
-                    <i class="material-icons text-sm mr-2">arrow_back</i>
-                    Все статьи в категории
-                </a>
+                @if ($article->hasActiveCategory())
+                    <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
+                        class="btn inline-flex items-center">
+                        <i class="material-icons text-sm mr-2">arrow_back</i>
+                        Все статьи в категории
+                    </a>
+                @else
+                    <div></div>
+                @endif
 
                 <a href="{{ route('blog') }}" class="btn inline-flex items-center">
                     Все статьи блога
@@ -96,7 +102,7 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)
-                        <a href="{{ route('blog.article', [$relatedArticle->blogCategory->slug ?? 'uncategorized', $relatedArticle->slug]) }}"
+                        <a href="{{ $relatedArticle->url }}"
                             class="group bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
                             @if ($relatedArticle->image)
                                 <div class="aspect-video overflow-hidden">

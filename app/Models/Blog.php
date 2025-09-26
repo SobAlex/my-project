@@ -63,6 +63,22 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
     }
 
     /**
+     * Get the blog category alias for backward compatibility.
+     */
+    public function category(): BelongsTo
+    {
+        return $this->blogCategory();
+    }
+
+    /**
+     * Get the active blog category that owns the blog post.
+     */
+    public function activeBlogCategory(): BelongsTo
+    {
+        return $this->belongsTo(BlogCategory::class, 'category_id')->where('is_active', true);
+    }
+
+    /**
      * Scope a query to filter by category.
      */
     public function scopeByCategory($query, $categoryId)
@@ -146,6 +162,32 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
     }
 
     /**
+     * Get the active category name from related BlogCategory.
+     */
+    public function getActiveCategoryNameAttribute()
+    {
+        return $this->activeBlogCategory ? $this->activeBlogCategory->name : null;
+    }
+
+    /**
+     * Check if the blog has an active category.
+     */
+    public function hasActiveCategory(): bool
+    {
+        return $this->activeBlogCategory !== null;
+    }
+
+    /**
+     * Scope a query to only include blogs with active categories.
+     */
+    public function scopeWithActiveCategories($query)
+    {
+        return $query->whereHas('blogCategory', function($query) {
+            $query->where('is_active', true);
+        });
+    }
+
+    /**
      * Get the formatted published date.
      */
     public function getFormattedPublishedAtAttribute()
@@ -159,6 +201,21 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
     public function getExcerptAttribute()
     {
         return strip_tags(html_entity_decode($this->attributes['excerpt'] ?? ''));
+    }
+
+    /**
+     * Get the URL for the blog post.
+     */
+    public function getUrlAttribute(): string
+    {
+        if ($this->hasActiveCategory()) {
+            return route('blog.article', [
+                'category' => $this->blogCategory->slug,
+                'slug' => $this->slug
+            ]);
+        }
+
+        return route('blog.article.uncategorized', ['slug' => $this->slug]);
     }
 
 }

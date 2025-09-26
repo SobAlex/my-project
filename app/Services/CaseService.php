@@ -85,7 +85,7 @@ class CaseService
     {
         $category = IndustryCategory::where('slug', $industrySlug)->first();
 
-        if ($category) {
+        if ($category && $category->is_active) {
             return [
                 'name' => $category->name,
                 'route' => 'cases.category',
@@ -142,7 +142,7 @@ class CaseService
             'title' => $case->title,
             'client' => $case->client,
             'industry' => $industrySlug,
-            'industry_name' => $case->industryCategory ? $case->industryCategory->name : 'Без категории',
+            'industry_name' => $case->industryCategory && $case->industryCategory->is_active ? $case->industryCategory->name : null,
             'period' => $case->period,
             'image' => $case->image,
             'image_url' => $case->image_url,

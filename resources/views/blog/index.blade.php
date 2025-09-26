@@ -76,17 +76,19 @@
 
                         <div class="p-6">
                             <div class="flex items-center mb-3">
-                                <span
-                                    class="inline-flex items-center px-3 py-1  text-xs font-medium bg-cyan-100 text-cyan-800">
-                                    {{ $article->category_name }}
-                                </span>
+                                @if ($article->hasActiveCategory())
+                                    <span
+                                        class="inline-flex items-center px-3 py-1  text-xs font-medium bg-cyan-100 text-cyan-800">
+                                        {{ $article->active_category_name }}
+                                    </span>
+                                @endif
                                 <span class="text-gray-500 text-sm ml-auto">
                                     {{ $article->formatted_published_at }}
                                 </span>
                             </div>
 
                             <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                                <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
+                                <a href="{{ $article->url }}"
                                     class="hover:text-cyan-600 transition-colors">
                                     {{ $article->title }}
                                 </a>
@@ -102,7 +104,7 @@
                                     {{ $article->reading_time ?? '5' }} мин чтения
                                 </span>
 
-                                <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
+                                <a href="{{ $article->url }}"
                                     class="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-medium text-sm">
                                     Читать далее
                                     <i class="material-icons text-sm ml-1">arrow_forward</i>

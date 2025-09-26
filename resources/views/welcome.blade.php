@@ -395,7 +395,7 @@
 
                                 {{-- Title --}}
                                 <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
-                                    <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
+                                    <a href="{{ $article->url }}"
                                         class="hover:text-cyan-600 transition-colors">
                                         {{ $article->title }}
                                     </a>
@@ -414,7 +414,7 @@
                             </div>
 
                             {{-- CTA button --}}
-                            <a href="{{ route('blog.article', [$article->blogCategory->slug ?? 'uncategorized', $article->slug]) }}"
+                            <a href="{{ $article->url }}"
                                 class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
                                 Читать статью
                             </a>

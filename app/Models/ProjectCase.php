@@ -189,6 +189,40 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
     }
 
     /**
+     * Get active industry name in Russian.
+     */
+    public function getActiveIndustryNameAttribute()
+    {
+        return $this->activeIndustryCategory ? $this->activeIndustryCategory->name : null;
+    }
+
+    /**
+     * Get the active industry category that owns the case.
+     */
+    public function activeIndustryCategory(): BelongsTo
+    {
+        return $this->belongsTo(IndustryCategory::class, 'industry_category_id')->where('is_active', true);
+    }
+
+    /**
+     * Check if the case has an active industry category.
+     */
+    public function hasActiveIndustryCategory(): bool
+    {
+        return $this->activeIndustryCategory !== null;
+    }
+
+    /**
+     * Scope a query to only include cases with active industry categories.
+     */
+    public function scopeWithActiveIndustryCategories($query)
+    {
+        return $query->whereHas('industryCategory', function($query) {
+            $query->where('is_active', true);
+        });
+    }
+
+    /**
      * Get results as array from individual fields.
      */
     public function getResultsArrayAttribute()

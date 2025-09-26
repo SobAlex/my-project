@@ -54,6 +54,7 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/tips', [BlogController::class, 'tips'])->name('tips');
     Route::get('/category/{category}', [BlogController::class, 'category'])->name('category');
     Route::get('/{category}/{slug}', [BlogController::class, 'show'])->name('article');
+    Route::get('/{slug}', [BlogController::class, 'showWithoutCategory'])->name('article.uncategorized');
 });
 
 // Contact forms
