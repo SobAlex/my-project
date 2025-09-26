@@ -54,10 +54,10 @@ class BlogController extends Controller
         return view('blog.category', $data);
     }
 
-    // Показать конкретную статью
+    // Показать конкретную статью (включая неопубликованные)
     public function show($category, $slug)
     {
-        $article = $this->blogService->getPostByCategoryAndSlug($category, $slug);
+        $article = $this->blogService->getPostByCategoryAndSlugWithUnpublished($category, $slug);
 
         if (!$article) {
             abort(404);
@@ -68,10 +68,10 @@ class BlogController extends Controller
         return view('blog.article', compact('article', 'relatedArticles'));
     }
 
-    // Показать статью без категории (для статей с удаленными категориями)
+    // Показать статью без категории (включая неопубликованные)
     public function showWithoutCategory($slug)
     {
-        $article = $this->blogService->getPostBySlug($slug);
+        $article = $this->blogService->getPostBySlugWithUnpublished($slug);
 
         if (!$article) {
             abort(404);

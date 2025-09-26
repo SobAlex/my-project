@@ -101,11 +101,11 @@ class CaseController extends Controller
     }
 
     /**
-     * Страница отдельного кейса
+     * Страница отдельного кейса (включая неопубликованные)
      */
     public function show($id)
     {
-        $case = $this->caseService->getCaseById($id);
+        $case = $this->caseService->getCaseByIdWithUnpublished($id);
 
         if (!$case) {
             abort(404);

@@ -47,13 +47,23 @@ class CaseService
     }
 
     /**
-     * Get case by case_id.
+     * Get case by case_id (published only).
      */
     public function getCaseById(string $caseId): ?ProjectCase
     {
         return ProjectCase::where('case_id', $caseId)
             ->with('industryCategory')
             ->published()
+            ->first();
+    }
+
+    /**
+     * Get case by case_id (including unpublished).
+     */
+    public function getCaseByIdWithUnpublished(string $caseId): ?ProjectCase
+    {
+        return ProjectCase::where('case_id', $caseId)
+            ->with('industryCategory')
             ->first();
     }
 

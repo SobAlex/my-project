@@ -10,6 +10,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class BlogsTable
@@ -49,7 +50,12 @@ class BlogsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TernaryFilter::make('is_published')
+                    ->label('Статус публикации')
+                    ->placeholder('Все статьи')
+                    ->trueLabel('Только опубликованные')
+                    ->falseLabel('Только неопубликованные')
+                    ->native(false),
             ])
             ->reorderable('sort_order')
             ->recordActions([

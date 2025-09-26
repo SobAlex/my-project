@@ -58,7 +58,7 @@ class BlogService
     }
 
     /**
-     * Get blog post by category and slug.
+     * Get blog post by category and slug (published only).
      */
     public function getPostByCategoryAndSlug(string $categorySlug, string $slug): ?Blog
     {
@@ -72,12 +72,35 @@ class BlogService
     }
 
     /**
-     * Get blog post by slug only (for articles without category or with deleted category).
+     * Get blog post by category and slug (including unpublished).
+     */
+    public function getPostByCategoryAndSlugWithUnpublished(string $categorySlug, string $slug): ?Blog
+    {
+        return Blog::with('blogCategory')
+            ->whereHas('blogCategory', function($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug);
+            })
+            ->where('slug', $slug)
+            ->first();
+    }
+
+    /**
+     * Get blog post by slug only (published only).
      */
     public function getPostBySlug(string $slug): ?Blog
     {
         return Blog::published()
             ->with('blogCategory')
+            ->where('slug', $slug)
+            ->first();
+    }
+
+    /**
+     * Get blog post by slug only (including unpublished).
+     */
+    public function getPostBySlugWithUnpublished(string $slug): ?Blog
+    {
+        return Blog::with('blogCategory')
             ->where('slug', $slug)
             ->first();
     }
