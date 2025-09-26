@@ -366,6 +366,10 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
             if (empty($case->case_id)) {
                 $case->case_id = 'case-' . Str::slug($case->title) . '-' . time();
             }
+            // Ensure content is never null
+            if (is_null($case->content)) {
+                $case->content = '';
+            }
         });
 
         static::updating(function ($case) {

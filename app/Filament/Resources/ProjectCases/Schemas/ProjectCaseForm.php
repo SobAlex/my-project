@@ -49,6 +49,7 @@ class ProjectCaseForm
                 RichEditor::make('description')
                     ->label('Описание проекта')
                     ->required()
+                    ->default('')
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',
@@ -253,6 +254,7 @@ class ProjectCaseForm
                 TextInput::make('result_6'),
                 RichEditor::make('content')
                     ->label('Дополнительная информация')
+                    ->default('')
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',

@@ -27,7 +27,8 @@ class ProjectCasesTable
                     ->openUrlInNewTab(false),
                 TextColumn::make('client')
                     ->searchable(),
-                TextColumn::make('industry')
+                TextColumn::make('industryCategory.name')
+                    ->label('Отрасль')
                     ->searchable(),
                 TextColumn::make('period')
                     ->searchable(),

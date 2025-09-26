@@ -26,7 +26,8 @@ class BlogsTable
                 TextColumn::make('slug')
                     ->searchable(),
                 ImageColumn::make('image'),
-                TextColumn::make('category')
+                TextColumn::make('blogCategory.name')
+                    ->label('Категория')
                     ->searchable(),
                 TextColumn::make('meta_title')
                     ->searchable(),

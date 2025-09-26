@@ -144,6 +144,10 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
             if (empty($blog->slug) && !empty($blog->title)) {
                 $blog->slug = Str::slug($blog->title);
             }
+            // Ensure content is never null
+            if (is_null($blog->content)) {
+                $blog->content = '';
+            }
         });
 
         static::updating(function ($blog) {

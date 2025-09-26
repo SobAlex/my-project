@@ -34,6 +34,7 @@ class BlogForm
                     ->unique(Blog::class, 'slug', ignoreRecord: true),
                 RichEditor::make('excerpt')
                     ->label('Краткое описание')
+                    ->default('')
                     ->toolbarButtons([
                         'bold',
                         'italic',
@@ -48,6 +49,7 @@ class BlogForm
                     ->columnSpanFull(),
                 RichEditor::make('content')
                     ->label('Содержимое статьи')
+                    ->default('')
                     ->toolbarButtons([
                         'attachFiles',
                         'blockquote',
