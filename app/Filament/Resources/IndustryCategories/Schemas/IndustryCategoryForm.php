@@ -15,9 +15,19 @@ class IndustryCategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (string $operation, $state, callable $set) {
+                        if ($operation !== 'create') {
+                            return;
+                        }
+                        $set('slug', \Illuminate\Support\Str::slug($state));
+                    }),
                 TextInput::make('slug')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (callable $set, $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 Textarea::make('description')
                     ->columnSpanFull(),
                 TextInput::make('icon'),
