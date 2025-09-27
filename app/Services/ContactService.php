@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Contact;
-use App\Models\Faq;
 
 class ContactService
 {
@@ -31,13 +30,6 @@ class ContactService
         ];
     }
 
-    /**
-     * Get active FAQs.
-     */
-    public function getActiveFaqs()
-    {
-        return Faq::active()->ordered()->get();
-    }
 
     /**
      * Get contact page data.
@@ -46,8 +38,7 @@ class ContactService
     {
         return [
             'title' => 'Контакты',
-            'contactInfo' => $this->getContactInfo(),
-            'faqs' => $this->getActiveFaqs()
+            'contactInfo' => $this->getContactInfo()
         ];
     }
 }

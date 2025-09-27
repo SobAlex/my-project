@@ -222,26 +222,4 @@
         </div>
     </section>
 
-    {{-- FAQ Section --}}
-    <section class="section-bg" itemscope itemtype="https://schema.org/FAQPage">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Часто задаваемые вопросы</h2>
-
-        @if ($faqs->count() > 0)
-            <div class="max-w-4xl mx-auto space-y-6">
-                @foreach ($faqs as $faq)
-                    <div class="bg-white shadow-md p-6" itemscope itemtype="https://schema.org/Question"
-                        itemprop="mainEntity">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3" itemprop="name">{{ $faq->question }}</h3>
-                        <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
-                            <p class="text-gray-600" itemprop="text">{!! nl2br(e($faq->answer)) !!}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div class="max-w-4xl mx-auto text-center py-12">
-                <div class="text-gray-500 text-lg">FAQ пока не добавлены</div>
-            </div>
-        @endif
-    </section>
 @endsection
