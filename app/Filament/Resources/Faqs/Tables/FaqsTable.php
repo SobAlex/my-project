@@ -21,6 +21,13 @@ class FaqsTable
                     ->numeric()
                     ->sortable(),
                 IconColumn::make('is_active')
+                    ->label('Активно')
+                    ->boolean(),
+                IconColumn::make('show_on_homepage')
+                    ->label('На главной')
+                    ->boolean(),
+                IconColumn::make('show_on_services')
+                    ->label('На услугах')
                     ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -30,10 +37,6 @@ class FaqsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                IconColumn::make('is_active_services')
-                    ->boolean(),
-                IconColumn::make('is_active_cases')
-                    ->boolean(),
             ])
             ->filters([
                 //

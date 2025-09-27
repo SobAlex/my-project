@@ -441,6 +441,12 @@
     </section>
     {{-- End blog --}}
 
+    {{-- FAQ --}}
+    <div id="faq">
+        @include('partials.faq-section')
+    </div>
+    {{-- End FAQ --}}
+
     {{-- Reviews --}}
     <section id="reviews" class="section-bg">
         <h2 class="section-title">Отзывы наших клиентов</h2>

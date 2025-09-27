@@ -11,6 +11,8 @@ class ServiceController extends Controller
      */
     public function seoPromotion()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.seo-promotion', [
             'title' => 'SEO продвижение сайта',
             'service' => [
@@ -28,6 +30,7 @@ class ServiceController extends Controller
                 'price' => 'от 50 000 ₽/месяц',
                 'duration' => '3-12 месяцев'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -36,6 +39,8 @@ class ServiceController extends Controller
      */
     public function technicalAudit()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.technical-audit', [
             'title' => 'Технический аудит',
             'service' => [
@@ -53,6 +58,7 @@ class ServiceController extends Controller
                 'price' => 'от 15 000 ₽',
                 'duration' => '5-7 дней'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -61,6 +67,8 @@ class ServiceController extends Controller
      */
     public function contentAudit()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.content-audit', [
             'title' => 'Аудит коммерческих факторов',
             'service' => [
@@ -78,6 +86,7 @@ class ServiceController extends Controller
                 'price' => 'от 12 000 ₽',
                 'duration' => '3-5 дней'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -86,6 +95,8 @@ class ServiceController extends Controller
      */
     public function behavioralAudit()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.behavioral-audit', [
             'title' => 'Аудит поведенческих факторов',
             'service' => [
@@ -103,6 +114,7 @@ class ServiceController extends Controller
                 'price' => 'от 18 000 ₽',
                 'duration' => '5-7 дней'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -111,6 +123,8 @@ class ServiceController extends Controller
      */
     public function linkProfile()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.link-profile', [
             'title' => 'Ссылочный профиль',
             'service' => [
@@ -128,6 +142,7 @@ class ServiceController extends Controller
                 'price' => 'от 25 000 ₽/месяц',
                 'duration' => '3-6 месяцев'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -136,6 +151,8 @@ class ServiceController extends Controller
      */
     public function semanticCore()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.semantic-core', [
             'title' => 'Сбор и группировка семантического ядра',
             'service' => [
@@ -153,6 +170,7 @@ class ServiceController extends Controller
                 'price' => 'от 20 000 ₽',
                 'duration' => '7-10 дней'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 
@@ -161,6 +179,8 @@ class ServiceController extends Controller
      */
     public function seoStrategy()
     {
+        $servicesFaqs = \App\Models\Faq::visibleOnServices()->get();
+
         return view('services.seo-strategy', [
             'title' => 'Составление SEO стратегии',
             'service' => [
@@ -178,6 +198,7 @@ class ServiceController extends Controller
                 'price' => 'от 30 000 ₽',
                 'duration' => '10-14 дней'
             ],
+            'servicesFaqs' => $servicesFaqs
         ]);
     }
 }

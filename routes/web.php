@@ -27,8 +27,9 @@ Route::get('/', function () {
     $latestArticles = $blogController->getLatestArticlesForHomepage();
     $randomReviews = $reviewController->getRandomReviewsForHomepage();
     $contactInfo = $contactService->getContactInfo();
+    $homepageFaqs = \App\Models\Faq::visibleOnHomepage()->get();
 
-    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews', 'contactInfo'));
+    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews', 'contactInfo', 'homepageFaqs'));
 })->name('home');
 
 // Static pages

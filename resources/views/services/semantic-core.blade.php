@@ -103,6 +103,10 @@
         </div>
     </section>
 
+    {{-- FAQ section --}}
+    @include('partials.faq-section')
+    {{-- End FAQ --}}
+
     {{-- CTA section --}}
     <section class="section-bg">
         <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white  p-8 text-center">
