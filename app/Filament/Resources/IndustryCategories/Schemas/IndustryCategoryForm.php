@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Placeholder;
 use Filament\Schemas\Schema;
 
 class IndustryCategoryForm
@@ -30,7 +31,6 @@ class IndustryCategoryForm
                     ->afterStateUpdated(fn (callable $set, $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 Textarea::make('description')
                     ->columnSpanFull(),
-                TextInput::make('icon'),
                 ColorPicker::make('color')
                     ->required()
                     ->default('#3B82F6')
@@ -38,6 +38,29 @@ class IndustryCategoryForm
                     ->formatStateUsing(fn ($state) => $state ?: '#3B82F6')
                     ->live()
                     ->helperText('Выберите цвет для категории индустрии'),
+                TextInput::make('icon')
+                    ->live()
+                    ->helperText('Введите название иконки Material Icons (например: business, factory, devices)')
+                    ->placeholder('business'),
+                Placeholder::make('icon_preview')
+                    ->label('Превью иконки')
+                    ->content(function ($get) {
+                        $icon = $get('icon') ?: 'business';
+                        $color = $get('color') ?: '#3B82F6';
+
+                        return new \Illuminate\Support\HtmlString(
+                            '<div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-200">' .
+                            '<div class="inline-flex items-center justify-center w-10 h-10 rounded-lg shadow-sm border" style="background-color: ' . $color . '20; border-color: ' . $color . '40;">' .
+                            '<i class="material-icons text-xl" style="color: ' . $color . '">' . $icon . '</i>' .
+                            '</div>' .
+                            '<div class="flex flex-col">' .
+                            '<span class="text-sm font-medium text-gray-900">' . $icon . '</span>' .
+                            '<span class="text-xs text-gray-500">' . $color . '</span>' .
+                            '</div>' .
+                            '</div>'
+                        );
+                    })
+                    ->hidden(fn ($get) => empty($get('icon'))),
                 Toggle::make('is_active')
                     ->required(),
                 TextInput::make('sort_order')
