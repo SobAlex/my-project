@@ -11,26 +11,14 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\IndustryCategoryController;
+use App\Http\Controllers\HomeController;
 
 // ============================================================================
 // PUBLIC ROUTES
 // ============================================================================
 
 // Homepage
-Route::get('/', function () {
-    $caseController = app(CaseController::class);
-    $blogController = app(BlogController::class);
-    $reviewController = app(ReviewController::class);
-    $contactService = app(\App\Services\ContactService::class);
-
-    $latestCases = $caseController->getLatestCasesForHomepage();
-    $latestArticles = $blogController->getLatestArticlesForHomepage();
-    $randomReviews = $reviewController->getRandomReviewsForHomepage();
-    $contactInfo = $contactService->getContactInfo();
-    $homepageFaqs = \App\Models\Faq::visibleOnHomepage()->get();
-
-    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews', 'contactInfo', 'homepageFaqs'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Static pages
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
