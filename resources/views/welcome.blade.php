@@ -525,7 +525,7 @@
 
                     <div>
                         <h3>Наш офис:</h3>
-                        <p>г. Санкт-Петербург, Невский проспект, 7</p>
+                        <p>{{ $contactInfo['address'] }}</p>
                     </div>
                 </div>
 
@@ -540,9 +540,7 @@
 
                     <div>
                         <h3 class="font-medium text-gray-700">Телефон:</h3>
-                        <!-- Replace with your actual phone number -->
-                        <a href="tel:88001234567" class="text-cyan-500">8 800 123 45
-                            67</a>
+                        <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}" class="text-cyan-500">{{ $contactInfo['phone'] }}</a>
                     </div>
                 </div>
 
@@ -557,8 +555,7 @@
 
                     <div>
                         <h3 class="font-medium text-gray-700">Email:</h3>
-
-                        <a href="mailto:hello@example.com" class="text-cyan-500">info@sobalex.com</a>
+                        <a href="mailto:{{ $contactInfo['email'] }}" class="text-cyan-500">{{ $contactInfo['email'] }}</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\IndustryCategory;
 use App\Models\BlogCategory;
-use App\Models\ContactSetting;
+use App\Models\Contact;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -57,17 +57,13 @@ class ViewServiceProvider extends ServiceProvider
                 ->toArray();
 
             // Контактные данные
-            $contactSettings = ContactSetting::getAllSettings();
+            $contactData = Contact::getContactData();
             $contactInfo = [
-                'address' => $contactSettings['address'] ?? 'Адрес не указан',
-                'phone' => $contactSettings['phone'] ?? 'Телефон не указан',
-                'email' => $contactSettings['email'] ?? 'Email не указан',
-                'working_hours' => $contactSettings['working_hours'] ?? 'Часы работы не указаны',
-                'social' => [
-                    'telegram' => $contactSettings['social_telegram'] ?? null,
-                    'whatsapp' => $contactSettings['social_whatsapp'] ?? null,
-                    'vk' => $contactSettings['social_vk'] ?? null,
-                ]
+                'address' => $contactData['address'] ?? 'Адрес не указан',
+                'phone' => $contactData['phone'] ?? 'Телефон не указан',
+                'email' => $contactData['email'] ?? 'Email не указан',
+                'working_hours' => $contactData['working_hours'] ?? 'Часы работы не указаны',
+                'social' => $contactData['social'] ?? []
             ];
 
             $view->with([

@@ -21,12 +21,14 @@ Route::get('/', function () {
     $caseController = app(CaseController::class);
     $blogController = app(BlogController::class);
     $reviewController = app(ReviewController::class);
+    $contactService = app(\App\Services\ContactService::class);
 
     $latestCases = $caseController->getLatestCasesForHomepage();
     $latestArticles = $blogController->getLatestArticlesForHomepage();
     $randomReviews = $reviewController->getRandomReviewsForHomepage();
+    $contactInfo = $contactService->getContactInfo();
 
-    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews'));
+    return view('welcome', compact('latestCases', 'latestArticles', 'randomReviews', 'contactInfo'));
 })->name('home');
 
 // Static pages

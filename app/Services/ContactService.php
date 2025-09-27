@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\ContactSetting;
+use App\Models\Contact;
 use App\Models\Faq;
 
 class ContactService
@@ -12,7 +12,7 @@ class ContactService
      */
     public function getContactSettings(): array
     {
-        return ContactSetting::getAllSettings();
+        return Contact::getContactData();
     }
 
     /**
@@ -20,18 +20,14 @@ class ContactService
      */
     public function getContactInfo(): array
     {
-        $contactSettings = $this->getContactSettings();
+        $contact = Contact::getContactData();
 
         return [
-            'address' => $contactSettings['address'] ?? 'Адрес не указан',
-            'phone' => $contactSettings['phone'] ?? 'Телефон не указан',
-            'email' => $contactSettings['email'] ?? 'Email не указан',
-            'working_hours' => $contactSettings['working_hours'] ?? 'Часы работы не указаны',
-            'social' => [
-                'telegram' => $contactSettings['social_telegram'] ?? null,
-                'whatsapp' => $contactSettings['social_whatsapp'] ?? null,
-                'vk' => $contactSettings['social_vk'] ?? null,
-            ]
+            'address' => $contact['address'] ?? 'Адрес не указан',
+            'phone' => $contact['phone'] ?? 'Телефон не указан',
+            'email' => $contact['email'] ?? 'Email не указан',
+            'working_hours' => $contact['working_hours'] ?? 'Часы работы не указаны',
+            'social' => $contact['social'] ?? []
         ];
     }
 
@@ -55,4 +51,3 @@ class ContactService
         ];
     }
 }
-
