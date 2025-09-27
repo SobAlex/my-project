@@ -52,6 +52,8 @@ abstract class BaseRequest extends FormRequest
             'email' => 'email',
             'phone' => 'телефон',
             'message' => 'сообщение',
+            'service_name' => 'название услуги',
+            'attachment' => 'прикрепленный файл',
             'content' => 'содержимое',
             'description' => 'описание',
             'image' => 'изображение',
@@ -62,4 +64,3 @@ abstract class BaseRequest extends FormRequest
         ];
     }
 }
-

@@ -13,8 +13,9 @@ class ServiceOrderRequest extends BaseRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'service' => 'required|string|max:255',
+            'service_name' => 'required|string|max:255',
             'message' => 'nullable|string|max:2000',
+            'attachment' => 'nullable|file|max:10240|mimes:pdf,doc,docx,txt,jpg,jpeg,png,gif',
         ];
     }
 }
