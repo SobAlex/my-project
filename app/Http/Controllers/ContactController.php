@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Requests\HeroRequest;
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\ServiceOrderRequest;
+use App\Jobs\SendContactEmail;
+use App\Jobs\SendServiceOrderEmail;
 
 class ContactController extends Controller
 {
@@ -18,20 +20,14 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
-        try {
-            Mail::send('emails.contact', [
-                'subject' => 'Заявка (Hero) с сайта',
-                'name' => $validated['name'],
-                'email' => null,
-                'phone' => $validated['phone'],
-                'messageBody' => null,
-            ], function ($message) {
-                $message->to(config('mail.from.address'))
-                    ->subject('Заявка (Hero) с сайта');
-            });
-        } catch (\Throwable $e) {
-            Log::error('Contact hero mail failed', ['error' => $e->getMessage()]);
-        }
+        // Отправляем письмо в очередь
+        SendContactEmail::dispatch([
+            'subject' => 'Заявка (Hero) с сайта',
+            'name' => $validated['name'],
+            'email' => null,
+            'phone' => $validated['phone'],
+            'messageBody' => null,
+        ]);
 
         return back()->with('status', 'Спасибо! Мы свяжемся с вами.');
     }
@@ -43,20 +39,14 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
-        try {
-            Mail::send('emails.contact', [
-                'subject' => 'Сообщение с формы контактов',
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'phone' => $validated['phone'] ?? null,
-                'messageBody' => $validated['message'],
-            ], function ($message) {
-                $message->to(config('mail.from.address'))
-                    ->subject('Сообщение с формы контактов');
-            });
-        } catch (\Throwable $e) {
-            Log::error('Contact mail failed', ['error' => $e->getMessage()]);
-        }
+        // Отправляем письмо в очередь
+        SendContactEmail::dispatch([
+            'subject' => 'Сообщение с формы контактов',
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'messageBody' => $validated['message'],
+        ]);
 
         return back()->with('status', 'Сообщение отправлено!');
     }
@@ -64,41 +54,37 @@ class ContactController extends Controller
     /**
      * Handle service order form submission.
      */
-    public function submitServiceOrder(ServiceOrderRequest $request)
+        public function submitServiceOrder(ServiceOrderRequest $request)
     {
         $validated = $request->validated();
 
-        try {
-            // Handle file upload if present
-            $attachmentPath = null;
-            if ($request->hasFile('attachment')) {
-                $attachmentPath = $request->file('attachment')->store('service-orders', 'public');
+        // Handle file upload if present
+        $attachmentPath = null;
+        $attachmentName = null;
+        $attachmentMime = null;
+
+        if ($request->hasFile('attachment')) {
+            /** @var \Illuminate\Http\UploadedFile $file */
+            $file = $request->file('attachment');
+            if ($file) {
+                $attachmentPath = $file->store('service-orders', 'public');
+                $attachmentName = $file->getClientOriginalName();
+                $attachmentMime = $file->getMimeType();
             }
-
-            Mail::send('emails.service-order', [
-                'subject' => 'Заказ услуги: ' . $validated['service_name'],
-                'serviceName' => $validated['service_name'],
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'phone' => $validated['phone'],
-                'messageBody' => $validated['message'],
-                'attachmentPath' => $attachmentPath,
-                'attachmentName' => $request->hasFile('attachment') ? $request->file('attachment')->getClientOriginalName() : null,
-            ], function ($message) use ($validated, $attachmentPath, $request) {
-                $message->to(config('mail.from.address'))
-                    ->subject('Заказ услуги: ' . $validated['service_name']);
-
-                // Attach file if present
-                if ($attachmentPath && $request->hasFile('attachment')) {
-                    $message->attach(storage_path('app/public/' . $attachmentPath), [
-                        'as' => $request->file('attachment')->getClientOriginalName(),
-                        'mime' => $request->file('attachment')->getMimeType(),
-                    ]);
-                }
-            });
-        } catch (\Throwable $e) {
-            Log::error('Service order mail failed', ['error' => $e->getMessage()]);
         }
+
+        // Отправляем письмо в очередь
+        SendServiceOrderEmail::dispatch([
+            'subject' => 'Заказ услуги: ' . $validated['service_name'],
+            'serviceName' => $validated['service_name'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'messageBody' => $validated['message'] ?? null,
+            'attachmentPath' => $attachmentPath,
+            'attachmentName' => $attachmentName,
+            'attachmentMime' => $attachmentMime,
+        ]);
 
         return back()->with('status', 'Заявка на услугу отправлена! Мы свяжемся с вами в ближайшее время.');
     }
