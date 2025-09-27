@@ -19,12 +19,14 @@ class ContactsTable
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable()
-                    ->copyable(),
+                    ->copyable()
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 TextColumn::make('phone')
                     ->label('Телефон')
                     ->searchable()
-                    ->copyable(),
+                    ->copyable()
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 TextColumn::make('address')
                     ->label('Адрес')
@@ -32,20 +34,24 @@ class ContactsTable
                     ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
                         return strlen($state) > 50 ? $state : null;
-                    }),
+                    })
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 TextColumn::make('working_hours')
                     ->label('Часы работы')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 IconColumn::make('is_active')
                     ->label('Активен')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 TextColumn::make('updated_at')
                     ->label('Обновлено')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

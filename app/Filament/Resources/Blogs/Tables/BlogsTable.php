@@ -24,23 +24,31 @@ class BlogsTable
                     ->url(fn ($record) => BlogResource::getUrl('edit', ['record' => $record]))
                     ->openUrlInNewTab(false),
                 TextColumn::make('slug')
-                    ->searchable(),
-                ImageColumn::make('image'),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+                ImageColumn::make('image')
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('blogCategory.name')
                     ->label('Категория')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('meta_title')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('is_published')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextInputColumn::make('sort_order')
                     ->rules(['integer', 'min:0'])
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('user.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('published_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
