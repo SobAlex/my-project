@@ -51,6 +51,7 @@ class ViewServiceProvider extends ServiceProvider
                         'name' => $category->name,
                         'icon' => $category->icon ?: 'article',
                         'color' => $category->color,
+                        'description' => $category->description,
                         'route' => 'blog.category'
                     ];
                 })

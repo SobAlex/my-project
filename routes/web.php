@@ -74,6 +74,7 @@ Route::prefix('contact')->name('contact.')->group(function () {
 });
 Route::post('/service/order', [ContactController::class, 'submitServiceOrder'])->name('service.order');
 
+
 // ============================================================================
 // ADMIN ROUTES
 // ============================================================================
