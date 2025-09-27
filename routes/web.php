@@ -25,6 +25,10 @@ Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
 // Services pages
 Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/', [ServiceController::class, 'index'])->name('index');
+    Route::get('/{service:slug}', [ServiceController::class, 'show'])->name('show');
+
+    // Legacy routes (можно удалить после миграции)
     Route::get('/seo-promotion', [ServiceController::class, 'seoPromotion'])->name('seo-promotion');
     Route::get('/technical-audit', [ServiceController::class, 'technicalAudit'])->name('technical-audit');
     Route::get('/content-audit', [ServiceController::class, 'contentAudit'])->name('content-audit');

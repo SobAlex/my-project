@@ -12,49 +12,35 @@
     <nav class="flex-1 flex items-center justify-center">
         <ul class="hidden lg:flex items-center space-x-8">
             <li class="relative group">
-                <a href="#" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                <a href="{{ route('services.index') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
                     Услуги
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
-                        <div class="text-sm font-semibold text-gray-600 mb-3">Наши услуги:</div>
+                        <div class="text-sm font-semibold text-gray-600 mb-3">Популярные услуги:</div>
                         <div class="space-y-2">
-                            <a href="{{ route('services.seo-promotion') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
-                                SEO продвижение сайта
-                            </a>
-                            <a href="{{ route('services.technical-audit') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">search</i>
-                                Технический аудит
-                            </a>
-                            <a href="{{ route('services.content-audit') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
-                                Аудит коммерческих факторов
-                            </a>
-                            <a href="{{ route('services.behavioral-audit') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
-                                Аудит поведенческих факторов
-                            </a>
-                            <a href="{{ route('services.link-profile') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">link</i>
-                                Ссылочный профиль
-                            </a>
-                            <a href="{{ route('services.semantic-core') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">category</i>
-                                Сбор и группировка СЯ
-                            </a>
-                            <a href="{{ route('services.seo-strategy') }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
-                                <i class="material-icons text-sm mr-2 text-cyan-500">assessment</i>
-                                Составление SEO стратегии
+                            @php
+                                $headerServices = \App\Models\Service::published()->showOnHomepage()->ordered()->take(5)->get();
+                            @endphp
+                            @forelse($headerServices as $service)
+                                <a href="{{ route('services.show', $service->slug) }}"
+                                    class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                    @if($service->icon)
+                                        <i class="material-icons text-sm mr-2" style="color: {{ $service->color ?? '#06b6d4' }}">{{ $service->icon }}</i>
+                                    @endif
+                                    {{ Str::limit($service->title, 25) }}
+                                </a>
+                            @empty
+                                <div class="text-sm text-gray-500">Услуги загружаются...</div>
+                            @endforelse
+                        </div>
+                        <div class="border-t border-gray-200 mt-3 pt-3">
+                            <a href="{{ route('services.index') }}"
+                               class="flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-700 transition">
+                                <i class="material-icons text-sm mr-2">arrow_forward</i>
+                                Все услуги
                             </a>
                         </div>
                     </div>
@@ -220,43 +206,29 @@
                     x-transition:leave="transition ease-in duration-300"
                     x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0"
                     class="pl-6 space-y-4 overflow-hidden" style="display: none;">
-                    <div class="text-gray-600 text-sm font-medium mb-3">Наши услуги:</div>
+                    <div class="text-gray-600 text-sm font-medium mb-3">Популярные услуги:</div>
                     <div class="space-y-2">
-                        <a href="{{ route('services.seo-promotion') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">trending_up</i>
-                            SEO продвижение сайта
-                        </a>
-                        <a href="{{ route('services.technical-audit') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">search</i>
-                            Технический аудит
-                        </a>
-                        <a href="{{ route('services.content-audit') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">content_copy</i>
-                            Аудит коммерческих факторов
-                        </a>
-                        <a href="{{ route('services.behavioral-audit') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">pageview</i>
-                            Аудит поведенческих факторов
-                        </a>
-                        <a href="{{ route('services.link-profile') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">link</i>
-                            Ссылочный профиль
-                        </a>
-                        <a href="{{ route('services.semantic-core') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">category</i>
-                            Сбор и группировка СЯ
-                        </a>
-                        <a href="{{ route('services.seo-strategy') }}"
-                            class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">assessment</i>
-                            Составление SEO стратегии
-                        </a>
+                        @php
+                            $mobileServices = \App\Models\Service::published()->showOnHomepage()->ordered()->take(4)->get();
+                        @endphp
+                        @forelse($mobileServices as $service)
+                            <a href="{{ route('services.show', $service->slug) }}"
+                                class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                                @if($service->icon)
+                                    <i class="material-icons text-sm mr-2" style="color: {{ $service->color ?? '#06b6d4' }}">{{ $service->icon }}</i>
+                                @endif
+                                {{ Str::limit($service->title, 30) }}
+                            </a>
+                        @empty
+                            <div class="text-sm text-gray-500">Услуги загружаются...</div>
+                        @endforelse
+                        <div class="border-t border-gray-200 mt-3 pt-3">
+                            <a href="{{ route('services.index') }}"
+                               class="flex items-center text-sm font-medium text-cyan-600 hover:text-cyan-700 transition">
+                                <i class="material-icons text-sm mr-2">arrow_forward</i>
+                                Все услуги
+                            </a>
+                        </div>
                     </div>
                 </div>
             </li>

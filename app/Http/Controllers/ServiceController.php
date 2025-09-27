@@ -2,10 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    /**
+     * Display a listing of all services.
+     */
+    public function index()
+    {
+        $services = Service::published()->ordered()->get();
+
+        return view('services.index', [
+            'title' => 'Наши услуги',
+            'services' => $services
+        ]);
+    }
+
+    /**
+     * Display the specified service.
+     */
+    public function show(Service $service)
+    {
+        if (!$service->is_published) {
+            abort(404);
+        }
+
+        $relatedServices = Service::published()
+            ->where('id', '!=', $service->id)
+            ->take(3)
+            ->get();
+
+        $servicesFaqs = Faq::visibleOnServices()->get();
+
+        return view('services.show', [
+            'title' => $service->meta_title ?: $service->title,
+            'service' => $service,
+            'relatedServices' => $relatedServices,
+            'servicesFaqs' => $servicesFaqs
+        ]);
+    }
     /**
      * SEO продвижение сайта
      */

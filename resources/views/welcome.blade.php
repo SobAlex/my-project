@@ -122,148 +122,46 @@
     <section id="services" class="section-bg">
         <h2 class="section-title">Услуги</h2>
 
-        <div class="grid grid-cols-1 gap-4
-        sm:grid-cols-2
-        md:grid-cols-3
-        lg:grid-cols-4 lg:gap-6">
-            {{-- Card service --}}
-            <article
-                class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col
-            sm:col-span-2
-            md:row-span-1">
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">trending_up</i>
-                        <h3 class="text-xl font-semibold mb-2 text-center"><a href="{{ route('services.seo-promotion') }}"
-                                class="hover:text-cyan-500">SEO
-                                продвижение сайта</a></h3>
-                        <p class="text-gray-600 mb-4 text-center">Комплексное продвижение вашего сайта в
-                            поисковых системах. Повышаем позиции, увеличиваем трафик и конверсию с помощью
-                            современных SEO-методик.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center"
-                            onclick="openServiceOrderModal('SEO продвижение сайта')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+            @forelse($featuredServices as $service)
+                <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
+                    <div class="flex flex-col flex-[2] p-4">
+                        <div class="flex flex-col items-center mb-4">
+                            @if($service->icon)
+                                <i class="material-icons mb-3" style="font-size: 48px; color: {{ $service->color ?? '#06b6d4' }};">{{ $service->icon }}</i>
+                            @endif
+                            <h3 class="@if($loop->first) text-xl @else text-lg @endif font-semibold mb-2 text-center">
+                                <a href="{{ route('services.show', $service->slug) }}" class="hover:text-cyan-500">
+                                    {{ $service->title }}
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 mb-4 text-center">{{ $service->description }}</p>
 
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">search</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a
-                                href="{{ route('services.technical-audit') }}" class="hover:text-cyan-500">Технический
-                                аудит</a></h3>
-                        <p class="text-gray-600 mb-4 text-center">Детальный анализ технических аспектов сайта
-                            для выявления и устранения ошибок, влияющих на SEO.</p>
+                            @if($service->price_from)
+                                <div class="text-sm text-gray-500 mb-2">{{ $service->formatted_price }}</div>
+                            @endif
+                        </div>
+                        <div class="mt-auto mb-4">
+                            <button class="btn self-center" onclick="openServiceOrderModal('{{ $service->title }}')">
+                                Заказать
+                            </button>
+                        </div>
                     </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center"
-                            onclick="openServiceOrderModal('Технический аудит')">Заказать</button>
-                    </div>
+                </article>
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">Услуги временно недоступны</p>
                 </div>
-            </article>
-            {{-- End service card --}}
-
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">content_copy</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.content-audit') }}"
-                                class="hover:text-cyan-500">Аудит
-                                коммерческих факторов</a>
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-center">Анализ контент-факторов: качество текстов,
-                            уникальность, релевантность запросам пользователей.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center" onclick="openServiceOrderModal('Аудит КФ')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
-
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">pageview</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a
-                                href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-500">Аудит
-                                поведенческих факторов</a>
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-center">Проверка поведенческих факторов: удобство
-                            использования, скорость загрузки, адаптивность.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center" onclick="openServiceOrderModal('Аудит ПФ')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
-
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                {{-- Card service top --}}
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">link</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.link-profile') }}"
-                                class="hover:text-cyan-500">Ссылочный профиль</a></h3>
-                        <p class="text-gray-600 mb-4 text-center">Анализ и оптимизация ссылочной массы для
-                            улучшения авторитетности сайта в поисковых системах.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center"
-                            onclick="openServiceOrderModal('Ссылочный профиль')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
-
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                {{-- Card service top --}}
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">category</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.semantic-core') }}"
-                                class="hover:text-cyan-500">Сбор и
-                                группировка СЯ</a></h3>
-                        <p class="text-gray-600 mb-4 text-center">Систематизация семантического ядра для
-                            эффективного продвижения по целевым запросам.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center"
-                            onclick="openServiceOrderModal('Сбор и группировка СЯ')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
-
-            {{-- Card service --}}
-            <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                {{-- Card service top --}}
-                <div class="flex flex-col flex-[2] p-4">
-                    <div class="flex flex-col items-center mb-4">
-                        <i class="material-icons text-cyan-500 mb-3" style="font-size: 48px;">assessment</i>
-                        <h3 class="text-lg font-semibold mb-2 text-center"><a href="{{ route('services.seo-strategy') }}"
-                                class="hover:text-cyan-500">Составление SEO стратегии</a></h3>
-                        <p class="text-gray-600 mb-4 text-center">Разработка комплексного плана продвижения с
-                            учетом специфики бизнеса и конкурентной среды.</p>
-                    </div>
-                    <div class="mt-auto mb-4">
-                        <button class="btn self-center"
-                            onclick="openServiceOrderModal('Составление SEO стратегии')">Заказать</button>
-                    </div>
-                </div>
-            </article>
-            {{-- End service card --}}
+            @endforelse
         </div>
+
+        @if($featuredServices->count() > 0)
+            <div class="text-center mt-8">
+                <a href="{{ route('services.index') }}" class="btn-outline">
+                    Все услуги
+                </a>
+            </div>
+        @endif
     </section>
     {{-- End service --}}
 

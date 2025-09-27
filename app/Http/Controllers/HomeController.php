@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Models\Service;
 use App\Services\ContactService;
 use Illuminate\Http\Request;
 
@@ -28,13 +29,15 @@ class HomeController extends Controller
         $randomReviews = $reviewController->getRandomReviewsForHomepage();
         $contactInfo = $this->contactService->getContactInfo();
         $homepageFaqs = Faq::visibleOnHomepage()->get();
+        $featuredServices = Service::published()->showOnHomepage()->ordered()->take(6)->get();
 
         return view('welcome', compact(
             'latestCases',
             'latestArticles',
             'randomReviews',
             'contactInfo',
-            'homepageFaqs'
+            'homepageFaqs',
+            'featuredServices'
         ));
     }
 }

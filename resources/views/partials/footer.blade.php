@@ -55,22 +55,23 @@
         <div>
             <h4 class="text-white font-semibold tracking-wide uppercase text-sm">Услуги</h4>
             <ul class="mt-4 space-y-2">
-                <li><a href="{{ route('services.seo-promotion') }}" class="hover:text-cyan-400 transition">SEO
-                        продвижение</a></li>
-                <li><a href="{{ route('services.technical-audit') }}"
-                        class="hover:text-cyan-400 transition">Технический
-                        аудит</a></li>
-                <li><a href="{{ route('services.content-audit') }}" class="hover:text-cyan-400 transition">Аудит
-                        коммерческих факторов</a></li>
-                <li><a href="{{ route('services.behavioral-audit') }}" class="hover:text-cyan-400 transition">Аудит
-                        поведенческих факторов</a></li>
-                <li><a href="{{ route('services.link-profile') }}" class="hover:text-cyan-400 transition">Ссылочный
-                        профиль</a></li>
-                <li><a href="{{ route('services.semantic-core') }}" class="hover:text-cyan-400 transition">Сбор и
-                        группировка семантического ядра</a>
+                @php
+                    $footerServices = \App\Models\Service::published()->showOnHomepage()->ordered()->take(6)->get();
+                @endphp
+                @forelse($footerServices as $service)
+                    <li>
+                        <a href="{{ route('services.show', $service->slug) }}" class="hover:text-cyan-400 transition">
+                            {{ $service->title }}
+                        </a>
+                    </li>
+                @empty
+                    <li><span class="text-gray-500">Услуги загружаются...</span></li>
+                @endforelse
+                <li class="pt-2 border-t border-gray-700">
+                    <a href="{{ route('services.index') }}" class="hover:text-cyan-400 transition font-medium">
+                        Все услуги →
+                    </a>
                 </li>
-                <li><a href="{{ route('services.seo-strategy') }}" class="hover:text-cyan-400 transition">Составление
-                        SEO стратегии</a></li>
             </ul>
         </div>
 

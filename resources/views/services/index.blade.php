@@ -1,0 +1,125 @@
+@extends('layouts.app')
+
+@section('title', $title)
+
+@section('content')
+    <!-- Breadcrumbs -->
+    <div class="pt-8">
+        @include('partials.breadcrumbs', [
+            'breadcrumbs' => [['title' => 'Услуги', 'url' => null]],
+        ])
+    </div>
+
+    {{-- Hero section --}}
+    <section class="section-bg">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ $title }}</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Профессиональные услуги по продвижению и развитию вашего бизнеса в интернете
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @forelse($services as $service)
+                <article class="element-bg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <!-- Service Image -->
+                    @if($service->image)
+                        <div class="aspect-video bg-gray-100 overflow-hidden">
+                            <img src="{{ asset('storage/' . $service->image) }}"
+                                 alt="{{ $service->title }}"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    @endif
+
+                    <div class="p-6">
+                        <!-- Service Icon and Title -->
+                        <div class="flex items-start mb-4">
+                            @if($service->icon)
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-12 h-12 rounded-lg flex items-center justify-center"
+                                         style="background-color: {{ $service->color }}20; border: 2px solid {{ $service->color }}40;">
+                                        <i class="material-icons text-2xl" style="color: {{ $service->color }}">{{ $service->icon }}</i>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                                    <a href="{{ route('services.show', $service->slug) }}" class="hover:text-cyan-500">
+                                        {{ $service->title }}
+                                    </a>
+                                </h3>
+                                @if($service->is_featured)
+                                    <span class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                                        Рекомендуемая
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-gray-600 mb-4">{{ Str::limit($service->description, 120) }}</p>
+
+                        <!-- Features -->
+                        @if($service->features && is_array($service->features) && count($service->features) > 0)
+                            <ul class="text-sm text-gray-500 mb-4 space-y-1">
+                                @foreach(array_slice($service->features, 0, 3) as $feature)
+                                    @if(is_string($feature))
+                                        <li class="flex items-center">
+                                            <i class="material-icons text-green-500 text-sm mr-2">check</i>
+                                            {{ $feature }}
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endif
+
+                        <!-- Price and CTA -->
+                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+                            <div>
+                                @if($service->price_from)
+                                    <div class="text-lg font-bold text-cyan-600">{{ $service->formatted_price }}</div>
+                                @else
+                                    <div class="text-sm text-gray-500">По договоренности</div>
+                                @endif
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="{{ route('services.show', $service->slug) }}" class="btn-outline text-sm px-4 py-2">
+                                    Подробнее
+                                </a>
+                                <button class="btn text-sm px-4 py-2" onclick="openServiceOrderModal('{{ $service->title }}')">
+                                    Заказать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            @empty
+                <div class="col-span-full text-center py-12">
+                    <div class="text-gray-400 mb-4">
+                        <i class="material-icons text-6xl">business_center</i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Услуги временно недоступны</h3>
+                    <p class="text-gray-500">Мы работаем над добавлением новых услуг</p>
+                </div>
+            @endforelse
+        </div>
+    </section>
+
+    {{-- CTA Section --}}
+    @if($services->count() > 0)
+        <section class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">Готовы начать работу?</h2>
+                <p class="text-xl mb-8 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{{ route('contacts') }}" class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Связаться с нами
+                    </a>
+                    <button onclick="openServiceOrderModal('Консультация')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-cyan-600 transition-colors">
+                        Получить консультацию
+                    </button>
+                </div>
+            </div>
+        </section>
+    @endif
+@endsection
