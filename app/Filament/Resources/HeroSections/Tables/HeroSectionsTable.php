@@ -18,6 +18,10 @@ class HeroSectionsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('sort_order')
                     ->label('Порядок')
                     ->sortable()

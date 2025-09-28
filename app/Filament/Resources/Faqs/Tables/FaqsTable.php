@@ -15,6 +15,10 @@ class FaqsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('question')
                     ->searchable(),
                 TextColumn::make('sort_order')

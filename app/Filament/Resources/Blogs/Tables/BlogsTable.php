@@ -19,6 +19,10 @@ class BlogsTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('title')
                     ->searchable()
                     ->url(fn ($record) => BlogResource::getUrl('edit', ['record' => $record]))

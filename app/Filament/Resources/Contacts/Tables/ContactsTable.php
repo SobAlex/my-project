@@ -16,6 +16,10 @@ class ContactsTable
         return $table
             ->query(Contact::query())
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable()

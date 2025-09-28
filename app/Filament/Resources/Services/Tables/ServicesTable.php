@@ -19,6 +19,10 @@ class ServicesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('title')
                     ->searchable()
                     ->url(fn ($record) => ServiceResource::getUrl('edit', ['record' => $record]))

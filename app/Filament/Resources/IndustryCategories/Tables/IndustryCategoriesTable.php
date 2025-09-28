@@ -18,6 +18,10 @@ class IndustryCategoriesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('name')
                     ->searchable()
                     ->url(fn ($record) => IndustryCategoryResource::getUrl('edit', ['record' => $record]))

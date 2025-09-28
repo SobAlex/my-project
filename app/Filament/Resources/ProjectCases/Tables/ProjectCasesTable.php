@@ -19,6 +19,10 @@ class ProjectCasesTable
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('case_id')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),
