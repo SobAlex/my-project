@@ -2,14 +2,17 @@
 <div class="hero-container flex flex-col md:flex-row gap-4">
     <!-- Левая часть -->
     <div class="w-full md:basis-1/2 lg:basis-2/3 md:w-auto flex flex-col justify-between px-4 pt-4 pb-16 text-center sm:text-left">
-        <!-- Заголовок -->
-        <h1 class="text-3xl leading-relaxed mb-6 sm:mb-8">
-            Загружу работой ваших менеджеров по продажам<br>SEO продвижение сайтов в интернете.
-        </h1>
+        <!-- Контент -->
+        <div>
+            <!-- Заголовок -->
+            <h1 class="text-3xl leading-relaxed mb-8">
+                Загружу работой ваших менеджеров по продажам<br>SEO продвижение сайтов в интернете.
+            </h1>
+        </div>
 
         <!-- Форма -->
         <form action="{{ route('contact.hero') }}" method="POST"
-            class="flex flex-col gap-4 w-full lg:flex-row lg:space-x-4 lg:space-y-0 lg:items-end lg:justify-start relative h-full">
+            class="flex flex-col gap-4 w-full lg:flex-row lg:space-x-4 lg:space-y-0 lg:items-end lg:justify-start mt-8">
             @csrf
 
             <div class="flex-1">

@@ -12,43 +12,52 @@ class IndustryCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем 4 конкретные категории отраслей
+        // Создаем категории отраслей для кейсов
         $categories = [
             [
-                'name' => 'Одежда',
-                'slug' => 'clothing',
-                'description' => 'Кейсы SEO продвижения для интернет-магазинов одежды',
-                'icon' => 'checkroom',
-                'color' => '#FFD700',
+                'name' => 'E-commerce',
+                'slug' => 'ecommerce',
+                'description' => 'Кейсы продвижения интернет-магазинов и e-commerce проектов',
+                'icon' => 'shopping_cart',
+                'color' => '#10B981',
                 'is_active' => true,
                 'sort_order' => 1,
             ],
             [
-                'name' => 'Производство',
-                'slug' => 'production',
-                'description' => 'Кейсы SEO продвижения для производственных компаний',
-                'icon' => 'factory',
+                'name' => 'Образование',
+                'slug' => 'education',
+                'description' => 'Кейсы продвижения образовательных платформ и онлайн-школ',
+                'icon' => 'school',
                 'color' => '#3B82F6',
                 'is_active' => true,
                 'sort_order' => 2,
             ],
             [
-                'name' => 'Электроника',
-                'slug' => 'electronics',
-                'description' => 'Кейсы SEO продвижения для магазинов электроники',
-                'icon' => 'devices',
-                'color' => '#10B981',
+                'name' => 'Здравоохранение',
+                'slug' => 'healthcare',
+                'description' => 'Кейсы продвижения медицинских центров и клиник',
+                'icon' => 'local_hospital',
+                'color' => '#EF4444',
                 'is_active' => true,
                 'sort_order' => 3,
             ],
             [
-                'name' => 'Мебель',
-                'slug' => 'furniture',
-                'description' => 'Кейсы SEO продвижения для мебельных магазинов',
-                'icon' => 'chair',
+                'name' => 'Финансы',
+                'slug' => 'finance',
+                'description' => 'Кейсы продвижения финтех стартапов и финансовых услуг',
+                'icon' => 'account_balance',
                 'color' => '#8B5CF6',
                 'is_active' => true,
                 'sort_order' => 4,
+            ],
+            [
+                'name' => 'Недвижимость',
+                'slug' => 'real-estate',
+                'description' => 'Кейсы продвижения агентств недвижимости и застройщиков',
+                'icon' => 'home',
+                'color' => '#F59E0B',
+                'is_active' => true,
+                'sort_order' => 5,
             ],
         ];
 

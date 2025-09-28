@@ -7,12 +7,16 @@ use App\Models\Service;
 use App\Models\HeroSection;
 use App\Models\WhyUs;
 use App\Services\ContactService;
+use App\Services\CaseService;
+use App\Services\BlogService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function __construct(
-        private ContactService $contactService
+        private ContactService $contactService,
+        private CaseService $caseService,
+        private BlogService $blogService
     ) {}
 
     /**
@@ -35,6 +39,10 @@ class HomeController extends Controller
         $heroSections = HeroSection::active()->ordered()->get();
         $whyUsBlocks = WhyUs::active()->ordered()->get();
 
+        // Получаем категории для навигации
+        $activeCategories = $this->caseService->getActiveCategories();
+        $activeBlogCategories = $this->blogService->getActiveCategories();
+
         return view('welcome', compact(
             'latestCases',
             'latestArticles',
@@ -43,7 +51,9 @@ class HomeController extends Controller
             'homepageFaqs',
             'featuredServices',
             'heroSections',
-            'whyUsBlocks'
+            'whyUsBlocks',
+            'activeCategories',
+            'activeBlogCategories'
         ));
     }
 }

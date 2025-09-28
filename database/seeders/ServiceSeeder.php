@@ -30,11 +30,12 @@ class ServiceSeeder extends Seeder
                     'Работа с ссылками',
                     'Ежемесячные отчеты'
                 ],
-                'meta_title' => 'SEO продвижение сайтов - Профессиональные услуги',
-                'meta_description' => 'Комплексное SEO продвижение сайта в Google и Яндекс. Увеличиваем органический трафик и конверсию. Гарантия результата.',
-                'is_published' => true,
-                'is_featured' => true,
-                'sort_order' => 10,
+                       'meta_title' => 'SEO продвижение сайтов - Профессиональные услуги',
+                       'meta_description' => 'Комплексное SEO продвижение сайта в Google и Яндекс. Увеличиваем органический трафик и конверсию. Гарантия результата.',
+                       'is_published' => true,
+                       'is_featured' => true,
+                       'show_on_homepage' => true,
+                       'sort_order' => 10,
             ],
             [
                 'title' => 'Контекстная реклама',
@@ -52,11 +53,12 @@ class ServiceSeeder extends Seeder
                     'Ежедневный мониторинг',
                     'Детальная аналитика'
                 ],
-                'meta_title' => 'Контекстная реклама Google Ads и Яндекс.Директ',
-                'meta_description' => 'Настройка и ведение контекстной рекламы в Google Ads и Яндекс.Директ. Максимальная конверсия при минимальной стоимости клика.',
-                'is_published' => true,
-                'is_featured' => true,
-                'sort_order' => 20,
+                       'meta_title' => 'Контекстная реклама Google Ads и Яндекс.Директ',
+                       'meta_description' => 'Настройка и ведение контекстной рекламы в Google Ads и Яндекс.Директ. Максимальная конверсия при минимальной стоимости клика.',
+                       'is_published' => true,
+                       'is_featured' => true,
+                       'show_on_homepage' => true,
+                       'sort_order' => 20,
             ],
             [
                 'title' => 'Веб-разработка',
@@ -74,11 +76,12 @@ class ServiceSeeder extends Seeder
                     'SEO-оптимизация',
                     'Техническая поддержка'
                 ],
-                'meta_title' => 'Веб-разработка сайтов и приложений на Laravel',
-                'meta_description' => 'Профессиональная разработка сайтов и веб-приложений на Laravel, React, Vue.js. Современные технологии и качественный код.',
-                'is_published' => true,
-                'is_featured' => true,
-                'sort_order' => 30,
+                       'meta_title' => 'Веб-разработка сайтов и приложений на Laravel',
+                       'meta_description' => 'Профессиональная разработка сайтов и веб-приложений на Laravel, React, Vue.js. Современные технологии и качественный код.',
+                       'is_published' => true,
+                       'is_featured' => true,
+                       'show_on_homepage' => true,
+                       'sort_order' => 30,
             ],
             [
                 'title' => 'Аналитика и аудит',
@@ -96,19 +99,86 @@ class ServiceSeeder extends Seeder
                     'Настройка аналитики',
                     'Отчеты и рекомендации'
                 ],
-                'meta_title' => 'Веб-аналитика и аудит сайта - Профессиональные услуги',
-                'meta_description' => 'Комплексный аудит сайта и настройка веб-аналитики. Получите детальную информацию о работе вашего сайта.',
-                'is_published' => true,
-                'is_featured' => false,
-                'sort_order' => 40,
+                       'meta_title' => 'Веб-аналитика и аудит сайта - Профессиональные услуги',
+                       'meta_description' => 'Комплексный аудит сайта и настройка веб-аналитики. Получите детальную информацию о работе вашего сайта.',
+                       'is_published' => true,
+                       'is_featured' => false,
+                       'show_on_homepage' => false,
+                       'sort_order' => 40,
+            ],
+            [
+                'title' => 'SMM продвижение',
+                'slug' => 'smm-prodvizhenie',
+                'description' => 'Продвижение в социальных сетях: Instagram, VK, Telegram, Facebook',
+                'content' => '<h2>SMM продвижение</h2><p>Комплексное продвижение в социальных сетях для увеличения узнаваемости бренда и привлечения клиентов.</p><h3>Платформы:</h3><ul><li>Instagram</li><li>ВКонтакте</li><li>Telegram</li><li>Facebook</li><li>YouTube</li><li>TikTok</li></ul>',
+                'icon' => 'share',
+                'color' => '#EC4899',
+                'price_from' => 35000,
+                'price_type' => 'month',
+                'features' => [
+                    'Создание контента',
+                    'Ведение сообществ',
+                    'Таргетированная реклама',
+                    'Работа с блогерами',
+                    'Аналитика и отчеты'
+                ],
+                       'meta_title' => 'SMM продвижение в социальных сетях',
+                       'meta_description' => 'Продвижение в Instagram, VK, Telegram. Увеличиваем охваты, вовлеченность и продажи через соцсети.',
+                       'is_published' => true,
+                       'is_featured' => true,
+                       'show_on_homepage' => true,
+                       'sort_order' => 50,
+            ],
+            [
+                'title' => 'Контент-маркетинг',
+                'slug' => 'kontent-marketing',
+                'description' => 'Создание качественного контента для привлечения и удержания клиентов',
+                'content' => '<h2>Контент-маркетинг</h2><p>Создание качественного контента, который привлекает, удерживает и конвертирует вашу аудиторию.</p><h3>Виды контента:</h3><ul><li>Статьи и блоги</li><li>Видео и подкасты</li><li>Инфографика</li><li>Кейсы и исследования</li><li>Email-рассылки</li><li>Социальные сети</li></ul>',
+                'icon' => 'article',
+                'color' => '#06B6D4',
+                'price_from' => 40000,
+                'price_type' => 'month',
+                'features' => [
+                    'Стратегия контента',
+                    'Создание материалов',
+                    'SEO-оптимизация',
+                    'Распространение',
+                    'Измерение эффективности'
+                ],
+                       'meta_title' => 'Контент-маркетинг - Создание качественного контента',
+                       'meta_description' => 'Профессиональный контент-маркетинг. Создаем контент, который привлекает клиентов и увеличивает продажи.',
+                       'is_published' => true,
+                       'is_featured' => false,
+                       'show_on_homepage' => false,
+                       'sort_order' => 60,
+            ],
+            [
+                'title' => 'Email-маркетинг',
+                'slug' => 'email-marketing',
+                'description' => 'Настройка и ведение email-рассылок для удержания клиентов и увеличения продаж',
+                'content' => '<h2>Email-маркетинг</h2><p>Эффективные email-рассылки для удержания клиентов, увеличения повторных продаж и построения лояльности.</p><h3>Услуги:</h3><ul><li>Настройка платформы</li><li>Создание цепочек писем</li><li>Дизайн шаблонов</li><li>Сегментация базы</li><li>A/B тестирование</li><li>Аналитика результатов</li></ul>',
+                'icon' => 'email',
+                'color' => '#84CC16',
+                'price_from' => 20000,
+                'price_type' => 'month',
+                'features' => [
+                    'Настройка платформы',
+                    'Создание цепочек',
+                    'Дизайн шаблонов',
+                    'Сегментация',
+                    'A/B тестирование'
+                ],
+                       'meta_title' => 'Email-маркетинг - Эффективные рассылки',
+                       'meta_description' => 'Настройка и ведение email-рассылок. Увеличиваем продажи через персонализированные письма.',
+                       'is_published' => true,
+                       'is_featured' => false,
+                       'show_on_homepage' => false,
+                       'sort_order' => 70,
             ],
         ];
 
         foreach ($services as $serviceData) {
             Service::create($serviceData);
         }
-
-        // Создаем дополнительные услуги через фабрику
-        Service::factory(6)->create();
     }
 }

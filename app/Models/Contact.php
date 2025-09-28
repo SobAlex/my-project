@@ -31,9 +31,23 @@ class Contact extends Model
      */
     public static function getInstance()
     {
-        return static::firstOrCreate(
-            ['id' => 1], // Always use ID 1 for singleton
-            [
+        // Сначала попробуем найти активную запись с данными
+        $contact = static::where('is_active', true)
+            ->where(function($query) {
+                $query->where('email', '!=', '')
+                      ->orWhere('phone', '!=', '')
+                      ->orWhere('address', '!=', '');
+            })
+            ->first();
+
+        // Если не найдена, попробуем любую активную запись
+        if (!$contact) {
+            $contact = static::where('is_active', true)->first();
+        }
+
+        // Если все еще не найдена, создаем новую
+        if (!$contact) {
+            $contact = static::create([
                 'email' => '',
                 'phone' => '',
                 'address' => '',
@@ -44,8 +58,10 @@ class Contact extends Model
                 'social_instagram' => '',
                 'social_youtube' => '',
                 'is_active' => true,
-            ]
-        );
+            ]);
+        }
+
+        return $contact;
     }
 
     /**

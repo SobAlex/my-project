@@ -23,10 +23,13 @@ class DatabaseSeeder extends Seeder
             // Затем создаем контент, который зависит от категорий
             ProjectCaseSeeder::class,
             BlogSeeder::class,
+            ServiceSeeder::class,
 
             // Настройки и FAQ не зависят от других моделей
             ContactSettingSeeder::class,
             FaqSeeder::class,
+            HeroSectionSeeder::class,
+            WhyUsSeeder::class,
         ]);
     }
 }

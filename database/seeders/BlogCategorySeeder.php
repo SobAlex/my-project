@@ -12,41 +12,41 @@ class BlogCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем 4 конкретные категории блогов
+        // Создаем категории блогов
         $categories = [
             [
-                'name' => 'SEO новости',
-                'slug' => 'seo-news',
-                'description' => 'Последние новости и обновления в мире SEO',
-                'icon' => 'local_cafe',
-                'color' => '#808080',
+                'name' => 'SEO',
+                'slug' => 'seo',
+                'description' => 'Статьи о SEO продвижении и оптимизации сайтов',
+                'icon' => 'trending_up',
+                'color' => '#10B981',
                 'is_active' => true,
                 'sort_order' => 1,
+            ],
+            [
+                'name' => 'Маркетинг',
+                'slug' => 'marketing',
+                'description' => 'Статьи о digital-маркетинге и продвижении',
+                'icon' => 'campaign',
+                'color' => '#3B82F6',
+                'is_active' => true,
+                'sort_order' => 2,
             ],
             [
                 'name' => 'Аналитика',
                 'slug' => 'analytics',
                 'description' => 'Аналитические статьи и исследования',
                 'icon' => 'analytics',
-                'color' => '#06b6d4',
-                'is_active' => true,
-                'sort_order' => 2,
-            ],
-            [
-                'name' => 'Советы',
-                'slug' => 'tips',
-                'description' => 'Практические советы и рекомендации по SEO',
-                'icon' => 'lightbulb',
-                'color' => '#06b6d4',
+                'color' => '#06B6D4',
                 'is_active' => true,
                 'sort_order' => 3,
             ],
             [
-                'name' => 'Кейсы',
-                'slug' => 'cases',
-                'description' => 'Разборы успешных кейсов продвижения',
-                'icon' => 'trending_up',
-                'color' => '#10B981',
+                'name' => 'Разработка',
+                'slug' => 'development',
+                'description' => 'Статьи о веб-разработке и технологиях',
+                'icon' => 'code',
+                'color' => '#8B5CF6',
                 'is_active' => true,
                 'sort_order' => 4,
             ],
