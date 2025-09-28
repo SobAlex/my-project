@@ -175,6 +175,99 @@
         </section>
     @endif
 
+    {{-- Related Articles --}}
+    @if($relatedArticles->count() > 0)
+        <section class="section-bg">
+            <h2 class="section-title">Полезные статьи</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($relatedArticles as $article)
+                    <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="flex items-start mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="material-icons text-white text-xl">article</i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold leading-tight mb-2">
+                                        <a href="{{ $article->url }}" class="hover:text-cyan-500">
+                                            {{ $article->title }}
+                                        </a>
+                                    </h3>
+                                    @if($article->category)
+                                        <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                            {{ $article->category->name }}
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{{ Str::limit($article->excerpt, 120) }}</p>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-500">{{ $article->published_at->format('d.m.Y') }}</span>
+                                <a href="{{ $article->url }}" class="text-cyan-500 font-medium hover:underline">
+                                    Читать →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
+    @endif
+
+    {{-- Related Cases --}}
+    @if($relatedCases->count() > 0)
+        <section class="section-bg">
+            <h2 class="section-title">Наши кейсы</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($relatedCases as $case)
+                    <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        @if($case->image)
+                            <div class="relative h-48 overflow-hidden rounded-t-lg">
+                                <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                                @if($case->industryCategory)
+                                    <div class="absolute top-3 left-3">
+                                        <span class="inline-block px-2 py-1 bg-white/90 text-gray-800 text-xs rounded-full font-medium">
+                                            {{ $case->industryCategory->name }}
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                        <div class="p-6">
+                            <div class="flex items-start mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="material-icons text-white text-xl">trending_up</i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold leading-tight mb-2">
+                                        <a href="{{ $case->url }}" class="hover:text-cyan-500">
+                                            {{ $case->title }}
+                                        </a>
+                                    </h3>
+                                    @if($case->client)
+                                        <p class="text-sm text-gray-500 mb-2">Клиент: {{ $case->client }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{{ $case->excerpt }}</p>
+                            <div class="flex items-center justify-between text-sm">
+                                @if($case->period)
+                                    <span class="text-gray-500">{{ $case->period }}</span>
+                                @else
+                                    <span></span>
+                                @endif
+                                <a href="{{ $case->url }}" class="text-cyan-500 font-medium hover:underline">
+                                    Подробнее →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
+    @endif
+
     {{-- FAQ Section --}}
     @if($servicesFaqs->count() > 0)
         <section class="section-bg">

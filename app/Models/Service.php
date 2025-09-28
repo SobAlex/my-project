@@ -31,6 +31,16 @@ class Service extends Model implements PublishableInterface
         'is_featured',
         'show_on_homepage',
         'sort_order',
+        // Связанный контент
+        'related_service_1_id',
+        'related_service_2_id',
+        'related_service_3_id',
+        'related_article_1_id',
+        'related_article_2_id',
+        'related_article_3_id',
+        'related_case_1_id',
+        'related_case_2_id',
+        'related_case_3_id',
     ];
 
     protected $casts = [
@@ -147,5 +157,74 @@ class Service extends Model implements PublishableInterface
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * Получает связанные услуги
+     */
+    public function getRelatedServicesAttribute()
+    {
+        $serviceIds = array_filter([
+            $this->related_service_1_id,
+            $this->related_service_2_id,
+            $this->related_service_3_id,
+        ]);
+
+        if (empty($serviceIds)) {
+            return collect();
+        }
+
+        return Service::whereIn('id', $serviceIds)
+            ->published()
+            ->get()
+            ->sortBy(function ($service) use ($serviceIds) {
+                return array_search($service->id, $serviceIds);
+            });
+    }
+
+    /**
+     * Получает связанные статьи (блоги)
+     */
+    public function getRelatedArticlesAttribute()
+    {
+        $articleIds = array_filter([
+            $this->related_article_1_id,
+            $this->related_article_2_id,
+            $this->related_article_3_id,
+        ]);
+
+        if (empty($articleIds)) {
+            return collect();
+        }
+
+        return \App\Models\Blog::whereIn('id', $articleIds)
+            ->published()
+            ->get()
+            ->sortBy(function ($article) use ($articleIds) {
+                return array_search($article->id, $articleIds);
+            });
+    }
+
+    /**
+     * Получает связанные кейсы
+     */
+    public function getRelatedCasesAttribute()
+    {
+        $caseIds = array_filter([
+            $this->related_case_1_id,
+            $this->related_case_2_id,
+            $this->related_case_3_id,
+        ]);
+
+        if (empty($caseIds)) {
+            return collect();
+        }
+
+        return \App\Models\ProjectCase::whereIn('id', $caseIds)
+            ->published()
+            ->get()
+            ->sortBy(function ($case) use ($caseIds) {
+                return array_search($case->id, $caseIds);
+            });
     }
 }
