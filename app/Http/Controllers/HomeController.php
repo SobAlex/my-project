@@ -31,7 +31,7 @@ class HomeController extends Controller
         $contactInfo = $this->contactService->getContactInfo();
         $homepageFaqs = Faq::visibleOnHomepage()->get();
         $featuredServices = Service::published()->showOnHomepage()->ordered()->take(6)->get();
-        $heroSection = HeroSection::active()->ordered()->first();
+        $heroSections = HeroSection::active()->ordered()->get();
 
         return view('welcome', compact(
             'latestCases',
@@ -40,7 +40,7 @@ class HomeController extends Controller
             'contactInfo',
             'homepageFaqs',
             'featuredServices',
-            'heroSection'
+            'heroSections'
         ));
     }
 }
