@@ -23,55 +23,72 @@
     {{-- Why we --}}
     <section id="why" class="section-bg">
         <h2 class="section-title">Почему мы</h2>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <li class="element-bg p-4 flex justify-center items-start">
-                <div class="flex flex-col items-center">
-                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
-                        style="font-size: 48px;">star</i>
-                    <div class="text-center">
-                        <h3 class="text-lg font-semibold">Опыт более 5 лет</h3>
-                        <p class="text-base text-gray-600">Описание 1</p>
+        @if($whyUsBlocks && $whyUsBlocks->count() > 0)
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                @foreach($whyUsBlocks as $block)
+                    <li class="element-bg p-4 flex justify-center items-start">
+                        <div class="flex flex-col items-center">
+                            @if($block->icon)
+                                <i class="material-icons md-48 mb-3"
+                                   aria-label="{{ $block->title }}"
+                                   role="img"
+                                   style="font-size: 48px; color: {{ $block->color ?: '#06b6d4' }};">{{ $block->icon }}</i>
+                            @endif
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold">{{ $block->title }}</h3>
+                                @if($block->description)
+                                    <p class="text-base text-gray-600">{{ $block->description }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            {{-- Fallback статичный контент --}}
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <li class="element-bg p-4 flex justify-center items-start">
+                    <div class="flex flex-col items-center">
+                        <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
+                            style="font-size: 48px;">star</i>
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold">Опыт более 5 лет</h3>
+                            <p class="text-base text-gray-600">Многолетний опыт в SEO продвижении</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-
-            <li class="element-bg p-4 flex justify-center items-start">
-                <div class="flex flex-col items-center">
-                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="CRM" role="img"
-                        style="font-size:48px;">dashboard</i>
-                    <div class="text-center">
-                        <h3 class="text-lg font-semibold">Собственная CRM</h3>
-                        <p class="text-base text-gray-600">С учетом специфики продвижения сайтов и
-                            многозадачности разработана собственная
-                            система учета и контроля задач.</p>
+                </li>
+                <li class="element-bg p-4 flex justify-center items-start">
+                    <div class="flex flex-col items-center">
+                        <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Прозрачность" role="img"
+                            style="font-size: 48px;">verified</i>
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold">Прозрачная отчетность</h3>
+                            <p class="text-base text-gray-600">Подробные отчеты о проделанной работе</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-
-            <li class="element-bg p-4 flex justify-center items-start">
-                <div class="flex flex-col items-center">
-                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Участие в тематических конференциях"
-                        role="img" style="font-size:48px;">groups</i>
-                    <div class="text-center">
-                        <h3 class="text-lg font-semibold">Регулярное участие в тематических конференциях</h3>
-                        <p class="text-base text-gray-600">Поисковые системы постоянно улучшают алгоритмы
-                            ранжирования. Мы в курсе всех
-                            изменений и следим за ситуацией.</p>
+                </li>
+                <li class="element-bg p-4 flex justify-center items-start">
+                    <div class="flex flex-col items-center">
+                        <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Быстрые результаты" role="img"
+                            style="font-size: 48px;">speed</i>
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold">Быстрые результаты</h3>
+                            <p class="text-base text-gray-600">Первые улучшения через 2-4 недели</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-
-            <li class="element-bg p-4 flex justify-center items-start">
-                <div class="flex flex-col items-center px-10">
-                    <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Сертифицированные специалисты"
-                        role="img" style="font-size:48px;">verified</i>
-                    <div class="text-center">
-                        <h3 class="text-lg font-semibold">Сертифицированные специалисты</h3>
-                        <p class="text-base text-gray-600">Ежегодное подтверждение квалификации в Яндекс</p>
+                </li>
+                <li class="element-bg p-4 flex justify-center items-start">
+                    <div class="flex flex-col items-center">
+                        <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Поддержка" role="img"
+                            style="font-size: 48px;">support</i>
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold">Постоянная поддержка</h3>
+                            <p class="text-base text-gray-600">Наши специалисты всегда на связи</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        @endif
     </section>
     {{-- End why we --}}
 
