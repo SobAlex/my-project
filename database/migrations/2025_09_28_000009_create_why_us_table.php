@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('why_us', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->comment('Заголовок блока');
-            $table->text('description')->nullable()->comment('Описание блока');
-            $table->string('icon')->nullable()->comment('Иконка Material Icons');
-            $table->string('color')->default('#06b6d4')->comment('Цвет иконки');
-            $table->string('image')->nullable()->comment('Путь к изображению');
-            $table->boolean('is_active')->default(true)->comment('Активен ли блок');
+            $table->string('title')->comment('Заголовок');
+            $table->text('description')->comment('Описание');
+            $table->string('icon')->nullable()->comment('Иконка');
+            $table->string('color')->nullable()->comment('Цвет');
+            $table->boolean('is_active')->default(true)->comment('Активен');
             $table->integer('sort_order')->default(0)->comment('Порядок сортировки');
             $table->timestamps();
+
+            $table->index(['is_active', 'sort_order']);
         });
     }
 

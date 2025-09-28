@@ -25,12 +25,12 @@ return new class extends Migration
             $table->integer('sort_order')->default(0)->comment('Порядок сортировки');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('industry_category_id')->nullable()->constrained()->onDelete('set null');
-            
+
             // SEO поля
             $table->string('meta_title')->nullable()->comment('SEO заголовок');
             $table->text('meta_description')->nullable()->comment('SEO описание');
             $table->text('content')->nullable()->comment('Основной контент');
-            
+
             // Метрики "до"
             $table->string('traffic_before')->nullable();
             $table->string('keywords_before')->nullable();
@@ -59,7 +59,7 @@ return new class extends Migration
             $table->string('catalog_conversion_before')->nullable();
             $table->string('brand_traffic_before')->nullable();
             $table->string('product_views_before')->nullable();
-            
+
             // Метрики "после"
             $table->string('traffic_after')->nullable();
             $table->string('keywords_after')->nullable();
@@ -88,13 +88,13 @@ return new class extends Migration
             $table->string('catalog_conversion_after')->nullable();
             $table->string('brand_traffic_after')->nullable();
             $table->string('product_views_after')->nullable();
-            
+
             // Дополнительные поля
             $table->text('metrics')->nullable()->comment('Дополнительные метрики');
             $table->text('results')->nullable()->comment('Результаты');
-            
+
             $table->timestamps();
-            
+
             $table->index(['is_published', 'sort_order']);
             $table->index('industry_category_id');
         });

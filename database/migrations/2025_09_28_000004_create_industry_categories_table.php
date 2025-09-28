@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true)->comment('Активна');
             $table->integer('sort_order')->default(0)->comment('Порядок сортировки');
             $table->timestamps();
-            
+
             $table->index(['is_active', 'sort_order']);
         });
     }
