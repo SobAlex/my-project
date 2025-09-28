@@ -69,4 +69,72 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
+    .service-content {
+        @apply text-gray-700 leading-relaxed;
+    }
+
+    .service-content h1 {
+        @apply text-3xl font-bold text-gray-800 mb-6 mt-8;
+    }
+
+    .service-content h2 {
+        @apply text-2xl font-bold text-gray-800 mb-4 mt-6;
+    }
+
+    .service-content h3 {
+        @apply text-xl font-semibold text-gray-800 mb-3 mt-5;
+    }
+
+    .service-content h4 {
+        @apply text-lg font-semibold text-gray-800 mb-2 mt-4;
+    }
+
+    .service-content p {
+        @apply mb-4 text-gray-600 leading-relaxed;
+    }
+
+    .service-content ul {
+        @apply list-disc list-inside mb-4 space-y-2;
+    }
+
+    .service-content ol {
+        @apply list-decimal list-inside mb-4 space-y-2;
+    }
+
+    .service-content li {
+        @apply text-gray-600 leading-relaxed;
+    }
+
+    .service-content li p {
+        @apply inline mb-0;
+    }
+
+    .service-content a {
+        @apply text-cyan-600 hover:text-cyan-700 underline;
+    }
+
+    .service-content strong {
+        @apply font-semibold text-gray-800;
+    }
+
+    .service-content em {
+        @apply italic;
+    }
+
+    .service-content blockquote {
+        @apply border-l-4 border-cyan-500 pl-4 italic text-gray-600 bg-gray-50 py-2 mb-4;
+    }
+
+    .service-content code {
+        @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+    }
+
+    .service-content pre {
+        @apply bg-gray-100 p-4 rounded mb-4 overflow-x-auto;
+    }
+
+    .service-content pre code {
+        @apply bg-transparent px-0 py-0;
+    }
 }

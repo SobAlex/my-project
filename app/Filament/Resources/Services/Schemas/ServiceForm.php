@@ -12,6 +12,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Placeholder;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 
 class ServiceForm
 {
@@ -36,11 +37,44 @@ class ServiceForm
                 Textarea::make('description')
                     ->rows(3)
                     ->columnSpanFull(),
-                RichEditor::make('content')
-                    ->toolbarButtons([
-                        'bold', 'italic', 'link', 'bulletList', 'orderedList',
-                        'h2', 'h3', 'blockquote', 'codeBlock'
-                    ])
+
+                // === HTML КОНТЕНТ ===
+                Textarea::make('content')
+                    ->label('Контент (HTML)')
+                    ->rows(8)
+                    ->live(onBlur: true)
+                    ->helperText('Вводите HTML-код. Используйте теги: <p>, <h2>, <h3>, <ul>, <li>, <strong>, <em>, <a>')
+                    ->columnSpanFull(),
+
+                Placeholder::make('content_preview')
+                    ->label('Предпросмотр контента')
+                    ->content(function ($get) {
+                        $content = $get('content');
+                        if (!$content) {
+                            return new HtmlString('<div class="text-gray-500 italic p-4 bg-gray-50 rounded-lg">Введите контент выше для предпросмотра</div>');
+                        }
+
+                        return new HtmlString(
+                            '<div class="p-4 bg-white border rounded-lg shadow-sm" style="max-height: 300px; overflow-y: auto;">' .
+                            '<div style="color: #4b5563; line-height: 1.6;">' .
+                            '<style scoped>' .
+                            '.preview-content h1 { font-size: 2rem; font-weight: bold; color: #1f2937; margin: 1.5rem 0 1rem 0; }' .
+                            '.preview-content h2 { font-size: 1.75rem; font-weight: bold; color: #1f2937; margin: 1.25rem 0 0.75rem 0; }' .
+                            '.preview-content h3 { font-size: 1.5rem; font-weight: 600; color: #1f2937; margin: 1rem 0 0.5rem 0; }' .
+                            '.preview-content p { margin-bottom: 1rem; color: #4b5563; line-height: 1.6; }' .
+                            '.preview-content ul { list-style-type: disc; list-style-position: inside; margin-bottom: 1rem; }' .
+                            '.preview-content ol { list-style-type: decimal; list-style-position: inside; margin-bottom: 1rem; }' .
+                            '.preview-content li { margin-bottom: 0.5rem; color: #4b5563; }' .
+                            '.preview-content strong { font-weight: 600; color: #1f2937; }' .
+                            '.preview-content em { font-style: italic; }' .
+                            '.preview-content a { color: #0891b2; text-decoration: underline; }' .
+                            '</style>' .
+                            '<div class="preview-content">' . $content . '</div>' .
+                            '</div>' .
+                            '</div>'
+                        );
+                    })
+                    ->hidden(fn ($get) => empty($get('content')))
                     ->columnSpanFull(),
                 ColorPicker::make('color')
                     ->required()
@@ -97,24 +131,38 @@ Repeater::make('features')
                     ->addActionLabel('Добавить особенность')
                     ->columnSpanFull()
                     ->grid(2),
+
+                // === SEO НАСТРОЙКИ ===
                 TextInput::make('meta_title')
-                    ->helperText('Заголовок для поисковых систем'),
+                    ->label('Meta Title')
+                    ->helperText('Заголовок для поисковых систем')
+                    ->columnSpanFull(),
                 Textarea::make('meta_description')
+                    ->label('Meta Description')
                     ->rows(3)
-                    ->helperText('Описание для поисковых систем'),
+                    ->helperText('Описание для поисковых систем')
+                    ->columnSpanFull(),
                 TextInput::make('meta_keywords')
-                    ->helperText('Ключевые слова через запятую'),
+                    ->label('Meta Keywords')
+                    ->helperText('Ключевые слова через запятую')
+                    ->columnSpanFull(),
+
+                // === НАСТРОЙКИ ПУБЛИКАЦИИ ===
                 Toggle::make('is_published')
-                    ->default(true),
+                    ->label('Опубликовано')
+                    ->default(true)
+                    ->helperText('Услуга будет доступна на сайте'),
                 Toggle::make('is_featured')
-                    ->helperText('Рекомендуемая услуга'),
+                    ->label('Рекомендуемая')
+                    ->helperText('Услуга будет отмечена как рекомендуемая'),
                 Toggle::make('show_on_homepage')
                     ->label('Показывать на главной')
                     ->helperText('Услуга будет отображаться в секции услуг на главной странице'),
                 TextInput::make('sort_order')
+                    ->label('Порядок сортировки')
                     ->numeric()
                     ->default(0)
-                    ->helperText('Порядок сортировки'),
+                    ->helperText('Чем меньше число, тем выше в списке'),
             ]);
     }
 }

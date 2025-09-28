@@ -94,8 +94,25 @@
     {{-- Content section --}}
     @if($service->content)
         <section class="section-bg">
-            <div class="prose prose-lg max-w-none">
-                {!! $service->content !!}
+            <div class="service-content max-w-none" style="color: #4b5563; line-height: 1.6;">
+                <style>
+                    .service-content h1 { font-size: 2rem; font-weight: bold; color: #1f2937; margin: 2rem 0 1.5rem 0; }
+                    .service-content h2 { font-size: 1.75rem; font-weight: bold; color: #1f2937; margin: 1.5rem 0 1rem 0; }
+                    .service-content h3 { font-size: 1.5rem; font-weight: 600; color: #1f2937; margin: 1.25rem 0 0.75rem 0; }
+                    .service-content h4 { font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 1rem 0 0.5rem 0; }
+                    .service-content p { margin-bottom: 1rem; color: #4b5563; line-height: 1.6; }
+                    .service-content ul { list-style-type: disc; list-style-position: inside; margin-bottom: 1rem; }
+                    .service-content ol { list-style-type: decimal; list-style-position: inside; margin-bottom: 1rem; }
+                    .service-content li { margin-bottom: 0.5rem; color: #4b5563; line-height: 1.6; }
+                    .service-content li p { display: inline; margin: 0; }
+                    .service-content a { color: #0891b2; text-decoration: underline; }
+                    .service-content a:hover { color: #0e7490; }
+                    .service-content strong { font-weight: 600; color: #1f2937; }
+                    .service-content em { font-style: italic; }
+                    .service-content blockquote { border-left: 4px solid #0891b2; padding-left: 1rem; font-style: italic; color: #4b5563; background-color: #f9fafb; padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 1rem; }
+                    .service-content code { background-color: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem; font-family: monospace; }
+                </style>
+                {!! html_entity_decode($service->content, ENT_QUOTES | ENT_HTML5, 'UTF-8') !!}
             </div>
         </section>
     @endif
@@ -181,7 +198,7 @@
     @endif
 
     {{-- CTA Section --}}
-    <section class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-16">
+    <section class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-16 mt-24">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4">Готовы заказать {{ $service->title }}?</h2>
             <p class="text-xl mb-8 opacity-90">Свяжитесь с нами для обсуждения деталей и получения персонального предложения</p>
