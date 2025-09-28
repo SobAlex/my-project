@@ -128,24 +128,24 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 min-w-48 max-w-80 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Свяжитесь с нами:</div>
                         <div class="space-y-2">
                             <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition whitespace-nowrap">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
                                 {{ $contactInfo['phone'] }}
                             </a>
                             <a href="mailto:{{ $contactInfo['email'] }}"
-                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition whitespace-nowrap">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
                                 {{ $contactInfo['email'] }}
                             </a>
                             <a href="#"
                                 class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
-                                {{ $contactInfo['address'] }}
+                                <span class="break-words">{{ $contactInfo['address'] }}</span>
                             </a>
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
@@ -346,12 +346,12 @@
                         <a href="mailto:{{ $contactInfo['email'] }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
-                            {{ $contactInfo['email'] }}
+                            <span class="break-all">{{ $contactInfo['email'] }}</span>
                         </a>
                         <a href="#"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                             <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
-                            {{ $contactInfo['address'] }}
+                            <span class="break-words">{{ $contactInfo['address'] }}</span>
                         </a>
                     </div>
                     <div class="pt-3 border-t border-gray-200">

@@ -27,10 +27,10 @@ class FaqForm
                     ->required(),
                 Toggle::make('show_on_homepage')
                     ->label('Показывать на главной странице')
-                    ->default(false),
+                    ->default(true),
                 Toggle::make('show_on_services')
                     ->label('Показывать на страницах услуг')
-                    ->default(false),
+                    ->default(true),
             ]);
     }
 }
