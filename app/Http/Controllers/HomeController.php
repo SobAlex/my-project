@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Service;
+use App\Models\HeroSection;
 use App\Services\ContactService;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,7 @@ class HomeController extends Controller
         $contactInfo = $this->contactService->getContactInfo();
         $homepageFaqs = Faq::visibleOnHomepage()->get();
         $featuredServices = Service::published()->showOnHomepage()->ordered()->take(6)->get();
+        $heroSection = HeroSection::active()->ordered()->first();
 
         return view('welcome', compact(
             'latestCases',
@@ -37,7 +39,8 @@ class HomeController extends Controller
             'randomReviews',
             'contactInfo',
             'homepageFaqs',
-            'featuredServices'
+            'featuredServices',
+            'heroSection'
         ));
     }
 }

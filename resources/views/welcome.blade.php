@@ -14,8 +14,19 @@
 
                 <!-- Заголовок -->
                 <h1 class="text-3xl leading-relaxed mb-6 sm:mb-8">
-                    Загружу работой ваших менеджеров по продажам<br>SEO продвижение сайтов в интернете.
+                    @if($heroSection)
+                        {{ $heroSection->title }}
+                    @else
+                        Загружу работой ваших менеджеров по продажам<br>SEO продвижение сайтов в интернете.
+                    @endif
                 </h1>
+
+                @if($heroSection && $heroSection->description)
+                    <!-- Описание -->
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        {{ $heroSection->description }}
+                    </p>
+                @endif
 
                 <!-- Форма -->
                 <form action="{{ route('contact.hero') }}" method="POST"
@@ -48,16 +59,25 @@
                     </div>
 
                     <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
-                        aria-label="Отправить заявку">
-                        Отправить заявку
+                        aria-label="@if($heroSection) {{ $heroSection->button_text }} @else Отправить заявку @endif">
+                        @if($heroSection)
+                            {{ $heroSection->button_text }}
+                        @else
+                            Отправить заявку
+                        @endif
                     </button>
                 </form>
             </div>
 
             <!-- Правая часть (картинка) -->
             <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto flex justify-center items-stretch px-4 py-6">
-                <img src="{{ asset('images/human.webp') }}" alt="right photo" class="w-full h-full object-cover"
-                    loading="eager" decoding="async" fetchpriority="high" />
+                @if($heroSection && $heroSection->image)
+                    <img src="{{ $heroSection->image_url }}" alt="{{ $heroSection->title }}" class="w-full h-full object-cover"
+                        loading="eager" decoding="async" fetchpriority="high" />
+                @else
+                    <img src="{{ asset('images/human.webp') }}" alt="right photo" class="w-full h-full object-cover"
+                        loading="eager" decoding="async" fetchpriority="high" />
+                @endif
             </div>
         </div>
     </section>
