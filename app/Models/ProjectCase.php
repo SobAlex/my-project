@@ -77,6 +77,9 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         'catalog_conversion_before', 'catalog_conversion_after',
         'brand_traffic_before', 'brand_traffic_after',
         'product_views_before', 'product_views_after',
+        // Новые поля для динамических блоков
+        'metrics',
+        'results',
     ];
 
     /**
@@ -88,6 +91,8 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         'before_after' => 'array',
         'is_published' => 'boolean',
         'image' => 'string',
+        'metrics' => 'array',
+        'results' => 'array',
     ];
 
 
@@ -223,10 +228,21 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
     }
 
     /**
-     * Get results as array from individual fields.
+     * Get results as array from new dynamic field or individual fields for backward compatibility.
      */
     public function getResultsArrayAttribute()
     {
+        // Если есть новые динамические результаты, используем их
+        if (!empty($this->results) && is_array($this->results)) {
+            // Проверяем структуру данных: если это простой массив строк, возвращаем как есть
+            if (isset($this->results[0]) && is_string($this->results[0])) {
+                return array_filter($this->results);
+            }
+            // Если это массив объектов с ключом 'result', извлекаем значения
+            return collect($this->results)->pluck('result')->filter()->values()->toArray();
+        }
+
+        // Иначе используем старые поля result_1 - result_6 для обратной совместимости
         $results = [];
         for ($i = 1; $i <= 6; $i++) {
             $field = "result_{$i}";
@@ -303,10 +319,27 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
     }
 
     /**
-     * Get available metrics for this case.
+     * Get available metrics for this case from new dynamic field or old fields for backward compatibility.
      */
     public function getAvailableMetricsAttribute()
     {
+        // Если есть новые динамические метрики, используем их
+        if (!empty($this->metrics) && is_array($this->metrics)) {
+            $metrics = [];
+            foreach ($this->metrics as $index => $metric) {
+                if (!empty($metric['name'])) {
+                    $key = 'metric_' . $index;
+                    $metrics[$key] = [
+                        'before' => $metric['before'] ?? '',
+                        'after' => $metric['after'] ?? '',
+                        'label' => $metric['name'],
+                    ];
+                }
+            }
+            return $metrics;
+        }
+
+        // Иначе используем старые поля для обратной совместимости
         $metrics = [];
 
         $metricMapping = [
@@ -382,4 +415,5 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
             ]);
         });
     }
+
 }

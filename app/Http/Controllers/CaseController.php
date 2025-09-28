@@ -114,9 +114,12 @@ class CaseController extends Controller
         $caseData = $this->caseService->transformCaseForTemplate($case);
         $categoryInfo = $this->caseService->getCategoryInfo($caseData['industry']);
 
+        // Получаем данные о сервисе из базы данных
+        $seoService = \App\Models\Service::where('slug', 'seo-prodvizhenie')->first();
         $serviceData = [
-            'service_name' => 'SEO продвижение',
-            'service_icon' => 'trending_up'
+            'service_name' => $seoService ? $seoService->title : 'SEO продвижение',
+            'service_icon' => $seoService ? $seoService->icon : 'trending_up',
+            'service_slug' => $seoService ? $seoService->slug : 'seo-prodvizhenie'
         ];
 
         return view('cases.show', compact('caseData', 'serviceData', 'categoryInfo'));
