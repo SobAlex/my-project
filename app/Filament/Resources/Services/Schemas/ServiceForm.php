@@ -35,6 +35,7 @@ class ServiceForm
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn (callable $set, $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 Textarea::make('description')
+                    ->label('Краткое описание')
                     ->rows(3)
                     ->columnSpanFull(),
 
