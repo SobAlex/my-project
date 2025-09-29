@@ -24,7 +24,7 @@
                 <article class="element-bg rounded-lg shadow-md">
                     <!-- Service Image -->
                     @if($service->image)
-                        <div class="aspect-video bg-gray-100 overflow-hidden">
+                        <div class="aspect-video bg-gray-100 overflow-hidden rounded-t-lg">
                             <img src="{{ asset('storage/' . $service->image) }}"
                                  alt="{{ $service->title }}"
                                  class="w-full h-full object-cover">
