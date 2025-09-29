@@ -65,7 +65,7 @@
                                 @foreach(array_slice($service->features, 0, 3) as $feature)
                                     @if(is_string($feature))
                                         <li class="flex items-center">
-                                            <i class="material-icons text-green-500 text-sm mr-2">check</i>
+                                            <i class="material-icons text-cyan-500 text-sm mr-2">check</i>
                                             {{ $feature }}
                                         </li>
                                     @endif

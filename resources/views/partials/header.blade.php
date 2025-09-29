@@ -340,17 +340,17 @@
                     <div class="space-y-2">
                         <a href="tel:{{ str_replace(' ', '', $contactInfo['phone']) }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">phone</i>
+                            <i class="material-icons text-sm mr-2" style="color: #06b6d4">phone</i>
                             {{ $contactInfo['phone'] }}
                         </a>
                         <a href="mailto:{{ $contactInfo['email'] }}"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">email</i>
+                            <i class="material-icons text-sm mr-2" style="color: #06b6d4">email</i>
                             <span class="break-all">{{ $contactInfo['email'] }}</span>
                         </a>
                         <a href="#"
                             class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
-                            <i class="material-icons text-sm mr-2 text-cyan-500">location_on</i>
+                            <i class="material-icons text-sm mr-2" style="color: #06b6d4">location_on</i>
                             <span class="break-words">{{ $contactInfo['address'] }}</span>
                         </a>
                     </div>

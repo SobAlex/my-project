@@ -89,7 +89,7 @@
                 @foreach ($caseData['results'] as $result)
                     <div
                         class="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-md">
-                        <i class="material-icons text-green-500 mt-1">check_circle</i>
+                        <i class="material-icons text-cyan-500 mt-1">check_circle</i>
                         <span class="text-gray-700">{{ $result }}</span>
                     </div>
                 @endforeach

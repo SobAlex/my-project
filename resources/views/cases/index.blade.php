@@ -93,7 +93,7 @@
                                     <div class="space-y-2">
                                         @foreach (array_slice($case['results'], 0, 2) as $result)
                                             <div class="flex items-center text-sm">
-                                                <i class="material-icons text-green-500 mr-2 text-base">trending_up</i>
+                                                <i class="material-icons text-cyan-500 mr-2 text-base">trending_up</i>
                                                 <span class="text-gray-700 font-medium">{{ $result }}</span>
                                             </div>
                                         @endforeach
