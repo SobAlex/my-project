@@ -50,7 +50,7 @@
                     <div class="absolute bottom-4 left-4 text-white">
                         @if ($caseData['has_valid_category'])
                             <a href="{{ route('cases.category', $caseData['industry']) }}"
-                                class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 rounded-full text-sm font-medium transition-colors inline-block">
                                 {{ $caseData['industry_name'] }}
                             </a>
                         @endif
@@ -88,7 +88,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($caseData['results'] as $result)
                     <div
-                        class="flex items-start space-x-3 p-4 bg-white  shadow-md hover:shadow-lg transition-shadow duration-300">
+                        class="flex items-start space-x-3 p-4 bg-white rounded-lg shadow-md">
                         <i class="material-icons text-green-500 mt-1">check_circle</i>
                         <span class="text-gray-700">{{ $result }}</span>
                     </div>
@@ -104,7 +104,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($caseData['before_after'] as $metric => $values)
-                        <div class="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
                             <div class="p-4 text-center">
                                 <h3 class="font-semibold text-gray-800 mb-4">
                                     {{ $values['label'] }}
@@ -145,15 +145,15 @@
     {{-- CTA section --}}
     <section class="section-bg">
         <div>
-            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white  p-8 text-center">
+            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-lg">
                 <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
                 <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                         onclick="openServiceOrderModal('{{ $serviceData['service_name'] }}')">
                         Заказать услугу
                     </button>
-                    <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                         onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
                         Заказать звонок
                     </button>

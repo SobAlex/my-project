@@ -20,7 +20,7 @@
 
     <div class="max-w-4xl mx-auto py-12">
         <!-- Заголовок статьи -->
-        <article class="bg-white  shadow-lg overflow-hidden border border-gray-200">
+        <article class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
             @if ($article->image)
                 <div class="aspect-video overflow-hidden">
@@ -44,7 +44,7 @@
                 <!-- Метаданные статьи -->
                 <div class="flex flex-wrap items-center gap-4 mb-6">
                     @if ($article->hasActiveCategory())
-                        <span class="inline-flex items-center px-3 py-1  text-sm font-medium bg-cyan-100 text-cyan-800">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800">
                             {{ $article->active_category_name }}
                         </span>
                     @endif
@@ -103,7 +103,7 @@
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)
                         <a href="{{ $relatedArticle->url }}"
-                            class="group bg-white  shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
+                            class="group bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
                             @if ($relatedArticle->image)
                                 <div class="aspect-video overflow-hidden">
                                     <img src="{{ $relatedArticle->image_url }}" alt="{{ $relatedArticle->title }}" class="w-full h-full object-cover">
@@ -125,7 +125,7 @@
 
                             <div class="p-4">
                                 <span
-                                    class="inline-flex items-center px-2 py-1  text-xs font-medium bg-cyan-100 text-cyan-800 mb-2">
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 mb-2">
                                     {{ $relatedArticle->category_name }}
                                 </span>
 

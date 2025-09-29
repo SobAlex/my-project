@@ -42,18 +42,22 @@
     }
 
     .btn {
-        @apply border px-6 py-2 hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+        @apply border border-cyan-500 text-cyan-500 bg-white px-6 py-2 rounded-lg hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
     .btn-secondary {
-        @apply border border-gray-300 bg-white text-gray-700 px-4 py-2 hover:bg-gray-50 hover:border-gray-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+        @apply border border-gray-300 bg-white text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+    }
+
+    .btn-outline {
+        @apply border border-cyan-500 text-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
     input[type="text"],
     input[type="email"],
     input[type="tel"],
     textarea {
-        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+        @apply rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
     }
 
     .line-clamp-2 {

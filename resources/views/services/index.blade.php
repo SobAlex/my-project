@@ -21,7 +21,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($services as $service)
-                <article class="element-bg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <article class="element-bg rounded-lg shadow-md">
                     <!-- Service Image -->
                     @if($service->image)
                         <div class="aspect-video bg-gray-100 overflow-hidden">
@@ -43,11 +43,11 @@
                                 </div>
                             @endif
                             <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-gray-800 mb-2">
-                                    <a href="{{ route('services.show', $service->slug) }}" class="hover:text-cyan-500">
+                                <a href="{{ route('services.show', $service->slug) }}" class="group">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-cyan-500 transition-colors">
                                         {{ $service->title }}
-                                    </a>
-                                </h3>
+                                    </h3>
+                                </a>
                                 @if($service->is_featured)
                                     <span class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
                                         Рекомендуемая
@@ -82,10 +82,7 @@
                                     <div class="text-sm text-gray-500">По договоренности</div>
                                 @endif
                             </div>
-                            <div class="flex space-x-2">
-                                <a href="{{ route('services.show', $service->slug) }}" class="btn-outline text-sm px-4 py-2">
-                                    Подробнее
-                                </a>
+                            <div>
                                 <button class="btn text-sm px-4 py-2" onclick="openServiceOrderModal('{{ $service->title }}')">
                                     Заказать
                                 </button>
@@ -108,15 +105,15 @@
     {{-- CTA Section --}}
     @if($services->count() > 0)
         <section class="section-bg">
-            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
+            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-lg">
                 <h2 class="text-3xl font-bold mb-4">Готовы начать продвижение вашего сайта?</h2>
                 <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                         onclick="openServiceOrderModal('Заказать продвижение')">
                         Заказать продвижение
                     </button>
-                    <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                         onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
                         Заказать звонок
                     </button>

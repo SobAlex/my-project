@@ -26,7 +26,7 @@
         @if($whyUsBlocks && $whyUsBlocks->count() > 0)
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach($whyUsBlocks as $block)
-                    <li class="element-bg p-4 flex justify-center items-start">
+                    <li class="element-bg rounded-lg p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
                             @if($block->icon)
                                 <i class="material-icons md-48 mb-3"
@@ -47,7 +47,7 @@
         @else
             {{-- Fallback статичный контент --}}
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <li class="element-bg p-4 flex justify-center items-start">
+                <li class="element-bg rounded-lg p-4 flex justify-center items-start">
                     <div class="flex flex-col items-center">
                         <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Опыт более 5 лет" role="img"
                             style="font-size: 48px;">star</i>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="element-bg p-4 flex justify-center items-start">
+                <li class="element-bg rounded-lg p-4 flex justify-center items-start">
                     <div class="flex flex-col items-center">
                         <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Прозрачность" role="img"
                             style="font-size: 48px;">verified</i>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="element-bg p-4 flex justify-center items-start">
+                <li class="element-bg rounded-lg p-4 flex justify-center items-start">
                     <div class="flex flex-col items-center">
                         <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Быстрые результаты" role="img"
                             style="font-size: 48px;">speed</i>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="element-bg p-4 flex justify-center items-start">
+                <li class="element-bg rounded-lg p-4 flex justify-center items-start">
                     <div class="flex flex-col items-center">
                         <i class="material-icons text-cyan-500 md-48 mb-3" aria-label="Поддержка" role="img"
                             style="font-size: 48px;">support</i>
@@ -98,7 +98,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             @forelse($featuredServices as $service)
-                <article class="element-bg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
+                <article class="element-bg rounded-lg shadow-md flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
                     <div class="flex flex-col flex-[2] p-4">
                         <div class="flex flex-col items-center mb-4">
                             @if($service->icon)
@@ -151,7 +151,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestCases as $case)
                     <article
-                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
                         {{-- Case image --}}
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
@@ -160,7 +160,7 @@
                             <div class="absolute bottom-4 left-4 text-white">
                                 @if ($case['has_valid_category'])
                                     <a href="{{ route('cases.category', $case['industry']) }}"
-                                        class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                        class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 rounded-full text-sm font-medium transition-colors inline-block">
                                         {{ $case['industry_name'] }}
                                     </a>
                                 @else
@@ -225,7 +225,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestArticles as $article)
                     <article
-                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
                         {{-- Article image --}}
                         @if ($article->image)
                             <div class="relative h-48 overflow-hidden">
@@ -249,43 +249,34 @@
 
                         {{-- Article content --}}
                         <div class="p-6 flex-1 flex flex-col">
-                            <div class="flex-1">
-                                {{-- Category and date --}}
-                                <div class="flex items-center justify-between mb-3">
-                                    <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
-                                        class="inline-flex items-center px-3 py-1 text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors">
-                                        {{ $article->category_name }}
-                                    </a>
-                                    <span class="text-gray-500 text-sm">
-                                        {{ $article->formatted_published_at }}
-                                    </span>
-                                </div>
-
-                                {{-- Title --}}
-                                <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2">
-                                    <a href="{{ $article->url }}"
-                                        class="hover:text-cyan-600 transition-colors">
-                                        {{ $article->title }}
-                                    </a>
-                                </h3>
-
-                                {{-- Excerpt --}}
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                                    {{ $article->excerpt }}
-                                </p>
-
-                                {{-- Reading time --}}
-                                <div class="flex items-center text-sm text-gray-500 mb-4">
-                                    <i class="material-icons text-xs mr-1">schedule</i>
-                                    <span>{{ $article->reading_time ?? '5' }} мин чтения</span>
-                                </div>
+                            {{-- Category and date --}}
+                            <div class="flex items-center justify-between mb-3">
+                                <a href="{{ route('blog.category', $article->blogCategory->slug ?? 'uncategorized') }}"
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 hover:bg-cyan-200 transition-colors">
+                                    {{ $article->category_name }}
+                                </a>
+                                <span class="text-gray-500 text-sm">
+                                    {{ $article->formatted_published_at }}
+                                </span>
                             </div>
 
-                            {{-- CTA button --}}
-                            <a href="{{ $article->url }}"
-                                class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
-                                Читать статью
+                            {{-- Title --}}
+                            <a href="{{ $article->url }}" class="group">
+                                <h3 class="text-lg font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-cyan-600 transition-colors">
+                                    {{ $article->title }}
+                                </h3>
                             </a>
+
+                            {{-- Excerpt --}}
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                                {{ $article->excerpt }}
+                            </p>
+
+                            {{-- Reading time --}}
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="material-icons text-xs mr-1">schedule</i>
+                                <span>{{ $article->reading_time ?? '5' }} мин чтения</span>
+                            </div>
                         </div>
                     </article>
                 @endforeach
@@ -325,7 +316,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($randomReviews as $review)
                     <article
-                        class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
                         {{-- Review content --}}
                         <div class="p-6 flex-1 flex flex-col">
                             <div class="flex-1">
@@ -445,7 +436,7 @@
 
                     <input type="text" name="name" id="name_contact" required placeholder="Ваше имя"
                         aria-required="true" aria-label="Имя"
-                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                         aria-describedby="name_contact_error">
                     @if (isset($errors) && $errors->has('name'))
@@ -458,7 +449,7 @@
 
                     <input type="email" name="email" id="email_contact" required placeholder="your@email.com"
                         aria-required="true" aria-label="Email"
-                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('email')) true @else false @endif"
                         aria-describedby="email_contact_error">
                     @if (isset($errors) && $errors->has('email'))
@@ -471,7 +462,7 @@
 
                     <input type="tel" name="phone" id="phone_contact" required aria-label="Телефон"
                         placeholder="+7 (999) 999-99-99"
-                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                         aria-describedby="phone_contact_error">
                     @if (isset($errors) && $errors->has('phone'))
@@ -484,7 +475,7 @@
 
                     <textarea name="message" id="message_contact" rows="5" required placeholder="Расскажите о вашем проекте..."
                         aria-required="true" aria-label="Сообщение"
-                        class="mt-1 block w-full bg-white focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full bg-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
                         aria-invalid="@if (isset($errors) && $errors->has('message')) true @else false @endif"
                         aria-describedby="message_contact_error">
                     </textarea>

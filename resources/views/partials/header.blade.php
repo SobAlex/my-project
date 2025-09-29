@@ -168,7 +168,7 @@
     </div>
 
     <!-- Бургер справа (<lg) -->
-    <button @click="open = !open" class="lg:hidden flex-shrink-0 focus:outline-none ml-4" aria-label="Открыть меню"
+    <button @click="open = !open" class="lg:hidden flex-shrink-0 focus:outline-none ml-4 rounded-lg" aria-label="Открыть меню"
         :aria-expanded="open.toString()">
         <svg x-show="!open" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
             style="display: block;">
@@ -192,7 +192,7 @@
         <ul class="flex flex-col space-y-6 p-6">
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium mt-4"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium mt-4 rounded-lg"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Услуги
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
@@ -234,7 +234,7 @@
             </li>
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-lg"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Кейсы
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
@@ -288,7 +288,7 @@
             </li>
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-lg"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Блог
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
@@ -322,7 +322,7 @@
             </li>
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-lg"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Контакты
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"

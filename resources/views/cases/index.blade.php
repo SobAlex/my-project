@@ -32,13 +32,13 @@
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Фильтр по отраслям</h3>
             <div class="flex flex-wrap justify-center gap-3">
                 <a href="{{ route('cases') }}"
-                    class="px-4 py-2 text-sm font-medium transition-colors
+                    class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
                           {{ !isset($selectedTag) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Все кейсы
                 </a>
                 @foreach ($activeCategories as $category)
                     <a href="{{ route($category['route'], ...$category['route_params']) }}"
-                        class="px-4 py-2 text-sm font-medium transition-colors
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
                               {{ isset($selectedTag) && $selectedTag === $category['slug'] ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                         {{ $category['name'] }}
                     </a>
@@ -62,7 +62,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach ($serviceData['cases'] as $case)
                             <article
-                                class="element-bg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                                class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
                                     <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
@@ -71,7 +71,7 @@
                                     <div class="absolute bottom-4 left-4 text-white">
                                         @if ($case['has_valid_category'])
                                             <a href="{{ route('cases.category', $case['industry']) }}"
-                                                class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 text-sm font-medium transition-colors inline-block">
+                                                class="bg-cyan-500 hover:bg-cyan-600 px-3 py-1 rounded-full text-sm font-medium transition-colors inline-block">
                                                 {{ $case['industry_name'] }}
                                             </a>
                                         @endif
@@ -109,15 +109,15 @@
 
     {{-- CTA section --}}
     <section class="section-bg">
-        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-lg">
             <h2 class="text-3xl font-bold mb-4">Хотите такой же результат?</h2>
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
+                <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                     onclick="openServiceOrderModal('Заказать продвижение')">
                     Заказать продвижение
                 </button>
-                <button class="bg-white text-cyan-600 px-8 py-3  font-semibold hover:bg-gray-100 transition"
+                <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
                     onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
                     Заказать звонок
                 </button>

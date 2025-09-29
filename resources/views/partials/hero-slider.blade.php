@@ -30,7 +30,7 @@
                             <div class="flex-1">
                                 <label for="name_hero_{{ $index }}" class="block mb-1">Имя:</label>
                                 <input type="text" id="name_hero_{{ $index }}" name="name" required placeholder="Ваше имя"
-                                    class="w-full px-3 py-2" aria-required="true" aria-label="Ваше имя"
+                                    class="w-full px-3 py-2 rounded-lg" aria-required="true" aria-label="Ваше имя"
                                     aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                                     aria-describedby="name_hero_{{ $index }}_error" />
                                 @if (isset($errors) && $errors->has('name'))
@@ -41,7 +41,7 @@
                             <div class="flex-1">
                                 <label for="phone_hero_{{ $index }}" class="block mb-1">Телефон:</label>
                                 <input type="tel" id="phone_hero_{{ $index }}" name="phone" required placeholder="+7 (999) 999-99-99"
-                                    class="w-full px-3 py-2" aria-required="true" aria-label="Телефон"
+                                    class="w-full px-3 py-2 rounded-lg" aria-required="true" aria-label="Телефон"
                                     aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                                     aria-describedby="phone_hero_{{ $index }}_error" />
                                 @if (isset($errors) && $errors->has('phone'))
@@ -74,17 +74,17 @@
     <!-- Навигация -->
     <div class="hero-navigation">
         <!-- Стрелки -->
-        <button class="hero-nav-btn hero-prev" data-prev aria-label="Предыдущий слайд">
+        <button class="hero-nav-btn hero-prev rounded-full" data-prev aria-label="Предыдущий слайд">
             <i class="material-icons">chevron_left</i>
         </button>
-        <button class="hero-nav-btn hero-next" data-next aria-label="Следующий слайд">
+        <button class="hero-nav-btn hero-next rounded-full" data-next aria-label="Следующий слайд">
             <i class="material-icons">chevron_right</i>
         </button>
 
         <!-- Индикаторы -->
         <div class="hero-indicators">
             @foreach($heroSections as $index => $heroSection)
-                <button class="hero-indicator {{ $index === 0 ? 'active' : '' }}"
+                <button class="hero-indicator rounded-full {{ $index === 0 ? 'active' : '' }}"
                     data-indicator="{{ $index }}"
                     aria-label="Слайд {{ $index + 1 }}">
                 </button>
