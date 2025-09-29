@@ -173,31 +173,25 @@
 
                         {{-- Case content --}}
                         <div class="p-6 flex-1 flex flex-col">
-                            <div class="flex-1">
-                                <h3 class="text-lg font-bold text-gray-800 mb-2">{{ $case['title'] }}</h3>
-                                <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}</p>
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                    {{ Str::limit($case['description_clean'], 120) }}
-                                </p>
-
-                                {{-- Key metrics --}}
-                                <div class="space-y-2 mb-4">
-                                    @if (!empty($case['results']) && is_array($case['results']))
-                                        @foreach (array_slice($case['results'], 0, 2) as $result)
-                                            <div class="flex items-center text-sm">
-                                                <i class="material-icons text-green-500 mr-2 text-base">trending_up</i>
-                                                <span class="text-gray-700 font-medium">{{ $result }}</span>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-                            </div>
-
-                            {{-- CTA button --}}
-                            <a href="{{ route('cases.show', $case['id']) }}"
-                                class="block w-full bg-cyan-500 text-white text-center py-3 px-4 hover:bg-cyan-600 transition mt-auto">
-                                Подробнее о кейсе
+                            <a href="{{ route('cases.show', $case['id']) }}" class="group">
+                                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-cyan-600 transition-colors">{{ $case['title'] }}</h3>
                             </a>
+                            <p class="text-sm text-gray-500 mb-3">{{ $case['client'] }} • {{ $case['period'] }}</p>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                                {{ Str::limit($case['description_clean'], 120) }}
+                            </p>
+
+                            {{-- Key metrics --}}
+                            <div class="space-y-2">
+                                @if (!empty($case['results']) && is_array($case['results']))
+                                    @foreach (array_slice($case['results'], 0, 2) as $result)
+                                        <div class="flex items-center text-sm">
+                                            <i class="material-icons text-green-500 mr-2 text-base">trending_up</i>
+                                            <span class="text-gray-700 font-medium">{{ $result }}</span>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </article>
                 @endforeach
