@@ -42,9 +42,6 @@ class ProjectCasesTable
                     ->toggleable(isToggledHiddenByDefault: false),
                 ImageColumn::make('image')
                     ->toggleable(isToggledHiddenByDefault: false),
-                TextColumn::make('service_key')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('is_published')
                     ->boolean()
                     ->toggleable(isToggledHiddenByDefault: false),
@@ -52,6 +49,14 @@ class ProjectCasesTable
                     ->rules(['integer', 'min:0'])
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: false),
+                TextColumn::make('service_link_text')
+                    ->label('Ссылка на услугу')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('service_link_url')
+                    ->label('URL услуги')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('user.name')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),

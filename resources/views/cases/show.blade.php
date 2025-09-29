@@ -36,7 +36,7 @@
                     <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $caseData['title'] }}</h1>
                     <div class="flex items-center text-gray-600">
                         <i class="material-icons mr-2">{{ $serviceData['service_icon'] }}</i>
-                        <a href="{{ route('services.show', $serviceData['service_slug']) }}"
+                        <a href="{{ $serviceData['service_slug'] }}"
                             class="hover:text-cyan-600 transition-colors">{{ $serviceData['service_name'] }}</a>
                     </div>
                 </div>

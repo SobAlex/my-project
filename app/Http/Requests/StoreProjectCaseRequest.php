@@ -42,9 +42,10 @@ class StoreProjectCaseRequest extends FormRequest
             'result_4' => 'nullable|string|max:500',
             'result_5' => 'nullable|string|max:500',
             'result_6' => 'nullable|string|max:500',
-            'service_key' => 'nullable|string|max:100',
             'is_published' => 'boolean',
             'sort_order' => 'integer|min:0',
+            'service_link_text' => 'nullable|string|max:255',
+            'service_link_url' => 'nullable|string|max:500',
         ];
 
         // Добавляем правила для метрик до/после

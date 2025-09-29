@@ -73,15 +73,24 @@ class ProjectCaseForm
                     ->collapsible()
                     ->columnSpanFull()
                     ->grid(3),
-                TextInput::make('service_key')
-                    ->required()
-                    ->default('seo-promotion'),
                 Toggle::make('is_published')
                     ->required(),
                 TextInput::make('sort_order')
                     ->required()
                     ->numeric()
                     ->default(0),
+
+                // === 🔗 ССЫЛКА НА УСЛУГУ ===
+                TextInput::make('service_link_text')
+                    ->label('Текст ссылки на услугу')
+                    ->placeholder('Например: SEO продвижение')
+                    ->helperText('Текст, который будет отображаться как ссылка на услугу под заголовком кейса'),
+
+                TextInput::make('service_link_url')
+                    ->label('URL ссылки на услугу')
+                    ->placeholder('Например: /services/seo-prodvizhenie')
+                    ->helperText('URL страницы услуги (можно использовать относительный путь)'),
+
                 Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),

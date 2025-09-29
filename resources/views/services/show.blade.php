@@ -291,17 +291,19 @@
     @endif
 
     {{-- CTA Section --}}
-    <section class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-16 mt-24">
-        <div class="container mx-auto px-4 text-center">
+    <section class="section-bg mt-24">
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
             <h2 class="text-3xl font-bold mb-4">Готовы заказать {{ $service->title }}?</h2>
-            <p class="text-xl mb-8 opacity-90">Свяжитесь с нами для обсуждения деталей и получения персонального предложения</p>
+            <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openServiceOrderModal('{{ $service->title }}')" class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Заказать услугу
+                <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                    onclick="openServiceOrderModal('{{ $service->title }}')">
+                    Заказать {{ $service->title }}
                 </button>
-                <a href="{{ route('contacts') }}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-cyan-600 transition-colors">
-                    Связаться с нами
-                </a>
+                <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                    onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
+                    Заказать звонок
+                </button>
             </div>
         </div>
     </section>

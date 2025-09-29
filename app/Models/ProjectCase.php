@@ -45,9 +45,10 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         'result_5',
         'result_6',
         'before_after',
-        'service_key',
         'is_published',
         'sort_order',
+        'service_link_text',
+        'service_link_url',
         'user_id',
         // Before/After metrics
         'traffic_before', 'traffic_after',
@@ -114,13 +115,6 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         });
     }
 
-    /**
-     * Scope a query to filter by service key.
-     */
-    public function scopeByService($query, $serviceKey)
-    {
-        return $query->where('service_key', $serviceKey);
-    }
 
     /**
      * Get the route key for the model.

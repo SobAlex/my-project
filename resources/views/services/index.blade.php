@@ -107,16 +107,18 @@
 
     {{-- CTA Section --}}
     @if($services->count() > 0)
-        <section class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-16">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-4">Готовы начать работу?</h2>
-                <p class="text-xl mb-8 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
+        <section class="section-bg">
+            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center">
+                <h2 class="text-3xl font-bold mb-4">Готовы начать продвижение вашего сайта?</h2>
+                <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="{{ route('contacts') }}" class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        Связаться с нами
-                    </a>
-                    <button onclick="openServiceOrderModal('Консультация')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-cyan-600 transition-colors">
-                        Получить консультацию
+                    <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                        onclick="openServiceOrderModal('Заказать продвижение')">
+                        Заказать продвижение
+                    </button>
+                    <button class="bg-white text-cyan-600 px-8 py-3 font-semibold hover:bg-gray-100 transition"
+                        onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
+                        Заказать звонок
                     </button>
                 </div>
             </div>

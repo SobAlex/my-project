@@ -108,21 +108,6 @@ class Service extends Model implements PublishableInterface
         return $query->orderBy('sort_order')->orderBy('title');
     }
 
-    /**
-     * Get the cases associated with this service.
-     */
-    public function cases(): HasMany
-    {
-        return $this->hasMany(ProjectCase::class, 'service_key', 'slug');
-    }
-
-    /**
-     * Get published cases for this service.
-     */
-    public function publishedCases(): HasMany
-    {
-        return $this->cases()->where('is_published', true);
-    }
 
     /**
      * Get formatted price string.
