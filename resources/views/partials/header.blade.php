@@ -17,7 +17,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-56 bg-white rounded-md shadow-md border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные услуги:</div>
                         <div class="space-y-2">
@@ -52,7 +52,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-md border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
                         <div class="space-y-2">
@@ -100,7 +100,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-md border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные темы:</div>
                         <div class="space-y-2">
@@ -128,7 +128,7 @@
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
                 <div
-                    class="absolute top-full left-0 mt-2 min-w-48 max-w-80 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    class="absolute top-full left-0 mt-2 min-w-48 max-w-80 bg-white rounded-md shadow-md border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Свяжитесь с нами:</div>
                         <div class="space-y-2">
@@ -168,7 +168,7 @@
     </div>
 
     <!-- Бургер справа (<lg) -->
-    <button @click="open = !open" class="lg:hidden flex-shrink-0 focus:outline-none ml-4 rounded-lg" aria-label="Открыть меню"
+    <button @click="open = !open" class="lg:hidden flex-shrink-0 focus:outline-none ml-4 rounded-md" aria-label="Открыть меню"
         :aria-expanded="open.toString()">
         <svg x-show="!open" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
             style="display: block;">
@@ -182,7 +182,7 @@
 
     <!-- Мобильное меню -->
     <div x-show="open" @click.away="open = false"
-        class="absolute left-0 right-0 top-full bg-white shadow-lg z-50 lg:hidden"
+        class="absolute left-0 right-0 top-full bg-white rounded-md shadow-md z-50 lg:hidden"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 transform -translate-y-2"
         x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -192,7 +192,7 @@
         <ul class="flex flex-col space-y-6 p-6">
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium mt-4 rounded-lg"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium mt-4 rounded-md"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Услуги
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
@@ -288,7 +288,7 @@
             </li>
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-lg"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-md"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Блог
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"
@@ -322,7 +322,7 @@
             </li>
             <li x-data="{ msub: false }">
                 <button @click="msub = !msub"
-                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-lg"
+                    class="w-full text-left flex items-center justify-between text-gray-700 hover:text-cyan-500 text-lg font-medium rounded-md"
                     type="button" :aria-expanded="msub.toString()" aria-haspopup="true">
                     Контакты
                     <svg class="w-5 h-5 ml-2 transform transition-transform duration-200"

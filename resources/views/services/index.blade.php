@@ -36,7 +36,7 @@
                         <div class="flex items-start mb-4">
                             @if($service->icon)
                                 <div class="flex-shrink-0 mr-4">
-                                    <div class="w-12 h-12 rounded-lg flex items-center justify-center"
+                                    <div class="w-12 h-12 rounded-md flex items-center justify-center"
                                          style="background-color: {{ $service->color }}20; border: 2px solid {{ $service->color }}40;">
                                         <i class="material-icons text-2xl" style="color: {{ $service->color }}">{{ $service->icon }}</i>
                                     </div>

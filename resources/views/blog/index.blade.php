@@ -30,7 +30,7 @@
                     <a href="{{ route('blog.category', $category['slug']) }}"
                         class="group bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:border-cyan-300">
                         <div class="flex items-center mb-4">
-                            <div class="p-3 rounded-lg" style="background-color: {{ $category['color'] }}20">
+                            <div class="p-3 rounded-md" style="background-color: {{ $category['color'] }}20">
                                 <i class="material-icons text-2xl"
                                     style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
                             </div>

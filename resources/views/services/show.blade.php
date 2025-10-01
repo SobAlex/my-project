@@ -22,7 +22,7 @@
             <div class="flex-1">
                 <div class="flex items-center mb-6">
                     @if($service->icon)
-                        <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-6 shadow-lg"
+                        <div class="w-16 h-16 rounded-md flex items-center justify-center mr-6 shadow-md"
                              style="background: linear-gradient(135deg, {{ $service->color }}20, {{ $service->color }}10); border: 2px solid {{ $service->color }}40;">
                             <i class="material-icons text-4xl" style="color: {{ $service->color }}">{{ $service->icon }}</i>
                         </div>
@@ -30,7 +30,7 @@
                     <div>
                         <h1 class="text-4xl font-bold text-gray-800">{{ $service->title }}</h1>
                         @if($service->is_featured)
-                            <span class="inline-block mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">
+                            <span class="inline-block mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-md">
                                 Рекомендуемая услуга
                             </span>
                         @endif
@@ -42,12 +42,12 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <div class="p-4 rounded-lg" style="background-color: {{ $service->color }}10; border: 1px solid {{ $service->color }}30;">
+                    <div class="p-4 rounded-md" style="background-color: {{ $service->color }}10; border: 1px solid {{ $service->color }}30;">
                         <div class="text-sm text-gray-600">Стоимость</div>
                         <div class="text-2xl font-bold" style="color: {{ $service->color }}">{{ $service->formatted_price }}</div>
                     </div>
                     @if($service->price_type)
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
                             <div class="text-sm text-gray-600">Тип оплаты</div>
                             <div class="text-2xl font-bold text-gray-700">
                                 @switch($service->price_type)
@@ -148,7 +148,7 @@
                         <div class="p-6">
                             <div class="flex items-center mb-4">
                                 @if($relatedService->icon)
-                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-4"
+                                    <div class="w-10 h-10 rounded-md flex items-center justify-center mr-4"
                                          style="background-color: {{ $relatedService->color }}20; border: 1px solid {{ $relatedService->color }}40;">
                                         <i class="material-icons text-xl" style="color: {{ $relatedService->color }}">{{ $relatedService->icon }}</i>
                                     </div>

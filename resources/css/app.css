@@ -42,7 +42,7 @@
     }
 
     .btn {
-        @apply border border-cyan-500 text-cyan-500 bg-white px-6 py-2 rounded-lg hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+        @apply border border-cyan-500 text-cyan-500 bg-white px-6 py-2 rounded-md hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
     .btn-secondary {
@@ -50,7 +50,7 @@
     }
 
     .btn-outline {
-        @apply border border-cyan-500 text-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+        @apply border border-cyan-500 text-cyan-500 bg-white px-6 py-2 rounded-md hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
     input[type="text"],
