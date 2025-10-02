@@ -21,7 +21,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($services as $service)
-                <article class="element-bg rounded-lg shadow-md">
+                <article class="element-bg rounded-md shadow-md">
                     <!-- Service Image -->
                     @if($service->image)
                         <div class="aspect-video bg-gray-100 overflow-hidden rounded-t-lg">
@@ -49,7 +49,7 @@
                                     </h3>
                                 </a>
                                 @if($service->is_featured)
-                                    <span class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                                    <span class="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-md">
                                         Рекомендуемая
                                     </span>
                                 @endif
@@ -105,15 +105,15 @@
     {{-- CTA Section --}}
     @if($services->count() > 0)
         <section class="section-bg">
-            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-lg">
+            <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-md">
                 <h2 class="text-3xl font-bold mb-4">Готовы начать продвижение вашего сайта?</h2>
                 <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition"
                         onclick="openServiceOrderModal('Заказать продвижение')">
                         Заказать продвижение
                     </button>
-                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                    <button class="bg-white text-cyan-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition"
                         onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
                         Заказать звонок
                     </button>

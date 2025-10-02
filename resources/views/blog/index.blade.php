@@ -28,16 +28,16 @@
             <div class="grid md:grid-cols-3 gap-6 mb-12">
                 @foreach ($activeBlogCategories as $category)
                     <a href="{{ route('blog.category', $category['slug']) }}"
-                        class="group bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:border-cyan-300">
+                        class="group bg-white rounded-md shadow-md p-6 border border-gray-200 hover:border-cyan-300">
                         <div class="flex items-center mb-4">
                             <div class="p-3 rounded-md" style="background-color: {{ $category['color'] }}20">
                                 <i class="material-icons text-2xl"
                                     style="color: {{ $category['color'] }}">{{ $category['icon'] }}</i>
                             </div>
-                            <h3
+                            <h2
                                 class="text-xl font-semibold text-gray-900 ml-4 group-hover:text-cyan-600 transition-colors">
                                 {{ $category['name'] }}
-                            </h3>
+                            </h2>
                         </div>
                         <p class="text-gray-600">
                             {{ $category['description'] ?? 'Статьи по данной теме' }}
@@ -54,7 +54,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
                 @foreach ($articles as $article)
                     <article
-                        class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                        class="bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
                         @if ($article->image)
                             <div class="aspect-video overflow-hidden">
                                 <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
@@ -78,7 +78,7 @@
                             <div class="flex items-center mb-3">
                                 @if ($article->hasActiveCategory())
                                     <span
-                                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800">
+                                        class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-cyan-100 text-cyan-800">
                                         {{ $article->active_category_name }}
                                     </span>
                                 @endif

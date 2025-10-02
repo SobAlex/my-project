@@ -18,7 +18,7 @@
     <div class="py-12">
         <!-- Заголовок категории -->
         <div class="text-center mb-12">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-4"
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-md mb-4"
                 style="background-color: {{ $blogCategory->color ?? '#06b6d4' }}20">
                 <i class="material-icons text-2xl" style="color: {{ $blogCategory->color ?? '#06b6d4' }}">
                     {{ $blogCategory->icon ?? 'article' }}
@@ -34,7 +34,7 @@
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
             @foreach ($articles as $article)
                 <article
-                    class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    class="bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
                     @if ($article->image)
                         <div class="aspect-video overflow-hidden">
                             <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
@@ -101,7 +101,7 @@
                     @foreach ($activeBlogCategories as $category)
                         @if ($category['slug'] !== $categorySlug)
                             <a href="{{ route('blog.category', $category['slug']) }}"
-                                class="group bg-white rounded-lg shadow-md p-6 border border-gray-200 hover:border-cyan-300">
+                                class="group bg-white rounded-md shadow-md p-6 border border-gray-200 hover:border-cyan-300">
                                 <div class="flex items-center mb-4">
                                     <div class="p-3 rounded-md" style="background-color: {{ $category['color'] }}20">
                                         <i class="material-icons text-xl"

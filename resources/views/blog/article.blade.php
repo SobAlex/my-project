@@ -20,7 +20,7 @@
 
     <div class="max-w-4xl mx-auto py-12">
         <!-- Заголовок статьи -->
-        <article class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+        <article class="bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
             @if ($article->image)
                 <div class="aspect-video overflow-hidden">
@@ -44,7 +44,7 @@
                 <!-- Метаданные статьи -->
                 <div class="flex flex-wrap items-center gap-4 mb-6">
                     @if ($article->hasActiveCategory())
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-cyan-100 text-cyan-800">
+                        <span class="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium bg-cyan-100 text-cyan-800">
                             {{ $article->active_category_name }}
                         </span>
                     @endif
@@ -102,39 +102,44 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)
-                        <a href="{{ $relatedArticle->url }}"
-                            class="group bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-                            @if ($relatedArticle->image)
-                                <div class="aspect-video overflow-hidden">
-                                    <img src="{{ $relatedArticle->image_url }}" alt="{{ $relatedArticle->title }}" class="w-full h-full object-cover">
-                                </div>
-                            @else
-                                <div
-                                    class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                                    <i class="material-icons text-white text-2xl">
-                                        @if ($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'seo-news')
-                                            trending_up
-                                        @elseif($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'analytics')
-                                            analytics
-                                        @else
-                                            tips_and_updates
-                                        @endif
-                                    </i>
-                                </div>
-                            @endif
+                        <article class="group bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
+                            <a href="{{ $relatedArticle->url }}">
+                                @if ($relatedArticle->image)
+                                    <div class="aspect-video overflow-hidden">
+                                        <img src="{{ $relatedArticle->image_url }}" alt="{{ $relatedArticle->title }}" class="w-full h-full object-cover">
+                                    </div>
+                                @else
+                                    <div
+                                        class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                                        <i class="material-icons text-white text-2xl">
+                                            @if ($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'seo-news')
+                                                trending_up
+                                            @elseif($relatedArticle->blogCategory && $relatedArticle->blogCategory->slug === 'analytics')
+                                                analytics
+                                            @else
+                                                tips_and_updates
+                                            @endif
+                                        </i>
+                                    </div>
+                                @endif
+                            </a>
 
                             <div class="p-4">
-                                <span
-                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 mb-2">
-                                    {{ $relatedArticle->category_name }}
-                                </span>
+                                @if ($relatedArticle->hasActiveCategory())
+                                    <a href="{{ route('blog.category', $relatedArticle->blogCategory->slug ?? 'uncategorized') }}"
+                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 mb-2 hover:bg-cyan-200 transition-colors">
+                                        {{ $relatedArticle->category_name }}
+                                    </a>
+                                @endif
 
-                                <h3
-                                    class="text-lg font-semibold text-gray-900 group-hover:text-cyan-600 transition-colors line-clamp-2">
-                                    {{ $relatedArticle->title }}
-                                </h3>
+                                <a href="{{ $relatedArticle->url }}">
+                                    <h3
+                                        class="text-lg font-semibold text-gray-900 group-hover:text-cyan-600 transition-colors line-clamp-2">
+                                        {{ $relatedArticle->title }}
+                                    </h3>
+                                </a>
                             </div>
-                        </a>
+                        </article>
                     @endforeach
                 </div>
             </div>

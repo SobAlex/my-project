@@ -1,5 +1,5 @@
 {{-- Footer --}}
-<footer class="mt-16 bg-gray-800 text-gray-300 rounded-t-lg">
+<footer class="mt-16 bg-gray-800 text-gray-300 rounded-t-md">
     <div class="px-6 py-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4">
         {{-- Brand / About --}}
         <div>

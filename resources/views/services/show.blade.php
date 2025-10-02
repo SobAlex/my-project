@@ -72,7 +72,7 @@
                     <button class="btn text-lg px-8 py-3" onclick="openServiceOrderModal('{{ $service->title }}')">
                         Заказать услугу
                     </button>
-                    <a href="{{ route('contacts') }}" class="btn-outline text-lg px-8 py-3 text-center">
+                    <a href="{{ route('contacts') }}" class="btn text-lg px-8 py-3 text-center">
                         Получить консультацию
                     </a>
                 </div>
@@ -81,7 +81,7 @@
             <!-- Правая часть (изображение) -->
             @if($service->image)
                 <div class="flex-1 lg:max-w-md">
-                    <div class="aspect-square bg-gray-100 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="aspect-square bg-gray-100 rounded-md overflow-hidden shadow-lg">
                         <img src="{{ asset('storage/' . $service->image) }}"
                              alt="{{ $service->title }}"
                              class="w-full h-full object-cover">
@@ -124,9 +124,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($service->features as $feature)
                     @if(is_string($feature))
-                        <div class="flex items-start p-4 bg-white rounded-lg shadow-md border border-gray-100">
+                        <div class="flex items-start p-4 bg-white rounded-md shadow-md border border-gray-100">
                             <div class="flex-shrink-0 mr-4">
-                                <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: {{ $service->color }}20;">
+                                <div class="w-8 h-8 rounded-md flex items-center justify-center" style="background-color: {{ $service->color }}20;">
                                     <i class="material-icons text-sm" style="color: {{ $service->color }}">check</i>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
             <h2 class="section-title">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
-                    <article class="element-bg rounded-lg shadow-md">
+                    <article class="element-bg rounded-md shadow-md">
                         <div class="p-6">
                             <div class="flex items-center mb-4">
                                 @if($relatedService->icon)
@@ -178,7 +178,7 @@
             <h2 class="section-title">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
-                    <article class="element-bg rounded-lg shadow-md">
+                    <article class="element-bg rounded-md shadow-md">
                         <div class="p-6">
                             <div class="flex items-start mb-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -191,9 +191,10 @@
                                         </a>
                                     </h3>
                                     @if($article->category)
-                                        <span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                        <a href="{{ route('blog.category', $article->category->slug ?? 'uncategorized') }}"
+                                           class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md hover:bg-gray-200 transition-colors">
                                             {{ $article->category->name }}
-                                        </span>
+                                        </a>
                                     @endif
                                 </div>
                             </div>
@@ -217,23 +218,24 @@
             <h2 class="section-title">Наши кейсы</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedCases as $case)
-                    <article class="element-bg rounded-lg shadow-md">
+                    <article class="element-bg rounded-md shadow-md">
                         @if($case->image)
-                            <div class="relative h-48 overflow-hidden">
-                                <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover">
+                            <div class="relative h-48 overflow-hidden rounded-t-md">
+                                <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover object-center">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                                 @if($case->industryCategory)
                                     <div class="absolute top-3 left-3">
-                                        <span class="inline-block px-2 py-1 bg-white/90 text-gray-800 text-xs rounded-full font-medium">
+                                        <a href="{{ route('cases.category', $case->industryCategory->slug ?? 'uncategorized') }}"
+                                           class="inline-block px-2 py-1 bg-white/90 text-gray-800 text-xs rounded-md font-medium hover:bg-white transition-colors">
                                             {{ $case->industryCategory->name }}
-                                        </span>
+                                        </a>
                                     </div>
                                 @endif
                             </div>
                         @endif
                         <div class="p-6">
                             <div class="flex items-start mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-md flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="material-icons text-white text-xl">trending_up</i>
                                 </div>
                                 <div class="flex-1">
@@ -268,11 +270,11 @@
                 @foreach($servicesFaqs as $faq)
                     <div class="mb-4">
                         <details class="group">
-                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-lg shadow-md border border-gray-200 cursor-pointer hover:bg-gray-50">
+                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-md shadow-md border border-gray-200 cursor-pointer hover:bg-gray-50">
                                 <span class="font-medium text-gray-800">{{ $faq->question }}</span>
                                 <i class="material-icons text-gray-400 group-open:rotate-180 transition-transform">expand_more</i>
                             </summary>
-                            <div class="p-4 bg-gray-50 rounded-b-lg border-x border-b border-gray-200">
+                            <div class="p-4 bg-gray-50 rounded-b-md border-x border-b border-gray-200">
                                 <p class="text-gray-600">{{ $faq->answer }}</p>
                             </div>
                         </details>
@@ -284,15 +286,15 @@
 
     {{-- CTA Section --}}
     <section class="section-bg mt-24">
-        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-lg">
+        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white p-8 text-center rounded-md">
             <h2 class="text-3xl font-bold mb-4">Готовы заказать {{ $service->title }}?</h2>
             <p class="text-xl mb-6 opacity-90">Свяжитесь с нами для обсуждения вашего проекта</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                <button class="bg-white text-cyan-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition"
                     onclick="openServiceOrderModal('{{ $service->title }}')">
                     Заказать {{ $service->title }}
                 </button>
-                <button class="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                <button class="bg-white text-cyan-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition"
                     onclick="window.dispatchEvent(new CustomEvent('open-callback'))">
                     Заказать звонок
                 </button>
