@@ -127,7 +127,7 @@
                             <div class="p-4">
                                 @if ($relatedArticle->hasActiveCategory())
                                     <a href="{{ route('blog.category', $relatedArticle->blogCategory->slug ?? 'uncategorized') }}"
-                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-cyan-100 text-cyan-800 mb-2 hover:bg-cyan-200 transition-colors">
+                                        class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-cyan-100 text-cyan-800 mb-2 hover:bg-cyan-200 transition-colors">
                                         {{ $relatedArticle->category_name }}
                                     </a>
                                 @endif

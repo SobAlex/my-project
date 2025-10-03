@@ -12,6 +12,10 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\IndustryCategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\MediaLibraryController;
+use App\Http\Controllers\DemoController;
+use App\Http\Controllers\TestMediaController;
 
 // ============================================================================
 // PUBLIC ROUTES
@@ -59,16 +63,30 @@ Route::prefix('contact')->name('contact.')->group(function () {
 });
 Route::post('/service/order', [ContactController::class, 'submitServiceOrder'])->name('service.order');
 
+// Media Library
+Route::get('/admin/media', [MediaLibraryController::class, 'index'])->name('media.library');
+Route::get('/demo/media', [DemoController::class, 'index'])->name('demo.media');
+
 
 // ============================================================================
 // ADMIN ROUTES
 // ============================================================================
 
 // API routes for categories (outside admin prefix to avoid Filament conflicts)
-Route::prefix('api')->name('api.')->group(function () {
+Route::prefix('api')->name('api.')->middleware(['web'])->group(function () {
     // Blog Categories API
     Route::resource('blog-categories', BlogCategoryController::class);
 
     // Industry Categories API
     Route::resource('industry-categories', IndustryCategoryController::class);
+
+    // Media Library API (with CSRF protection)
+    Route::get('media/stats', [MediaController::class, 'stats'])->name('media.stats');
+    Route::resource('media', MediaController::class);
+});
+
+// API routes without CSRF protection for testing
+Route::prefix('api/test')->name('api.test.')->group(function () {
+    Route::post('media/upload', [TestMediaController::class, 'upload'])->name('media.upload');
+    Route::get('media/stats', [TestMediaController::class, 'stats'])->name('media.stats');
 });
