@@ -62,7 +62,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach ($serviceData['cases'] as $case)
                             <article
-                                class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
+                                class="element-bg overflow-hidden rounded-lg flex flex-col h-full">
                                 {{-- Case image --}}
                                 <div class="relative h-48 overflow-hidden">
                                     <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"

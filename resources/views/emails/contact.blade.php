@@ -3,7 +3,7 @@
 @section('title', $subject ?? 'Сообщение с сайта')
 
 @section('content')
-    <div class="bg-white  shadow-lg overflow-hidden">
+    <div class="bg-white overflow-hidden">
         <!-- Header -->
         <div class="bg-blue-600 text-white px-6 py-4">
             <h1 class="text-2xl font-bold">📧 Сообщение с сайта</h1>

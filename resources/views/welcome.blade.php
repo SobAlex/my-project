@@ -26,7 +26,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             @forelse($featuredServices as $service)
-                <article class="element-bg rounded-md shadow-md flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
+                <article class="element-bg rounded-md flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
                     <div class="flex flex-col flex-[2] p-4">
                         <div class="flex flex-col items-center mb-4">
                             @if($service->icon)
@@ -73,7 +73,7 @@
         @if($whyUsBlocks && $whyUsBlocks->count() > 0)
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach($whyUsBlocks as $block)
-                    <li class="element-bg rounded-md shadow-md p-4 flex justify-center items-start">
+                    <li class="element-bg rounded-md p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
                             @if($block->icon)
                                 <i class="material-icons md-48 mb-3"
@@ -151,7 +151,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestCases as $case)
                     <article
-                        class="element-bg overflow-hidden rounded-lg shadow-md flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-lg flex flex-col h-full">
                         {{-- Case image --}}
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
@@ -225,7 +225,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestArticles as $article)
                     <article
-                        class="element-bg overflow-hidden rounded-md shadow-md flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-md flex flex-col h-full">
                         {{-- Article image --}}
                         @if ($article->image)
                             <div class="relative h-48 overflow-hidden">
@@ -316,7 +316,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($randomReviews as $review)
                     <article
-                        class="element-bg overflow-hidden rounded-md shadow-md flex flex-col h-full">
+                        class="element-bg overflow-hidden rounded-md flex flex-col h-full">
                         {{-- Review content --}}
                         <div class="p-6 flex-1 flex flex-col">
                             <div class="flex-1">

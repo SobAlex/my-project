@@ -20,7 +20,7 @@
 
     <div class="max-w-4xl mx-auto py-12">
         <!-- Заголовок статьи -->
-        <article class="bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
+        <article class="bg-white rounded-md overflow-hidden border border-gray-200">
             <!-- Изображение статьи -->
             @if ($article->image)
                 <div class="aspect-video overflow-hidden">
@@ -102,7 +102,7 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)
-                        <article class="group bg-white rounded-md shadow-md overflow-hidden border border-gray-200">
+                        <article class="group bg-white rounded-md overflow-hidden border border-gray-200">
                             <a href="{{ $relatedArticle->url }}">
                                 @if ($relatedArticle->image)
                                     <div class="aspect-video overflow-hidden">

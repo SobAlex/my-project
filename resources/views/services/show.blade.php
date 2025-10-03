@@ -22,7 +22,7 @@
             <div class="flex-1">
                 <div class="flex items-center mb-6">
                     @if($service->icon)
-                        <div class="w-16 h-16 rounded-md flex items-center justify-center mr-6 shadow-md"
+                        <div class="w-16 h-16 rounded-md flex items-center justify-center mr-6"
                              style="background: linear-gradient(135deg, {{ $service->color }}20, {{ $service->color }}10); border: 2px solid {{ $service->color }}40;">
                             <i class="material-icons text-4xl" style="color: {{ $service->color }}">{{ $service->icon }}</i>
                         </div>
@@ -81,7 +81,7 @@
             <!-- Правая часть (изображение) -->
             @if($service->image)
                 <div class="flex-1 lg:max-w-md">
-                    <div class="aspect-square bg-gray-100 rounded-md overflow-hidden shadow-lg">
+                    <div class="aspect-square bg-gray-100 rounded-md overflow-hidden">
                         <img src="{{ asset('storage/' . $service->image) }}"
                              alt="{{ $service->title }}"
                              class="w-full h-full object-cover">
@@ -95,23 +95,6 @@
     @if($service->content)
         <section class="section-bg">
             <div class="service-content max-w-none" style="color: #4b5563; line-height: 1.6;">
-                <style>
-                    .service-content h1 { font-size: 2rem; font-weight: bold; color: #1f2937; margin: 2rem 0 1.5rem 0; }
-                    .service-content h2 { font-size: 1.75rem; font-weight: bold; color: #1f2937; margin: 1.5rem 0 1rem 0; }
-                    .service-content h3 { font-size: 1.5rem; font-weight: 600; color: #1f2937; margin: 1.25rem 0 0.75rem 0; }
-                    .service-content h4 { font-size: 1.25rem; font-weight: 600; color: #1f2937; margin: 1rem 0 0.5rem 0; }
-                    .service-content p { margin-bottom: 1rem; color: #4b5563; line-height: 1.6; }
-                    .service-content ul { list-style-type: disc; list-style-position: inside; margin-bottom: 1rem; }
-                    .service-content ol { list-style-type: decimal; list-style-position: inside; margin-bottom: 1rem; }
-                    .service-content li { margin-bottom: 0.5rem; color: #4b5563; line-height: 1.6; }
-                    .service-content li p { display: inline; margin: 0; }
-                    .service-content a { color: #0891b2; text-decoration: underline; }
-                    .service-content a:hover { color: #0e7490; }
-                    .service-content strong { font-weight: 600; color: #1f2937; }
-                    .service-content em { font-style: italic; }
-                    .service-content blockquote { border-left: 4px solid #0891b2; padding-left: 1rem; font-style: italic; color: #4b5563; background-color: #f9fafb; padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 1rem; }
-                    .service-content code { background-color: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem; font-family: monospace; }
-                </style>
                 {!! html_entity_decode($service->content, ENT_QUOTES | ENT_HTML5, 'UTF-8') !!}
             </div>
         </section>
@@ -124,7 +107,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($service->features as $feature)
                     @if(is_string($feature))
-                        <div class="flex items-start p-4 bg-white rounded-md shadow-md border border-gray-100">
+                        <div class="flex items-start p-4 bg-white rounded-md border border-gray-100">
                             <div class="flex-shrink-0 mr-4">
                                 <div class="w-8 h-8 rounded-md flex items-center justify-center" style="background-color: {{ $service->color }}20;">
                                     <i class="material-icons text-sm" style="color: {{ $service->color }}">check</i>
@@ -144,7 +127,7 @@
             <h2 class="section-title">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
-                    <article class="element-bg rounded-md shadow-md">
+                    <article class="element-bg rounded-md">
                         <div class="p-6">
                             <div class="flex items-center mb-4">
                                 @if($relatedService->icon)
@@ -178,7 +161,7 @@
             <h2 class="section-title">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
-                    <article class="element-bg rounded-md shadow-md">
+                    <article class="element-bg rounded-md">
                         <div class="p-6">
                             <div class="flex items-start mb-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -218,7 +201,7 @@
             <h2 class="section-title">Наши кейсы</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedCases as $case)
-                    <article class="element-bg rounded-md shadow-md">
+                    <article class="element-bg rounded-md">
                         @if($case->image)
                             <div class="relative h-48 overflow-hidden rounded-t-md">
                                 <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover object-center">
@@ -270,7 +253,7 @@
                 @foreach($servicesFaqs as $faq)
                     <div class="mb-4">
                         <details class="group">
-                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-md shadow-md border border-gray-200 cursor-pointer hover:bg-gray-50">
+                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-md border border-gray-200 cursor-pointer hover:bg-gray-50">
                                 <span class="font-medium text-gray-800">{{ $faq->question }}</span>
                                 <i class="material-icons text-gray-400 group-open:rotate-180 transition-transform">expand_more</i>
                             </summary>

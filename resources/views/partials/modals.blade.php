@@ -6,7 +6,7 @@
         <div class="absolute inset-0 bg-black/50" aria-hidden="true" @click="callbackOpen = false"></div>
 
         <!-- Диалог -->
-        <div class="relative bg-white w-full max-w-md mx-4  shadow-lg p-6" role="dialog" aria-modal="true"
+        <div class="relative bg-white w-full max-w-md mx-4 p-6" role="dialog" aria-modal="true"
             aria-labelledby="callback_title">
             <div class="flex items-start justify-between mb-4">
                 <h3 id="callback_title" class="text-xl font-semibold">Заказать звонок</h3>
@@ -45,7 +45,7 @@
     <div class="absolute inset-0 bg-black/50" aria-hidden="true" onclick="closeServiceOrderModal()"></div>
 
     <!-- Диалог -->
-    <div class="relative bg-white w-full max-w-lg mx-4 my-4 sm:my-8  shadow-lg p-4 sm:p-6" role="dialog"
+    <div class="relative bg-white w-full max-w-lg mx-4 my-4 sm:my-8 p-4 sm:p-6" role="dialog"
         aria-modal="true" aria-labelledby="service_order_title">
         <!-- Заголовок с кнопкой закрытия - всегда видимый -->
         <div class="flex items-start justify-between mb-4 sticky top-0 bg-white pb-2 border-b border-gray-200">

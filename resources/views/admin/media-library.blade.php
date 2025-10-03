@@ -11,7 +11,7 @@
 <body class="bg-gray-100">
     <div class="min-h-screen">
         <!-- Header -->
-        <header class="bg-white shadow-sm border-b">
+        <header class="bg-white border-b">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-4">
                     <div>
@@ -35,7 +35,7 @@
         <!-- Stats -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-lg shadow">
+                <div class="bg-white p-4 rounded-lg">
                     <div class="flex items-center">
                         <div class="p-2 bg-blue-100 rounded-lg">
                             <i class="material-icons text-blue-600">folder</i>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow">
+                <div class="bg-white p-4 rounded-lg">
                     <div class="flex items-center">
                         <div class="p-2 bg-green-100 rounded-lg">
                             <i class="material-icons text-green-600">image</i>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow">
+                <div class="bg-white p-4 rounded-lg">
                     <div class="flex items-center">
                         <div class="p-2 bg-red-100 rounded-lg">
                             <i class="material-icons text-red-600">picture_as_pdf</i>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow">
+                <div class="bg-white p-4 rounded-lg">
                     <div class="flex items-center">
                         <div class="p-2 bg-purple-100 rounded-lg">
                             <i class="material-icons text-purple-600">storage</i>
@@ -85,7 +85,7 @@
             </div>
 
             <!-- Filters -->
-            <div class="bg-white p-4 rounded-lg shadow mb-6">
+            <div class="bg-white p-4 rounded-lg mb-6">
                 <form method="GET" class="flex flex-wrap gap-4 items-end">
                     <div class="flex-1 min-w-64">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Поиск</label>
@@ -119,7 +119,7 @@
             </div>
 
             <!-- Media Grid -->
-            <div class="bg-white rounded-lg shadow">
+            <div class="bg-white rounded-lg">
                 @if($media->count() > 0)
                     <div class="p-4 border-b">
                         <h2 class="text-lg font-semibold text-gray-900">Файлы ({{ $media->total() }})</h2>
@@ -127,7 +127,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
                         @foreach($media as $file)
-                            <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                            <div class="border border-gray-200 rounded-lg overflow-hidden transition-shadow">
                                 <!-- Preview -->
                                 <div class="aspect-square bg-gray-100 flex items-center justify-center">
                                     @if(str_starts_with($file->mime_type, 'image/'))

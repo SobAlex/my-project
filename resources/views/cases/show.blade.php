@@ -88,7 +88,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($caseData['results'] as $result)
                     <div
-                        class="flex items-start space-x-3 p-4 bg-white rounded-md shadow-md">
+                        class="flex items-start space-x-3 p-4 bg-white rounded-md">
                         <i class="material-icons text-cyan-500 mt-1">check_circle</i>
                         <span class="text-gray-700">{{ $result }}</span>
                     </div>
@@ -104,7 +104,7 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($caseData['before_after'] as $metric => $values)
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="bg-white rounded-lg overflow-hidden">
                             <div class="p-4 text-center">
                                 <h3 class="font-semibold text-gray-800 mb-4">
                                     {{ $values['label'] }}

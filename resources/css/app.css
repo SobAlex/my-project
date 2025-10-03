@@ -224,12 +224,12 @@
     transition: all 0.3s ease;
     pointer-events: auto;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .hero-nav-btn:hover {
     background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
 }
 
 .hero-prev {

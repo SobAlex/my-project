@@ -10,7 +10,7 @@
 <body class="bg-gray-100">
     <div class="min-h-screen">
         <!-- Header -->
-        <header class="bg-white shadow-sm border-b">
+        <header class="bg-white border-b">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-4">
                     <div>
@@ -48,7 +48,7 @@
 
             @if($images->count() > 0)
                 <!-- Image Gallery -->
-                <div class="bg-white rounded-lg shadow mb-8">
+                <div class="bg-white rounded-lg mb-8">
                     <div class="p-6 border-b">
                         <h2 class="text-xl font-semibold text-gray-900">Галерея изображений</h2>
                         <p class="text-gray-600 mt-1">Примеры загруженных изображений из медиа библиотеки</p>
@@ -94,7 +94,7 @@
                 </div>
 
                 <!-- Code Examples -->
-                <div class="bg-white rounded-lg shadow">
+                <div class="bg-white rounded-lg">
                     <div class="p-6 border-b">
                         <h2 class="text-xl font-semibold text-gray-900">Примеры использования в коде</h2>
                         <p class="text-gray-600 mt-1">Как вставлять изображения в HTML, CSS и PHP</p>
@@ -111,7 +111,7 @@
 &lt;!-- Изображение с классами CSS --&gt;
 &lt;img src="{{ $images->first()->url }}"
      alt="{{ $images->first()->alt_text ?: 'Описание изображения' }}"
-     class="w-full h-auto rounded-lg shadow-md"&gt;
+     class="w-full h-auto rounded-lg"&gt;
 
 &lt;!-- Изображение с ссылкой --&gt;
 &lt;a href="/some-page"&gt;
@@ -179,7 +179,7 @@ fetch('{{ $images->first()->url }}')
                 </div>
             @else
                 <!-- No Images -->
-                <div class="bg-white rounded-lg shadow">
+                <div class="bg-white rounded-lg">
                     <div class="text-center py-12">
                         <i class="material-icons text-6xl text-gray-400 mb-4">image_not_supported</i>
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Изображения не найдены</h3>
