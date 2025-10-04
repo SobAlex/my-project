@@ -154,10 +154,13 @@
                                 </h3>
                             </a>
                             <p class="text-gray-600 text-sm mb-4">{{ Str::limit($relatedService->description, 100) }}</p>
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-between">
                                 <span class="text-sm font-semibold" style="color: {{ $relatedService->color }}">
                                     {{ $relatedService->formatted_price }}
                                 </span>
+                                <button class="btn text-xs px-3 py-1" onclick="openServiceOrderModal('{{ $relatedService->title }}')">
+                                    Заказать
+                                </button>
                             </div>
                         </div>
                     </article>
