@@ -59,8 +59,8 @@
 
         @if($featuredServices->count() > 0)
             <div class="text-center mt-8">
-                <a href="{{ route('services.index') }}" class="btn">
-                    Все услуги
+                <a href="{{ route('services.index') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
+                    Все услуги →
                 </a>
             </div>
         @endif
@@ -197,11 +197,10 @@
                 @endforeach
             </div>
 
-            {{-- View all cases button --}}
+            {{-- View all cases link --}}
             <div class="text-center mt-8">
-                <a href="{{ route('cases') }}" class="btn inline-flex items-center">
-                    Все кейсы
-                    <i class="material-icons ml-2">arrow_forward</i>
+                <a href="{{ route('cases') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
+                    Все кейсы →
                 </a>
             </div>
         @else
@@ -282,11 +281,10 @@
                 @endforeach
             </div>
 
-            {{-- View all articles button --}}
+            {{-- View all articles link --}}
             <div class="text-center mt-8">
-                <a href="{{ route('blog') }}" class="btn inline-flex items-center">
-                    Все статьи
-                    <i class="material-icons ml-2">arrow_forward</i>
+                <a href="{{ route('blog') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
+                    Все статьи →
                 </a>
             </div>
         @else
