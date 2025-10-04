@@ -148,7 +148,7 @@
                         <div>
                             <label for="name_contact" class="block text-sm font-medium text-gray-700 mb-2">Имя *</label>
                             <input type="text" name="name" id="name_contact" required placeholder="Ваше имя"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                                class="w-full px-4 py-3"
                                 aria-invalid="@error('name', 'contact') true @else false @enderror"
                                 aria-describedby="name_contact_error">
                             @error('name', 'contact')
@@ -161,7 +161,7 @@
                                 *</label>
                             <input type="email" name="email" id="email_contact" required
                                 placeholder="your@email.com"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                                class="w-full px-4 py-3"
                                 aria-invalid="@error('email', 'contact') true @else false @enderror"
                                 aria-describedby="email_contact_error">
                             @error('email', 'contact')
@@ -174,7 +174,7 @@
                         <label for="phone_contact" class="block text-sm font-medium text-gray-700 mb-2">Телефон *</label>
                         <input type="tel" name="phone" id="phone_contact" required
                             placeholder="+7 (999) 999-99-99"
-                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                            class="w-full px-4 py-3"
                             aria-invalid="@error('phone', 'contact') true @else false @enderror"
                             aria-describedby="phone_contact_error">
                         @error('phone', 'contact')
@@ -186,7 +186,7 @@
                         <label for="message_contact" class="block text-sm font-medium text-gray-700 mb-2">Сообщение
                             *</label>
                         <textarea name="message" id="message_contact" rows="6" required
-                            class="w-full px-4 py-3 border border-gray-300  focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                            class="w-full px-4 py-3"
                             placeholder="Опишите ваш проект или задайте вопрос..."
                             aria-invalid="@error('message', 'contact') true @else false @enderror" aria-describedby="message_contact_error"></textarea>
                         @error('message', 'contact')

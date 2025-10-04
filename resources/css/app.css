@@ -23,7 +23,7 @@
 
 @layer base {
   body {
-    @apply text-gray-700;
+    @apply text-gray-700 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200 min-h-screen;
   }
   [x-cloak] { display: none !important; }
 }
@@ -38,11 +38,11 @@
     }
 
     .section-title {
-        @apply text-center mb-10 text-4xl
+        @apply text-center mb-10 text-4xl text-gray-800 font-bold
     }
 
     .btn {
-        @apply border border-cyan-500 text-cyan-500 bg-white px-6 py-2 rounded-md hover:bg-cyan-500 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+        @apply bg-gray-100 text-gray-600 border border-gray-300 px-6 py-2 rounded-md hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
     }
 
     .btn-secondary {
@@ -57,7 +57,7 @@
     input[type="email"],
     input[type="tel"],
     textarea {
-        @apply rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+        @apply rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-colors;
     }
 
     .line-clamp-2 {
@@ -159,6 +159,15 @@
 
 .hero-image-container {
     height: 500px; /* Фиксированная высота для блока с картинкой */
+}
+
+.hero-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Адаптивные размеры */

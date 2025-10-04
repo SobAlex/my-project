@@ -35,7 +35,7 @@
         <!-- Stats -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-lg">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
                     <div class="flex items-center">
                         <div class="p-2 bg-blue-100 rounded-lg">
                             <i class="material-icons text-blue-600">folder</i>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
                     <div class="flex items-center">
                         <div class="p-2 bg-green-100 rounded-lg">
                             <i class="material-icons text-green-600">image</i>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
                     <div class="flex items-center">
                         <div class="p-2 bg-red-100 rounded-lg">
                             <i class="material-icons text-red-600">picture_as_pdf</i>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
                     <div class="flex items-center">
                         <div class="p-2 bg-purple-100 rounded-lg">
                             <i class="material-icons text-purple-600">storage</i>
@@ -85,18 +85,18 @@
             </div>
 
             <!-- Filters -->
-            <div class="bg-white p-4 rounded-lg mb-6">
+            <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
                 <form method="GET" class="flex flex-wrap gap-4 items-end">
                     <div class="flex-1 min-w-64">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Поиск</label>
                         <input type="text" name="search" value="{{ request('search') }}"
                                placeholder="Поиск по имени файла, alt тексту или описанию..."
-                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                               class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
                     <div class="min-w-48">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Тип файла</label>
-                        <select name="type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <select name="type" class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             <option value="">Все типы</option>
                             <option value="image" {{ request('type') === 'image' ? 'selected' : '' }}>Изображения</option>
                             <option value="pdf" {{ request('type') === 'pdf' ? 'selected' : '' }}>PDF файлы</option>
@@ -119,7 +119,7 @@
             </div>
 
             <!-- Media Grid -->
-            <div class="bg-white rounded-lg">
+            <div class="bg-white rounded-lg shadow-sm">
                 @if($media->count() > 0)
                     <div class="p-4 border-b">
                         <h2 class="text-lg font-semibold text-gray-900">Файлы ({{ $media->total() }})</h2>
@@ -127,7 +127,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
                         @foreach($media as $file)
-                            <div class="border border-gray-200 rounded-lg overflow-hidden transition-shadow">
+                            <div class="rounded-lg shadow-sm overflow-hidden transition-shadow">
                                 <!-- Preview -->
                                 <div class="aspect-square bg-gray-100 flex items-center justify-center">
                                     @if(str_starts_with($file->mime_type, 'image/'))
@@ -219,17 +219,17 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">Выберите файл</label>
                         <input type="file" name="file" id="fileInput"
                                accept="image/*,application/pdf,text/*"
-                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                               class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Alt текст (для изображений)</label>
                         <input type="text" name="alt_text"
-                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                               class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Описание</label>
                         <textarea name="description" rows="3"
-                                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                  class="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                     </div>
                     <div class="flex justify-end space-x-2">
                         <button type="button" onclick="closeUploadModal()"

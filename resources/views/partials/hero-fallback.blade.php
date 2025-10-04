@@ -46,7 +46,7 @@
 
     <!-- Правая часть (картинка) -->
     <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto hero-image-container px-4 py-6 overflow-hidden flex items-center justify-center">
-        <img src="{{ asset('images/human.webp') }}" alt="right photo" class="w-full h-full object-cover rounded-lg"
+        <img src="{{ asset('images/human.webp') }}" alt="right photo"
             loading="eager" decoding="async" fetchpriority="high" />
     </div>
 </div>

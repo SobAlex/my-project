@@ -59,10 +59,10 @@
                     <!-- Правая часть (картинка) -->
                     <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto hero-image-container px-4 py-6 overflow-hidden flex items-center justify-center">
                         @if($heroSection->image)
-                            <img src="{{ $heroSection->image_url }}" alt="{{ $heroSection->title }}" class="w-full h-full object-cover rounded-lg"
+                            <img src="{{ $heroSection->image_url }}" alt="{{ $heroSection->title }}"
                                 loading="eager" decoding="async" fetchpriority="high" />
                         @else
-                            <img src="{{ asset('images/human.webp') }}" alt="{{ $heroSection->title }}" class="w-full h-full object-cover rounded-lg"
+                            <img src="{{ asset('images/human.webp') }}" alt="{{ $heroSection->title }}"
                                 loading="eager" decoding="async" fetchpriority="high" />
                         @endif
                     </div>

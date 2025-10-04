@@ -48,7 +48,7 @@
 
             @if($images->count() > 0)
                 <!-- Image Gallery -->
-                <div class="bg-white rounded-lg mb-8">
+                <div class="bg-white rounded-lg shadow-sm mb-8">
                     <div class="p-6 border-b">
                         <h2 class="text-xl font-semibold text-gray-900">Галерея изображений</h2>
                         <p class="text-gray-600 mt-1">Примеры загруженных изображений из медиа библиотеки</p>
@@ -57,7 +57,7 @@
                     <div class="p-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             @foreach($images as $image)
-                                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                <div class="rounded-lg shadow-sm overflow-hidden">
                                     <div class="aspect-video bg-gray-100">
                                         <img src="{{ $image->url }}"
                                              alt="{{ $image->alt_text ?: $image->original_name }}"
@@ -94,7 +94,7 @@
                 </div>
 
                 <!-- Code Examples -->
-                <div class="bg-white rounded-lg">
+                <div class="bg-white rounded-lg shadow-sm">
                     <div class="p-6 border-b">
                         <h2 class="text-xl font-semibold text-gray-900">Примеры использования в коде</h2>
                         <p class="text-gray-600 mt-1">Как вставлять изображения в HTML, CSS и PHP</p>
@@ -179,7 +179,7 @@ fetch('{{ $images->first()->url }}')
                 </div>
             @else
                 <!-- No Images -->
-                <div class="bg-white rounded-lg">
+                <div class="bg-white rounded-lg shadow-sm">
                     <div class="text-center py-12">
                         <i class="material-icons text-6xl text-gray-400 mb-4">image_not_supported</i>
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Изображения не найдены</h3>

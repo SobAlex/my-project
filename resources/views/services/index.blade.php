@@ -21,7 +21,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($services as $service)
-                <article class="element-bg rounded-md">
+                <article class="bg-white/80 backdrop-blur-sm rounded-md shadow-sm">
                     <!-- Service Image -->
                     @if($service->image)
                         <div class="aspect-video bg-gray-100 overflow-hidden rounded-t-lg">

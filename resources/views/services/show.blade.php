@@ -47,7 +47,7 @@
                         <div class="text-2xl font-bold" style="color: {{ $service->color }}">{{ $service->formatted_price }}</div>
                     </div>
                     @if($service->price_type)
-                        <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
+                        <div class="bg-gray-50 p-4 rounded-md shadow-sm">
                             <div class="text-sm text-gray-600">Тип оплаты</div>
                             <div class="text-2xl font-bold text-gray-700">
                                 @switch($service->price_type)
@@ -107,7 +107,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($service->features as $feature)
                     @if(is_string($feature))
-                        <div class="flex items-start p-4 bg-white rounded-md border border-gray-100">
+                        <div class="flex items-start p-4 bg-white rounded-md shadow-sm">
                             <div class="flex-shrink-0 mr-4">
                                 <div class="w-8 h-8 rounded-md flex items-center justify-center" style="background-color: {{ $service->color }}20;">
                                     <i class="material-icons text-sm" style="color: {{ $service->color }}">check</i>
@@ -127,7 +127,7 @@
             <h2 class="section-title">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
-                    <article class="element-bg rounded-md">
+                    <article class="element-bg rounded-md shadow-sm">
                         <div class="p-6">
                             <div class="flex items-center mb-4">
                                 @if($relatedService->icon)
@@ -161,7 +161,7 @@
             <h2 class="section-title">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
-                    <article class="element-bg rounded-md">
+                    <article class="element-bg rounded-md shadow-sm">
                         <div class="p-6">
                             <div class="flex items-start mb-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
@@ -201,7 +201,7 @@
             <h2 class="section-title">Наши кейсы</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedCases as $case)
-                    <article class="element-bg rounded-md">
+                    <article class="element-bg rounded-md shadow-sm">
                         @if($case->image)
                             <div class="relative h-48 overflow-hidden rounded-t-md">
                                 <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover object-center">
@@ -253,11 +253,11 @@
                 @foreach($servicesFaqs as $faq)
                     <div class="mb-4">
                         <details class="group">
-                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-md border border-gray-200 cursor-pointer hover:bg-gray-50">
+                            <summary class="flex items-center justify-between w-full p-4 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
                                 <span class="font-medium text-gray-800">{{ $faq->question }}</span>
                                 <i class="material-icons text-gray-400 group-open:rotate-180 transition-transform">expand_more</i>
                             </summary>
-                            <div class="p-4 bg-gray-50 rounded-b-md border-x border-b border-gray-200">
+                            <div class="p-4 bg-gray-50 rounded-b-md shadow-sm">
                                 <p class="text-gray-600">{{ $faq->answer }}</p>
                             </div>
                         </details>

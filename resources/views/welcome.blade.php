@@ -26,7 +26,7 @@
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             @forelse($featuredServices as $service)
-                <article class="element-bg rounded-md flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
+                <article class="bg-white/80 backdrop-blur-sm rounded-md shadow-sm flex flex-col @if($loop->first) sm:col-span-2 md:row-span-1 @endif">
                     <div class="flex flex-col flex-[2] p-4">
                         <div class="flex flex-col items-center mb-4">
                             @if($service->icon)
@@ -73,7 +73,7 @@
         @if($whyUsBlocks && $whyUsBlocks->count() > 0)
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach($whyUsBlocks as $block)
-                    <li class="element-bg rounded-md p-4 flex justify-center items-start">
+                    <li class="bg-white/80 backdrop-blur-sm rounded-md shadow-sm p-4 flex justify-center items-start">
                         <div class="flex flex-col items-center">
                             @if($block->icon)
                                 <i class="material-icons md-48 mb-3"
@@ -151,7 +151,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestCases as $case)
                     <article
-                        class="element-bg overflow-hidden rounded-lg flex flex-col h-full">
+                        class="bg-white/80 backdrop-blur-sm overflow-hidden rounded-lg shadow-sm flex flex-col h-full">
                         {{-- Case image --}}
                         <div class="relative h-48 overflow-hidden">
                             <img src="{{ $case['image_url'] }}" alt="{{ $case['title'] }}"
@@ -225,7 +225,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($latestArticles as $article)
                     <article
-                        class="element-bg overflow-hidden rounded-md flex flex-col h-full">
+                        class="bg-white/80 backdrop-blur-sm overflow-hidden rounded-md shadow-sm flex flex-col h-full">
                         {{-- Article image --}}
                         @if ($article->image)
                             <div class="relative h-48 overflow-hidden">
@@ -316,7 +316,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach ($randomReviews as $review)
                     <article
-                        class="element-bg overflow-hidden rounded-md flex flex-col h-full">
+                        class="bg-white/80 backdrop-blur-sm overflow-hidden rounded-md shadow-sm flex flex-col h-full">
                         {{-- Review content --}}
                         <div class="p-6 flex-1 flex flex-col">
                             <div class="flex-1">
@@ -436,7 +436,7 @@
 
                     <input type="text" name="name" id="name_contact" required placeholder="Ваше имя"
                         aria-required="true" aria-label="Имя"
-                        class="mt-1 block w-full bg-white rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full"
                         aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
                         aria-describedby="name_contact_error">
                     @if (isset($errors) && $errors->has('name'))
@@ -449,7 +449,7 @@
 
                     <input type="email" name="email" id="email_contact" required placeholder="your@email.com"
                         aria-required="true" aria-label="Email"
-                        class="mt-1 block w-full bg-white rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full"
                         aria-invalid="@if (isset($errors) && $errors->has('email')) true @else false @endif"
                         aria-describedby="email_contact_error">
                     @if (isset($errors) && $errors->has('email'))
@@ -462,7 +462,7 @@
 
                     <input type="tel" name="phone" id="phone_contact" required aria-label="Телефон"
                         placeholder="+7 (999) 999-99-99"
-                        class="mt-1 block w-full bg-white rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full"
                         aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
                         aria-describedby="phone_contact_error">
                     @if (isset($errors) && $errors->has('phone'))
@@ -475,7 +475,7 @@
 
                     <textarea name="message" id="message_contact" rows="5" required placeholder="Расскажите о вашем проекте..."
                         aria-required="true" aria-label="Сообщение"
-                        class="mt-1 block w-full bg-white rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        class="mt-1 block w-full"
                         aria-invalid="@if (isset($errors) && $errors->has('message')) true @else false @endif"
                         aria-describedby="message_contact_error">
                     </textarea>

@@ -34,7 +34,7 @@
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
             @foreach ($articles as $article)
                 <article
-                    class="bg-white rounded-md overflow-hidden border border-gray-200">
+                    class="bg-white rounded-md shadow-sm overflow-hidden">
                     @if ($article->image)
                         <div class="aspect-video overflow-hidden">
                             <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
@@ -101,7 +101,7 @@
                     @foreach ($activeBlogCategories as $category)
                         @if ($category['slug'] !== $categorySlug)
                             <a href="{{ route('blog.category', $category['slug']) }}"
-                                class="group bg-white rounded-md p-6 border border-gray-200 hover:border-cyan-300">
+                                class="group bg-white rounded-md shadow-sm p-6 hover:shadow-md transition-shadow">
                                 <div class="flex items-center mb-4">
                                     <div class="p-3 rounded-md" style="background-color: {{ $category['color'] }}20">
                                         <i class="material-icons text-xl"
