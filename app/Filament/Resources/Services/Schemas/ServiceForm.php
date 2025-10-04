@@ -167,51 +167,66 @@ Repeater::make('features')
 
                 // === 🔗 СВЯЗИ ===
 
+                // Заголовок для связанных услуг
+                Placeholder::make('services_header')
+                    ->content(new HtmlString('<div class="text-lg font-semibold text-gray-800 mb-4 mt-6 flex items-center"><span class="mr-2">🔗</span> Связанные услуги</div>'))
+                    ->columnSpanFull(),
+
                 // Связанные услуги
                 TextInput::make('related_service_1_id')
-                    ->label('🔗 ID связанной услуги #1')
+                    ->label('ID связанной услуги #1')
                     ->numeric()
                     ->helperText('Введите ID услуги для отображения в блоке "Другие услуги"'),
 
                 TextInput::make('related_service_2_id')
-                    ->label('🔗 ID связанной услуги #2')
+                    ->label('ID связанной услуги #2')
                     ->numeric()
                     ->helperText('Введите ID услуги для отображения в блоке "Другие услуги"'),
 
                 TextInput::make('related_service_3_id')
-                    ->label('🔗 ID связанной услуги #3')
+                    ->label('ID связанной услуги #3')
                     ->numeric()
                     ->helperText('Введите ID услуги для отображения в блоке "Другие услуги"'),
 
+                // Заголовок для полезных статей
+                Placeholder::make('articles_header')
+                    ->content(new HtmlString('<div class="text-lg font-semibold text-gray-800 mb-4 mt-6 flex items-center"><span class="mr-2">📰</span> Полезные статьи</div>'))
+                    ->columnSpanFull(),
+
                 // Полезные статьи
                 TextInput::make('related_article_1_id')
-                    ->label('📰 ID полезной статьи #1')
+                    ->label('ID полезной статьи #1')
                     ->numeric()
                     ->helperText('Введите ID статьи для отображения в блоке "Полезные статьи"'),
 
                 TextInput::make('related_article_2_id')
-                    ->label('📰 ID полезной статьи #2')
+                    ->label('ID полезной статьи #2')
                     ->numeric()
                     ->helperText('Введите ID статьи для отображения в блоке "Полезные статьи"'),
 
                 TextInput::make('related_article_3_id')
-                    ->label('📰 ID полезной статьи #3')
+                    ->label('ID полезной статьи #3')
                     ->numeric()
                     ->helperText('Введите ID статьи для отображения в блоке "Полезные статьи"'),
 
+                // Заголовок для связанных кейсов
+                Placeholder::make('cases_header')
+                    ->content(new HtmlString('<div class="text-lg font-semibold text-gray-800 mb-4 mt-6 flex items-center"><span class="mr-2">💼</span> Связанные кейсы</div>'))
+                    ->columnSpanFull(),
+
                 // Связанные кейсы
                 TextInput::make('related_case_1_id')
-                    ->label('💼 ID связанного кейса #1')
+                    ->label('ID связанного кейса #1')
                     ->numeric()
                     ->helperText('Введите ID кейса для отображения в блоке "Наши кейсы"'),
 
                 TextInput::make('related_case_2_id')
-                    ->label('💼 ID связанного кейса #2')
+                    ->label('ID связанного кейса #2')
                     ->numeric()
                     ->helperText('Введите ID кейса для отображения в блоке "Наши кейсы"'),
 
                 TextInput::make('related_case_3_id')
-                    ->label('💼 ID связанного кейса #3')
+                    ->label('ID связанного кейса #3')
                     ->numeric()
                     ->helperText('Введите ID кейса для отображения в блоке "Наши кейсы"'),
             ]);
