@@ -47,9 +47,9 @@
                         <div class="text-2xl" style="color: {{ $service->color }}">{{ $service->formatted_price }}</div>
                     </div>
                     @if($service->price_type)
-                        <div class="bg-gray-50 p-4 rounded-md shadow-sm">
+                        <div class="p-4 rounded-md" style="background-color: {{ $service->color }}10; border: 1px solid {{ $service->color }}30;">
                             <div class="text-sm text-gray-600">Тип оплаты</div>
-                            <div class="text-2xl text-gray-700">
+                            <div class="text-2xl" style="color: {{ $service->color }}">
                                 @switch($service->price_type)
                                     @case('hour')
                                         Почасовая
@@ -127,7 +127,7 @@
             <h2 class="block-title text-center">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
-                    <article class="element-bg rounded-md shadow-sm">
+                    <article class="rounded-md shadow-sm">
                         <div class="p-6">
                             <div class="flex items-center mb-4">
                                 @if($relatedService->icon)
@@ -161,10 +161,10 @@
             <h2 class="block-title text-center">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
-                    <article class="element-bg rounded-md shadow-sm">
+                    <article class="rounded-md shadow-sm">
                         <div class="p-6">
                             <div class="flex items-start mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="material-icons text-white text-xl">article</i>
                                 </div>
                                 <div class="flex-1">
@@ -201,7 +201,7 @@
             <h2 class="block-title text-center">Наши кейсы</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedCases as $case)
-                    <article class="element-bg rounded-md shadow-sm">
+                    <article class="rounded-md shadow-sm">
                         @if($case->image)
                             <div class="relative h-48 overflow-hidden rounded-t-md">
                                 <img src="{{ asset('storage/' . $case->image) }}" alt="{{ $case->title }}" class="w-full h-full object-cover object-center">
@@ -218,7 +218,7 @@
                         @endif
                         <div class="p-6">
                             <div class="flex items-start mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-md flex items-center justify-center mr-4 flex-shrink-0">
+                                <div class="w-12 h-12 bg-cyan-500 rounded-md flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="material-icons text-white text-xl">trending_up</i>
                                 </div>
                                 <div class="flex-1">

@@ -67,13 +67,13 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-gray-50 p-4 rounded-md">
-                            <div class="text-sm text-gray-500 mb-1">Клиент</div>
-                            <div class="font-semibold text-gray-800">{{ $caseData['client'] }}</div>
+                        <div class="p-4 rounded-md" style="background-color: #06b6d410; border: 1px solid #06b6d430;">
+                            <div class="text-sm text-gray-600 mb-1">Клиент</div>
+                            <div class="text-2xl" style="color: #06b6d4;">{{ $caseData['client'] }}</div>
                         </div>
-                        <div class="bg-gray-50 p-4 rounded-md">
-                            <div class="text-sm text-gray-500 mb-1">Период</div>
-                            <div class="font-semibold text-gray-800">{{ $caseData['period'] }}</div>
+                        <div class="p-4 rounded-md" style="background-color: #06b6d410; border: 1px solid #06b6d430;">
+                            <div class="text-sm text-gray-600 mb-1">Период</div>
+                            <div class="text-2xl" style="color: #06b6d4;">{{ $caseData['period'] }}</div>
                         </div>
                     </div>
                 </div>
