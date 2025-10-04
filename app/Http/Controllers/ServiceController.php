@@ -33,14 +33,6 @@ class ServiceController extends Controller
         // Получаем связанные услуги через новую систему
         $relatedServices = $service->related_services;
 
-        // Если связанные услуги не настроены, используем старую логику как fallback
-        if ($relatedServices->isEmpty()) {
-            $relatedServices = Service::published()
-                ->where('id', '!=', $service->id)
-                ->take(3)
-                ->get();
-        }
-
         $servicesFaqs = Faq::visibleOnServices()->get();
 
         // Получаем связанные статьи
