@@ -127,21 +127,32 @@
             <h2 class="block-title text-center">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
-                    <article class="rounded-md shadow-sm">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                @if($relatedService->icon)
-                                    <div class="w-10 h-10 rounded-md flex items-center justify-center mr-4"
-                                         style="background-color: {{ $relatedService->color }}20; border: 1px solid {{ $relatedService->color }}40;">
-                                        <i class="material-icons text-xl" style="color: {{ $relatedService->color }}">{{ $relatedService->icon }}</i>
-                                    </div>
-                                @endif
-                                <a href="{{ route('services.show', $relatedService->slug) }}" class="group">
-                                    <h3 class="text-lg font-semibold group-hover:text-cyan-500 transition-colors">
-                                        {{ $relatedService->title }}
-                                    </h3>
-                                </a>
+                    <article class="rounded-md shadow-sm overflow-hidden">
+                        @if($relatedService->image)
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="{{ asset('storage/' . $relatedService->image) }}"
+                                     alt="{{ $relatedService->title }}"
+                                     class="w-full h-full object-cover object-center">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                             </div>
+                        @else
+                            <div class="h-48 bg-gray-100 flex items-center justify-center">
+                                @if($relatedService->icon)
+                                    <div class="w-16 h-16 rounded-md flex items-center justify-center"
+                                         style="background-color: {{ $relatedService->color }}20; border: 2px solid {{ $relatedService->color }}40;">
+                                        <i class="material-icons text-4xl" style="color: {{ $relatedService->color }}">{{ $relatedService->icon }}</i>
+                                    </div>
+                                @else
+                                    <i class="material-icons text-6xl text-gray-300">business</i>
+                                @endif
+                            </div>
+                        @endif
+                        <div class="p-6">
+                            <a href="{{ route('services.show', $relatedService->slug) }}" class="group">
+                                <h3 class="text-lg font-semibold group-hover:text-cyan-500 transition-colors mb-2">
+                                    {{ $relatedService->title }}
+                                </h3>
+                            </a>
                             <p class="text-gray-600 text-sm mb-4">{{ Str::limit($relatedService->description, 100) }}</p>
                             <div class="flex items-center">
                                 <span class="text-sm font-semibold" style="color: {{ $relatedService->color }}">
@@ -161,26 +172,35 @@
             <h2 class="block-title text-center">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
-                    <article class="rounded-md shadow-sm">
-                        <div class="p-6">
-                            <div class="flex items-start mb-4">
-                                <div class="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="material-icons text-white text-xl">article</i>
-                                </div>
-                                <div class="flex-1">
-                                    <h3 class="text-lg font-semibold leading-tight mb-2">
-                                        <a href="{{ $article->url }}" class="hover:text-cyan-500">
-                                            {{ $article->title }}
-                                        </a>
-                                    </h3>
-                                    @if($article->category)
+                    <article class="rounded-md shadow-sm overflow-hidden">
+                        @if($article->image)
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="{{ asset('storage/' . $article->image) }}"
+                                     alt="{{ $article->title }}"
+                                     class="w-full h-full object-cover object-center">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                @if($article->category)
+                                    <div class="absolute top-3 left-3">
                                         <a href="{{ route('blog.category', $article->category->slug ?? 'uncategorized') }}"
-                                           class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md hover:bg-gray-200 transition-colors">
+                                           class="inline-block px-2 py-1 bg-white/90 text-gray-800 text-xs rounded-md font-medium hover:bg-white transition-colors">
                                             {{ $article->category->name }}
                                         </a>
-                                    @endif
+                                    </div>
+                                @endif
+                            </div>
+                        @else
+                            <div class="h-48 bg-gray-100 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-cyan-500 rounded-lg flex items-center justify-center">
+                                    <i class="material-icons text-white text-4xl">article</i>
                                 </div>
                             </div>
+                        @endif
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold leading-tight mb-2">
+                                <a href="{{ $article->url }}" class="hover:text-cyan-500">
+                                    {{ $article->title }}
+                                </a>
+                            </h3>
                             <p class="text-gray-600 text-sm mb-4 leading-relaxed">{{ Str::limit($article->excerpt, 120) }}</p>
                             <div class="flex items-center justify-between text-sm">
                                 <span class="text-gray-500">{{ $article->published_at->format('d.m.Y') }}</span>

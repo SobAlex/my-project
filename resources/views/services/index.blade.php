@@ -37,7 +37,7 @@
                             @if($service->icon)
                                 <div class="flex-shrink-0 mr-4">
                                     <div class="w-12 h-12 rounded-md flex items-center justify-center"
-                                         style="background-color: {{ $service->color }}20; border: 2px solid {{ $service->color }}40;">
+                                         style="background-color: {{ $service->color }}20; border: 1px solid {{ $service->color }}40;">
                                         <i class="material-icons text-2xl" style="color: {{ $service->color }}">{{ $service->icon }}</i>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                         @endif
 
                         <!-- Price and CTA -->
-                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-cyan-500">
                             <div>
                                 @if($service->price_from)
                                     <div class="text-lg font-bold text-cyan-600">{{ $service->formatted_price }}</div>
