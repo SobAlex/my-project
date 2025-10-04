@@ -205,7 +205,7 @@
     {{-- Map Section --}}
     <section class="section-bg">
         <div class="bg-gray-100  p-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Как нас найти</h2>
+            <h2 class="block-title text-center">Как нас найти</h2>
             <div class="bg-gray-300 h-96  flex items-center justify-center">
                 <div class="text-center">
                     <svg class="w-16 h-16 text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor"

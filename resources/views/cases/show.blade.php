@@ -33,7 +33,7 @@
                     <i class="material-icons">arrow_back</i>
                 </a>
                 <div>
-                    <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $caseData['title'] }}</h1>
+                    <h1 class="page-title">{{ $caseData['title'] }}</h1>
                     <div class="flex items-center text-gray-600">
                         <i class="material-icons mr-2">{{ $serviceData['service_icon'] }}</i>
                         <a href="{{ $serviceData['service_slug'] }}"
@@ -60,7 +60,7 @@
                 {{-- Case info --}}
                 <div class="space-y-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Описание проекта</h2>
+                        <h2 class="block-title">Описание проекта</h2>
                         <div class="text-gray-600 leading-relaxed prose prose-gray max-w-none">
                             {!! $caseData['description'] !!}
                         </div>
@@ -84,7 +84,7 @@
     {{-- Results section --}}
     <section class="section-bg">
         <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Ключевые результаты</h2>
+            <h2 class="block-title text-center">Ключевые результаты</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($caseData['results'] as $result)
                     <div
@@ -101,7 +101,7 @@
     @if (isset($caseData['before_after']) && !empty($caseData['before_after']))
         <section class="section-bg">
             <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">До и после</h2>
+                <h2 class="block-title text-center">До и после</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($caseData['before_after'] as $metric => $values)
                         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -134,7 +134,7 @@
     @if (isset($caseData['content']) && !empty($caseData['content']))
         <section class="section-bg">
             <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Дополнительная информация</h2>
+                <h2 class="block-title text-center">Дополнительная информация</h2>
                 <div class="prose prose-lg max-w-none mx-auto">
                     {!! $caseData['content'] !!}
                 </div>

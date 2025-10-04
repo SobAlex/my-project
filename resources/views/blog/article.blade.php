@@ -59,7 +59,7 @@
                 </div>
 
                 <!-- Заголовок -->
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 class="page-title">
                     {{ $article->title }}
                 </h1>
 
@@ -98,7 +98,7 @@
         <!-- Похожие статьи -->
         @if ($relatedArticles->count() > 0)
             <div class="mt-16">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Похожие статьи</h2>
+                <h2 class="block-title">Похожие статьи</h2>
 
                 <div class="grid md:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $relatedArticle)

@@ -24,7 +24,7 @@
                     {{ $blogCategory->icon ?? 'article' }}
                 </i>
             </div>
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ $category }}</h1>
+            <h1 class="page-title">{{ $category }}</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 {{ $blogCategory->description ?? 'Статьи по данной теме' }}
             </p>
@@ -95,7 +95,7 @@
         <!-- Другие категории -->
         @if ($activeBlogCategories && count($activeBlogCategories) > 1)
             <div class="mt-16 pt-12 border-t border-gray-200">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Другие категории</h2>
+                <h2 class="block-title text-center">Другие категории</h2>
 
                 <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     @foreach ($activeBlogCategories as $category)

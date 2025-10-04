@@ -49,7 +49,7 @@
 
         <!-- Последние статьи -->
         <div class="mb-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Последние статьи</h2>
+            <h2 class="block-title text-center">Последние статьи</h2>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
                 @foreach ($articles as $article)

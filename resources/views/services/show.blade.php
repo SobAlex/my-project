@@ -28,7 +28,7 @@
                         </div>
                     @endif
                     <div>
-                        <h1 class="text-4xl font-bold text-gray-800">{{ $service->title }}</h1>
+                        <h1 class="page-title">{{ $service->title }}</h1>
                         @if($service->is_featured)
                             <span class="inline-block mt-2 px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-md">
                                 Рекомендуемая услуга
@@ -44,12 +44,12 @@
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
                     <div class="p-4 rounded-md" style="background-color: {{ $service->color }}10; border: 1px solid {{ $service->color }}30;">
                         <div class="text-sm text-gray-600">Стоимость</div>
-                        <div class="text-2xl font-bold" style="color: {{ $service->color }}">{{ $service->formatted_price }}</div>
+                        <div class="text-2xl" style="color: {{ $service->color }}">{{ $service->formatted_price }}</div>
                     </div>
                     @if($service->price_type)
                         <div class="bg-gray-50 p-4 rounded-md shadow-sm">
                             <div class="text-sm text-gray-600">Тип оплаты</div>
-                            <div class="text-2xl font-bold text-gray-700">
+                            <div class="text-2xl text-gray-700">
                                 @switch($service->price_type)
                                     @case('hour')
                                         Почасовая
@@ -103,7 +103,7 @@
     {{-- Features section --}}
     @if($service->features && is_array($service->features) && count($service->features) > 0)
         <section class="section-bg">
-            <h2 class="section-title">Что входит в услугу</h2>
+            <h2 class="block-title text-center">Что входит в услугу</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($service->features as $feature)
                     @if(is_string($feature))
@@ -124,7 +124,7 @@
     {{-- Related Services --}}
     @if($relatedServices->count() > 0)
         <section class="section-bg">
-            <h2 class="section-title">Другие услуги</h2>
+            <h2 class="block-title text-center">Другие услуги</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedServices as $relatedService)
                     <article class="element-bg rounded-md shadow-sm">
@@ -158,7 +158,7 @@
     {{-- Related Articles --}}
     @if($relatedArticles->count() > 0)
         <section class="section-bg">
-            <h2 class="section-title">Полезные статьи</h2>
+            <h2 class="block-title text-center">Полезные статьи</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedArticles as $article)
                     <article class="element-bg rounded-md shadow-sm">
@@ -198,7 +198,7 @@
     {{-- Related Cases --}}
     @if($relatedCases->count() > 0)
         <section class="section-bg">
-            <h2 class="section-title">Наши кейсы</h2>
+            <h2 class="block-title text-center">Наши кейсы</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($relatedCases as $case)
                     <article class="element-bg rounded-md shadow-sm">
@@ -248,7 +248,7 @@
     {{-- FAQ Section --}}
     @if($servicesFaqs->count() > 0)
         <section class="section-bg">
-            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <h2 class="block-title text-center">Часто задаваемые вопросы</h2>
             <div class="max-w-3xl mx-auto">
                 @foreach($servicesFaqs as $faq)
                     <div class="mb-4">
