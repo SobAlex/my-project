@@ -13,7 +13,7 @@
     {{-- Hero section --}}
     <section class="section-bg">
         <div class="text-center">
-            <h1 class="text-5xl font-bold text-gray-800 mb-6">{{ $title }}</h1>
+            <h1 class="page-title">{{ $title }}</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Свяжитесь с нами для получения консультации по SEO продвижению вашего сайта.
                 Мы всегда готовы ответить на ваши вопросы и предложить оптимальное решение.
@@ -26,7 +26,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Contact Details -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-8">Наши контакты</h2>
+                <h2 class="block-title">Наши контакты</h2>
 
                 <div class="space-y-8">
                     <!-- Address -->
@@ -139,7 +139,7 @@
 
             <!-- Contact Form -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-8">Напишите нам</h2>
+                <h2 class="block-title">Напишите нам</h2>
 
                 <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
                     @csrf

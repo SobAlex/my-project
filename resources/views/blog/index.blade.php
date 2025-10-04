@@ -16,7 +16,7 @@
     <div class="py-12">
         <!-- Заголовок страницы -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">Блог о SEO</h1>
+            <h1 class="page-title">Блог о SEO</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Актуальные статьи о поисковой оптимизации, веб-аналитике и продвижении сайтов.
                 Делимся опытом и рассказываем о последних трендах в SEO.

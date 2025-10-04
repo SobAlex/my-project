@@ -38,7 +38,17 @@
     }
 
     .section-title {
-        @apply text-center mb-10 text-4xl text-gray-800 font-bold
+        @apply text-center mb-10 text-4xl text-gray-800
+    }
+
+    /* Стиль основных заголовков страниц и блоков */
+    h1.page-title,
+    h2.page-title {
+        @apply text-4xl text-gray-700 mb-6 leading-tight;
+    }
+
+    .block-title {
+        @apply text-3xl text-gray-700 mb-6 leading-tight;
     }
 
     .btn {

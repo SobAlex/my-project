@@ -18,7 +18,7 @@
     {{-- Hero section --}}
     <section class="section-bg">
         <div class="text-center">
-            <h1 class="text-5xl font-bold text-gray-800 mb-6">{{ $title }}</h1>
+            <h1 class="page-title">{{ $title }}</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Реальные результаты нашей работы. Каждый кейс — это история успеха наших клиентов
                 и доказательство эффективности наших методов продвижения.

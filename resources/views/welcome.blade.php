@@ -22,7 +22,7 @@
 
     {{-- Service --}}
     <section id="services" class="section-bg">
-        <h2 class="section-title">Услуги</h2>
+        <h2 class="page-title text-center">Услуги</h2>
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             @forelse($featuredServices as $service)
@@ -69,7 +69,7 @@
 
     {{-- Why we --}}
     <section id="why" class="section-bg">
-        <h2 class="section-title">Почему мы</h2>
+        <h2 class="page-title text-center">Почему мы</h2>
         @if($whyUsBlocks && $whyUsBlocks->count() > 0)
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 @foreach($whyUsBlocks as $block)
@@ -141,7 +141,7 @@
 
     {{-- Cases --}}
     <section id="cases" class="section-bg">
-        <h2 class="section-title">Наши кейсы</h2>
+        <h2 class="page-title text-center">Наши кейсы</h2>
         <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
             Реальные результаты нашей работы. Каждый кейс — это история успеха наших клиентов
             и доказательство эффективности наших методов продвижения.
@@ -215,7 +215,7 @@
 
     {{-- Blog --}}
     <section id="blog" class="section-bg">
-        <h2 class="section-title">Последние статьи</h2>
+        <h2 class="page-title text-center">Последние статьи</h2>
         <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
             Полезные материалы о SEO, аналитике и продвижении сайтов.
             Делимся опытом и актуальными новостями из мира поисковой оптимизации.
@@ -306,7 +306,7 @@
 
     {{-- Reviews --}}
     <section id="reviews" class="section-bg">
-        <h2 class="section-title">Отзывы наших клиентов</h2>
+        <h2 class="page-title text-center">Отзывы наших клиентов</h2>
         <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
             Реальные истории успеха от наших клиентов. Узнайте, как мы помогли им достичь
             выдающихся результатов в SEO-продвижении.
@@ -370,7 +370,7 @@
     <section id="contact-form" class="section-bg flex flex-col lg:items-start items-center lg:flex-row lg:justify-around">
         <!-- Contact Information Column -->
         <div class="w-full sm:w-2/3 md:basis-1/3 mb-9 lg:mb-0">
-            <h2 class="section-title">Контакты</h2>
+            <h2 class="page-title text-center">Контакты</h2>
 
             <p class="mb-6">Заполните форму, и наша команда свяжется с вами в течение 24 часов. Или
                 свяжитесь с нами напрямую:</p>

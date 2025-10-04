@@ -13,7 +13,7 @@
     {{-- Hero section --}}
     <section class="section-bg">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ $title }}</h1>
+            <h1 class="page-title">{{ $title }}</h1>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Профессиональные услуги по продвижению и развитию вашего бизнеса в интернете
             </p>
