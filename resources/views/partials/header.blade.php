@@ -67,19 +67,19 @@
                                 @endforeach
                             @else
                                 {{-- Статичные категории для главной страницы --}}
-                                <a href="{{ route('cases.clothing') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <a href="{{ route('cases.category', 'clothing') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                     <i class="material-icons text-sm mr-2" style="color: #FFD700">apparel</i>
                                     Одежда
                                 </a>
-                                <a href="{{ route('cases.production') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <a href="{{ route('cases.category', 'production') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                     <i class="material-icons text-sm mr-2" style="color: #3B82F6">factory</i>
                                     Production
                                 </a>
-                                <a href="{{ route('cases.electronics') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <a href="{{ route('cases.category', 'electronics') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                     <i class="material-icons text-sm mr-2" style="color: #10B981">devices</i>
                                     Electronics
                                 </a>
-                                <a href="{{ route('cases.furniture') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
+                                <a href="{{ route('cases.category', 'furniture') }}" class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                     <i class="material-icons text-sm mr-2" style="color: #8B5CF6">chair</i>
                                     Furniture
                                 </a>
@@ -261,19 +261,19 @@
                             @endforeach
                         @else
                             {{-- Статичные категории для мобильного меню --}}
-                            <a href="{{ route('cases.clothing') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <a href="{{ route('cases.category', 'clothing') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2" style="color: #FFD700">apparel</i>
                                 Одежда
                             </a>
-                            <a href="{{ route('cases.production') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <a href="{{ route('cases.category', 'production') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2" style="color: #3B82F6">factory</i>
                                 Production
                             </a>
-                            <a href="{{ route('cases.electronics') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <a href="{{ route('cases.category', 'electronics') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2" style="color: #10B981">devices</i>
                                 Electronics
                             </a>
-                            <a href="{{ route('cases.furniture') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
+                            <a href="{{ route('cases.category', 'furniture') }}" class="flex items-center text-sm text-gray-600 hover:text-cyan-600 transition">
                                 <i class="material-icons text-sm mr-2" style="color: #8B5CF6">chair</i>
                                 Furniture
                             </a>

@@ -8,14 +8,11 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\IndustryCategoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MediaLibraryController;
 use App\Http\Controllers\DemoController;
-use App\Http\Controllers\TestMediaController;
 use App\Http\Controllers\SitemapController;
 
 // ============================================================================
@@ -41,10 +38,6 @@ Route::prefix('services')->name('services.')->group(function () {
 // Cases
 Route::get('/cases', [CaseController::class, 'index'])->name('cases');
 Route::prefix('cases')->name('cases.')->group(function () {
-    Route::get('/clothing', [CaseController::class, 'clothing'])->name('clothing');
-    Route::get('/production', [CaseController::class, 'production'])->name('production');
-    Route::get('/electronics', [CaseController::class, 'electronics'])->name('electronics');
-    Route::get('/furniture', [CaseController::class, 'furniture'])->name('furniture');
     Route::get('/category/{industry}', [CaseController::class, 'category'])->name('category');
     Route::get('/{id}', [CaseController::class, 'show'])->name('show');
 });
@@ -52,9 +45,6 @@ Route::prefix('cases')->name('cases.')->group(function () {
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::prefix('blog')->name('blog.')->group(function () {
-    Route::get('/seo-news', [BlogController::class, 'seoNews'])->name('seo-news');
-    Route::get('/analytics', [BlogController::class, 'analytics'])->name('analytics');
-    Route::get('/tips', [BlogController::class, 'tips'])->name('tips');
     Route::get('/category/{category}', [BlogController::class, 'category'])->name('category');
     Route::get('/{category}/{slug}', [BlogController::class, 'show'])->name('article');
     Route::get('/{slug}', [BlogController::class, 'showWithoutCategory'])->name('article.uncategorized');
@@ -84,13 +74,4 @@ Route::prefix('api')->name('api.')->middleware(['web'])->group(function () {
     // Industry Categories API
     Route::resource('industry-categories', IndustryCategoryController::class);
 
-    // Media Library API (with CSRF protection)
-    Route::get('media/stats', [MediaController::class, 'stats'])->name('media.stats');
-    Route::resource('media', MediaController::class);
-});
-
-// API routes without CSRF protection for testing
-Route::prefix('api/test')->name('api.test.')->group(function () {
-    Route::post('media/upload', [TestMediaController::class, 'upload'])->name('media.upload');
-    Route::get('media/stats', [TestMediaController::class, 'stats'])->name('media.stats');
 });
