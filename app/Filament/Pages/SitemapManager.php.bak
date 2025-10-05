@@ -1,0 +1,176 @@
+<?php
+
+namespace App\Filament\Pages;
+
+use App\Console\Commands\GenerateSitemap;
+use Filament\Actions\Action;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+use Filament\Support\Enums\IconPosition;
+
+class SitemapManager extends Page
+{
+    protected static ?string $navigationIcon = 'heroicon-o-sitemap';
+    protected static string $view = 'filament.pages.sitemap-manager';
+    protected static ?string $navigationLabel = 'Sitemap';
+    protected static ?string $title = 'Управление Sitemap';
+
+    public function mount(): void
+    {
+        $this->form->fill([
+            'sitemap_url' => $this->getSitemapUrl(),
+            'last_generated' => $this->getLastGeneratedTime(),
+            'total_urls' => $this->getTotalUrls(),
+        ]);
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Section::make('Информация о Sitemap')
+                    ->description('Управление XML-картой сайта для поисковых систем')
+                    ->schema([
+                        TextInput::make('sitemap_url')
+                            ->label('URL Sitemap')
+                            ->disabled()
+                            ->helperText('Прямая ссылка на sitemap.xml'),
+                        
+                        TextInput::make('last_generated')
+                            ->label('Последнее обновление')
+                            ->disabled()
+                            ->helperText('Когда sitemap был сгенерирован в последний раз'),
+                        
+                        TextInput::make('total_urls')
+                            ->label('Количество URL')
+                            ->disabled()
+                            ->helperText('Общее количество страниц в sitemap'),
+                    ])
+                    ->columns(3),
+                
+                Section::make('Действия')
+                    ->description('Генерация и управление sitemap')
+                    ->schema([
+                        Placeholder::make('actions')
+                            ->content('')
+                    ])
+            ]);
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('generate')
+                ->label('Сгенерировать Sitemap')
+                ->icon('heroicon-o-arrow-path')
+                ->color('primary')
+                ->action('generateSitemap')
+                ->requiresConfirmation()
+                ->modalHeading('Генерация Sitemap')
+                ->modalDescription('Это действие сгенерирует новый sitemap.xml файл. Продолжить?')
+                ->modalSubmitActionLabel('Сгенерировать'),
+            
+            Action::make('download')
+                ->label('Скачать Sitemap')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->color('gray')
+                ->action('downloadSitemap')
+                ->visible(fn() => $this->sitemapExists()),
+            
+            Action::make('view')
+                ->label('Просмотреть Sitemap')
+                ->icon('heroicon-o-eye')
+                ->color('gray')
+                ->url(fn() => $this->getSitemapUrl())
+                ->openUrlInNewTab()
+                ->visible(fn() => $this->sitemapExists()),
+        ];
+    }
+
+    public function generateSitemap(): void
+    {
+        try {
+            Artisan::call('sitemap:generate');
+            
+            $output = Artisan::output();
+            
+            Notification::make()
+                ->title('Sitemap сгенерирован успешно!')
+                ->body('XML-карта сайта обновлена.')
+                ->success()
+                ->send();
+            
+            // Обновляем форму
+            $this->form->fill([
+                'sitemap_url' => $this->getSitemapUrl(),
+                'last_generated' => $this->getLastGeneratedTime(),
+                'total_urls' => $this->getTotalUrls(),
+            ]);
+            
+        } catch (\Exception $e) {
+            Notification::make()
+                ->title('Ошибка генерации Sitemap')
+                ->body('Произошла ошибка: ' . $e->getMessage())
+                ->danger()
+                ->send();
+        }
+    }
+
+    public function downloadSitemap()
+    {
+        if (!$this->sitemapExists()) {
+            Notification::make()
+                ->title('Sitemap не найден')
+                ->body('Сначала сгенерируйте sitemap.xml')
+                ->warning()
+                ->send();
+            return;
+        }
+
+        return response()->download(
+            Storage::disk('public')->path('sitemap.xml'),
+            'sitemap.xml'
+        );
+    }
+
+    private function sitemapExists(): bool
+    {
+        return Storage::disk('public')->exists('sitemap.xml');
+    }
+
+    private function getSitemapUrl(): string
+    {
+        return url('storage/sitemap.xml');
+    }
+
+    private function getLastGeneratedTime(): string
+    {
+        if (!$this->sitemapExists()) {
+            return 'Никогда';
+        }
+
+        $lastModified = Storage::disk('public')->lastModified('sitemap.xml');
+        return date('d.m.Y H:i:s', $lastModified);
+    }
+
+    private function getTotalUrls(): string
+    {
+        if (!$this->sitemapExists()) {
+            return '0';
+        }
+
+        try {
+            $content = Storage::disk('public')->get('sitemap.xml');
+            $count = substr_count($content, '<url>');
+            return (string) $count;
+        } catch (\Exception $e) {
+            return 'Неизвестно';
+        }
+    }
+}

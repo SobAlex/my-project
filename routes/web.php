@@ -16,6 +16,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MediaLibraryController;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\TestMediaController;
+use App\Http\Controllers\SitemapController;
 
 // ============================================================================
 // PUBLIC ROUTES
@@ -23,6 +24,9 @@ use App\Http\Controllers\TestMediaController;
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // Static pages
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
