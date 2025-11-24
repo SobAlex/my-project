@@ -8,7 +8,7 @@
     <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => array_filter([
-                ['title' => 'Блог', 'url' => route('blog')],
+                ['title' => 'Блог', 'url' => route('blog.index')],
                 $article->hasActiveCategory() ? [
                     'title' => $article->active_category_name,
                     'url' => route('blog.category', $article->blogCategory->slug ?? 'uncategorized'),
@@ -88,7 +88,7 @@
                     <div></div>
                 @endif
 
-                <a href="{{ route('blog') }}" class="btn inline-flex items-center">
+                <a href="{{ route('blog.index') }}" class="btn inline-flex items-center">
                     Все статьи блога
                     <i class="material-icons text-sm ml-2">arrow_forward</i>
                 </a>

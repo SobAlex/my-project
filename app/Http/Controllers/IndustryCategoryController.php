@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IndustryCategory;
 use App\Services\CaseService;
+use App\Http\Requests\IndustryCategoryRequest;
 use Illuminate\Http\Request;
 
 class IndustryCategoryController extends Controller
@@ -24,16 +25,9 @@ class IndustryCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(IndustryCategoryRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         $industryCategory = IndustryCategory::create($validated);
 
@@ -55,16 +49,9 @@ class IndustryCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, IndustryCategory $industryCategory)
+    public function update(IndustryCategoryRequest $request, IndustryCategory $industryCategory)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         $industryCategory->update($validated);
 

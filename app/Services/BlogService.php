@@ -10,6 +10,45 @@ use Illuminate\Support\Collection as SupportCollection;
 
 class BlogService
 {
+
+    /**
+     * Get active blog categories.
+     */
+    public function getActiveCategories(): SupportCollection
+    {
+        return BlogCategory::active()
+            ->ordered()
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'slug' => $category->slug,
+                    'name' => $category->name,
+                    'icon' => $category->icon ?: 'article',
+                    'color' => $category->color,
+                    'description' => $category->description
+                ];
+            });
+    }
+
+    // ниже не разобраны
+
+    /**
+     * Get latest posts for homepage.
+     */
+    public function getLatestPostsForHomepage(int $limit = 4): Collection
+    {
+        return Blog::published()
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) {
+                $query->where('is_active', true);
+            })
+            ->ordered()
+            ->limit($limit)
+            ->get();
+    }
+
+    // ниже пока не разобранные методы
+
     /**
      * Get all published blog posts with pagination.
      */
@@ -132,39 +171,5 @@ class BlogService
         }
 
         return $relatedPosts;
-    }
-
-    /**
-     * Get latest posts for homepage.
-     */
-    public function getLatestPostsForHomepage(int $limit = 4): Collection
-    {
-        return Blog::published()
-            ->with('blogCategory')
-            ->whereHas('blogCategory', function($query) {
-                $query->where('is_active', true);
-            })
-            ->ordered()
-            ->limit($limit)
-            ->get();
-    }
-
-    /**
-     * Get active blog categories.
-     */
-    public function getActiveCategories(): SupportCollection
-    {
-        return BlogCategory::active()
-            ->ordered()
-            ->get()
-            ->map(function ($category) {
-                return [
-                    'slug' => $category->slug,
-                    'name' => $category->name,
-                    'icon' => $category->icon ?: 'article',
-                    'color' => $category->color,
-                    'description' => $category->description
-                ];
-            });
     }
 }

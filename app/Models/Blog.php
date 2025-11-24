@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasPublishing;
+
 use App\Contracts\ImageableInterface;
 use App\Contracts\PublishableInterface;
 use App\Traits\HasImage;
-use App\Traits\HasPublishing;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
@@ -45,6 +46,10 @@ class Blog extends Model implements ImageableInterface, PublishableInterface
         'published_at' => 'datetime',
         'image' => 'string',
     ];
+
+    // скопы реализованы в трейте
+
+    // методы ниже пока не разобраны. Разобраться, где применяются. Не нужные удалить.
 
     /**
      * Get the user that owns the blog post.

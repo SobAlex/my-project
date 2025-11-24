@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contact extends Model
 {
@@ -84,5 +84,21 @@ class Contact extends Model
                 'youtube' => $contact->social_youtube,
             ],
         ];
+    }
+
+    /**
+     * Check if the contact is active.
+     */
+    public function isActive(): bool
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Scope for active contacts.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 }

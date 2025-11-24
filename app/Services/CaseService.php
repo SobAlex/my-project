@@ -10,6 +10,80 @@ use Illuminate\Support\Collection as SupportCollection;
 class CaseService
 {
     /**
+     * Get latest cases for homepage.
+     */
+    public function getLatestCasesTransformedForHomepage(int $limit = 4): array
+    {
+        $cases = ProjectCase::published()
+            ->with('industryCategory')
+            ->ordered()
+            ->limit($limit)
+            ->get();
+
+        return $this->transformCasesForTemplate($cases);
+    }
+
+    /**
+     * Transform case for template.
+     */
+    public function transformCaseForTemplate(ProjectCase $case): array
+    {
+        $industrySlug = $case->industryCategory ? $case->industryCategory->slug : 'uncategorized';
+
+        return [
+            'id' => $case->case_id,
+            'title' => $case->title,
+            'client' => $case->client,
+            'industry' => $industrySlug,
+            'industry_name' => $case->industryCategory && $case->industryCategory->is_active ? $case->industryCategory->name : null,
+            'period' => $case->period,
+            'image' => $case->image,
+            'image_url' => $case->image_url,
+            'description' => $case->description,
+            'description_clean' => strip_tags(html_entity_decode($case->description)),
+            'content' => $case->content,
+            'meta_title' => $case->meta_title,
+            'meta_description' => $case->meta_description,
+            'results' => $case->results_array,
+            'before_after' => $case->available_metrics,
+            'has_valid_category' => $case->industryCategory ? $case->industryCategory->is_active : false
+        ];
+    }
+
+    /**
+     * Transform cases collection for template.
+     */
+    public function transformCasesForTemplate(Collection $cases): array
+    {
+        return $cases->map(function ($case) {
+            return $this->transformCaseForTemplate($case);
+        })->toArray();
+    }
+
+    /**
+     * Get active industry categories.
+     */
+    public function getActiveCategories(): SupportCollection
+    {
+        return IndustryCategory::active()
+            ->ordered()
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'name' => $category->name,
+                    'route' => 'cases.category',
+                    'route_params' => [$category->slug],
+                    'slug' => $category->slug,
+                    'icon' => $category->icon ?: 'business',
+                    'color' => $category->color ?: '#3B82F6',
+                    'description' => $category->description
+                ];
+            });
+    }
+
+    // ниже пока не разобранные методы
+
+    /**
      * Get all published cases with their categories.
      */
     public function getAllCases(): Collection
@@ -35,18 +109,6 @@ class CaseService
     }
 
     /**
-     * Get latest cases for homepage.
-     */
-    public function getLatestCasesForHomepage(int $limit = 4): Collection
-    {
-        return ProjectCase::published()
-            ->with('industryCategory')
-            ->ordered()
-            ->limit($limit)
-            ->get();
-    }
-
-    /**
      * Get case by case_id (published only).
      */
     public function getCaseById(string $caseId): ?ProjectCase
@@ -65,27 +127,6 @@ class CaseService
         return ProjectCase::where('case_id', $caseId)
             ->with('industryCategory')
             ->first();
-    }
-
-    /**
-     * Get active industry categories.
-     */
-    public function getActiveCategories(): SupportCollection
-    {
-        return IndustryCategory::active()
-            ->ordered()
-            ->get()
-            ->map(function ($category) {
-                return [
-                    'name' => $category->name,
-                    'route' => 'cases.category',
-                    'route_params' => [$category->slug],
-                    'slug' => $category->slug,
-                    'icon' => $category->icon ?: 'business',
-                    'color' => $category->color ?: '#3B82F6',
-                    'description' => $category->description
-                ];
-            });
     }
 
     /**
@@ -137,43 +178,5 @@ class CaseService
         ];
 
         return $legacyCategories[$industrySlug] ?? null;
-    }
-
-    /**
-     * Transform case for template.
-     */
-    public function transformCaseForTemplate(ProjectCase $case): array
-    {
-        $industrySlug = $case->industryCategory ? $case->industryCategory->slug : 'uncategorized';
-        $categoryInfo = $this->getCategoryInfo($industrySlug);
-
-        return [
-            'id' => $case->case_id,
-            'title' => $case->title,
-            'client' => $case->client,
-            'industry' => $industrySlug,
-            'industry_name' => $case->industryCategory && $case->industryCategory->is_active ? $case->industryCategory->name : null,
-            'period' => $case->period,
-            'image' => $case->image,
-            'image_url' => $case->image_url,
-            'description' => $case->description,
-            'description_clean' => strip_tags(html_entity_decode($case->description)),
-            'content' => $case->content,
-            'meta_title' => $case->meta_title,
-            'meta_description' => $case->meta_description,
-            'results' => $case->results_array,
-            'before_after' => $case->available_metrics,
-            'has_valid_category' => $case->industryCategory ? $case->industryCategory->is_active : false
-        ];
-    }
-
-    /**
-     * Transform cases collection for template.
-     */
-    public function transformCasesForTemplate(Collection $cases): array
-    {
-        return $cases->map(function ($case) {
-            return $this->transformCaseForTemplate($case);
-        })->toArray();
     }
 }

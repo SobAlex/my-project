@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\PublishableInterface;
-use App\Traits\HasPublishing;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasPublishing;
+
+use App\Contracts\PublishableInterface;
 
 class Faq extends Model implements PublishableInterface
 {
@@ -25,6 +26,18 @@ class Faq extends Model implements PublishableInterface
         'show_on_services' => 'boolean',
         'sort_order' => 'integer'
     ];
+
+    /**
+     * Scope for FAQs visible on homepage.
+     */
+    public function scopeVisibleOnHomepage($query)
+    {
+        return $query->where('is_active', true)
+                    ->where('show_on_homepage', true)
+                    ->orderBy('sort_order');
+    }
+
+    // ниже не разобрано
 
     /**
      * Check if the FAQ is published.
@@ -58,15 +71,7 @@ class Faq extends Model implements PublishableInterface
         return $this->is_active && $this->show_on_services;
     }
 
-    /**
-     * Scope for FAQs visible on homepage.
-     */
-    public function scopeVisibleOnHomepage($query)
-    {
-        return $query->where('is_active', true)
-                    ->where('show_on_homepage', true)
-                    ->orderBy('sort_order');
-    }
+
 
     /**
      * Scope for FAQs visible on services pages.

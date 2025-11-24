@@ -47,7 +47,7 @@
                 </div>
             </li>
             <li class="relative group">
-                <a href="{{ route('cases') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                <a href="{{ route('cases.index') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
                     Кейсы
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
@@ -56,8 +56,8 @@
                     <div class="p-4">
                         <div class="text-sm font-semibold text-gray-600 mb-3">Популярные отрасли:</div>
                         <div class="space-y-2">
-                            @if(isset($activeCategories) && !empty($activeCategories))
-                                @foreach ($activeCategories as $category)
+                            @if(isset($activeCaseCategories) && !empty($activeCaseCategories))
+                                @foreach ($activeCaseCategories as $category)
                                     <a href="{{ route($category['route'], ...$category['route_params']) }}"
                                         class="flex items-center text-sm text-gray-700 hover:text-cyan-600 transition">
                                         <i class="material-icons text-sm mr-2"
@@ -86,7 +86,7 @@
                             @endif
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
-                            <a href="{{ route('cases') }}"
+                            <a href="{{ route('cases.index') }}"
                                 class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                                 Все кейсы →
                             </a>
@@ -95,7 +95,7 @@
                 </div>
             </li>
             <li class="relative group">
-                <a href="{{ route('blog') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
+                <a href="{{ route('blog.index') }}" class="text-gray-700 hover:text-cyan-500 flex items-center">
                     Блог
                     <i class="material-icons ml-1 text-sm">keyboard_arrow_down</i>
                 </a>
@@ -114,7 +114,7 @@
                             @endforeach
                         </div>
                         <div class="border-t border-gray-200 mt-3 pt-3">
-                            <a href="{{ route('blog') }}"
+                            <a href="{{ route('blog.index') }}"
                                 class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                                 Все статьи →
                             </a>
@@ -280,7 +280,7 @@
                         @endif
                     </div>
                     <div class="pt-3 border-t border-gray-200">
-                        <a href="{{ route('cases') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                        <a href="{{ route('cases.index') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                             Все кейсы →
                         </a>
                     </div>
@@ -314,7 +314,7 @@
                         @endforeach
                     </div>
                     <div class="pt-3 border-t border-gray-200">
-                        <a href="{{ route('blog') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
+                        <a href="{{ route('blog.index') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">
                             Все статьи →
                         </a>
                     </div>

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WhyUs extends Model
 {
@@ -27,14 +27,6 @@ class WhyUs extends Model
     ];
 
     /**
-     * Проверяет, активен ли блок
-     */
-    public function isActive(): bool
-    {
-        return $this->is_active;
-    }
-
-    /**
      * Scope для получения только активных блоков
      */
     public function scopeActive($query)
@@ -50,4 +42,21 @@ class WhyUs extends Model
         return $query->orderBy('sort_order')->orderBy('id');
     }
 
+        // методы ниже пока не разобраны. Разобраться, где применяются. Не нужные удалить.
+
+    /**
+     * Проверяет, активен ли блок
+     */
+    public function isActive(): bool
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Check if the why us block is published.
+     */
+    public function isPublished(): bool
+    {
+        return $this->is_active;
+    }
 }

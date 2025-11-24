@@ -5,13 +5,13 @@
 @section('content')
     {{-- hero --}}
     <section id="hero" class="section-bg relative">
-        @if($heroSections && $heroSections->count() > 0)
-            @if($heroSections->count() === 1)
+        @if($activeHeroes && $activeHeroes->count() > 0)
+            @if($activeHeroes->count() === 1)
                 {{-- Одиночный Hero блок --}}
-                @include('partials.hero-single', ['heroSection' => $heroSections->first()])
+                @include('partials.hero-single', ['activeHeroes' => $activeHeroes->first()])
             @else
                 {{-- Слайдер Hero блоков --}}
-                @include('partials.hero-slider', ['heroSections' => $heroSections])
+                @include('partials.hero-slider', ['activeHeroes' => $activeHeroes])
             @endif
         @else
             {{-- Fallback статичный контент --}}
@@ -147,9 +147,9 @@
             и доказательство эффективности наших методов продвижения.
         </p>
 
-        @if (!empty($latestCases))
+        @if (!empty($transformlatestCases))
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach ($latestCases as $case)
+                @foreach ($transformlatestCases as $case)
                     <article
                         class="bg-white/80 backdrop-blur-sm overflow-hidden rounded-lg shadow-sm flex flex-col h-full">
                         {{-- Case image --}}
@@ -199,7 +199,7 @@
 
             {{-- View all cases link --}}
             <div class="text-center mt-8">
-                <a href="{{ route('cases') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
+                <a href="{{ route('cases.index') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
                     Все кейсы →
                 </a>
             </div>
@@ -283,7 +283,7 @@
 
             {{-- View all articles link --}}
             <div class="text-center mt-8">
-                <a href="{{ route('blog') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
+                <a href="{{ route('blog.index') }}" class="text-lg font-medium text-gray-700 hover:text-cyan-600 transition-colors duration-200">
                     Все статьи →
                 </a>
             </div>

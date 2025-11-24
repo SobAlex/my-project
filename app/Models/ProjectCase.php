@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasPublishing;
+
 use App\Contracts\ImageableInterface;
 use App\Contracts\PublishableInterface;
 use App\Traits\HasImage;
-use App\Traits\HasPublishing;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
@@ -96,6 +98,10 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         'results' => 'array',
     ];
 
+        // скопы реализованы в трейте
+
+        // методы ниже пока не разобраны. Разобраться, где применяются. Не нужные удалить.
+
 
     /**
      * Get the user that owns the case.
@@ -103,6 +109,14 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the industry category for this case.
+     */
+    public function industryCategory(): BelongsTo
+    {
+        return $this->belongsTo(IndustryCategory::class, 'industry_category_id');
     }
 
     /**
@@ -171,13 +185,6 @@ class ProjectCase extends Model implements ImageableInterface, PublishableInterf
         return route('cases.show', $this->case_id);
     }
 
-    /**
-     * Get the industry category for this case.
-     */
-    public function industryCategory()
-    {
-        return $this->belongsTo(IndustryCategory::class, 'industry_category_id');
-    }
 
     /**
      * Get industry name in Russian.

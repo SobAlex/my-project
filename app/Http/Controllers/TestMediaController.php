@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Media;
 use App\Services\MediaService;
-use Illuminate\Http\Request;
+use App\Http\Requests\MediaUploadRequest;
 use Illuminate\Http\JsonResponse;
 
 class TestMediaController extends Controller
@@ -19,19 +19,15 @@ class TestMediaController extends Controller
     /**
      * Загрузить файл (без CSRF защиты для тестирования)
      */
-    public function upload(Request $request): JsonResponse
+    public function upload(MediaUploadRequest $request): JsonResponse
     {
         try {
-            $request->validate([
-                'file' => 'required|file|max:10240', // 10MB
-                'alt_text' => 'nullable|string|max:255',
-                'description' => 'nullable|string|max:1000',
-            ]);
+            $validated = $request->validated();
 
             $media = $this->mediaService->uploadFile(
                 $request->file('file'),
-                $request->get('alt_text'),
-                $request->get('description')
+                $validated['alt_text'],
+                $validated['description']
             );
 
             return response()->json([

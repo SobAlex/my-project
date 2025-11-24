@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faq;
-use App\Models\Service;
-use App\Models\HeroSection;
-use App\Models\WhyUs;
-use App\Services\ContactService;
+use App\Services\HeroService;
+use App\Services\ServiceService;
+use App\Services\WhyUsService;
 use App\Services\CaseService;
 use App\Services\BlogService;
-use Illuminate\Http\Request;
+use App\Services\FaqService;
+use App\Services\ReviewService;
+use App\Services\ContactService;
 
 class HomeController extends Controller
 {
     public function __construct(
-        private ContactService $contactService,
+
+        private HeroService $heroService,
+        private ServiceService $serviceService,
+        private WhyUsService $whyUsService,
         private CaseService $caseService,
-        private BlogService $blogService
+        private BlogService $blogService,
+        private FaqService $faqService,
+        private ReviewService $reviewService,
+        private ContactService $contactService
+
     ) {}
 
     /**
@@ -24,35 +31,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Получаем данные от других контроллеров
-        $caseController = app(CaseController::class);
-        $blogController = app(BlogController::class);
-        $reviewController = app(ReviewController::class);
-
         // Собираем все необходимые данные
-        $latestCases = $caseController->getLatestCasesForHomepage();
-        $latestArticles = $blogController->getLatestArticlesForHomepage();
-        $randomReviews = $reviewController->getRandomReviewsForHomepage();
+        $activeHeroes = $this->heroService->getActiveHeroSections();
+        $featuredServices = $this->serviceService->getFeaturedServices();
+        $whyUsBlocks = $this->whyUsService->getActiveWhyUsBlocks();
+        $transformlatestCases = $this->caseService->getLatestCasesTransformedForHomepage();
+        $latestArticles = $this->blogService->getLatestPostsForHomepage();
+        $homepageFaqs = $this->faqService->getHomepageFaqs();
+        $randomReviews = $this->reviewService->getRandomReviewsForHomepage();
         $contactInfo = $this->contactService->getContactInfo();
-        $homepageFaqs = Faq::visibleOnHomepage()->get();
-        $featuredServices = Service::published()->showOnHomepage()->ordered()->take(6)->get();
-        $heroSections = HeroSection::active()->ordered()->get();
-        $whyUsBlocks = WhyUs::active()->ordered()->get();
 
         // Получаем категории для навигации
-        $activeCategories = $this->caseService->getActiveCategories();
+        $activeCaseCategories = $this->caseService->getActiveCategories();
         $activeBlogCategories = $this->blogService->getActiveCategories();
 
         return view('welcome', compact(
-            'latestCases',
+            'activeHeroes',
+            'featuredServices',
+            'whyUsBlocks',
+            'transformlatestCases',
             'latestArticles',
+            'homepageFaqs',
             'randomReviews',
             'contactInfo',
-            'homepageFaqs',
-            'featuredServices',
-            'heroSections',
-            'whyUsBlocks',
-            'activeCategories',
+            'activeCaseCategories',
             'activeBlogCategories'
         ));
     }

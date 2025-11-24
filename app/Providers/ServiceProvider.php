@@ -6,6 +6,7 @@ use App\Services\BlogService;
 use App\Services\CaseService;
 use App\Services\ContactService;
 use App\Services\ImageService;
+use App\Services\MediaService;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceProvider extends ServiceProvider
@@ -19,6 +20,7 @@ class ServiceProvider extends ServiceProvider
         $this->app->singleton(BlogService::class);
         $this->app->singleton(ContactService::class);
         $this->app->singleton(ImageService::class);
+        $this->app->singleton(MediaService::class);
     }
 
     /**
@@ -29,4 +31,3 @@ class ServiceProvider extends ServiceProvider
         //
     }
 }
-

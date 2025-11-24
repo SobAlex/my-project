@@ -12,24 +12,32 @@ trait HasSlug
     protected static function bootHasSlug()
     {
         static::creating(function ($model) {
-            if (empty($model->slug) && !empty($model->name)) {
-                $model->slug = Str::slug($model->name);
+            if (empty($model->slug)) {
+                $sourceField = $model->name ?? $model->title ?? null;
+                if (!empty($sourceField)) {
+                    $model->slug = Str::slug($sourceField);
+                }
             }
         });
 
         static::updating(function ($model) {
-            if ($model->isDirty('name') && empty($model->slug)) {
-                $model->slug = Str::slug($model->name);
+            if (empty($model->slug)) {
+                $sourceField = $model->name ?? $model->title ?? null;
+                if (!empty($sourceField)) {
+                    $model->slug = Str::slug($sourceField);
+                }
             }
         });
     }
 
     /**
-     * Generate slug from name.
+     * Generate slug from name or title.
      */
     public function generateSlug()
     {
-        $this->slug = Str::slug($this->name);
+        $sourceField = $this->name ?? $this->title ?? null;
+        if (!empty($sourceField)) {
+            $this->slug = Str::slug($sourceField);
+        }
     }
 }
-

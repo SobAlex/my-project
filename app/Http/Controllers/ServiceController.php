@@ -26,7 +26,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        if (!$service->is_published) {
+        if (!$service->isPublished()) {
             abort(404);
         }
 

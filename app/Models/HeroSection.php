@@ -24,14 +24,6 @@ class HeroSection extends Model
     ];
 
     /**
-     * Проверяет, активен ли Hero блок
-     */
-    public function isActive(): bool
-    {
-        return $this->is_active;
-    }
-
-    /**
      * Scope для получения только активных Hero блоков
      */
     public function scopeActive($query)
@@ -47,11 +39,29 @@ class HeroSection extends Model
         return $query->orderBy('sort_order')->orderBy('id');
     }
 
+    // методы ниже пока не разобраны. Разобраться, где применяются. Не нужные удалить.
+
+    /**
+     * Проверяет, активен ли Hero блок
+     */
+    public function isActive(): bool
+    {
+        return $this->is_active;
+    }
+
     /**
      * Получает URL изображения
      */
     public function getImageUrlAttribute(): ?string
     {
         return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    /**
+     * Check if the hero section is published.
+     */
+    public function isPublished(): bool
+    {
+        return $this->is_active;
     }
 }

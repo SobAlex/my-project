@@ -6,13 +6,6 @@ use App\Models\Contact;
 
 class ContactService
 {
-    /**
-     * Get all contact settings.
-     */
-    public function getContactSettings(): array
-    {
-        return Contact::getContactData();
-    }
 
     /**
      * Get contact information formatted for display.
@@ -30,6 +23,15 @@ class ContactService
         ];
     }
 
+    // ниже не разобрано
+
+    /**
+     * Get all contact settings.
+     */
+    public function getContactSettings(): array
+    {
+        return Contact::getContactData();
+    }
 
     /**
      * Get contact page data.

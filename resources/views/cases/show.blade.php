@@ -9,7 +9,7 @@
     <div class="pt-8">
         @include('partials.breadcrumbs', [
             'breadcrumbs' => array_filter([
-                ['title' => 'Кейсы', 'url' => route('cases')],
+                ['title' => 'Кейсы', 'url' => route('cases.index')],
                 $categoryInfo
                     ? [
                         'title' => $categoryInfo['name'],
@@ -29,7 +29,7 @@
     <section class="section-bg">
         <div>
             <div class="flex items-center mb-8">
-                <a href="{{ route('cases') }}" class="text-cyan-600 hover:text-cyan-700 mr-4">
+                <a href="{{ route('cases.index') }}" class="text-cyan-600 hover:text-cyan-700 mr-4">
                     <i class="material-icons">arrow_back</i>
                 </a>
                 <div>

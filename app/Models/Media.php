@@ -79,4 +79,20 @@ class Media extends Model
 
         return round($bytes, 2) . ' ' . $units[$i];
     }
+
+    /**
+     * Scope for images only
+     */
+    public function scopeImages($query)
+    {
+        return $query->where('mime_type', 'like', 'image/%');
+    }
+
+    /**
+     * Scope for files by type
+     */
+    public function scopeByType($query, string $type)
+    {
+        return $query->where('mime_type', 'like', $type . '/%');
+    }
 }

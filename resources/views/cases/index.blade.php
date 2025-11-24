@@ -8,7 +8,7 @@
         @include('partials.breadcrumbs', [
             'breadcrumbs' => array_filter([
                 isset($categoryInfo)
-                    ? ['title' => 'Кейсы', 'url' => route('cases')]
+                    ? ['title' => 'Кейсы', 'url' => route('cases.index')]
                     : ['title' => 'Кейсы', 'url' => null],
                 isset($categoryInfo) ? ['title' => $categoryInfo['name'], 'url' => null] : null,
             ]),
@@ -31,7 +31,7 @@
         <div class="text-center mb-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Фильтр по отраслям</h3>
             <div class="flex flex-wrap justify-center gap-3">
-                <a href="{{ route('cases') }}"
+                <a href="{{ route('cases.index') }}"
                     class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
                           {{ !isset($selectedTag) ? 'bg-cyan-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     Все кейсы

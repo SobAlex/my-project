@@ -28,6 +28,10 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 // Static pages
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
 
+// Additional static pages can be added here
+// Route::get('/about', [PageController::class, 'about'])->name('about');
+// Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+
 // Services pages
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/', [ServiceController::class, 'index'])->name('index');
@@ -36,15 +40,15 @@ Route::prefix('services')->name('services.')->group(function () {
 });
 
 // Cases
-Route::get('/cases', [CaseController::class, 'index'])->name('cases');
 Route::prefix('cases')->name('cases.')->group(function () {
+    Route::get('/', [CaseController::class, 'index'])->name('index');
     Route::get('/category/{industry}', [CaseController::class, 'category'])->name('category');
     Route::get('/{id}', [CaseController::class, 'show'])->name('show');
 });
 
 // Blog
-Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/category/{category}', [BlogController::class, 'category'])->name('category');
     Route::get('/{category}/{slug}', [BlogController::class, 'show'])->name('article');
     Route::get('/{slug}', [BlogController::class, 'showWithoutCategory'])->name('article.uncategorized');
@@ -57,8 +61,12 @@ Route::prefix('contact')->name('contact.')->group(function () {
 });
 Route::post('/service/order', [ContactController::class, 'submitServiceOrder'])->name('service.order');
 
-// Media Library
-Route::get('/admin/media', [MediaLibraryController::class, 'index'])->name('media.library');
+// Media Library (protected routes)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/media', [MediaLibraryController::class, 'index'])->name('media.library');
+});
+
+// Demo routes
 Route::get('/demo/media', [DemoController::class, 'index'])->name('demo.media');
 
 
@@ -66,12 +74,11 @@ Route::get('/demo/media', [DemoController::class, 'index'])->name('demo.media');
 // ADMIN ROUTES
 // ============================================================================
 
-// API routes for categories (outside admin prefix to avoid Filament conflicts)
-Route::prefix('api')->name('api.')->middleware(['web'])->group(function () {
+// Admin API routes for categories (protected)
+Route::prefix('api')->name('api.')->middleware(['auth', 'web'])->group(function () {
     // Blog Categories API
     Route::resource('blog-categories', BlogCategoryController::class);
 
     // Industry Categories API
     Route::resource('industry-categories', IndustryCategoryController::class);
-
 });

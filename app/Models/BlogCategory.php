@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Contracts\PublishableInterface;
-use App\Traits\HasPublishing;
-use App\Traits\HasSlug;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasPublishing;
+
+use App\Contracts\PublishableInterface;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BlogCategory extends Model implements PublishableInterface
@@ -25,7 +26,26 @@ class BlogCategory extends Model implements PublishableInterface
 
     protected $casts = [
         'is_active' => 'boolean',
+        'sort_order' => 'integer',
     ];
+
+    /**
+     * Scope a query to only include active categories.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+
+    /**
+     * Scope a query to order by sort order.
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order', 'asc')->orderBy('name', 'asc');
+    }
+
+    // ниже не разобраны
 
     public function blogs(): HasMany
     {
@@ -48,13 +68,7 @@ class BlogCategory extends Model implements PublishableInterface
         return $this->is_active;
     }
 
-    /**
-     * Scope a query to only include active categories.
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
+
 
     /**
      * Scope a query to only include inactive categories.
@@ -73,4 +87,5 @@ class BlogCategory extends Model implements PublishableInterface
             $query->where('is_active', true);
         });
     }
+
 }

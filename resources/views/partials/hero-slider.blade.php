@@ -2,7 +2,7 @@
 <div class="hero-slider" data-slider>
     <!-- Слайды -->
     <div class="hero-slides" data-slides>
-        @foreach($heroSections as $index => $heroSection)
+        @foreach($activeHeroes as $index => $hero)
             <div class="hero-slide {{ $index === 0 ? 'active' : '' }}" data-slide="{{ $index }}">
                 <div class="hero-container flex flex-col md:flex-row gap-4">
                     <!-- Левая часть -->
@@ -11,13 +11,13 @@
                         <div>
                             <!-- Заголовок -->
                             <h1 class="text-3xl leading-relaxed mb-6 sm:mb-8">
-                                {{ $heroSection->title }}
+                                {{ $hero->title }}
                             </h1>
 
-                            @if($heroSection->description)
+                            @if($hero->description)
                                 <!-- Описание -->
                                 <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                                    {{ $heroSection->description }}
+                                    {{ $hero->description }}
                                 </p>
                             @endif
                         </div>
@@ -50,19 +50,19 @@
                             </div>
 
                             <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
-                                aria-label="{{ $heroSection->button_text }}">
-                                {{ $heroSection->button_text }}
+                                aria-label="{{ $hero->button_text }}">
+                                {{ $hero->button_text }}
                             </button>
                         </form>
                     </div>
 
                     <!-- Правая часть (картинка) -->
                     <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto hero-image-container px-4 py-6 overflow-hidden flex items-center justify-center">
-                        @if($heroSection->image)
-                            <img src="{{ $heroSection->image_url }}" alt="{{ $heroSection->title }}"
+                        @if($hero->image)
+                            <img src="{{ $hero->image_url }}" alt="{{ $hero->title }}"
                                 loading="eager" decoding="async" fetchpriority="high" />
                         @else
-                            <img src="{{ asset('images/human.webp') }}" alt="{{ $heroSection->title }}"
+                            <img src="{{ asset('images/human.webp') }}" alt="{{ $hero->title }}"
                                 loading="eager" decoding="async" fetchpriority="high" />
                         @endif
                     </div>
@@ -83,7 +83,7 @@
 
         <!-- Индикаторы -->
         <div class="hero-indicators">
-            @foreach($heroSections as $index => $heroSection)
+            @foreach($activeHeroes as $index => $hero)
                 <button class="hero-indicator rounded-full {{ $index === 0 ? 'active' : '' }}"
                     data-indicator="{{ $index }}"
                     aria-label="Слайд {{ $index + 1 }}">

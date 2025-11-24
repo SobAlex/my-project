@@ -11,7 +11,7 @@
     <!-- Breadcrumbs -->
     <div class="pt-8">
         @include('partials.breadcrumbs', [
-            'breadcrumbs' => [['title' => 'Блог', 'url' => route('blog')], ['title' => $category, 'url' => null]],
+            'breadcrumbs' => [['title' => 'Блог', 'url' => route('blog.index')], ['title' => $category, 'url' => null]],
         ])
     </div>
 

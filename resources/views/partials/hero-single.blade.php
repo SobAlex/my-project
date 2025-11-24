@@ -6,13 +6,13 @@
         <div>
             <!-- Заголовок -->
             <h1 class="text-3xl leading-relaxed mb-6 sm:mb-8">
-                {{ $heroSection->title }}
+                {{ $activeHeroes->title }}
             </h1>
 
-            @if($heroSection->description)
+            @if($activeHeroes->description)
                 <!-- Описание -->
                 <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                    {{ $heroSection->description }}
+                    {{ $activeHeroes->description }}
                 </p>
             @endif
         </div>
@@ -45,19 +45,19 @@
             </div>
 
             <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
-                aria-label="{{ $heroSection->button_text }}">
-                {{ $heroSection->button_text }}
+                aria-label="{{ $activeHeroes->button_text }}">
+                {{ $activeHeroes->button_text }}
             </button>
         </form>
     </div>
 
     <!-- Правая часть (картинка) -->
     <div class="w-full md:basis-1/2 lg:basis-1/3 md:w-auto hero-image-container px-4 py-6 overflow-hidden flex items-center justify-center">
-        @if($heroSection->image)
-            <img src="{{ $heroSection->image_url }}" alt="{{ $heroSection->title }}"
+        @if($activeHeroes->image)
+            <img src="{{ $activeHeroes->image_url }}" alt="{{ $activeHeroes->title }}"
                 loading="eager" decoding="async" fetchpriority="high" />
         @else
-            <img src="{{ asset('images/human.webp') }}" alt="{{ $heroSection->title }}"
+            <img src="{{ asset('images/human.webp') }}" alt="{{ $activeHeroes->title }}"
                 loading="eager" decoding="async" fetchpriority="high" />
         @endif
     </div>

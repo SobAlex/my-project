@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Media;
 use App\Services\MediaService;
+use App\Http\Requests\MediaUploadRequest;
+use App\Http\Requests\MediaUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -54,19 +56,15 @@ class MediaController extends Controller
     /**
      * Загрузить файл
      */
-    public function upload(Request $request): JsonResponse
+    public function upload(MediaUploadRequest $request): JsonResponse
     {
         try {
-            $request->validate([
-                'file' => 'required|file|max:10240', // 10MB
-                'alt_text' => 'nullable|string|max:255',
-                'description' => 'nullable|string|max:1000',
-            ]);
+            $validated = $request->validated();
 
             $media = $this->mediaService->uploadFile(
                 $request->file('file'),
-                $request->get('alt_text'),
-                $request->get('description')
+                $validated['alt_text'],
+                $validated['description']
             );
 
             return response()->json([
@@ -104,14 +102,11 @@ class MediaController extends Controller
     /**
      * Обновить информацию о файле
      */
-    public function update(Request $request, Media $media): JsonResponse
+    public function update(MediaUpdateRequest $request, Media $media): JsonResponse
     {
-        $request->validate([
-            'alt_text' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:1000',
-        ]);
+        $validated = $request->validated();
 
-        $media->update($request->only(['alt_text', 'description']));
+        $media->update($validated);
 
         return response()->json([
             'success' => true,

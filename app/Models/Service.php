@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use App\Contracts\PublishableInterface;
-use App\Traits\HasPublishing;
-use App\Traits\HasSlug;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasPublishing;
+
+use App\Contracts\PublishableInterface;
+use App\Traits\HasSlug;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Service extends Model implements PublishableInterface
 {
@@ -53,6 +54,32 @@ class Service extends Model implements PublishableInterface
     ];
 
     /**
+     * Scope a query to only include published services.
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    /**
+     * Scope a query to only include services shown on homepage.
+     */
+    public function scopeShowOnHomepage($query)
+    {
+        return $query->where('show_on_homepage', true);
+    }
+
+    /**
+     * Scope a query to order services by sort order.
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order')->orderBy('title');
+    }
+
+        // методы ниже пока не разобраны. Разобраться, где применяются. Не нужные удалить.
+
+    /**
      * Check if the service is published.
      */
     public function isPublished(): bool
@@ -77,35 +104,11 @@ class Service extends Model implements PublishableInterface
     }
 
     /**
-     * Scope a query to only include published services.
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('is_published', true);
-    }
-
-    /**
      * Scope a query to only include featured services.
      */
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
-    }
-
-    /**
-     * Scope a query to only include services shown on homepage.
-     */
-    public function scopeShowOnHomepage($query)
-    {
-        return $query->where('show_on_homepage', true);
-    }
-
-    /**
-     * Scope a query to order services by sort order.
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('sort_order')->orderBy('title');
     }
 
 
@@ -211,5 +214,77 @@ class Service extends Model implements PublishableInterface
             ->sortBy(function ($case) use ($caseIds) {
                 return array_search($case->id, $caseIds);
             });
+    }
+
+    /**
+     * Get the related service 1.
+     */
+    public function relatedService1(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'related_service_1_id');
+    }
+
+    /**
+     * Get the related service 2.
+     */
+    public function relatedService2(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'related_service_2_id');
+    }
+
+    /**
+     * Get the related service 3.
+     */
+    public function relatedService3(): BelongsTo
+    {
+        return $this->belongsTo(Service::class, 'related_service_3_id');
+    }
+
+    /**
+     * Get the related article 1.
+     */
+    public function relatedArticle1(): BelongsTo
+    {
+        return $this->belongsTo(Blog::class, 'related_article_1_id');
+    }
+
+    /**
+     * Get the related article 2.
+     */
+    public function relatedArticle2(): BelongsTo
+    {
+        return $this->belongsTo(Blog::class, 'related_article_2_id');
+    }
+
+    /**
+     * Get the related article 3.
+     */
+    public function relatedArticle3(): BelongsTo
+    {
+        return $this->belongsTo(Blog::class, 'related_article_3_id');
+    }
+
+    /**
+     * Get the related case 1.
+     */
+    public function relatedCase1(): BelongsTo
+    {
+        return $this->belongsTo(ProjectCase::class, 'related_case_1_id');
+    }
+
+    /**
+     * Get the related case 2.
+     */
+    public function relatedCase2(): BelongsTo
+    {
+        return $this->belongsTo(ProjectCase::class, 'related_case_2_id');
+    }
+
+    /**
+     * Get the related case 3.
+     */
+    public function relatedCase3(): BelongsTo
+    {
+        return $this->belongsTo(ProjectCase::class, 'related_case_3_id');
     }
 }

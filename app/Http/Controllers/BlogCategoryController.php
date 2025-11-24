@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogCategory;
 use App\Services\BlogService;
+use App\Http\Requests\BlogCategoryRequest;
 use Illuminate\Http\Request;
 
 class BlogCategoryController extends Controller
@@ -24,16 +25,9 @@ class BlogCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BlogCategoryRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         $blogCategory = BlogCategory::create($validated);
 
@@ -55,16 +49,9 @@ class BlogCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BlogCategory $blogCategory)
+    public function update(BlogCategoryRequest $request, BlogCategory $blogCategory)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean',
-            'sort_order' => 'integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         $blogCategory->update($validated);
 
