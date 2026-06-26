@@ -9,9 +9,10 @@ trait HasPublishing
     /**
      * Scope a query to only include published items.
      */
-    public function scopePublished(Builder $query): void
+
+    public function scopePublished($query)
     {
-        $query->where('is_published', true);
+        return $query->where('is_published', true);
     }
 
     /**
@@ -29,5 +30,12 @@ trait HasPublishing
     {
         $query->orderBy('sort_order', 'asc')->orderBy('created_at', 'desc');
     }
-}
 
+        /**
+     * Scope a query to only include services shown on homepage.
+     */
+    public function scopeShowOnHomepage($query)
+    {
+        return $query->where('show_on_homepage', true);
+    }
+}

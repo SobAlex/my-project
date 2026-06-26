@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 // Controllers
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PageController;
@@ -10,10 +12,9 @@ use App\Http\Controllers\CaseController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\IndustryCategoryController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MediaLibraryController;
 use App\Http\Controllers\DemoController;
-use App\Http\Controllers\SitemapController;
+
 
 // ============================================================================
 // PUBLIC ROUTES
@@ -21,16 +22,6 @@ use App\Http\Controllers\SitemapController;
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Sitemap
-Route::get('/sitemap.xml', [SitemapController::class, 'index']);
-
-// Static pages
-Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
-
-// Additional static pages can be added here
-// Route::get('/about', [PageController::class, 'about'])->name('about');
-// Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 
 // Services pages
 Route::prefix('services')->name('services.')->group(function () {
@@ -54,6 +45,9 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/{slug}', [BlogController::class, 'showWithoutCategory'])->name('article.uncategorized');
 });
 
+// Static pages
+Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
+
 // Contact forms
 Route::prefix('contact')->name('contact.')->group(function () {
     Route::post('/hero', [ContactController::class, 'submitHero'])->name('hero');
@@ -69,6 +63,14 @@ Route::middleware(['auth'])->group(function () {
 // Demo routes
 Route::get('/demo/media', [DemoController::class, 'index'])->name('demo.media');
 
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+
+
+// Additional static pages can be added here
+// Route::get('/about', [PageController::class, 'about'])->name('about');
+// Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
+
 
 // ============================================================================
 // ADMIN ROUTES
@@ -82,3 +84,5 @@ Route::prefix('api')->name('api.')->middleware(['auth', 'web'])->group(function 
     // Industry Categories API
     Route::resource('industry-categories', IndustryCategoryController::class);
 });
+
+// Остальные админ роуты в филаменте

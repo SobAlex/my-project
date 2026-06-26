@@ -54,22 +54,6 @@ class Service extends Model implements PublishableInterface
     ];
 
     /**
-     * Scope a query to only include published services.
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('is_published', true);
-    }
-
-    /**
-     * Scope a query to only include services shown on homepage.
-     */
-    public function scopeShowOnHomepage($query)
-    {
-        return $query->where('show_on_homepage', true);
-    }
-
-    /**
      * Scope a query to order services by sort order.
      */
     public function scopeOrdered($query)

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\CaseService;
-use Illuminate\Http\Request;
 
 class CaseController extends Controller
 {
@@ -28,6 +27,8 @@ class CaseController extends Controller
         $title = 'Кейсы SEO продвижения';
         $selectedTag = null;
         $activeCategories = $this->caseService->getActiveCategories();
+
+        // dd($casesData);
 
         return view('cases.index', compact('casesData', 'title', 'selectedTag', 'activeCategories'));
     }

@@ -30,6 +30,14 @@ class BlogCategory extends Model implements PublishableInterface
     ];
 
     /**
+     * Scope a query to order by sort order.
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order', 'asc')->orderBy('name', 'asc');
+    }
+
+    /**
      * Scope a query to only include active categories.
      */
     public function scopeActive($query)
@@ -37,13 +45,7 @@ class BlogCategory extends Model implements PublishableInterface
         return $query->where('is_active', true);
     }
 
-    /**
-     * Scope a query to order by sort order.
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('sort_order', 'asc')->orderBy('name', 'asc');
-    }
+
 
     // ниже не разобраны
 

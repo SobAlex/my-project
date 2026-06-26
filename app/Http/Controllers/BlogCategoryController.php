@@ -91,8 +91,8 @@ class BlogCategoryController extends Controller
     /**
      * Get categories for blog index page.
      */
-    public function getForBlogIndex()
-    {
-        return $this->blogService->getActiveCategories();
-    }
+    // public function getForBlogIndex()
+    // {
+    //     return $this->blogService->getActiveCategories();
+    // }
 }

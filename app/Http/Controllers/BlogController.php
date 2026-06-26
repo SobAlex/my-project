@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\BlogService;
 use App\Http\Controllers\BlogCategoryController;
-use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -23,7 +22,8 @@ class BlogController extends Controller
     public function index()
     {
         $articles = $this->blogService->getPublishedPosts();
-        $activeBlogCategories = $this->blogCategoryController->getForBlogIndex();
+        $activeBlogCategories = $this->blogService->getActiveCategories();
+
         return view('blog.index', compact('articles', 'activeBlogCategories'));
     }
 

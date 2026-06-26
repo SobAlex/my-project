@@ -23,37 +23,11 @@
                         </div>
 
                         <!-- Форма -->
-                        <form action="{{ route('contact.hero') }}" method="POST"
-                            class="flex flex-col gap-4 w-full lg:flex-row lg:space-x-4 lg:space-y-0 lg:items-end lg:justify-start mt-8">
-                            @csrf
-
-                            <div class="flex-1">
-                                <label for="name_hero_{{ $index }}" class="block mb-1">Имя:</label>
-                                <input type="text" id="name_hero_{{ $index }}" name="name" required placeholder="Ваше имя"
-                                    class="w-full px-3 py-2 rounded-lg" aria-required="true" aria-label="Ваше имя"
-                                    aria-invalid="@if (isset($errors) && $errors->has('name')) true @else false @endif"
-                                    aria-describedby="name_hero_{{ $index }}_error" />
-                                @if (isset($errors) && $errors->has('name'))
-                                    <p id="name_hero_{{ $index }}_error" class="mt-1 text-sm text-red-600">{{ $errors->first('name') }}</p>
-                                @endif
-                            </div>
-
-                            <div class="flex-1">
-                                <label for="phone_hero_{{ $index }}" class="block mb-1">Телефон:</label>
-                                <input type="tel" id="phone_hero_{{ $index }}" name="phone" required placeholder="+7 (999) 999-99-99"
-                                    class="w-full px-3 py-2 rounded-lg" aria-required="true" aria-label="Телефон"
-                                    aria-invalid="@if (isset($errors) && $errors->has('phone')) true @else false @endif"
-                                    aria-describedby="phone_hero_{{ $index }}_error" />
-                                @if (isset($errors) && $errors->has('phone'))
-                                    <p id="phone_hero_{{ $index }}_error" class="mt-1 text-sm text-red-600">{{ $errors->first('phone') }}</p>
-                                @endif
-                            </div>
-
-                            <button type="submit" class="btn whitespace-nowrap px-6 py-2 self-start lg:self-auto"
-                                aria-label="{{ $hero->button_text }}">
-                                {{ $hero->button_text }}
-                            </button>
-                        </form>
+                        @include('partials.hero-form', [
+                            'buttonText' => $hero->button_text,
+                            'buttonAriaLabel' => $hero->button_text,
+                            'idSuffix' => '_' . $index
+                        ])
                     </div>
 
                     <!-- Правая часть (картинка) -->

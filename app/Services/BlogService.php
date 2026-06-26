@@ -12,6 +12,32 @@ class BlogService
 {
 
     /**
+     * Get latest posts for homepage.
+     */
+    public function getLatestPostsForHomepage(int $limit = 4): Collection
+    {
+        return Blog::published()
+            ->with('blogCategory')
+            ->whereHas('blogCategory', function($query) {
+                $query->where('is_active', true);
+            })
+            ->ordered()
+            ->limit($limit)
+            ->get();
+    }
+
+    /**
+     * Get all published blog posts with pagination.
+     */
+    public function getPublishedPosts(int $perPage = 12): LengthAwarePaginator
+    {
+        return Blog::published()
+            ->with('blogCategory')
+            ->ordered()
+            ->paginate($perPage);
+    }
+
+    /**
      * Get active blog categories.
      */
     public function getActiveCategories(): SupportCollection
@@ -30,35 +56,7 @@ class BlogService
             });
     }
 
-    // ниже не разобраны
-
-    /**
-     * Get latest posts for homepage.
-     */
-    public function getLatestPostsForHomepage(int $limit = 4): Collection
-    {
-        return Blog::published()
-            ->with('blogCategory')
-            ->whereHas('blogCategory', function($query) {
-                $query->where('is_active', true);
-            })
-            ->ordered()
-            ->limit($limit)
-            ->get();
-    }
-
     // ниже пока не разобранные методы
-
-    /**
-     * Get all published blog posts with pagination.
-     */
-    public function getPublishedPosts(int $perPage = 12): LengthAwarePaginator
-    {
-        return Blog::published()
-            ->with('blogCategory')
-            ->ordered()
-            ->paginate($perPage);
-    }
 
     /**
      * Get posts by category.
